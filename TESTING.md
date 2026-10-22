@@ -25,7 +25,7 @@ python -I -S tools/recompute_streaming_metrics.py --session results/diagnostics/
 
 ```sh
 python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.4.1+cpu
-python -m pip install numpy==1.26.4
+python -m pip install numpy==1.26.4 PyYAML==6.0.2
 python -B tools/release_checks.py --profile torch
 ```
 
