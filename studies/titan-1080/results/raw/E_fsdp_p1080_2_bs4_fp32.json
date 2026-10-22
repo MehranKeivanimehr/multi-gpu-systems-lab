@@ -1,0 +1,127 @@
+{
+  "config": {
+    "global_batch": 8,
+    "grad_ckpt": false,
+    "group": "p1080_2",
+    "memory_fraction": 0.85,
+    "micro_batch_per_gpu": 4,
+    "mode": "fsdp",
+    "model": "gpt2-124m",
+    "n_params": 124439808,
+    "precision": "fp32",
+    "seq_len": 512,
+    "steps": 30,
+    "warmup": 5,
+    "world_size": 2,
+    "zero_stage": null
+  },
+  "error": null,
+  "loss_first_last": [
+    10.972382545471191,
+    10.939666748046875
+  ],
+  "memory": {
+    "peak_alloc_mib_rank0": 4564.8,
+    "peak_reserved_mib_rank0": 4916.0,
+    "per_rank_alloc_reserved_mib": [
+      [
+        4564.8,
+        4916.0
+      ],
+      [
+        4568.2,
+        5582.0
+      ]
+    ]
+  },
+  "meta": {
+    "cuda_device_order": "PCI_BUS_ID",
+    "cuda_visible_devices": "1,3",
+    "host": "TITAN_NODE",
+    "phys_devices": [
+      1,
+      3
+    ],
+    "timestamp": "2026-10-13T22:34:50"
+  },
+  "perf": {
+    "step_time_max_s": 0.37565,
+    "step_time_mean_s": 0.373,
+    "step_time_median_s": 0.37309,
+    "step_time_min_s": 0.37078,
+    "tokens_per_s": 10981.0,
+    "tokens_per_s_per_gpu": 5490.5,
+    "tokens_per_step": 4096,
+    "wall_time_s": 11.1902
+  },
+  "status": "ok",
+  "telemetry": {
+    "duration_s": 11.095361948013306,
+    "energy_per_gpu_j": {
+      "1": 2335.1,
+      "3": 2233.17
+    },
+    "energy_total_j": 4568.27,
+    "mem_max_mib": {
+      "1": 5310.0,
+      "3": 5998.0
+    },
+    "n_samples": 39,
+    "power_max_w": {
+      "1": 304.94,
+      "3": 280.78
+    },
+    "power_mean_w": {
+      "1": 210.49,
+      "3": 201.01
+    },
+    "sm_clock_mean_mhz": {
+      "1": 1918.8,
+      "3": 1919.7
+    },
+    "temp_max_c": {
+      "1": 29.0,
+      "3": 34.0
+    },
+    "util_max_pct": {
+      "1": 100.0,
+      "3": 100.0
+    },
+    "util_mean_pct": {
+      "1": 99.1,
+      "3": 99.67
+    }
+  },
+  "torch_env": {
+    "arch_list": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "device_count": 2,
+    "devices": [
+      {
+        "capability": "6.1",
+        "local_index": 0,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 1,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      }
+    ],
+    "nccl": "2.20.5",
+    "torch": "2.4.1+cu121"
+  }
+}

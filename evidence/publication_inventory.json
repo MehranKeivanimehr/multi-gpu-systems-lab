@@ -1,0 +1,60 @@
+{
+  "foreign_users": {
+    "other_user_home_paths_found": 0
+  },
+  "measurement_inputs_necessary_for_advertised_analyses": {
+    "basis": "the only glob the four analysis tools read, verified by source inspection",
+    "files": 384,
+    "path": "measurements/runs/*/results/*.json"
+  },
+  "private_operator_incident_and_process_management_evidence": {
+    "dispositions_preserved_publicly_in": "evidence/attempt_inventory.json (377 cases)",
+    "excluded_from_publication": {
+      "command.txt receipts": 549,
+      "exit_code": 376,
+      "prelaunch_apps.csv / prelaunch_devices.csv / postrun_apps.txt": 752,
+      "stdout.log / stderr.log / vllm_server.log": 759
+    },
+    "retained_privately": true
+  },
+  "public_source_protocols_results_documentation": {
+    "docs": [
+      "README.md",
+      "TESTING.md",
+      "CLAIMS.md",
+      "LIMITATIONS.md",
+      "REGENERATE.md"
+    ],
+    "environments": 5,
+    "protocols": 5,
+    "results": 4,
+    "source": 1662
+  },
+  "quarantined": {
+    "source/audit/original-audit.zip": "unreviewed, removed, retained privately"
+  },
+  "redactions": {
+    "engine_pid / controller_pid": "14 fields in 7 files nulled, hashes mapped"
+  },
+  "retained_deliberately": {
+    "GPU UUIDs and device names": "necessary scientific metadata; NOT broadly redacted merely for looking unusual",
+    "all numerical observations, timestamps, case identities": "unchanged",
+    "host (TITAN_NODE)": "necessary scientific metadata binding measurements to the documented node"
+  },
+  "secret_scan": {
+    "assigned_credential_values_found": 0,
+    "key_material_files": 0,
+    "note": "api_key/token= matches were parameter NAMES in echoed configs and package metadata; no values are reproduced in any report"
+  },
+  "unresolved_privacy_decisions": [
+    {
+      "item": "source/studies/a6000/results/raw/**/*.log (173 raw console logs)",
+      "scanned_for_secrets": "yes, no assigned credential values found",
+      "status": "PRE-EXISTING A6000 study content in the delivered repository; not Titan measurement data and not touched by this stage. No A6000 work was authorised. Needs an owner decision before publication."
+    },
+    {
+      "item": "no licence chosen",
+      "status": "rights status unchanged; no open-source licence claimed or advertised"
+    }
+  ]
+}

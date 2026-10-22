@@ -1,0 +1,10 @@
+# NCCL all-reduce bus bandwidth: explains the scaling curves (NVLink pair vs PCIe vs both).
+name: nccl
+kind: nccl
+repeats: 1
+gpu_sets: [[4, 5], [4, 6], [4, 5, 6, 7]]
+defaults:
+  sizes_mib: [1, 4, 16, 64, 256, 1024]
+  dtype: bf16
+  warmup_iters: 5
+  iters: 20

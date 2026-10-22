@@ -1,0 +1,33 @@
+{
+  "status": "oom",
+  "rc": 1,
+  "duration_s": 14.854791641235352,
+  "idle_wait_before_s": 10.044719934463501,
+  "leftover_processes_killed": 0,
+  "estimate": {
+    "n_params_est": 1543714304,
+    "state_gib_per_gpu_est": 23.0,
+    "cap_gib": 44.0
+  },
+  "message": "CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 47.40 GiB of which 3.68 GiB is free. Including non-PyTorch memory, this process has 43.72 GiB memory in use. 43.61 GiB allowed; Of the allocated memory 40.47 GiB is allocated by PyTorch, and 2.48 GiB is reserved by PyTorch",
+  "spec": {
+    "warmup_steps": 5,
+    "measure_steps": 20,
+    "seed": 1234,
+    "grad_accum": 2,
+    "model": "qwen2.5-1.5b",
+    "variant": "mb2-ga2",
+    "seq_len": 1024,
+    "micro_batch": 2,
+    "activation_checkpointing": false,
+    "kind": "train",
+    "experiment": "probe_1gpu",
+    "framework": "ddp",
+    "n_gpus": 1,
+    "gpus": [
+      4
+    ],
+    "repeat": 0,
+    "run_id": "qwen2.5-1.5b-mb2-ga2__ddp__g1__r0"
+  }
+}

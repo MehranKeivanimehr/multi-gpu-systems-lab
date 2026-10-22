@@ -1,0 +1,248 @@
+{
+  "counting_unit_note": "entries are CLAIMS, not records or rows. Record-level certification counts (384 artifacts) and historical row counts (98 DeepSpeed rows) are different units and are reported separately; a structurally consistent record does not become numerically certified.",
+  "deepspeed_rows_covered": 98,
+  "disposition_counts": {
+    "invalid-for-claim": 15,
+    "needs-fresh-evidence": 1,
+    "not-tested": 3,
+    "qualified": 5,
+    "supported": 7,
+    "unverified": 1
+  },
+  "dispositions_used": [
+    "supported",
+    "qualified",
+    "unverified",
+    "invalid-for-claim",
+    "not-tested",
+    "needs-fresh-evidence"
+  ],
+  "entries": [
+    {
+      "basis": "strict certification: {'FAIL': 7, 'PASS': 349, 'QUALIFIED': 28}. 0 records with zero checks (the delivered audit had 46, all passing).",
+      "claim": "Every delivered record is internally consistent and recomputable",
+      "cohort": "384 records",
+      "disposition": "qualified",
+      "scope_limit": "7 FAIL are superseded pre-fix records plus D08/D22, whose own payloads record failure; 28 QUALIFIED carry stated limitations"
+    },
+    {
+      "basis": "unknown schema -> UNSUPPORTED; missing mandatory check -> INVALID; zero checks can never PASS; every row keyed by a unique id",
+      "claim": "Certification is non-vacuous",
+      "cohort": "tooling",
+      "disposition": "supported",
+      "scope_limit": null
+    },
+    {
+      "basis": "agree=736 disagree=0, worst deviation 0.000000%, 0 unbracketed, 0 support gaps above 0.6s (max observed 0.5283s)",
+      "claim": "Reported board energy equals an independent re-integration",
+      "cohort": "736 per-device windows",
+      "disposition": "supported",
+      "scope_limit": "uncalibrated GPU-board energy integrated over the actual measured window; NOT PSU or wall energy"
+    },
+    {
+      "basis": "the sampler reads GPU board power only",
+      "claim": "Energy figures are wall or PSU energy",
+      "cohort": "all energy rows",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "uncalibrated GPU-board energy over the actual window"
+    },
+    {
+      "basis": "every repeat value is published beside each median; None meet the span<=5% rule, None retained as missing (the delivered two-sided-endpoint rule counted 13; the tighter span rule counts 16 and strictly contains them)",
+      "claim": "Six-block repeat statistics are complete and reported in full",
+      "cohort": "None groups",
+      "disposition": "supported",
+      "scope_limit": null
+    },
+    {
+      "basis": "algebraically correct for 6 exchangeable continuous draws",
+      "claim": "[min,max] gives 31/32 = 96.875% pointwise median coverage",
+      "cohort": "each six-block arm",
+      "disposition": "qualified",
+      "scope_limit": "conditional on exchangeability and continuity; six fresh processes do not by themselves establish IID"
+    },
+    {
+      "basis": "per-block ratio then median; never a ratio of medians drawn from different block sets",
+      "claim": "Paired scaling ratios are computed within blocks",
+      "cohort": "19 comparisons",
+      "disposition": "supported",
+      "scope_limit": null
+    },
+    {
+      "basis": "0.90 is fp32/fp16, mislabelled as fp16/fp32. fp16 is FASTER: ratio_of_medians=1.10626, paired_median=1.14616",
+      "claim": "On TITAN RTX, fp16 HF generate is slower than fp32 (0.90x)",
+      "cohort": "rtx_1 batch 16",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "only batch 16 favours fp16 (paired 1.14616); batch 1 (0.93834) and batch 4 (0.99682) favour fp32",
+      "claim": "fp16 is faster than fp32 on TITAN RTX at every batch size",
+      "cohort": "rtx_1 all batches",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "ratio_of_medians=1.10626, paired_median=1.14616",
+      "claim": "fp16 at batch 16 on TITAN RTX is faster than fp32",
+      "cohort": "rtx_1 batch 16",
+      "disposition": "qualified",
+      "scope_limit": "paired per-block range [0.83871,1.33437] spans 1.0, so the direction is not consistent across all six blocks"
+    },
+    {
+      "basis": "paired median fp16/fp32 = 0.16454 (i.e. fp32 is 6.08x faster), paired range [0.16308,0.16516] entirely below 1",
+      "claim": "On GTX 1080 Ti, fp16 HF generate is far slower than fp32",
+      "cohort": "p1080_1 batch 16",
+      "disposition": "supported",
+      "scope_limit": "HF generate only; not a claim about all fp16 work on Pascal"
+    },
+    {
+      "basis": "paired median fp16/fp32 = 0.15544 (i.e. fp32 is 6.43x faster), paired range [0.15331,0.15658] entirely below 1",
+      "claim": "On TITAN Xp, fp16 HF generate is far slower than fp32",
+      "cohort": "xp_1 batch 16",
+      "disposition": "supported",
+      "scope_limit": "HF generate only; not a claim about all fp16 work on Pascal"
+    },
+    {
+      "basis": "the executed constant is 8.2 GFLOP/image; recomputation from the records returns 8.2002. 8.178 was never executed.",
+      "claim": "ResNet-50 achieved TFLOP/s uses 8.178 analytical GFLOP/image",
+      "cohort": "all CNN rows",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "any 8.178-based figure must be labelled a separate derived recalculation"
+    },
+    {
+      "basis": "train_llm.py and infer_hf.py both call reset_peak_memory_stats after warmup",
+      "claim": "Reported peak memory is a whole-run peak",
+      "cohort": "training and HF rows",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "figures are POST-WARMUP peaks"
+    },
+    {
+      "basis": "the engine-aware diagnostic provably ran GPT2 n_positions=512 (124,046,592 parameters) against a trained model of 124,439,808; every diagnostic forced fp16 and bf16 off, so the AMP rows additionally lack precision-matched evidence",
+      "claim": "ZeRO performance rows are covered by engine-aware numerical evidence",
+      "cohort": "98 DeepSpeed performance rows",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "16 P-cohort contexts = 96 P rows, plus 2 rows outside the P cohort = 98 overall"
+    },
+    {
+      "basis": "nothing brackets engine.step(); deepspeed_hardware_validated is false in every record",
+      "claim": "The DeepSpeed native numerical path was validated on hardware",
+      "cohort": "all ZeRO rows",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "structural, not a measurement gap"
+    },
+    {
+      "basis": "no overflow was induced and no skip injection was authorised",
+      "claim": "The DeepSpeed skip path was exercised",
+      "cohort": "all ZeRO rows",
+      "disposition": "not-tested",
+      "scope_limit": null
+    },
+    {
+      "basis": "counters are boundary mechanics and a changed partition norm shows movement, not the intended update; no oracle was evaluated",
+      "claim": "Engine counters and changed master norms prove the intended AdamW update",
+      "cohort": "all ZeRO rows",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "arrivals are non-empty TEXT CHUNKS; no token ids, usage or finish_reason retained. A chunk is not a token.",
+      "claim": "The streaming arm measures per-token inter-token latency",
+      "cohort": "7 streaming records",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "field name inter_token_latencies_s is a misnomer"
+    },
+    {
+      "basis": "every row carries a finite positive first-arrival time and >=1 chunk; medians recomputed from rows",
+      "claim": "The streaming arm measures first non-empty text arrival and chunk cadence",
+      "cohort": "7 streaming records",
+      "disposition": "qualified",
+      "scope_limit": "no raw SSE, HTTP status, usage or completion evidence; cleanup not proven by an integer pid"
+    },
+    {
+      "basis": "frozen config declares prompt_len=256 and max_new_tokens=128 and claims it applies identically to TP1/TP2/streaming; the arm ran output_len=64 with a realised prompt of 278 tokens",
+      "claim": "The streaming arm ran the frozen offline workload",
+      "cohort": "7 streaming records",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "100 requests support a median only; no tail percentile was claimed",
+      "claim": "Streaming tail percentiles",
+      "cohort": "7 streaming records",
+      "disposition": "not-tested",
+      "scope_limit": null
+    },
+    {
+      "basis": "the tolerance file was frozen 04:26:50Z, after D04/D06/D07 at 03:25-03:28Z; the comparison was informed/exploratory",
+      "claim": "The cross-hardware loss comparison was preregistered",
+      "cohort": "REF2 pairs",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "this does not establish that thresholds were fitted"
+    },
+    {
+      "basis": "first measured step agrees to 4.43e-3 and 5.03e-4 against a 5e-2 bound; max trajectory divergence 9.16e-3 against 5e-1",
+      "claim": "Matched FP32 single-GPU loss trajectories agree across families within the declared tolerances",
+      "cohort": "REF2 rtx vs p1080 and rtx vs xp",
+      "disposition": "qualified",
+      "scope_limit": "losses[0] follows 5 warmup updates so it is not an untrained forward pass; the frozen input policy names a CPU generator while training drew from the CUDA generator; no realised input digest was retained"
+    },
+    {
+      "basis": "only singleton FP32 cross-hardware references were run",
+      "claim": "Matched controls exist for every recipe, precision and world size",
+      "cohort": "all recipes",
+      "disposition": "not-tested",
+      "scope_limit": null
+    },
+    {
+      "basis": "no intervention isolated P2P; the association is confounded with family, clocks, driver path and kernel selection",
+      "claim": "Disabled CUDA P2P causes the TITAN RTX pair's lower scaling efficiency",
+      "cohort": "rtx_2 cohorts",
+      "disposition": "invalid-for-claim",
+      "scope_limit": "retained as an association between a capability flag, measured bandwidth and training throughput"
+    },
+    {
+      "basis": "both recomputed independently from raw rows",
+      "claim": "Measured all-reduce bandwidth and DDP throughput differ between the RTX pair and the Pascal groups",
+      "cohort": "collective + training cohorts",
+      "disposition": "supported",
+      "scope_limit": "association only; no causal mechanism established"
+    },
+    {
+      "basis": "torch 2.4.1 exposes neither uuid nor pci_bus_id and pynvml is absent; numeric visibility plus nvidia-smi UUIDs and runtime device NAMES is an external correspondence argument",
+      "claim": "Device identity was certified in-process by UUID",
+      "cohort": "all records",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "absence of __pycache__ and of test.txt is consistent with never running, but neither is proof: bytecode writing can be disabled and a sentinel file can be removed",
+      "claim": "The pyairports distribution was never executed",
+      "cohort": "env provenance",
+      "disposition": "unverified",
+      "scope_limit": null
+    },
+    {
+      "basis": "a py3-none-any wheel shows the artifact installed was pure; it does not establish that no source build happened anywhere upstream",
+      "claim": "The pyairports wheel proves no source build occurred",
+      "cohort": "env provenance",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "run_blocks.py and run_blocks_aux.py invoke tools/gpu_attempt.sh directly, bypassing bench/launch.py and bench/launch_gate.py",
+      "claim": "The audited Python launcher gated every campaign launch",
+      "cohort": "300 block launches",
+      "disposition": "invalid-for-claim",
+      "scope_limit": null
+    },
+    {
+      "basis": "the shell path parses nvidia-smi text without validating exit status, emptiness, NaN/inf or unrequested rows, holds no reservation, does not fully revalidate each settle poll, and confirms no ownership-scoped descendant cleanup",
+      "claim": "The shell launch path fails closed on failed, empty or malformed telemetry",
+      "cohort": "gpu_attempt.sh",
+      "disposition": "needs-fresh-evidence",
+      "scope_limit": "requires the routed launcher plus lifecycle acceptance on the real path"
+    }
+  ],
+  "root": "$PROJECT_ROOT/titan_closeout_20261016/derived/publication/measurements",
+  "schema": "titan-claim-ledger-1"
+}

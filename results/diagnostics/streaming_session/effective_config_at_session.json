@@ -1,0 +1,134 @@
+{
+  "constraint_fields_asserted_absent": [
+    "guided_json",
+    "guided_regex",
+    "guided_choice",
+    "guided_grammar",
+    "guided_whitespace_pattern",
+    "guided_decoding_backend",
+    "response_format",
+    "tools",
+    "tool_choice",
+    "logit_bias",
+    "allowed_token_ids"
+  ],
+  "corpus_digest_note": "the protocol records the corpus SELF digest (over its prompt content, checked by zerodiag.reference.verify_corpus); corpus_file_sha256 is the digest of the file bytes. They are different quantities and both are frozen.",
+  "corpus_file_sha256": "254bee77d30364e640ef376fa5a62b6ae583df8f0eae30ebbca36f7e016623e7",
+  "corpus_self_digest_in_protocol": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350",
+  "criterion_clarification_sha256": "5e334d780659ef9e53c139cb7ddcb3a71a1ebd2e798c1af039f89f58435c23a8",
+  "dependency_conflict": [
+    "datasets 5.1.0 has requirement huggingface-hub<3.0,>=1.31.0, but you have huggingface-hub 0.36.2."
+  ],
+  "dependency_conflict_note": "selecting a working guided-decoding backend is NOT a repair of this conflict; the conflict remains present in the vLLM environment and no global environment mutation was made",
+  "dependency_conflict_present": true,
+  "device_groups_sha256": "cad1695285574316d037aa950c07f03715224518ce8f7cc224200cf71e920372",
+  "effective_request_payload_shape": {
+    "max_tokens": 64,
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "prompt": [
+      "<256 token ids>"
+    ],
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0.0
+  },
+  "effective_server_argv_template": [
+    "<interpreter>",
+    "-m",
+    "vllm.entrypoints.openai.api_server",
+    "--model",
+    "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "--revision",
+    "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "--tokenizer-revision",
+    "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "0",
+    "--dtype",
+    "float16",
+    "--max-model-len",
+    "1024",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--guided-decoding-backend",
+    "lm-format-enforcer",
+    "--disable-log-requests"
+  ],
+  "environment_identities": {
+    "datasets": "5.1.0",
+    "huggingface_hub": "0.36.2",
+    "lm-format-enforcer": "0.10.6",
+    "outlines": "0.0.46",
+    "prometheus_client": "0.26.0",
+    "torch": "2.4.0",
+    "transformers": "4.45.2",
+    "vllm": "0.6.3.post1"
+  },
+  "guided_backend_class_default": "outlines",
+  "guided_backend_resolved_by_vllm_parser": "lm-format-enforcer",
+  "guided_backend_selected": "lm-format-enforcer",
+  "outlines_entered": false,
+  "protocol": {
+    "concurrency": 4,
+    "corpus": "protocols/prompt_corpus.json",
+    "corpus_sha256": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350",
+    "greedy": true,
+    "historical_untouched": "the historical 278-token inputs and the preserved 64/128 protocol contradiction are not rewritten by this case",
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "output_tokens": 64,
+    "prompt_len_tokens": 256,
+    "reporting_allowed": [
+      "per-request descriptive summaries",
+      "first-text latency",
+      "chunk counts",
+      "inter-chunk gaps",
+      "wall duration",
+      "server-reported completion token counts"
+    ],
+    "reporting_forbidden": [
+      "tail percentiles from one session",
+      "internal GPU TTFT",
+      "chunk gaps presented as inter-token latency",
+      "per-token timing without established attribution"
+    ],
+    "requests": 100,
+    "schema": "titan_streaming_protocol_v1",
+    "server": "one fresh loopback-only server, bound to localhost",
+    "sessions": 1,
+    "sessions_note": "ONE new session. One session is not six independent repeat sessions, carries no session-variation estimate, and is never reported as repeats."
+  },
+  "protocol_digest": "d2075ffffc863a3cdabab287b08c0d00fdd2dfde7d39b9cfd86d593526d40005",
+  "ref_runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+  "reference_protocol_digest": "fa1b5a888f912a044aef989221a34729092945c36c22cfcf4accdb0d6972bd63",
+  "resolved_logits_processor_is_none": true,
+  "schema": "titan_streaming_effective_config_v1",
+  "source_tree_digest": "37f1347d53e54c3b0cae9b55a359c94748d3315ef33ee6ef5d0e6357a16099c3",
+  "stream_runner_sha256": "0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1",
+  "streaming_module_sha256": "39484431ade8d3db1100c6bc2ecc5e9dd0694f4fd727aa1271902575dd17b233",
+  "success_rule": {
+    "classes": [
+      "successful",
+      "length_mismatch",
+      "incomplete",
+      "failed"
+    ],
+    "conditions": [
+      "transport status is ok (HTTP 200, body read to its end)",
+      "at least one data event carries non-empty text",
+      "a completion marker: finish_reason or the [DONE] sentinel",
+      "no error event recorded for the request"
+    ],
+    "document": "protocols/STREAMING_SUCCESS_RULE.md",
+    "http_200_alone_is_not_success": true,
+    "length_check": "where usage.completion_tokens is present it must equal the frozen output length; otherwise the request is length_mismatch and is not counted as successful",
+    "schema": "titan_streaming_success_rule_v1",
+    "sha256": "860f6954ba4d5514143fa8083c54287334303247ad761f82952fb10fda0dc849"
+  },
+  "success_rule_document_sha256": "860f6954ba4d5514143fa8083c54287334303247ad761f82952fb10fda0dc849",
+  "worker_sha256": "17eeebf0a6925c16b9952545aacdda825dbb06065f67e210c64bc947c0cdf3a2"
+}

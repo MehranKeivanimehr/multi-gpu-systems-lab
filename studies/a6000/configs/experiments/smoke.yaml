@@ -1,0 +1,20 @@
+# Plumbing check: every framework on the small models, 1 -> 2 -> 4 GPUs, a handful of steps.
+name: smoke
+kind: train
+repeats: 1
+gpu_counts: [1, 2, 4]
+defaults:
+  warmup_steps: 2
+  measure_steps: 5
+  seed: 1234
+  grad_accum: 1
+workloads:
+  - model: qwen2.5-0.5b
+    seq_len: 512
+    micro_batch: 2
+    activation_checkpointing: false
+    frameworks: [ddp, fsdp, zero1, zero2, zero3]
+  - model: resnet50
+    micro_batch: 32
+    ds_precision: autocast
+    frameworks: [ddp, fsdp, zero1, zero2]

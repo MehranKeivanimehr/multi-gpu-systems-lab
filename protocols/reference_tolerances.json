@@ -1,0 +1,22 @@
+{
+  "purpose": "Predeclared tolerances for matched short reference runs. Frozen and hashed BEFORE any comparison run is executed or inspected, so the thresholds cannot be chosen to fit the differences they are later used to judge.",
+  "frozen_before_any_comparison_run": true,
+  "comparison_design": {
+    "matched_on": ["model seed", "architecture", "sequence length", "micro batch per GPU", "warmup steps", "measured steps", "precision", "memory fraction"],
+    "deliberately_different": ["physical device(s)", "GPU family where stated"],
+    "input_policy": "synthetic token IDs from a CPU generator seeded with seed+rank, so rank-distinct streams are reproducible for a given world size",
+    "note": "A matched pair compares the SAME recipe on DIFFERENT hardware. Different world sizes are NOT a matched pair: the per-rank data streams differ, so loss trajectories legitimately diverge."
+  },
+  "tolerances": {
+    "step0_loss_abs": 0.05,
+    "step0_loss_rationale": "before any optimizer update the loss is a pure forward evaluation of identically seeded weights; it should agree to well within fp32 reduction-order noise",
+    "final_loss_abs": 0.50,
+    "final_loss_rationale": "after 30 AdamW steps, accumulated fp32 non-associativity and differing cuBLAS kernel selection across sm_61 and sm_75 admit a larger but still bounded divergence",
+    "loss_trajectory_max_abs": 0.50,
+    "all_losses_finite": true,
+    "relative_throughput_bound": null,
+    "relative_throughput_rationale": "throughput is EXPECTED to differ between families; no tolerance is declared and none is checked"
+  },
+  "pass_rule": "A matched pair passes only if every declared tolerance holds. A failure is reported as a failure; tolerances are not revised after inspection.",
+  "author_of_repository": "Mehran Keivanimehr"
+}

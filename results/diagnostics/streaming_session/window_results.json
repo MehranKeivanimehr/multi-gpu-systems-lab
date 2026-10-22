@@ -1,0 +1,226 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "disposition": "completed_with_supported_checks",
+      "elapsed_s": 53.7,
+      "evidence_dir": "$PROJECT_ROOT/titan_final_20261020/out/batch/final_attempts/attempt1/run/rank0",
+      "offline_accounting": {
+        "accounting_complete": true,
+        "classes_sum": 100,
+        "counts": {
+          "failed": 0,
+          "incomplete": 0,
+          "length_mismatch": 0,
+          "successful": 100
+        },
+        "nothing_discarded": "every recorded request is in exactly one class",
+        "requests_expected": 100,
+        "requests_recorded": 100,
+        "successful_without_length_evidence": 0
+      },
+      "offline_recompute_rc": 0,
+      "offline_verdict": "SESSION_OBSERVED",
+      "out": "$PROJECT_ROOT/titan_final_20261020/out/batch/final_attempts/attempt1",
+      "rc": 0,
+      "reason": "the frozen rule was met",
+      "stderr_tail": "",
+      "stdout_tail": "case S_rtx_1_stream_256_64: kind=streaming world_size=1 stage=None precision=None group=rtx_1\n  runner: zerodiag/stream_runner.py\n  devices [0] (NVIDIA TITAN RTX)\n  worker sha256: 0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1\n  cpu affinity: [0, 1, 2, 3, 4, 5, 6, 7] via os.sched_setaffinity (a restriction, not a quota and not an exclusive reservation)\n  launched 1/1 rank(s); ownership token zd-127828124f4bcfed\n  ranks: 1/1 completed, 1/1 with evidence\n  aggregate peak owned RSS: 7.9469 GiB of 32.0 GiB over 91 sample(s)\n  elapsed 53.5s  cleanup_confirmed=True\ncase completed; every expected rank reconciled\n",
+      "summary": {
+        "aggregate_memory": {
+          "budget_bytes": 34359738368,
+          "budget_gib": 32.0,
+          "discovery": "union of recorded rank pgids and a /proc token sweep",
+          "enforced_cap": false,
+          "interval_s": 0.5,
+          "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+          "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+          "peak_owned_rss_bytes": 8532881408,
+          "peak_owned_rss_gib": 7.9469,
+          "samples": 91,
+          "shared_pages": "counted once per sharing process: an over-estimate"
+        },
+        "authorization_id": "FINAL-20261020T141800Z",
+        "authorization_revoked": true,
+        "budget_breached": false,
+        "case_id": "S_rtx_1_stream_256_64",
+        "device_uuids": [
+          "TITAN_RTX#1"
+        ],
+        "elapsed_s": 53.55,
+        "exit_codes": [
+          0
+        ],
+        "group": "rtx_1",
+        "group_absent_confirmed": true,
+        "interpreter": "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-vllm/bin/python",
+        "kind": "streaming",
+        "lifecycle": {
+          "aggregate": {
+            "budget_bytes": 34359738368,
+            "budget_gib": 32.0,
+            "discovery": "union of recorded rank pgids and a /proc token sweep",
+            "enforced_cap": false,
+            "interval_s": 0.5,
+            "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+            "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+            "peak_owned_rss_bytes": 8532881408,
+            "peak_owned_rss_gib": 7.9469,
+            "samples": 91,
+            "shared_pages": "counted once per sharing process: an over-estimate"
+          },
+          "budget_breached": false,
+          "cleanup": {
+            "basis": "a leader's exit is not sufficient; every owned pid and token-carrying descendant is checked. Zombies are excluded: they have exited and hold nothing.",
+            "foreign_processes_signalled": 0,
+            "owned_absent_confirmed": true,
+            "scope": "owned ranks and their descendants only",
+            "steps": [
+              {
+                "error": "ProcessLookupError",
+                "pgid": 610415,
+                "sent": false,
+                "signal": "TERM"
+              }
+            ],
+            "surviving_pids": []
+          },
+          "elapsed_s": 53.55,
+          "exit_codes": {
+            "0": 0
+          },
+          "launch_errors": {},
+          "ledger": "$PROJECT_ROOT/titan_final_20261020/out/batch/final_attempts/attempt1/run/ownership_ledger.json",
+          "n_launched": 1,
+          "owned_absent_confirmed": true,
+          "partial_launch": false,
+          "ranks_launched": [
+            0
+          ],
+          "timed_out": false,
+          "token": "zd-127828124f4bcfed",
+          "world_size": 1
+        },
+        "monitoring_note": "sampled aggregate owned RSS; a guard, not an enforced aggregate memory cap",
+        "ownership_token": "zd-127828124f4bcfed",
+        "per_rank": {
+          "0": {
+            "amp_semantics": null,
+            "evidence_present": true,
+            "exit_code": 0,
+            "expected_base_calls": null,
+            "initial_state_sha256": null,
+            "rank_reported": 0,
+            "realized_input_sha256": null,
+            "reason": null,
+            "stage": "completed"
+          }
+        },
+        "precision": null,
+        "rank_reconciliation": {
+          "kind": "streaming",
+          "note": "a streaming case carries no partition reconciliation; its terminal status is the runner's own verdict",
+          "ranks_completed": 1,
+          "ranks_expected": 1,
+          "reason": null,
+          "verification_successful": true
+        },
+        "ranks_completed": 1,
+        "ranks_expected": 1,
+        "ranks_with_evidence": 1,
+        "reconciliation_successful": true,
+        "runner": "zerodiag/stream_runner.py",
+        "runner_sha256": "0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1",
+        "source_digest": "37f1347d53e54c3b0cae9b55a359c94748d3315ef33ee6ef5d0e6357a16099c3",
+        "stage": null,
+        "timed_out": false,
+        "worker_sha256": "0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1",
+        "world_size": 1
+      }
+    }
+  ],
+  "authorization": {
+    "approved_by": "repository owner (Mehran Keivanimehr)",
+    "approved_device": {
+      "index": 0,
+      "name": "NVIDIA TITAN RTX",
+      "uuid": "TITAN_RTX#1"
+    },
+    "authorization_id": "FINAL-20261020T141800Z",
+    "basis": "owner approval 2026-10-20: one fresh nonrenewable 5400 s streaming-only window on physical GPU 0 after CPU acceptance",
+    "candidate": "$PROJECT_ROOT/titan_final_20261020/candidate",
+    "candidate_manifest_sha256": "782fed1981a0ae1656bf3891f42175ed08ab24e02343561e53198c02e9159600",
+    "corpus_file_sha256": "254bee77d30364e640ef376fa5a62b6ae583df8f0eae30ebbca36f7e016623e7",
+    "dependency_conflict_present_at_issue": true,
+    "device_groups_sha256": "cad1695285574316d037aa950c07f03715224518ce8f7cc224200cf71e920372",
+    "effective_config_sha256": "4bd56157bc4aca2452cb3c74535e6bd2f96170129523d9ea749fb0ad31e361b3",
+    "eligible_physical_indices": [
+      0
+    ],
+    "environment_identities": {
+      "datasets": "5.1.0",
+      "huggingface_hub": "0.36.2",
+      "lm-format-enforcer": "0.10.6",
+      "outlines": "0.0.46",
+      "prometheus_client": "0.26.0",
+      "torch": "2.4.0",
+      "transformers": "4.45.2",
+      "vllm": "0.6.3.post1"
+    },
+    "expiry_epoch": 1792511280.0755436,
+    "expiry_utc": "2026-10-20T15:48:00Z",
+    "issue_epoch": 1792505880.0755436,
+    "issued_utc": "2026-10-20T14:18:00Z",
+    "jobs_at_a_time": 1,
+    "limits": {
+      "aggregate_host_rss_gib": 32,
+      "cleanup_allowance_s": 90,
+      "max_logical_cpus": 8,
+      "streaming_timeout_s": 900
+    },
+    "max_concurrent_gpus": 1,
+    "previous_windows_preserved": [
+      "BATCH-20261020T095841Z",
+      "FOLLOWUP-20261020T113750Z",
+      "CLOSED-20261020T125221Z"
+    ],
+    "prohibited": [
+      "no new large model downloads",
+      "no system-package installs",
+      "no sudo",
+      "no GPU resets",
+      "no host-service changes",
+      "no power or clock changes",
+      "no global environment mutation",
+      "no substitute GPU",
+      "no second concurrent job",
+      "no change to model, corpus, precision, generation policy, workload or scientific acceptance criteria"
+    ],
+    "renewable": false,
+    "repair_policy": {
+      "attempt_note": "one initial attempt and up to two engineering retries",
+      "in_window_cpu_repair_budget_min": 30,
+      "max_attempts": 3,
+      "repair_budget_is_inside_the_window": true
+    },
+    "reuses_a_previous_window": false,
+    "revoked": false,
+    "safety_stops": [
+      "OOM",
+      "identity failure",
+      "resource-budget breach",
+      "driver instability",
+      "unauthorized access",
+      "unconfirmed cleanup"
+    ],
+    "scope": "streaming only; no training, reference, Gate-0, performance or energy work",
+    "source_digest": "37f1347d53e54c3b0cae9b55a359c94748d3315ef33ee6ef5d0e6357a16099c3",
+    "stream_runner_sha256": "0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1",
+    "streaming_module_sha256": "39484431ade8d3db1100c6bc2ecc5e9dd0694f4fd727aa1271902575dd17b233",
+    "success_rule_sha256": "860f6954ba4d5514143fa8083c54287334303247ad761f82952fb10fda0dc849",
+    "window_s": 5400
+  },
+  "case_id": "S_rtx_1_stream_256_64",
+  "finished_utc": "2026-10-20T14:19:00Z",
+  "stopped": null
+}

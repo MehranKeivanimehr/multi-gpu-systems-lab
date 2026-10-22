@@ -1,0 +1,53 @@
+# Candidate 16 PROPOSED pre-registered positive control C as a matched pair (NOT authorized; all authorization and UTC
+# fields null). R5: FP32 DDP world 1 on GPU 4, GA 4, 5 updates. C5: the SAME recipe at world 2 on GPUs 4-5, GA 2.
+# Candidate 17: the supervisor executes this scope (CPU-tested with mocks only). Candidate 18: GPU-5 identity stays null
+# HERE; it is enrolled at the start of the same window under the frozen policy into a sealed record outside the tree.
+scope: train-control-pair
+case_gpus: {R5_fp32_world1_ga4: [4], C5_fp32_world2_ga2: [4, 5]}
+gpu_uuids: {4: GPU-00000000-0000-0000-0000-000000000109, 5: null}   # GPU-5 UUID/PCI must be read fresh at gate time; never inferred
+gpu_pci: {4: "00000000:81:00.0", 5: null}
+numa_node: 1
+reference_budget_bytes: 25000000000   # R5 + C5 rank-0 snapshots (grad_b1 + delta-theta), ~24.7 GB
+min_free_disk_bytes: 100000000000
+limits:                      # ALL ranks of a job share ONE worker scope: <= 15 CPU-equivalents / 46 GiB, swap 0
+  supervisor_cpu_quota_pct: 100
+  supervisor_memory_bytes: 2147483648
+  worker_cpu_quota_pct: 1500
+  worker_memory: 46G
+  worker_memory_bytes: 49392123904
+  threads_per_rank: {R5_fp32_world1_ga4: 8, C5_fp32_world2_ga2: 7}
+timing:                      # Candidate 18: ONE model (mgbench.window_contract.timing_model) derives every bound
+  window_s: 1500             # inclusive budget 1337 s (see 38_c18_design); authorization length proposed 1500 s
+  startup_s: 120
+  enroll_s: 30
+  gate_s: 60
+  child_s: 300
+  grace_s: 60
+  kill_wait_s: 10
+  reap_s: 10
+  metadata_call_s: 3
+  telemetry_timeout_s: 5
+  post_case_s: 10
+  final_s: 30
+  sup_kill_margin_s: 10
+enrollment_policy: configs/enrollment_policy_pair.json   # frozen; its sha256 is bound by the authorization
+lease_dir: /PRIVATE_WORKSPACE/a6000_host_leases   # project-wide host lease (shared by all windows)
+max_cases: 2
+common:
+  model: qwen2.5-1.5b
+  seq_len: 1024
+  micro_batch: 1
+  seed: 1234
+  warmup_steps: 0
+  measure_steps: 5
+  numerical_checks: true
+  canonical_init: true
+  canonical_start: bf16_representable
+  global_inputs: true
+  fp32_reference: true
+  reference_role: write
+  result_kind: full_control_5update
+  measurement_role: diagnostic
+cases:
+  - {id: R5_fp32_world1_ga4, framework: ddp, world: 1, grad_accum: 4, mem_fraction: 0.86}
+  - {id: C5_fp32_world2_ga2, framework: ddp, world: 2, grad_accum: 2, mem_fraction: 0.88}

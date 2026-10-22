@@ -1,0 +1,56 @@
+# Weak scaling: the per-GPU micro-batch is fixed, so the global batch grows with the GPU count.
+# Order: all 1-GPU runs, then 2-GPU, then 4-GPU; repeats are interleaved inside each tier.
+name: train_scaling
+kind: train
+repeats: 3
+gpu_counts: [1, 2, 4]
+defaults:
+  warmup_steps: 5
+  measure_steps: 30
+  seed: 1234
+  grad_accum: 1
+workloads:
+  # 100 timed steps (~12 s at 1 GPU) so the NVML utilization sampler sees a long enough window.
+  # DeepSpeed uses torch_autocast (fp32 weights + autocast, same recipe as DDP) for ResNet: in DeepSpeed's bf16
+  # mode BatchNorm weights become bf16 and fall off cuDNN's fast path (probe_1gpu: 832 vs 982 img/s).
+  - model: resnet50
+    micro_batch: 128
+    warmup_steps: 10
+    measure_steps: 100
+    ds_precision: autocast
+    frameworks: [ddp, fsdp, zero1, zero2]
+
+  # DDP (fp32 weights + autocast keeps the residual stream in fp32) OOMs at micro-batch 4 and 2 (probe_1gpu),
+  # so every framework uses 1 x grad_accum 4: the same 4 sequences per GPU per optimizer step, and the
+  # gradient-accumulation path of every framework (no_sync / set_requires_gradient_sync / DeepSpeed GA) is exercised.
+  - model: qwen2.5-1.5b
+    seq_len: 1024
+    micro_batch: 1
+    grad_accum: 4
+    measure_steps: 20
+    activation_checkpointing: false
+    frameworks: [ddp, fsdp, zero1, zero2]
+
+  # 8B: model states need ~128 GB unsharded, so only fully sharded strategies fit, and only on 4 GPUs.
+  # The estimator records the infeasible combinations instead of launching them.
+  - model: llama3.1-8b
+    seq_len: 1024
+    micro_batch: 2
+    activation_checkpointing: true
+    warmup_steps: 3
+    measure_steps: 15
+    frameworks: [ddp, fsdp, zero1, zero2, zero3]
+
+  # Ablation (4 GPUs): the same 8B runs with bf16 gradient reduction, i.e. half the reduce-scatter bytes.
+  # Shows how much of the 8B step is gradient communication over the PCIe link between the NVLink pairs.
+  - model: llama3.1-8b
+    variant: bf16-reduce
+    seq_len: 1024
+    micro_batch: 2
+    activation_checkpointing: true
+    warmup_steps: 3
+    measure_steps: 15
+    fw_overrides:
+      fsdp: {grad_reduce_dtype: bf16}
+      zero3: {deepspeed: {communication_data_type: bf16}}
+    frameworks: [fsdp, zero3]

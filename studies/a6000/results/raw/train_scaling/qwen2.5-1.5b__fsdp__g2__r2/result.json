@@ -1,0 +1,153 @@
+{
+  "status": "ok",
+  "spec": {
+    "warmup_steps": 5,
+    "measure_steps": 20,
+    "seed": 1234,
+    "grad_accum": 4,
+    "model": "qwen2.5-1.5b",
+    "seq_len": 1024,
+    "micro_batch": 1,
+    "activation_checkpointing": false,
+    "kind": "train",
+    "experiment": "train_scaling",
+    "framework": "fsdp",
+    "n_gpus": 2,
+    "gpus": [
+      4,
+      5
+    ],
+    "repeat": 2,
+    "run_id": "qwen2.5-1.5b__fsdp__g2__r2"
+  },
+  "framework_config": {
+    "name": "fsdp",
+    "launcher": "torchrun",
+    "api": "fully_shard",
+    "reshard_after_forward": true,
+    "param_dtype": "bf16",
+    "grad_reduce_dtype": "fp32",
+    "meta_init_threshold_gib": 8,
+    "optimizer": "adamw"
+  },
+  "model_entry": {
+    "kind": "causal_lm",
+    "role": "main training-scaling model (fits every framework on one GPU)",
+    "hf_config_dir": "configs/models/qwen2.5-1.5b",
+    "hf_repo": "Qwen/Qwen2.5-1.5B-Instruct",
+    "hf_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "n_params": 1543714304,
+  "trainer_info": {
+    "precision": "bf16 compute, fp32 sharded params, fp32 reduce-scatter",
+    "meta_init": false,
+    "fsdp_units": 29
+  },
+  "setup_s": 4.5094433330014,
+  "window_s": 23.29379908199917,
+  "samples_per_step": 8,
+  "throughput_samples_s": 6.868780804572311,
+  "throughput_tokens_s": 7033.631543882047,
+  "throughput_per_gpu_samples_s": 3.4343904022861556,
+  "step_time": {
+    "n": 20,
+    "median_ms": 1164.2378705037117,
+    "mean_ms": 1164.7004090998962,
+    "std_ms": 1.7171067078424975,
+    "p10_ms": 1162.978522603953,
+    "p90_ms": 1166.9966447982006,
+    "min_ms": 1162.5640599959297,
+    "max_ms": 1169.486152997706
+  },
+  "flops_per_sample": 10024856322048.0,
+  "tflops_per_gpu": 34.42927033673934,
+  "mfu": 0.22241130708487947,
+  "peak_mem_alloc_gib": 19.454458236694336,
+  "peak_mem_reserved_gib": 24.185546875,
+  "setup_peak_alloc_gib": 6.620902061462402,
+  "peak_mem_alloc_gib_per_rank": [
+    19.454458236694336,
+    19.454458236694336
+  ],
+  "final_loss": 0.002148280618712306,
+  "loss_finite": true,
+  "gpu": {
+    "gpu_util_mean_pct": 99.27586206896552,
+    "gpu_util_min_pct": 99.25862068965517,
+    "nvml_mem_peak_gib": 24.69317626953125,
+    "power_mean_w_per_gpu": 285.27994396551725,
+    "temp_max_c": 62,
+    "sm_clock_mean_mhz": 1858.3836206896551
+  },
+  "gpu_per_device": {
+    "4": {
+      "n_samples": 116,
+      "util_mean_pct": 99.25862068965517,
+      "util_median_pct": 99.0,
+      "mem_used_peak_gib": 24.69317626953125,
+      "power_mean_w": 285.7298706896552,
+      "power_max_w": 289.144,
+      "temp_max_c": 62,
+      "sm_clock_mean_mhz": 1852.1120689655172
+    },
+    "5": {
+      "n_samples": 116,
+      "util_mean_pct": 99.29310344827586,
+      "util_median_pct": 99.0,
+      "mem_used_peak_gib": 24.69317626953125,
+      "power_mean_w": 284.8300172413793,
+      "power_max_w": 290.903,
+      "temp_max_c": 60,
+      "sm_clock_mean_mhz": 1864.655172413793
+    }
+  },
+  "env": {
+    "timestamp": "2026-10-13T01:09:22-0400",
+    "hostname": "A6000_NODE",
+    "kernel": "7.0.0-38-generic",
+    "software": {
+      "python": "3.12.3",
+      "torch": "2.11.0",
+      "torchvision": "0.26.0",
+      "transformers": "5.19.0",
+      "deepspeed": "0.19.7",
+      "vllm": "0.26.0",
+      "nvidia-ml-py": "13.615.71",
+      "torch_cuda": "13.0",
+      "nccl": "2.28.9",
+      "cudnn": 91900
+    },
+    "driver": {
+      "driver_version": "580.178.04",
+      "nvml_cuda_driver_version": 13000
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:81:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:A1:00.0",
+        "mem_total_mib": 49140.0
+      }
+    ],
+    "links": {
+      "4-5": "NV4"
+    },
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "4,5",
+      "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+      "OMP_NUM_THREADS": "8",
+      "NCCL_DEBUG": "WARN",
+      "NCCL_ALGO": null,
+      "NCCL_PROTO": null,
+      "NCCL_P2P_DISABLE": null,
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
+      "HF_HUB_OFFLINE": "1"
+    }
+  }
+}

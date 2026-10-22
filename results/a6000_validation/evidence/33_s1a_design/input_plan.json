@@ -1,0 +1,47 @@
+{
+ "generator": "mgbench.data.GlobalSynthetic(kind=causal_lm, micro_batch=1, grad_accum=4, world=1, rank=0, seed=1234000, steps=3, vocab=151936, seq_len=1024)",
+ "computed_on": "CPU (CUDA hidden), before any S1a GPU run",
+ "input_digests": {
+  "generator": "torch.Generator(cpu).manual_seed",
+  "seed": 1234000,
+  "global_batch": 4,
+  "labels": "labels = input_ids (causal LM shifts internally)",
+  "attention_mask": null,
+  "per_step_microbatch_sha256": [
+   [
+    "070e4be1a674bc81499aff5bc5b992ec75a4c47ee2c9586dd3bad218b25d3483",
+    "18a4fa848cfb3c372116132cd85d164cc4473b262b7870bdbffc30540171298b",
+    "0c8eec63f3ce3fa288750e09ea59e14c6557041bcd2c8d8cc5085df43ac58435",
+    "f1680fbb4764b000c9d9ee8813ce1162e240d07eb71b8235c8bd89e984ff3728"
+   ],
+   [
+    "9cdded719f13c22282730eeaf05a917eecb1fb2ea1c88032d3c02d62158d52ca",
+    "72673e84f058467014ef2b4ed79296124681bcf10b4f9fba449c81ec84a27cca",
+    "54c4d78c4cde05b58f24ae853c8d1053662bde1cd5fcfe033a71496aee16c771",
+    "b93da49b63d2933ecc2531fcbbe18055fa847c77a51e62811ccc17f5be3ef7b9"
+   ],
+   [
+    "f53855173a390fda7fdc7fe2ebd647cf347284b4e67ddb7739199b9f3c84d33d",
+    "e1a365942349c156345ee06781b5899200af3f4957c087679700cdb80d7bc12c",
+    "b3a377a29038fd3d43d155207b0382aa449ba2b68e5d93ec9058ba33d8be14d0",
+    "6670f5ba5c58d60d290113de3da7bb22bec4848fe4d9976cdd0c9505dd0c57be"
+   ]
+  ]
+ },
+ "token_counts": {
+  "per_microbatch_tokens": 1024,
+  "predicted_targets_per_microbatch": 1023,
+  "microbatches_per_update": 4,
+  "measured_updates": 3,
+  "warmup_updates": 0,
+  "total_microbatches": 12
+ },
+ "labels": "labels = input_ids (HF Qwen2ForCausalLM shifts by one inside its loss; no ignore_index entries)",
+ "attention_mask": "none (no padding; full causal attention)",
+ "loss_definitions": {
+  "raw_objective": "per-microbatch mean token cross-entropy returned by the model (recorded for every microbatch)",
+  "backward_scaled": "native: raw / 4 before backward; DeepSpeed: engine.backward(raw) applies 1/gradient_accumulation_steps internally",
+  "never_compared": "a divided native loss is never compared with an undivided engine loss; only raw objectives are compared"
+ },
+ "plan_sha256": "669226f1833f102d028ebcec1f2141f7ed08e988880eea99dcc82ef5a5b54a8e"
+}

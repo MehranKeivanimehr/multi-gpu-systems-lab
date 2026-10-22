@@ -1,0 +1,1911 @@
+{
+  "config": {
+    "deepspeed_resolved_config": {
+      "_comment": "DeepSpeed ZeRO stage 2, no offload, no custom CUDA ops. The host nvcc is 10.1 against a 12.2 driver, so any JIT build would fail; DS_BUILD_OPS=0 and a plain torch.optim.AdamW keep this path pure Python + NCCL. CPU/NVMe offload is deliberately absent for the same reason (cpu_adam would need compiling).",
+      "bf16": {
+        "enabled": false
+      },
+      "fp16": {
+        "enabled": false
+      },
+      "gradient_accumulation_steps": 1,
+      "gradient_clipping": 1.0,
+      "steps_per_print": 100000,
+      "train_micro_batch_size_per_gpu": 4,
+      "wall_clock_breakdown": false,
+      "zero_allow_untested_optimizer": true,
+      "zero_force_ds_cpu_optimizer": false,
+      "zero_optimization": {
+        "allgather_bucket_size": 50000000,
+        "contiguous_gradients": true,
+        "overlap_comm": true,
+        "reduce_bucket_size": 50000000,
+        "stage": 2
+      }
+    },
+    "device_binding_preserved_across_memory_cap": true,
+    "device_identity_established": false,
+    "global_batch": 8,
+    "grad_ckpt": false,
+    "group": "rtx_2",
+    "initial_model_sha256": "d206291459f261cd23b8ae9228d5da6de5c8cf1d5bc1a49f2f4b1cf335764625",
+    "memory_fraction": 0.85,
+    "micro_batch_per_gpu": 4,
+    "mode": "deepspeed",
+    "model": "gpt2-124m",
+    "n_params": 124439808,
+    "numerical_checks": false,
+    "precision": "fp32",
+    "protocol_version": "scientific-v2",
+    "recipe_comparison_note": "DeepSpeed clipping/precision defaults may differ; not an isolated framework effect",
+    "runtime_device_identity_after_memory_cap": {
+      "current_device": 0,
+      "device_name": "NVIDIA TITAN RTX",
+      "local_rank": 0,
+      "phys_devices_env": "0,2",
+      "uuid": null,
+      "uuid_established": false,
+      "uuid_source": "unavailable_on_this_torch_build",
+      "visible_devices_env": "TITAN_RTX#1,TITAN_RTX#2"
+    },
+    "runtime_device_identity_before_memory_cap": {
+      "current_device": 0,
+      "device_name": "NVIDIA TITAN RTX",
+      "local_rank": 0,
+      "phys_devices_env": "0,2",
+      "uuid": null,
+      "uuid_established": false,
+      "uuid_source": "unavailable_on_this_torch_build",
+      "visible_devices_env": "TITAN_RTX#1,TITAN_RTX#2"
+    },
+    "seed": 1234,
+    "seq_len": 512,
+    "steps": 30,
+    "warmup": 5,
+    "world_size": 2,
+    "zero_stage": 2
+  },
+  "error": null,
+  "loss_first_last": [
+    10.973915100097656,
+    10.950078964233398
+  ],
+  "losses": [
+    10.973915100097656,
+    10.967592239379883,
+    10.974291801452637,
+    10.983609199523926,
+    10.990669250488281,
+    10.969866752624512,
+    10.972698211669922,
+    10.975933074951172,
+    11.014758110046387,
+    10.976221084594727,
+    10.971112251281738,
+    10.975600242614746,
+    10.992961883544922,
+    10.992364883422852,
+    10.9551362991333,
+    10.975342750549316,
+    10.975447654724121,
+    10.953981399536133,
+    10.968396186828613,
+    10.950861930847168,
+    10.955248832702637,
+    10.976261138916016,
+    10.971663475036621,
+    10.949349403381348,
+    10.964757919311523,
+    10.956396102905273,
+    10.951213836669922,
+    10.949853897094727,
+    10.967680931091309,
+    10.950078964233398
+  ],
+  "measurement_kind": "throughput_with_update_counter",
+  "memory": {
+    "peak_alloc_mib_rank0": 5242.8,
+    "peak_reserved_mib_rank0": 5962.0,
+    "per_rank_alloc_reserved_mib": [
+      [
+        5242.8,
+        5962.0
+      ],
+      [
+        5242.8,
+        5966.0
+      ]
+    ]
+  },
+  "meta": {
+    "cuda_device_order": "PCI_BUS_ID",
+    "cuda_visible_devices": "TITAN_RTX#1,TITAN_RTX#2",
+    "historical_dataset_overwritten": false,
+    "host": "TITAN_NODE",
+    "max_permitted_gap_s": 0.6,
+    "phys_devices": [
+      0,
+      2
+    ],
+    "protocol_version": "scientific-v2",
+    "sample_interval_frozen_default_s": 0.2,
+    "timestamp": "2026-10-16T00:44:31"
+  },
+  "optimizer_update_audit_per_rank": [
+    {
+      "all_updates_observed": true,
+      "attempted_steps": "unobserved",
+      "base_optimizer_calls": "not_applicable_native_observer_not_in_this_path",
+      "certification_reasons": [],
+      "deepspeed_engine_aware_validated": true,
+      "deepspeed_engine_aware_validation": {
+        "checks_passed": [
+          "base_optimizer_state_advanced_every_step",
+          "base_optimizer_state_counter_equals_steps_driven",
+          "engine_global_steps_reconcile",
+          "every_rank_drove_the_same_step_count",
+          "global_grad_norm_finite_and_positive",
+          "gradient_source_identified_every_step",
+          "gradients_observed_finite_every_step",
+          "master_partition_changed_every_step"
+        ],
+        "deepspeed_version": "0.15.1",
+        "evidence_path": "$PROJECT_ROOT/titan_campaign_20261016/runs/D30_ds_zero2_observe_rtx2/results/deepspeed_observe_zero2.json",
+        "reason": null,
+        "validated": true,
+        "world_size": 2,
+        "zero_stage": 2
+      },
+      "deepspeed_hardware_validated": false,
+      "deepspeed_observer_status": "engine counters only; no native gradient observation brackets engine.step(); the DeepSpeed skip path has never been exercised on any host; this is NOT a native hardware validation of DeepSpeed",
+      "deepspeed_skip_path_exercised": false,
+      "engine_base_optimizer_calls": 30,
+      "engine_skipped_updates": 0,
+      "engine_successful_updates": 30,
+      "engine_update_boundaries": 30,
+      "expected_logical_updates": 30,
+      "gradient_checks_requested": false,
+      "gradient_coverage_complete": null,
+      "gradient_observations_finite": "unobserved",
+      "gradient_scaling_semantics": "unobserved",
+      "losses_all_finite": true,
+      "missing_gradient_steps": "unobserved",
+      "mode": "deepspeed",
+      "native_observer_reason": "scaling, overflow detection, the skip decision and the base optimizer call all occur inside engine.step(); the native observer does not bracket it",
+      "native_observer_status": "not_applicable_native_observer_not_in_this_path",
+      "native_skipped_steps": "not_applicable_native_observer_not_in_this_path",
+      "native_successful_logical_updates": "not_applicable_native_observer_not_in_this_path",
+      "nonfinite_gradient_steps": "unobserved",
+      "numerical_diagnostic_certified": null,
+      "observer_path": "engine_internal",
+      "parameter_state_delta_evidence": "not collected in benchmark runs; requires a separate approved diagnostic",
+      "per_step": [],
+      "scale_change_is_not_success_evidence": true,
+      "status_verdict": "ok",
+      "unobserved_attempt_steps": "unobserved",
+      "update_claim_verified": true,
+      "update_counter_source": "engine counters only; the native observer does not bracket engine.step(), so native gradient coverage is unobserved"
+    },
+    {
+      "all_updates_observed": true,
+      "attempted_steps": "unobserved",
+      "base_optimizer_calls": "not_applicable_native_observer_not_in_this_path",
+      "certification_reasons": [],
+      "deepspeed_engine_aware_validated": true,
+      "deepspeed_engine_aware_validation": {
+        "checks_passed": [
+          "base_optimizer_state_advanced_every_step",
+          "base_optimizer_state_counter_equals_steps_driven",
+          "engine_global_steps_reconcile",
+          "every_rank_drove_the_same_step_count",
+          "global_grad_norm_finite_and_positive",
+          "gradient_source_identified_every_step",
+          "gradients_observed_finite_every_step",
+          "master_partition_changed_every_step"
+        ],
+        "deepspeed_version": "0.15.1",
+        "evidence_path": "$PROJECT_ROOT/titan_campaign_20261016/runs/D30_ds_zero2_observe_rtx2/results/deepspeed_observe_zero2.json",
+        "reason": null,
+        "validated": true,
+        "world_size": 2,
+        "zero_stage": 2
+      },
+      "deepspeed_hardware_validated": false,
+      "deepspeed_observer_status": "engine counters only; no native gradient observation brackets engine.step(); the DeepSpeed skip path has never been exercised on any host; this is NOT a native hardware validation of DeepSpeed",
+      "deepspeed_skip_path_exercised": false,
+      "engine_base_optimizer_calls": 30,
+      "engine_skipped_updates": 0,
+      "engine_successful_updates": 30,
+      "engine_update_boundaries": 30,
+      "expected_logical_updates": 30,
+      "gradient_checks_requested": false,
+      "gradient_coverage_complete": null,
+      "gradient_observations_finite": "unobserved",
+      "gradient_scaling_semantics": "unobserved",
+      "losses_all_finite": true,
+      "missing_gradient_steps": "unobserved",
+      "mode": "deepspeed",
+      "native_observer_reason": "scaling, overflow detection, the skip decision and the base optimizer call all occur inside engine.step(); the native observer does not bracket it",
+      "native_observer_status": "not_applicable_native_observer_not_in_this_path",
+      "native_skipped_steps": "not_applicable_native_observer_not_in_this_path",
+      "native_successful_logical_updates": "not_applicable_native_observer_not_in_this_path",
+      "nonfinite_gradient_steps": "unobserved",
+      "numerical_diagnostic_certified": null,
+      "observer_path": "engine_internal",
+      "parameter_state_delta_evidence": "not collected in benchmark runs; requires a separate approved diagnostic",
+      "per_step": [],
+      "scale_change_is_not_success_evidence": true,
+      "status_verdict": "ok",
+      "unobserved_attempt_steps": "unobserved",
+      "update_claim_verified": true,
+      "update_counter_source": "engine counters only; the native observer does not bracket engine.step(), so native gradient coverage is unobserved"
+    }
+  ],
+  "perf": {
+    "step_time_max_s": 0.38828,
+    "step_time_mean_s": 0.38499,
+    "step_time_median_s": 0.38486,
+    "step_time_min_s": 0.38384,
+    "tokens_per_s": 10639.0,
+    "tokens_per_s_per_gpu": 5319.5,
+    "tokens_per_step": 4096,
+    "wall_time_s": 11.5499
+  },
+  "status": "ok",
+  "telemetry": {
+    "duration_s": 11.549905447289348,
+    "energy_per_gpu_j": {
+      "0": 2271.3065908971153,
+      "2": 2304.3731754163505
+    },
+    "energy_scope": "sampled GPU-board energy; not whole-node energy; sensor accuracy uncalibrated",
+    "energy_total_j": 4575.68,
+    "idle_raw_samples": [],
+    "integration": {
+      "0": {
+        "duration_s": 11.549905447289348,
+        "energy_j": 2271.3065908971153,
+        "max_support_gap_s": 0.2734898142516613,
+        "method": "linear_interpolation_trapezoid",
+        "n_samples": 47,
+        "status": "ok",
+        "support_start_s": 5156807.144661432,
+        "support_stop_s": 5156818.8453499405
+      },
+      "2": {
+        "duration_s": 11.549905447289348,
+        "energy_j": 2304.3731754163505,
+        "max_support_gap_s": 0.2734898142516613,
+        "method": "linear_interpolation_trapezoid",
+        "n_samples": 47,
+        "status": "ok",
+        "support_start_s": 5156807.144661432,
+        "support_stop_s": 5156818.8453499405
+      }
+    },
+    "max_permitted_gap_s": 0.6,
+    "mem_max_mib": {
+      "0": 6414.0,
+      "2": 6418.0
+    },
+    "n_samples": 47,
+    "net_energy_status": "diagnostic_only; baseline not a calibrated incremental-energy measurement",
+    "power_max_w": {
+      "0": 312.36,
+      "2": 300.31
+    },
+    "power_mean_w": {
+      "0": 196.6515311543238,
+      "2": 199.51446234195492
+    },
+    "protocol_version": "scientific-v2",
+    "raw_samples": [
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 96.21,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 86.0
+          },
+          {
+            "clocks.sm": 1755.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 162.62,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 55.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156807.041481659,
+        "query_stop_s": 5156807.247841205,
+        "time_s": 5156807.144661432
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1740.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 236.84,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 79.0
+          },
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 179.82,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 53.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156807.24817709,
+        "query_stop_s": 5156807.344568329,
+        "time_s": 5156807.29637271
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 153.8,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 79.0
+          },
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.65,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 53.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156807.544651994,
+        "query_stop_s": 5156807.595073055,
+        "time_s": 5156807.569862524
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 234.19,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 79.0
+          },
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 272.56,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 54.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156807.795199813,
+        "query_stop_s": 5156807.873434863,
+        "time_s": 5156807.834317338
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 131.25,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 79.0
+          },
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 229.21,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156808.073564144,
+        "query_stop_s": 5156808.13213662,
+        "time_s": 5156808.102850381
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 130.9,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 154.63,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 54.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156808.332282741,
+        "query_stop_s": 5156808.379886646,
+        "time_s": 5156808.356084693
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 199.41,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 257.98,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 54.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156808.580025519,
+        "query_stop_s": 5156808.663197205,
+        "time_s": 5156808.621611362
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 218.85,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 289.45,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156808.863317717,
+        "query_stop_s": 5156808.913235119,
+        "time_s": 5156808.888276418
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 130.79,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 118.17,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 54.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156809.113406681,
+        "query_stop_s": 5156809.162568358,
+        "time_s": 5156809.13798752
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 249.67,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 211.42,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 55.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156809.362695442,
+        "query_stop_s": 5156809.413262277,
+        "time_s": 5156809.387978859
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 274.8,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 184.84,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156809.613394536,
+        "query_stop_s": 5156809.671862212,
+        "time_s": 5156809.642628374
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 140.26,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.06,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 54.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156809.871975425,
+        "query_stop_s": 5156809.938720766,
+        "time_s": 5156809.905348096
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 225.99,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 260.62,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 55.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156810.138847544,
+        "query_stop_s": 5156810.198180122,
+        "time_s": 5156810.168513833
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 280.23,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1740.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 254.39,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156810.398293137,
+        "query_stop_s": 5156810.469403743,
+        "time_s": 5156810.43384844
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 131.5,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 124.04,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 54.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156810.669527794,
+        "query_stop_s": 5156810.720146112,
+        "time_s": 5156810.694836954
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 178.75,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 246.33,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156810.920280618,
+        "query_stop_s": 5156810.971159878,
+        "time_s": 5156810.945720248
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 238.57,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1740.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 300.31,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156811.171277336,
+        "query_stop_s": 5156811.230433306,
+        "time_s": 5156811.20085532
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 130.34,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.16,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 55.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156811.430548634,
+        "query_stop_s": 5156811.482692708,
+        "time_s": 5156811.456620671
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 236.12,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 191.64,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156811.682818809,
+        "query_stop_s": 5156811.735563716,
+        "time_s": 5156811.709191263
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 292.49,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1740.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 223.6,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156811.935687361,
+        "query_stop_s": 5156811.999934184,
+        "time_s": 5156811.967810772
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 134.26,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.06,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 55.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156812.20009094,
+        "query_stop_s": 5156812.250209162,
+        "time_s": 5156812.225150051
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 214.4,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 263.1,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156812.450362774,
+        "query_stop_s": 5156812.501326714,
+        "time_s": 5156812.475844744
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1665.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 189.1,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 275.3,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156812.701456315,
+        "query_stop_s": 5156812.755179905,
+        "time_s": 5156812.72831811
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 131.63,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 113.43,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 55.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156812.955324793,
+        "query_stop_s": 5156813.007583582,
+        "time_s": 5156812.981454188
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1875.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 249.12,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1875.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 226.53,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156813.207706642,
+        "query_stop_s": 5156813.259918225,
+        "time_s": 5156813.233812434
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 250.01,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1665.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 157.09,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156813.460055609,
+        "query_stop_s": 5156813.515948855,
+        "time_s": 5156813.488002232
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 152.22,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.84,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156813.716066391,
+        "query_stop_s": 5156813.770132157,
+        "time_s": 5156813.743099274
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 230.79,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 267.37,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156813.970247149,
+        "query_stop_s": 5156814.043990009,
+        "time_s": 5156814.007118579
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 141.88,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 231.32,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156814.244175858,
+        "query_stop_s": 5156814.305997587,
+        "time_s": 5156814.275086722
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 130.9,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.27,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156814.506151322,
+        "query_stop_s": 5156814.560455117,
+        "time_s": 5156814.53330322
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 194.98,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 255.95,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156814.760624589,
+        "query_stop_s": 5156814.8127949,
+        "time_s": 5156814.7867097445
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 227.59,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 63.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 292.87,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156815.012947989,
+        "query_stop_s": 5156815.072050269,
+        "time_s": 5156815.042499129
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 131.56,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 123.11,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156815.272205528,
+        "query_stop_s": 5156815.34431301,
+        "time_s": 5156815.308259269
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 253.19,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 206.58,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156815.544493695,
+        "query_stop_s": 5156815.595059303,
+        "time_s": 5156815.569776499
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 287.39,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 63.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 192.75,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156815.795209992,
+        "query_stop_s": 5156815.847198416,
+        "time_s": 5156815.821204204
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 138.64,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 126.89,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156816.047348692,
+        "query_stop_s": 5156816.100590275,
+        "time_s": 5156816.073969483
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 229.27,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 255.76,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156816.300738917,
+        "query_stop_s": 5156816.351092328,
+        "time_s": 5156816.3259156225
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1710.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 173.38,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 63.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 254.13,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156816.55124757,
+        "query_stop_s": 5156816.609345779,
+        "time_s": 5156816.580296675
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 132.7,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 61.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.33,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156816.809496644,
+        "query_stop_s": 5156816.885395413,
+        "time_s": 5156816.847446028
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 177.31,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 235.87,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156817.085553329,
+        "query_stop_s": 5156817.138624466,
+        "time_s": 5156817.112088898
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1725.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 247.01,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 63.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1740.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 284.01,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156817.338775734,
+        "query_stop_s": 5156817.398093037,
+        "time_s": 5156817.368434386
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 131.91,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1770.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 126.68,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156817.598243759,
+        "query_stop_s": 5156817.683110907,
+        "time_s": 5156817.640677333
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 235.57,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 185.26,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 57.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156817.883268702,
+        "query_stop_s": 5156817.93953798,
+        "time_s": 5156817.911403341
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1740.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 312.36,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 63.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1770.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 258.5,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156818.139693736,
+        "query_stop_s": 5156818.193844104,
+        "time_s": 5156818.16676892
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1785.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 167.66,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 64.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 126.37,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 59.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156818.393995793,
+        "query_stop_s": 5156818.470406971,
+        "time_s": 5156818.432201382
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 202.08,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 62.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 130.09,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 58.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5156818.670617604,
+        "query_stop_s": 5156818.729634166,
+        "time_s": 5156818.700125884
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1905.0,
+            "compute_cap": "7.5",
+            "index": 0,
+            "memory.total": 24576.0,
+            "memory.used": 6414.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 106.45,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 60.0,
+            "utilization.gpu": 100.0
+          },
+          {
+            "clocks.sm": 1890.0,
+            "compute_cap": "7.5",
+            "index": 2,
+            "memory.total": 24576.0,
+            "memory.used": 6418.0,
+            "name": "NVIDIA TITAN RTX",
+            "power.draw": 125.79,
+            "power.limit": 280.0,
+            "pstate": "P2",
+            "temperature.gpu": 56.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5156818.798266401,
+        "query_stop_s": 5156818.89243348,
+        "time_s": 5156818.8453499405
+      }
+    ],
+    "sample_interval_frozen_default_s": 0.2,
+    "sample_interval_matches_frozen": true,
+    "sample_interval_s": 0.2,
+    "sampling_errors": [],
+    "sm_clock_mean_mhz": {
+      "0": 1836.0,
+      "2": 1831.0
+    },
+    "temp_max_c": {
+      "0": 64.0,
+      "2": 59.0
+    },
+    "timebase": "time.perf_counter, monotonic, host-local",
+    "util_max_pct": {
+      "0": 100.0,
+      "2": 99.0
+    },
+    "util_mean_pct": {
+      "0": 97.36,
+      "2": 98.82
+    },
+    "window_start_s": 5156807.248238209,
+    "window_stop_s": 5156818.798143656
+  },
+  "torch_env": {
+    "arch_list": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "device_count": 2,
+    "devices": [
+      {
+        "capability": "7.5",
+        "local_index": 0,
+        "multi_processor_count": 72,
+        "name": "NVIDIA TITAN RTX",
+        "total_mem_mib": 24212.4
+      },
+      {
+        "capability": "7.5",
+        "local_index": 1,
+        "multi_processor_count": 72,
+        "name": "NVIDIA TITAN RTX",
+        "total_mem_mib": 24212.4
+      }
+    ],
+    "nccl": "2.20.5",
+    "torch": "2.4.1+cu121"
+  }
+}

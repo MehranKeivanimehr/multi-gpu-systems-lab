@@ -1,0 +1,38 @@
+{
+  "status": "skipped_infeasible",
+  "spec": {
+    "warmup_steps": 3,
+    "measure_steps": 15,
+    "seed": 1234,
+    "grad_accum": 1,
+    "model": "llama3.1-8b",
+    "variant": "bf16-reduce",
+    "seq_len": 1024,
+    "micro_batch": 2,
+    "activation_checkpointing": true,
+    "fw_overrides": {
+      "fsdp": {
+        "grad_reduce_dtype": "bf16"
+      },
+      "zero3": {
+        "deepspeed": {
+          "communication_data_type": "bf16"
+        }
+      }
+    },
+    "kind": "train",
+    "experiment": "train_scaling",
+    "framework": "zero3",
+    "n_gpus": 1,
+    "gpus": [
+      4
+    ],
+    "repeat": 2,
+    "run_id": "llama3.1-8b-bf16-reduce__zero3__g1__r2"
+  },
+  "estimate": {
+    "n_params_est": 8030261248,
+    "state_gib_per_gpu_est": 149.58,
+    "cap_gib": 44.0
+  }
+}

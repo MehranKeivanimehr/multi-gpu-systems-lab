@@ -1,0 +1,61 @@
+# Candidate 15 PROPOSED first-boundary diagnostic (NOT authorized; every authorization field is null until the owner
+# approves a specific window). Physical GPU 4 only. One accumulation boundary of the retained recipe (seq 1024, mb 1,
+# GA 4) per case, NO optimizer update; each case writes its own full first-boundary gradient and compares it with the
+# sealed S1a r0 grad_b1. G2 (DeepSpeed torch-autocast) and G5 (ZeRO-2 fp32 accumulation) are ineligible (see design).
+scope: train-first-boundary
+allowed_gpus: [4]
+gpu_uuids:
+  4: GPU-00000000-0000-0000-0000-000000000109
+gpu_pci:
+  4: "00000000:81:00.0"
+numa_node: 1
+threads_per_rank: 8
+limits:
+  supervisor_cpu_quota_pct: 100
+  supervisor_memory: 2G
+  supervisor_memory_bytes: 2147483648
+  worker_cpu_quota_pct: 1500
+  worker_memory: 46G
+  worker_memory_bytes: 49392123904
+timing:                      # Candidate 19: the Candidate 18 timing model (window_contract.timing_model); inclusive 2459 s
+  window_s: 2700
+  startup_s: 120
+  enroll_s: 0
+  gate_s: 60
+  child_s: 240
+  grace_s: 60
+  kill_wait_s: 10
+  reap_s: 10
+  metadata_call_s: 3
+  telemetry_timeout_s: 5
+  post_case_s: 10
+  final_s: 30
+  sup_kill_margin_s: 10
+lease_dir: /PRIVATE_WORKSPACE/a6000_host_leases   # the SAME project-wide lease as the pair scope
+known_torch_total_bytes: {4: 50897289216}   # GPU 4's measured Torch total (41_smoke_s2; R5 2026-10-17/20); checked in-rank
+max_cases: 5
+reference_budget_bytes: 31000000000    # five own first-boundary snapshots (5 x 6.17 GB) + indices
+min_free_disk_bytes: 100000000000
+common:
+  model: qwen2.5-1.5b
+  seq_len: 1024
+  micro_batch: 1
+  grad_accum: 4
+  activation_checkpointing: false
+  seed: 1234
+  warmup_steps: 0
+  measure_steps: 1
+  numerical_checks: true
+  canonical_init: true
+  canonical_start: bf16_representable
+  global_inputs: true
+  measurement_role: diagnostic
+  result_kind: first_boundary_gradient
+  matched_policy: {sdpa: math, tf32: false, bf16_reduced_precision_reduction: false}
+cases:                       # fractions from the corrected admission predicate (35_c15_design/fb_memory_feasibility.json)
+  - {id: G0_fp32_control, framework: ddp, fp32_reference: true, mem_fraction: 0.86}
+  - {id: G1_ddp_autocast, framework: ddp, mem_fraction: 0.9}
+  - {id: G3_ddp_bf16_params, framework: ddp, param_dtype: bf16, mem_fraction: 0.9}
+  - {id: G4_ds_bf16, framework: zero2, mem_fraction: 0.85}
+  # EXPLORATORY, NOT control C (C needs world 2 and 5 updates; the requirement stays open):
+  - {id: X1_fp32_order_permuted, framework: ddp, fp32_reference: true, microbatch_order: [3, 2, 1, 0], mem_fraction: 0.86}

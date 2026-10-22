@@ -1,0 +1,329 @@
+campaign,experiment,run_id,kind,status,model,framework,gpu,n_gpus,batch_per_gpu,seq_len,precision,source
+a100,infer_hf,hf-generate|qwen2.5-1.5b-instruct|bf16|bs1|in128|out256,inference,ok,qwen2.5-1.5b-instruct,hf-transformers,NVIDIA A100-SXM4-40GB,1,1,,bf16,studies/a100/infer_hf.jsonl#L1
+a100,infer_hf,hf-generate|qwen2.5-1.5b-instruct|bf16|bs32|in128|out256,inference,ok,qwen2.5-1.5b-instruct,hf-transformers,NVIDIA A100-SXM4-40GB,1,32,,bf16,studies/a100/infer_hf.jsonl#L3
+a100,infer_hf,hf-generate|qwen2.5-1.5b-instruct|bf16|bs8|in128|out256,inference,ok,qwen2.5-1.5b-instruct,hf-transformers,NVIDIA A100-SXM4-40GB,1,8,,bf16,studies/a100/infer_hf.jsonl#L2
+a100,infer_vllm,vllm|qwen2.5-1.5b-instruct|bf16|n128|in128|out256,inference,ok,qwen2.5-1.5b-instruct,vllm,NVIDIA A100-SXM4-40GB,1,128,,bf16,studies/a100/infer_vllm.jsonl#L4
+a100,infer_vllm,vllm|qwen2.5-1.5b-instruct|bf16|n1|in128|out256,inference,ok,qwen2.5-1.5b-instruct,vllm,NVIDIA A100-SXM4-40GB,1,1,,bf16,studies/a100/infer_vllm.jsonl#L1
+a100,infer_vllm,vllm|qwen2.5-1.5b-instruct|bf16|n32|in128|out256,inference,ok,qwen2.5-1.5b-instruct,vllm,NVIDIA A100-SXM4-40GB,1,32,,bf16,studies/a100/infer_vllm.jsonl#L3
+a100,infer_vllm,vllm|qwen2.5-1.5b-instruct|bf16|n512|in128|out256,inference,ok,qwen2.5-1.5b-instruct,vllm,NVIDIA A100-SXM4-40GB,1,512,,bf16,studies/a100/infer_vllm.jsonl#L5
+a100,infer_vllm,vllm|qwen2.5-1.5b-instruct|bf16|n8|in128|out256,inference,ok,qwen2.5-1.5b-instruct,vllm,NVIDIA A100-SXM4-40GB,1,8,,bf16,studies/a100/infer_vllm.jsonl#L2
+a100,train_gpt2,gpt2-124m|bf16|bs16|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,16,1024,bf16,studies/a100/train_gpt2.jsonl#L11
+a100,train_gpt2,gpt2-124m|bf16|bs32|seq1024,train,OOM,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,32,1024,bf16,studies/a100/train_gpt2.jsonl#L12
+a100,train_gpt2,gpt2-124m|bf16|bs8|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,8,1024,bf16,studies/a100/train_gpt2.jsonl#L10
+a100,train_gpt2,gpt2-124m|fp16|bs16|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,16,1024,fp16,studies/a100/train_gpt2.jsonl#L8
+a100,train_gpt2,gpt2-124m|fp16|bs32|seq1024,train,OOM,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,32,1024,fp16,studies/a100/train_gpt2.jsonl#L9
+a100,train_gpt2,gpt2-124m|fp16|bs8|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,8,1024,fp16,studies/a100/train_gpt2.jsonl#L7
+a100,train_gpt2,gpt2-124m|fp32|bs16|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,16,1024,fp32,studies/a100/train_gpt2.jsonl#L2
+a100,train_gpt2,gpt2-124m|fp32|bs32|seq1024,train,OOM,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,32,1024,fp32,studies/a100/train_gpt2.jsonl#L3
+a100,train_gpt2,gpt2-124m|fp32|bs8|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,8,1024,fp32,studies/a100/train_gpt2.jsonl#L1
+a100,train_gpt2,gpt2-124m|tf32|bs16|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,16,1024,tf32,studies/a100/train_gpt2.jsonl#L5
+a100,train_gpt2,gpt2-124m|tf32|bs32|seq1024,train,OOM,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,32,1024,tf32,studies/a100/train_gpt2.jsonl#L6
+a100,train_gpt2,gpt2-124m|tf32|bs8|seq1024,train,ok,gpt2-124m,AdamW(fused),NVIDIA A100-SXM4-40GB,1,8,1024,tf32,studies/a100/train_gpt2.jsonl#L4
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-amp|bs2|seq512|ckpt0,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,2,512,bf16,studies/a100/train_qwen2.5-1.5b.jsonl#L8
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-amp|bs4|seq1024|ckpt1,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,4,1024,bf16,studies/a100/train_qwen2.5-1.5b.jsonl#L7
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-amp|bs4|seq512|ckpt1,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,4,512,bf16,studies/a100/train_qwen2.5-1.5b.jsonl#L5
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-amp|bs8|seq512|ckpt1,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,8,512,bf16,studies/a100/train_qwen2.5-1.5b.jsonl#L6
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-pure|bs2|seq512|ckpt0,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,2,512,bf16-pure,studies/a100/train_qwen2.5-1.5b.jsonl#L4
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-pure|bs4|seq1024|ckpt1,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,4,1024,bf16-pure,studies/a100/train_qwen2.5-1.5b.jsonl#L3
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-pure|bs4|seq512|ckpt1,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,4,512,bf16-pure,studies/a100/train_qwen2.5-1.5b.jsonl#L1
+a100,train_qwen2.5-1.5b,qwen2.5-1.5b|bf16-pure|bs8|seq512|ckpt1,train,ok,qwen2.5-1.5b,AdamW(fused),NVIDIA A100-SXM4-40GB,1,8,512,bf16-pure,studies/a100/train_qwen2.5-1.5b.jsonl#L2
+a100,train_resnet50,resnet50|bf16|bs128|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,128,,bf16,studies/a100/train_resnet50.jsonl#L11
+a100,train_resnet50,resnet50|bf16|bs256|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,256,,bf16,studies/a100/train_resnet50.jsonl#L12
+a100,train_resnet50,resnet50|bf16|bs64|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,64,,bf16,studies/a100/train_resnet50.jsonl#L10
+a100,train_resnet50,resnet50|fp16|bs128|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,128,,fp16,studies/a100/train_resnet50.jsonl#L8
+a100,train_resnet50,resnet50|fp16|bs256|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,256,,fp16,studies/a100/train_resnet50.jsonl#L9
+a100,train_resnet50,resnet50|fp16|bs64|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,64,,fp16,studies/a100/train_resnet50.jsonl#L7
+a100,train_resnet50,resnet50|fp32|bs128|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,128,,fp32,studies/a100/train_resnet50.jsonl#L2
+a100,train_resnet50,resnet50|fp32|bs256|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,256,,fp32,studies/a100/train_resnet50.jsonl#L3
+a100,train_resnet50,resnet50|fp32|bs64|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,64,,fp32,studies/a100/train_resnet50.jsonl#L1
+a100,train_resnet50,resnet50|tf32|bs128|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,128,,tf32,studies/a100/train_resnet50.jsonl#L5
+a100,train_resnet50,resnet50|tf32|bs256|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,256,,tf32,studies/a100/train_resnet50.jsonl#L6
+a100,train_resnet50,resnet50|tf32|bs64|img224,train,ok,resnet50,SGD(momentum),NVIDIA A100-SXM4-40GB,1,64,,tf32,studies/a100/train_resnet50.jsonl#L4
+a6000,llama8b_memory_rerun,llama3.1-8b-cap95-expseg__fsdp__g4__r0,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-cap95-expseg__fsdp__g4__r0/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-cap95-expseg__zero3__g4__r0,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-cap95-expseg__zero3__g4__r0/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-cap95__fsdp__g4__r0,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-cap95__fsdp__g4__r0/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-cap95__fsdp__g4__r1,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-cap95__fsdp__g4__r1/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-cap95__zero3__g4__r0,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-cap95__zero3__g4__r0/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-cap95__zero3__g4__r1,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-cap95__zero3__g4__r1/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-mb1__fsdp__g4__r0,train,ok,llama3.1-8b,fsdp,RTX A6000,4,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-mb1__fsdp__g4__r0/status.json
+a6000,llama8b_memory_rerun,llama3.1-8b-mb1__zero3__g4__r0,train,ok,llama3.1-8b,zero3,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/llama8b_memory_rerun/llama3.1-8b-mb1__zero3__g4__r0/status.json
+a6000,nccl,allreduce__gpus4-5-6-7__r0,nccl,ok,allreduce,nccl,RTX A6000,4,,,bf16,studies/a6000/results/raw/nccl/allreduce__gpus4-5-6-7__r0/status.json
+a6000,nccl,allreduce__gpus4-5__r0,nccl,ok,allreduce,nccl,RTX A6000,2,,,bf16,studies/a6000/results/raw/nccl/allreduce__gpus4-5__r0/status.json
+a6000,nccl,allreduce__gpus4-6__r0,nccl,failed,allreduce,nccl,RTX A6000,2,,,bf16,studies/a6000/results/raw/nccl/allreduce__gpus4-6__r0/status.json
+a6000,nccl_diag,allreduce-debug__gpus4-5-6-7__r0,nccl,ok,allreduce,nccl,RTX A6000,4,,,bf16,studies/a6000/results/raw/nccl_diag/allreduce-debug__gpus4-5-6-7__r0/status.json
+a6000,nccl_diag,allreduce-debug__gpus4-6__r0,nccl,failed,allreduce,nccl,RTX A6000,2,,,bf16,studies/a6000/results/raw/nccl_diag/allreduce-debug__gpus4-6__r0/status.json
+a6000,nccl_diag,allreduce-p2p-nvl__gpus4-5-6-7__r0,nccl,ok,allreduce,nccl,RTX A6000,4,,,bf16,studies/a6000/results/raw/nccl_diag/allreduce-p2p-nvl__gpus4-5-6-7__r0/status.json
+a6000,nccl_diag,allreduce-p2p-off__gpus4-6__r0,nccl,ok,allreduce,nccl,RTX A6000,2,,,bf16,studies/a6000/results/raw/nccl_diag/allreduce-p2p-off__gpus4-6__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb1-ga4__ddp__g1__r0,train,ok,qwen2.5-1.5b,ddp,RTX A6000,1,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb1-ga4__ddp__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb1-ga4__fsdp__g1__r0,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,1,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb1-ga4__fsdp__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb1-ga4__zero1__g1__r0,train,ok,qwen2.5-1.5b,zero1,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb1-ga4__zero1__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb2-ga2__ddp__g1__r0,train,oom,qwen2.5-1.5b,ddp,RTX A6000,1,2,1024,,studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb2-ga2__ddp__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb4__ddp__g1__r0,train,oom,qwen2.5-1.5b,ddp,RTX A6000,1,4,1024,,studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb4__ddp__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb4__fsdp__g1__r0,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,1,4,1024,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb4__fsdp__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb4__zero1__g1__r0,train,ok,qwen2.5-1.5b,zero1,RTX A6000,1,4,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb4__zero1__g1__r0/status.json
+a6000,probe_1gpu,qwen2.5-1.5b-mb4__zero2__g1__r0,train,ok,qwen2.5-1.5b,zero2,RTX A6000,1,4,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/probe_1gpu/qwen2.5-1.5b-mb4__zero2__g1__r0/status.json
+a6000,probe_1gpu,resnet50-mb128-autocast__zero1__g1__r0,train,ok,resnet50,zero1,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/probe_1gpu/resnet50-mb128-autocast__zero1__g1__r0/status.json
+a6000,probe_1gpu,resnet50-mb128__ddp__g1__r0,train,ok,resnet50,ddp,RTX A6000,1,128,,fp32 params + autocast bf16,studies/a6000/results/raw/probe_1gpu/resnet50-mb128__ddp__g1__r0/status.json
+a6000,probe_1gpu,resnet50-mb128__fsdp__g1__r0,train,ok,resnet50,fsdp,RTX A6000,1,128,,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/probe_1gpu/resnet50-mb128__fsdp__g1__r0/status.json
+a6000,probe_1gpu,resnet50-mb128__zero1__g1__r0,train,ok,resnet50,zero1,RTX A6000,1,128,,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/probe_1gpu/resnet50-mb128__zero1__g1__r0/status.json
+a6000,probe_4gpu,llama3.1-8b-mb2__fsdp__g4__r0,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/probe_4gpu/llama3.1-8b-mb2__fsdp__g4__r0/status.json
+a6000,probe_4gpu,llama3.1-8b-mb2__zero3__g4__r0,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/probe_4gpu/llama3.1-8b-mb2__zero3__g4__r0/status.json
+a6000,smoke,qwen2.5-0.5b__ddp__g1__r0,train,ok,qwen2.5-0.5b,ddp,RTX A6000,1,2,512,fp32 params + autocast bf16,studies/a6000/results/raw/smoke/qwen2.5-0.5b__ddp__g1__r0/status.json
+a6000,smoke,qwen2.5-0.5b__ddp__g2__r0,train,ok,qwen2.5-0.5b,ddp,RTX A6000,2,2,512,fp32 params + autocast bf16,studies/a6000/results/raw/smoke/qwen2.5-0.5b__ddp__g2__r0/status.json
+a6000,smoke,qwen2.5-0.5b__ddp__g4__r0,train,ok,qwen2.5-0.5b,ddp,RTX A6000,4,2,512,fp32 params + autocast bf16,studies/a6000/results/raw/smoke/qwen2.5-0.5b__ddp__g4__r0/status.json
+a6000,smoke,qwen2.5-0.5b__fsdp__g1__r0,train,ok,qwen2.5-0.5b,fsdp,RTX A6000,1,2,512,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/smoke/qwen2.5-0.5b__fsdp__g1__r0/status.json
+a6000,smoke,qwen2.5-0.5b__fsdp__g2__r0,train,ok,qwen2.5-0.5b,fsdp,RTX A6000,2,2,512,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/smoke/qwen2.5-0.5b__fsdp__g2__r0/status.json
+a6000,smoke,qwen2.5-0.5b__fsdp__g4__r0,train,ok,qwen2.5-0.5b,fsdp,RTX A6000,4,2,512,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/smoke/qwen2.5-0.5b__fsdp__g4__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero1__g1__r0,train,ok,qwen2.5-0.5b,zero1,RTX A6000,1,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero1__g1__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero1__g2__r0,train,ok,qwen2.5-0.5b,zero1,RTX A6000,2,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero1__g2__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero1__g4__r0,train,ok,qwen2.5-0.5b,zero1,RTX A6000,4,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero1__g4__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero2__g1__r0,train,ok,qwen2.5-0.5b,zero2,RTX A6000,1,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero2__g1__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero2__g2__r0,train,ok,qwen2.5-0.5b,zero2,RTX A6000,2,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero2__g2__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero2__g4__r0,train,ok,qwen2.5-0.5b,zero2,RTX A6000,4,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero2__g4__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero3__g1__r0,train,ok,qwen2.5-0.5b,zero3,RTX A6000,1,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero3__g1__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero3__g2__r0,train,ok,qwen2.5-0.5b,zero3,RTX A6000,2,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero3__g2__r0/status.json
+a6000,smoke,qwen2.5-0.5b__zero3__g4__r0,train,ok,qwen2.5-0.5b,zero3,RTX A6000,4,2,512,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/smoke/qwen2.5-0.5b__zero3__g4__r0/status.json
+a6000,smoke,resnet50__ddp__g1__r0,train,ok,resnet50,ddp,RTX A6000,1,32,,fp32 params + autocast bf16,studies/a6000/results/raw/smoke/resnet50__ddp__g1__r0/status.json
+a6000,smoke,resnet50__ddp__g2__r0,train,ok,resnet50,ddp,RTX A6000,2,32,,fp32 params + autocast bf16,studies/a6000/results/raw/smoke/resnet50__ddp__g2__r0/status.json
+a6000,smoke,resnet50__ddp__g4__r0,train,ok,resnet50,ddp,RTX A6000,4,32,,fp32 params + autocast bf16,studies/a6000/results/raw/smoke/resnet50__ddp__g4__r0/status.json
+a6000,smoke,resnet50__fsdp__g1__r0,train,ok,resnet50,fsdp,RTX A6000,1,32,,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/smoke/resnet50__fsdp__g1__r0/status.json
+a6000,smoke,resnet50__fsdp__g2__r0,train,ok,resnet50,fsdp,RTX A6000,2,32,,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/smoke/resnet50__fsdp__g2__r0/status.json
+a6000,smoke,resnet50__fsdp__g4__r0,train,ok,resnet50,fsdp,RTX A6000,4,32,,"fp32 sharded params, bf16 compute, fp32 reduce-scatter",studies/a6000/results/raw/smoke/resnet50__fsdp__g4__r0/status.json
+a6000,smoke,resnet50__zero1__g1__r0,train,ok,resnet50,zero1,RTX A6000,1,32,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/smoke/resnet50__zero1__g1__r0/status.json
+a6000,smoke,resnet50__zero1__g2__r0,train,ok,resnet50,zero1,RTX A6000,2,32,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/smoke/resnet50__zero1__g2__r0/status.json
+a6000,smoke,resnet50__zero1__g4__r0,train,ok,resnet50,zero1,RTX A6000,4,32,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/smoke/resnet50__zero1__g4__r0/status.json
+a6000,smoke,resnet50__zero2__g1__r0,train,ok,resnet50,zero2,RTX A6000,1,32,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/smoke/resnet50__zero2__g1__r0/status.json
+a6000,smoke,resnet50__zero2__g2__r0,train,ok,resnet50,zero2,RTX A6000,2,32,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/smoke/resnet50__zero2__g2__r0/status.json
+a6000,smoke,resnet50__zero2__g4__r0,train,ok,resnet50,zero2,RTX A6000,4,32,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/smoke/resnet50__zero2__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g1__r0,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g1__r1,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g1__r2,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g2__r0,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g2__r1,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g2__r2,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g4__r0,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, bf16 reduce-scatter",studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g4__r1,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, bf16 reduce-scatter",studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__fsdp__g4__r2,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, bf16 reduce-scatter",studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__fsdp__g4__r2/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g1__r0,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g1__r1,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g1__r2,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g2__r0,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g2__r1,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g2__r2,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g4__r0,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g4__r1,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b-bf16-reduce__zero3__g4__r2,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/train_scaling/llama3.1-8b-bf16-reduce__zero3__g4__r2/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g1__r0,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g1__r1,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g1__r2,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g2__r0,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g2__r1,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g2__r2,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g4__r0,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g4__r1,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b__ddp__g4__r2,train,skipped_infeasible,llama3.1-8b,ddp,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__ddp__g4__r2/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g1__r0,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g1__r1,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g1__r2,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g2__r0,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g2__r1,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g2__r2,train,skipped_infeasible,llama3.1-8b,fsdp,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g4__r0,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g4__r1,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b__fsdp__g4__r2,train,ok,llama3.1-8b,fsdp,RTX A6000,4,2,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/llama3.1-8b__fsdp__g4__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g1__r0,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g1__r1,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g1__r2,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g2__r0,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g2__r1,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g2__r2,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g4__r0,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g4__r1,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero1__g4__r2,train,skipped_infeasible,llama3.1-8b,zero1,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero1__g4__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g1__r0,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g1__r1,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g1__r2,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g2__r0,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g2__r1,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g2__r2,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g4__r0,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g4__r1,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero2__g4__r2,train,skipped_infeasible,llama3.1-8b,zero2,RTX A6000,4,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero2__g4__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g1__r0,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g1__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g1__r1,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g1__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g1__r2,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,1,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g1__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g2__r0,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g2__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g2__r1,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g2__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g2__r2,train,skipped_infeasible,llama3.1-8b,zero3,RTX A6000,2,2,1024,,studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g2__r2/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g4__r0,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g4__r0/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g4__r1,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g4__r1/status.json
+a6000,train_scaling,llama3.1-8b__zero3__g4__r2,train,ok,llama3.1-8b,zero3,RTX A6000,4,2,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",studies/a6000/results/raw/train_scaling/llama3.1-8b__zero3__g4__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g1__r0,train,ok,qwen2.5-1.5b,ddp,RTX A6000,1,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g1__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g1__r1,train,ok,qwen2.5-1.5b,ddp,RTX A6000,1,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g1__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g1__r2,train,ok,qwen2.5-1.5b,ddp,RTX A6000,1,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g1__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g2__r0,train,ok,qwen2.5-1.5b,ddp,RTX A6000,2,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g2__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g2__r1,train,ok,qwen2.5-1.5b,ddp,RTX A6000,2,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g2__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g2__r2,train,ok,qwen2.5-1.5b,ddp,RTX A6000,2,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g2__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g4__r0,train,ok,qwen2.5-1.5b,ddp,RTX A6000,4,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g4__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g4__r1,train,ok,qwen2.5-1.5b,ddp,RTX A6000,4,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g4__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__ddp__g4__r2,train,ok,qwen2.5-1.5b,ddp,RTX A6000,4,1,1024,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__ddp__g4__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g1__r0,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,1,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g1__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g1__r1,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,1,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g1__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g1__r2,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,1,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g1__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g2__r0,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,2,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g2__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g2__r1,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,2,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g2__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g2__r2,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,2,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g2__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g4__r0,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,4,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g4__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g4__r1,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,4,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g4__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__fsdp__g4__r2,train,ok,qwen2.5-1.5b,fsdp,RTX A6000,4,1,1024,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__fsdp__g4__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g1__r0,train,ok,qwen2.5-1.5b,zero1,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g1__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g1__r1,train,ok,qwen2.5-1.5b,zero1,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g1__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g1__r2,train,ok,qwen2.5-1.5b,zero1,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g1__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g2__r0,train,ok,qwen2.5-1.5b,zero1,RTX A6000,2,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g2__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g2__r1,train,ok,qwen2.5-1.5b,zero1,RTX A6000,2,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g2__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g2__r2,train,ok,qwen2.5-1.5b,zero1,RTX A6000,2,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g2__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g4__r0,train,ok,qwen2.5-1.5b,zero1,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g4__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g4__r1,train,ok,qwen2.5-1.5b,zero1,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g4__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero1__g4__r2,train,ok,qwen2.5-1.5b,zero1,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero1__g4__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g1__r0,train,ok,qwen2.5-1.5b,zero2,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g1__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g1__r1,train,ok,qwen2.5-1.5b,zero2,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g1__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g1__r2,train,ok,qwen2.5-1.5b,zero2,RTX A6000,1,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g1__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g2__r0,train,ok,qwen2.5-1.5b,zero2,RTX A6000,2,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g2__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g2__r1,train,ok,qwen2.5-1.5b,zero2,RTX A6000,2,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g2__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g2__r2,train,ok,qwen2.5-1.5b,zero2,RTX A6000,2,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g2__r2/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g4__r0,train,ok,qwen2.5-1.5b,zero2,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g4__r0/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g4__r1,train,ok,qwen2.5-1.5b,zero2,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g4__r1/status.json
+a6000,train_scaling,qwen2.5-1.5b__zero2__g4__r2,train,ok,qwen2.5-1.5b,zero2,RTX A6000,4,1,1024,"DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-2 optimizer)",studies/a6000/results/raw/train_scaling/qwen2.5-1.5b__zero2__g4__r2/status.json
+a6000,train_scaling,resnet50__ddp__g1__r0,train,ok,resnet50,ddp,RTX A6000,1,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g1__r0/status.json
+a6000,train_scaling,resnet50__ddp__g1__r1,train,ok,resnet50,ddp,RTX A6000,1,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g1__r1/status.json
+a6000,train_scaling,resnet50__ddp__g1__r2,train,ok,resnet50,ddp,RTX A6000,1,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g1__r2/status.json
+a6000,train_scaling,resnet50__ddp__g2__r0,train,ok,resnet50,ddp,RTX A6000,2,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g2__r0/status.json
+a6000,train_scaling,resnet50__ddp__g2__r1,train,ok,resnet50,ddp,RTX A6000,2,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g2__r1/status.json
+a6000,train_scaling,resnet50__ddp__g2__r2,train,ok,resnet50,ddp,RTX A6000,2,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g2__r2/status.json
+a6000,train_scaling,resnet50__ddp__g4__r0,train,ok,resnet50,ddp,RTX A6000,4,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g4__r0/status.json
+a6000,train_scaling,resnet50__ddp__g4__r1,train,ok,resnet50,ddp,RTX A6000,4,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g4__r1/status.json
+a6000,train_scaling,resnet50__ddp__g4__r2,train,ok,resnet50,ddp,RTX A6000,4,128,,fp32 params + autocast bf16,studies/a6000/results/raw/train_scaling/resnet50__ddp__g4__r2/status.json
+a6000,train_scaling,resnet50__fsdp__g1__r0,train,ok,resnet50,fsdp,RTX A6000,1,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g1__r0/status.json
+a6000,train_scaling,resnet50__fsdp__g1__r1,train,ok,resnet50,fsdp,RTX A6000,1,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g1__r1/status.json
+a6000,train_scaling,resnet50__fsdp__g1__r2,train,ok,resnet50,fsdp,RTX A6000,1,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g1__r2/status.json
+a6000,train_scaling,resnet50__fsdp__g2__r0,train,ok,resnet50,fsdp,RTX A6000,2,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g2__r0/status.json
+a6000,train_scaling,resnet50__fsdp__g2__r1,train,ok,resnet50,fsdp,RTX A6000,2,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g2__r1/status.json
+a6000,train_scaling,resnet50__fsdp__g2__r2,train,ok,resnet50,fsdp,RTX A6000,2,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g2__r2/status.json
+a6000,train_scaling,resnet50__fsdp__g4__r0,train,ok,resnet50,fsdp,RTX A6000,4,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g4__r0/status.json
+a6000,train_scaling,resnet50__fsdp__g4__r1,train,ok,resnet50,fsdp,RTX A6000,4,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g4__r1/status.json
+a6000,train_scaling,resnet50__fsdp__g4__r2,train,ok,resnet50,fsdp,RTX A6000,4,128,,"bf16 compute, fp32 sharded params, fp32 reduce-scatter",studies/a6000/results/raw/train_scaling/resnet50__fsdp__g4__r2/status.json
+a6000,train_scaling,resnet50__zero1__g1__r0,train,ok,resnet50,zero1,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g1__r0/status.json
+a6000,train_scaling,resnet50__zero1__g1__r1,train,ok,resnet50,zero1,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g1__r1/status.json
+a6000,train_scaling,resnet50__zero1__g1__r2,train,ok,resnet50,zero1,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g1__r2/status.json
+a6000,train_scaling,resnet50__zero1__g2__r0,train,ok,resnet50,zero1,RTX A6000,2,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g2__r0/status.json
+a6000,train_scaling,resnet50__zero1__g2__r1,train,ok,resnet50,zero1,RTX A6000,2,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g2__r1/status.json
+a6000,train_scaling,resnet50__zero1__g2__r2,train,ok,resnet50,zero1,RTX A6000,2,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g2__r2/status.json
+a6000,train_scaling,resnet50__zero1__g4__r0,train,ok,resnet50,zero1,RTX A6000,4,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g4__r0/status.json
+a6000,train_scaling,resnet50__zero1__g4__r1,train,ok,resnet50,zero1,RTX A6000,4,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g4__r1/status.json
+a6000,train_scaling,resnet50__zero1__g4__r2,train,ok,resnet50,zero1,RTX A6000,4,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero1__g4__r2/status.json
+a6000,train_scaling,resnet50__zero2__g1__r0,train,ok,resnet50,zero2,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g1__r0/status.json
+a6000,train_scaling,resnet50__zero2__g1__r1,train,ok,resnet50,zero2,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g1__r1/status.json
+a6000,train_scaling,resnet50__zero2__g1__r2,train,ok,resnet50,zero2,RTX A6000,1,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g1__r2/status.json
+a6000,train_scaling,resnet50__zero2__g2__r0,train,ok,resnet50,zero2,RTX A6000,2,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g2__r0/status.json
+a6000,train_scaling,resnet50__zero2__g2__r1,train,ok,resnet50,zero2,RTX A6000,2,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g2__r1/status.json
+a6000,train_scaling,resnet50__zero2__g2__r2,train,ok,resnet50,zero2,RTX A6000,2,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g2__r2/status.json
+a6000,train_scaling,resnet50__zero2__g4__r0,train,ok,resnet50,zero2,RTX A6000,4,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g4__r0/status.json
+a6000,train_scaling,resnet50__zero2__g4__r1,train,ok,resnet50,zero2,RTX A6000,4,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g4__r1/status.json
+a6000,train_scaling,resnet50__zero2__g4__r2,train,ok,resnet50,zero2,RTX A6000,4,128,,DeepSpeed torch_autocast (fp32 params + autocast bf16),studies/a6000/results/raw/train_scaling/resnet50__zero2__g4__r2/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp1_dp1__g1__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,1,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp1_dp1__g1__r0/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp1_dp1__g1__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,1,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp1_dp1__g1__r1/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp1_dp2__g2__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp1_dp2__g2__r0/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp1_dp2__g2__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp1_dp2__g2__r1/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp1_dp4__g4__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp1_dp4__g4__r0/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp1_dp4__g4__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp1_dp4__g4__r1/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp2_dp1__g2__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp2_dp1__g2__r0/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp2_dp1__g2__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp2_dp1__g2__r1/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp4_dp1__g4__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp4_dp1__g4__r0/status.json
+a6000,vllm_scaling,llama3.1-8b__vllm_tp4_dp1__g4__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/llama3.1-8b__vllm_tp4_dp1__g4__r1/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp1_dp1__g1__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,1,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp1_dp1__g1__r0/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp1_dp1__g1__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,1,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp1_dp1__g1__r1/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp1_dp2__g2__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp1_dp2__g2__r0/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp1_dp2__g2__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp1_dp2__g2__r1/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp1_dp4__g4__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp1_dp4__g4__r0/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp1_dp4__g4__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp1_dp4__g4__r1/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp2_dp1__g2__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp2_dp1__g2__r0/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp2_dp1__g2__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp2_dp1__g2__r1/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp4_dp1__g4__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp4_dp1__g4__r0/status.json
+a6000,vllm_scaling,qwen2.5-1.5b__vllm_tp4_dp1__g4__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_scaling/qwen2.5-1.5b__vllm_tp4_dp1__g4__r1/status.json
+a6000,vllm_smoke,qwen2.5-1.5b__vllm_tp1_dp1__g1__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,1,,,bf16,studies/a6000/results/raw/vllm_smoke/qwen2.5-1.5b__vllm_tp1_dp1__g1__r0/status.json
+a6000,vllm_smoke,qwen2.5-1.5b__vllm_tp1_dp2__g2__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_smoke/qwen2.5-1.5b__vllm_tp1_dp2__g2__r0/status.json
+a6000,vllm_smoke,qwen2.5-1.5b__vllm_tp2_dp1__g2__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_smoke/qwen2.5-1.5b__vllm_tp2_dp1__g2__r0/status.json
+a6000,vllm_tp4_diag,qwen2.5-1.5b__vllm_tp4_dp1-p2p-nvl__g4__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_tp4_diag/qwen2.5-1.5b__vllm_tp4_dp1-p2p-nvl__g4__r0/status.json
+a6000,vllm_tp4_diag,qwen2.5-1.5b__vllm_tp4_dp1-p2p-off__g4__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_tp4_diag/qwen2.5-1.5b__vllm_tp4_dp1-p2p-off__g4__r0/status.json
+a6000,vllm_tp_concurrency_rerun,llama3.1-8b__vllm_tp2_dp1-conc512__g2__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/llama3.1-8b__vllm_tp2_dp1-conc512__g2__r0/status.json
+a6000,vllm_tp_concurrency_rerun,llama3.1-8b__vllm_tp2_dp1-conc512__g2__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/llama3.1-8b__vllm_tp2_dp1-conc512__g2__r1/status.json
+a6000,vllm_tp_concurrency_rerun,llama3.1-8b__vllm_tp4_dp1-conc1024__g4__r0,vllm,ok,llama3.1-8b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/llama3.1-8b__vllm_tp4_dp1-conc1024__g4__r0/status.json
+a6000,vllm_tp_concurrency_rerun,llama3.1-8b__vllm_tp4_dp1-conc1024__g4__r1,vllm,ok,llama3.1-8b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/llama3.1-8b__vllm_tp4_dp1-conc1024__g4__r1/status.json
+a6000,vllm_tp_concurrency_rerun,qwen2.5-1.5b__vllm_tp2_dp1-conc512__g2__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/qwen2.5-1.5b__vllm_tp2_dp1-conc512__g2__r0/status.json
+a6000,vllm_tp_concurrency_rerun,qwen2.5-1.5b__vllm_tp2_dp1-conc512__g2__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,2,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/qwen2.5-1.5b__vllm_tp2_dp1-conc512__g2__r1/status.json
+a6000,vllm_tp_concurrency_rerun,qwen2.5-1.5b__vllm_tp4_dp1-conc1024__g4__r0,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/qwen2.5-1.5b__vllm_tp4_dp1-conc1024__g4__r0/status.json
+a6000,vllm_tp_concurrency_rerun,qwen2.5-1.5b__vllm_tp4_dp1-conc1024__g4__r1,vllm,ok,qwen2.5-1.5b,vllm,RTX A6000,4,,,bf16,studies/a6000/results/raw/vllm_tp_concurrency_rerun/qwen2.5-1.5b__vllm_tp4_dp1-conc1024__g4__r1/status.json
+titan-1080,00,00_preflight,preflight,cleared,,,,,,,,studies/titan-1080/results/raw/00_preflight.json
+titan-1080,01,01_dtype_GTX_1080Ti,dtype,recorded,,,NVIDIA GeForce GTX 1080 Ti,,,,,studies/titan-1080/results/raw/01_dtype_GTX_1080Ti.json
+titan-1080,01,01_dtype_TITAN_RTX,dtype,recorded,,,NVIDIA TITAN RTX,,,,,studies/titan-1080/results/raw/01_dtype_TITAN_RTX.json
+titan-1080,01,01_dtype_TITAN_Xp,dtype,recorded,,,NVIDIA TITAN Xp,,,,,studies/titan-1080/results/raw/01_dtype_TITAN_Xp.json
+titan-1080,A,A_p1080_1_bs1_fp32,train,ok,gpt2-124m,single,GTX 1080 Ti,1,1,512,fp32,studies/titan-1080/results/raw/A_p1080_1_bs1_fp32.json
+titan-1080,A,A_p1080_1_bs2_fp32,train,ok,gpt2-124m,single,GTX 1080 Ti,1,2,512,fp32,studies/titan-1080/results/raw/A_p1080_1_bs2_fp32.json
+titan-1080,A,A_p1080_1_bs4_fp32,train,ok,gpt2-124m,single,GTX 1080 Ti,1,4,512,fp32,studies/titan-1080/results/raw/A_p1080_1_bs4_fp32.json
+titan-1080,A,A_p1080_1_bs6_fp32,train,ok,gpt2-124m,single,GTX 1080 Ti,1,6,512,fp32,studies/titan-1080/results/raw/A_p1080_1_bs6_fp32.json
+titan-1080,A,A_p1080_1_bs8_fp32,train,ok,gpt2-124m,single,GTX 1080 Ti,1,8,512,fp32,studies/titan-1080/results/raw/A_p1080_1_bs8_fp32.json
+titan-1080,A,A_rtx_1_bs12_amp_fp16,train,ok,gpt2-124m,single,TITAN RTX,1,12,512,amp_fp16,studies/titan-1080/results/raw/A_rtx_1_bs12_amp_fp16.json
+titan-1080,A,A_rtx_1_bs12_fp32,train,ok,gpt2-124m,single,TITAN RTX,1,12,512,fp32,studies/titan-1080/results/raw/A_rtx_1_bs12_fp32.json
+titan-1080,A,A_rtx_1_bs16_amp_fp16,train,ok,gpt2-124m,single,TITAN RTX,1,16,512,amp_fp16,studies/titan-1080/results/raw/A_rtx_1_bs16_amp_fp16.json
+titan-1080,A,A_rtx_1_bs16_fp32,train,ok,gpt2-124m,single,TITAN RTX,1,16,512,fp32,studies/titan-1080/results/raw/A_rtx_1_bs16_fp32.json
+titan-1080,A,A_rtx_1_bs1_amp_fp16,train,ok,gpt2-124m,single,TITAN RTX,1,1,512,amp_fp16,studies/titan-1080/results/raw/A_rtx_1_bs1_amp_fp16.json
+titan-1080,A,A_rtx_1_bs1_fp32,train,ok,gpt2-124m,single,TITAN RTX,1,1,512,fp32,studies/titan-1080/results/raw/A_rtx_1_bs1_fp32.json
+titan-1080,A,A_rtx_1_bs2_amp_fp16,train,ok,gpt2-124m,single,TITAN RTX,1,2,512,amp_fp16,studies/titan-1080/results/raw/A_rtx_1_bs2_amp_fp16.json
+titan-1080,A,A_rtx_1_bs2_fp32,train,ok,gpt2-124m,single,TITAN RTX,1,2,512,fp32,studies/titan-1080/results/raw/A_rtx_1_bs2_fp32.json
+titan-1080,A,A_rtx_1_bs4_amp_fp16,train,ok,gpt2-124m,single,TITAN RTX,1,4,512,amp_fp16,studies/titan-1080/results/raw/A_rtx_1_bs4_amp_fp16.json
+titan-1080,A,A_rtx_1_bs4_fp32,train,ok,gpt2-124m,single,TITAN RTX,1,4,512,fp32,studies/titan-1080/results/raw/A_rtx_1_bs4_fp32.json
+titan-1080,A,A_rtx_1_bs8_amp_fp16,train,ok,gpt2-124m,single,TITAN RTX,1,8,512,amp_fp16,studies/titan-1080/results/raw/A_rtx_1_bs8_amp_fp16.json
+titan-1080,A,A_rtx_1_bs8_fp32,train,ok,gpt2-124m,single,TITAN RTX,1,8,512,fp32,studies/titan-1080/results/raw/A_rtx_1_bs8_fp32.json
+titan-1080,A,A_xp_1_bs1_fp32,train,ok,gpt2-124m,single,TITAN Xp,1,1,512,fp32,studies/titan-1080/results/raw/A_xp_1_bs1_fp32.json
+titan-1080,A,A_xp_1_bs2_fp32,train,ok,gpt2-124m,single,TITAN Xp,1,2,512,fp32,studies/titan-1080/results/raw/A_xp_1_bs2_fp32.json
+titan-1080,A,A_xp_1_bs4_fp32,train,ok,gpt2-124m,single,TITAN Xp,1,4,512,fp32,studies/titan-1080/results/raw/A_xp_1_bs4_fp32.json
+titan-1080,A,A_xp_1_bs8_fp32,train,ok,gpt2-124m,single,TITAN Xp,1,8,512,fp32,studies/titan-1080/results/raw/A_xp_1_bs8_fp32.json
+titan-1080,B,B_cnn_GTX_1080Ti_fp32,cnn_inference,rows_ok,resnet50,,NVIDIA GeForce GTX 1080 Ti,,,,fp32,studies/titan-1080/results/raw/B_cnn_GTX_1080Ti_fp32.json
+titan-1080,B,B_cnn_TITAN_RTX_amp_fp16,cnn_inference,rows_ok,resnet50,,NVIDIA TITAN RTX,,,,amp_fp16,studies/titan-1080/results/raw/B_cnn_TITAN_RTX_amp_fp16.json
+titan-1080,B,B_cnn_TITAN_RTX_fp32,cnn_inference,rows_ok,resnet50,,NVIDIA TITAN RTX,,,,fp32,studies/titan-1080/results/raw/B_cnn_TITAN_RTX_fp32.json
+titan-1080,B,B_cnn_TITAN_Xp_fp32,cnn_inference,rows_ok,resnet50,,NVIDIA TITAN Xp,,,,fp32,studies/titan-1080/results/raw/B_cnn_TITAN_Xp_fp32.json
+titan-1080,C,C_comm_p1080_2,nccl,recorded,,,GTX 1080 Ti,2,,,,studies/titan-1080/results/raw/C_comm_p1080_2.json
+titan-1080,C,C_comm_p1080_4,nccl,recorded,,,GTX 1080 Ti,4,,,,studies/titan-1080/results/raw/C_comm_p1080_4.json
+titan-1080,C,C_comm_p1080_6,nccl,recorded,,,GTX 1080 Ti,6,,,,studies/titan-1080/results/raw/C_comm_p1080_6.json
+titan-1080,C,C_comm_rtx_2,nccl,recorded,,,TITAN RTX,2,,,,studies/titan-1080/results/raw/C_comm_rtx_2.json
+titan-1080,C,C_ddp_p1080_2_bs4_fp32,train,ok,gpt2-124m,ddp,GTX 1080 Ti,2,4,512,fp32,studies/titan-1080/results/raw/C_ddp_p1080_2_bs4_fp32.json
+titan-1080,C,C_ddp_p1080_2_bs6_fp32,train,ok,gpt2-124m,ddp,GTX 1080 Ti,2,6,512,fp32,studies/titan-1080/results/raw/C_ddp_p1080_2_bs6_fp32.json
+titan-1080,C,C_ddp_p1080_2_bs8_fp32,train,oom,gpt2-124m,ddp,GTX 1080 Ti,2,8,512,fp32,studies/titan-1080/results/raw/C_ddp_p1080_2_bs8_fp32.json
+titan-1080,C,C_ddp_p1080_4_bs4_fp32,train,ok,gpt2-124m,ddp,GTX 1080 Ti,4,4,512,fp32,studies/titan-1080/results/raw/C_ddp_p1080_4_bs4_fp32.json
+titan-1080,C,C_ddp_p1080_6_bs4_fp32,train,ok,gpt2-124m,ddp,GTX 1080 Ti,6,4,512,fp32,studies/titan-1080/results/raw/C_ddp_p1080_6_bs4_fp32.json
+titan-1080,C,C_ddp_rtx_2_bs4_amp_fp16,train,ok,gpt2-124m,ddp,TITAN RTX,2,4,512,amp_fp16,studies/titan-1080/results/raw/C_ddp_rtx_2_bs4_amp_fp16.json
+titan-1080,C,C_ddp_rtx_2_bs4_fp32,train,ok,gpt2-124m,ddp,TITAN RTX,2,4,512,fp32,studies/titan-1080/results/raw/C_ddp_rtx_2_bs4_fp32.json
+titan-1080,C,C_ddp_rtx_2_bs8_amp_fp16,train,ok,gpt2-124m,ddp,TITAN RTX,2,8,512,amp_fp16,studies/titan-1080/results/raw/C_ddp_rtx_2_bs8_amp_fp16.json
+titan-1080,C,C_ddp_rtx_2_bs8_fp32,train,ok,gpt2-124m,ddp,TITAN RTX,2,8,512,fp32,studies/titan-1080/results/raw/C_ddp_rtx_2_bs8_fp32.json
+titan-1080,D,D_zero1_p1080_2_bs4_fp32,train,ok,gpt2-124m,deepspeed,GTX 1080 Ti,2,4,512,fp32,studies/titan-1080/results/raw/D_zero1_p1080_2_bs4_fp32.json
+titan-1080,D,D_zero1_p1080_4_bs4_fp32,train,ok,gpt2-124m,deepspeed,GTX 1080 Ti,4,4,512,fp32,studies/titan-1080/results/raw/D_zero1_p1080_4_bs4_fp32.json
+titan-1080,D,D_zero1_p1080_6_bs4_fp32,train,ok,gpt2-124m,deepspeed,GTX 1080 Ti,6,4,512,fp32,studies/titan-1080/results/raw/D_zero1_p1080_6_bs4_fp32.json
+titan-1080,D,D_zero1_rtx_2_bs4_amp_fp16,train,ok,gpt2-124m,deepspeed,TITAN RTX,2,4,512,amp_fp16,studies/titan-1080/results/raw/D_zero1_rtx_2_bs4_amp_fp16.json
+titan-1080,D,D_zero1_rtx_2_bs4_fp32,train,ok,gpt2-124m,deepspeed,TITAN RTX,2,4,512,fp32,studies/titan-1080/results/raw/D_zero1_rtx_2_bs4_fp32.json
+titan-1080,D,D_zero2_p1080_2_bs4_fp32,train,ok,gpt2-124m,deepspeed,GTX 1080 Ti,2,4,512,fp32,studies/titan-1080/results/raw/D_zero2_p1080_2_bs4_fp32.json
+titan-1080,D,D_zero2_p1080_4_bs4_fp32,train,ok,gpt2-124m,deepspeed,GTX 1080 Ti,4,4,512,fp32,studies/titan-1080/results/raw/D_zero2_p1080_4_bs4_fp32.json
+titan-1080,D,D_zero2_p1080_6_bs4_fp32,train,ok,gpt2-124m,deepspeed,GTX 1080 Ti,6,4,512,fp32,studies/titan-1080/results/raw/D_zero2_p1080_6_bs4_fp32.json
+titan-1080,D,D_zero2_rtx_2_bs4_amp_fp16,train,ok,gpt2-124m,deepspeed,TITAN RTX,2,4,512,amp_fp16,studies/titan-1080/results/raw/D_zero2_rtx_2_bs4_amp_fp16.json
+titan-1080,D,D_zero2_rtx_2_bs4_fp32,train,ok,gpt2-124m,deepspeed,TITAN RTX,2,4,512,fp32,studies/titan-1080/results/raw/D_zero2_rtx_2_bs4_fp32.json
+titan-1080,E,E_fsdp_p1080_2_bs4_fp32,train,ok,gpt2-124m,fsdp,GTX 1080 Ti,2,4,512,fp32,studies/titan-1080/results/raw/E_fsdp_p1080_2_bs4_fp32.json
+titan-1080,E,E_fsdp_p1080_4_bs4_fp32,train,ok,gpt2-124m,fsdp,GTX 1080 Ti,4,4,512,fp32,studies/titan-1080/results/raw/E_fsdp_p1080_4_bs4_fp32.json
+titan-1080,E,E_fsdp_p1080_6_bs4_fp32,train,ok,gpt2-124m,fsdp,GTX 1080 Ti,6,4,512,fp32,studies/titan-1080/results/raw/E_fsdp_p1080_6_bs4_fp32.json
+titan-1080,E,E_fsdp_rtx_2_bs4_fp32,train,ok,gpt2-124m,fsdp,TITAN RTX,2,4,512,fp32,studies/titan-1080/results/raw/E_fsdp_rtx_2_bs4_fp32.json
+titan-1080,F,F_hf_GTX_1080Ti_float16,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,hf_transformers_generate,NVIDIA GeForce GTX 1080 Ti,1,,,float16,studies/titan-1080/results/raw/F_hf_GTX_1080Ti_float16.json
+titan-1080,F,F_hf_GTX_1080Ti_float32,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,hf_transformers_generate,NVIDIA GeForce GTX 1080 Ti,1,,,float32,studies/titan-1080/results/raw/F_hf_GTX_1080Ti_float32.json
+titan-1080,F,F_hf_TITAN_RTX_float16,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,hf_transformers_generate,NVIDIA TITAN RTX,1,,,float16,studies/titan-1080/results/raw/F_hf_TITAN_RTX_float16.json
+titan-1080,F,F_hf_TITAN_RTX_float32,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,hf_transformers_generate,NVIDIA TITAN RTX,1,,,float32,studies/titan-1080/results/raw/F_hf_TITAN_RTX_float32.json
+titan-1080,F,F_hf_TITAN_Xp_float16,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,hf_transformers_generate,NVIDIA TITAN Xp,1,,,float16,studies/titan-1080/results/raw/F_hf_TITAN_Xp_float16.json
+titan-1080,F,F_hf_TITAN_Xp_float32,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,hf_transformers_generate,NVIDIA TITAN Xp,1,,,float32,studies/titan-1080/results/raw/F_hf_TITAN_Xp_float32.json
+titan-1080,F,F_vllm_TITAN_RTX_tp1,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,vllm,NVIDIA TITAN RTX,1,,,float16,studies/titan-1080/results/raw/F_vllm_TITAN_RTX_tp1.json
+titan-1080,F,F_vllm_TITAN_RTX_tp2,inference,rows_ok,TinyLlama/TinyLlama-1.1B-Chat-v1.0,vllm,NVIDIA TITAN RTX,2,,,float16,studies/titan-1080/results/raw/F_vllm_TITAN_RTX_tp2.json

@@ -1,0 +1,3737 @@
+{
+ "all_cleanups_confirmed": true,
+ "authorization": "/PRIVATE_EVIDENCE/42_s1a_window/w1a_20261016T061814Z/authorization.json",
+ "authorization_revoked_now": true,
+ "authorization_sha256": "36f93d04557f5b83a7bf8b437bbc8c7940e352a0837fe17f1b77d943e3c2cc3d",
+ "cache": {
+  "mode": "0o700",
+  "path": "/PRIVATE_EVIDENCE/42_s1a_window/w1a_20261016T061814Z/cache",
+  "seed": {
+   "copied_to": "/PRIVATE_EVIDENCE/42_s1a_window/w1a_20261016T061814Z/cache/triton/XU5DT2AO5BD5AEHEYGLPP5LRDFHHCUEJT4LGDVLB4STXUGVGHFPA",
+   "requested": true,
+   "sha256_copy": "4d37c613718c0182bf219d846b7c28bfdd2cab68736ae2510d475bb3fd260dfc",
+   "sha256_source": "4d37c613718c0182bf219d846b7c28bfdd2cab68736ae2510d475bb3fd260dfc",
+   "source": "/PRIVATE_EVIDENCE/40_smoke/w20261016T042911Z/cache/triton/XU5DT2AO5BD5AEHEYGLPP5LRDFHHCUEJT4LGDVLB4STXUGVGHFPA"
+  }
+ },
+ "cases": [
+  {
+   "budget_before_gate": {
+    "child_s": 300,
+    "fits": true,
+    "gate_deadline": 51181.032227475,
+    "grace_s": 60,
+    "per_case_s": 430,
+    "reap_s": 10,
+    "remaining_s": 2699.4479256799386
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "case": "r0_fp32_control",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-01.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w1a_20261016T061814Z-01"
+   },
+   "duration_s": 177.09812039200187,
+   "ended_utc": "2026-10-16T06:21:56.889059+00:00",
+   "evaluation": {
+    "category": null,
+    "grades": {},
+    "gross_checks": [],
+    "gross_pass": true,
+    "integrity_checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.91,
+      "pass": true
+     },
+     {
+      "check": "warmup: 0 logical attempt(s), 0 microbatches",
+      "observed": [
+       0,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 12 microbatches",
+      "observed": [
+       3,
+       12
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [],
+       [
+        12.293331146240234,
+        12.247369766235352,
+        12.246509552001953,
+        12.236490249633789,
+        12.241716384887695,
+        12.252541542053223,
+        12.215014457702637,
+        12.238727569580078,
+        12.189590454101562,
+        12.233338356018066,
+        12.21673583984375,
+        12.2472562789917
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity chain NVML -> driver -> (DeepSpeed) -> torch checked with no problems before model setup",
+      "observed": {
+       "deepspeed": "not applicable (framework does not use DeepSpeed)",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "nvml": {
+        "index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all torch identity records carry the approved UUID and a PCI bus id",
+      "observed": [
+       [
+        "after set_device",
+        "0000:81:00.0"
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        "0000:81:00.0"
+       ],
+       [
+        "end of run",
+        "0000:81:00.0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: ineligible: diagnostic, not a measurement",
+      "observed": "ineligible: diagnostic instrumentation inside the timed path",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-step sample plan sampled completely at every measured boundary",
+      "observed": [
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ],
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ],
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "every base call has samples whose expected change exceeds tolerance (distinguishes a no-op)",
+      "observed": [
+       189,
+       189,
+       189
+      ],
+      "pass": true
+     },
+     {
+      "check": "runtime sample plan identical to the plan frozen before the window (names, sizes, indices)",
+      "observed": "80041503e5b729164621fc724ad6ad87de295583a39be74dfb8bc5d75380a4c1",
+      "pass": true
+     },
+     {
+      "check": "independent model-to-unit map without problems",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     },
+     {
+      "check": "pre-allocation torch identity receipt (after set_device, before any model allocation)",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck after the allocator cap",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck at the end of the run",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "declared common representable start realized after cast/wrap (full-state SHA-256)",
+      "observed": {
+       "expected_module_state": "canonical_fp32",
+       "module_state_matches_canonical": true,
+       "optimizer_master_matches_canonical": null
+      },
+      "pass": true
+     },
+     {
+      "check": "every microbatch input equals the frozen input plan",
+      "observed": "match",
+      "pass": true
+     },
+     {
+      "check": "precision state as declared (legacy interface only; no environment override)",
+      "observed": {
+       "autocast_bf16": false,
+       "env": {
+        "CUBLAS_WORKSPACE_CONFIG": null,
+        "NVIDIA_TF32_OVERRIDE": null,
+        "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null,
+        "TORCH_CUDNN_V8_API_DISABLED": null
+       },
+       "legacy": {
+        "cuda_matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "float32_matmul_precision": "highest"
+       },
+       "sdpa": {
+        "cudnn": false,
+        "flash": false,
+        "math": true,
+        "mem_efficient": false
+       }
+      },
+      "pass": true
+     },
+     {
+      "check": "AdamW execution branch resolved and recorded",
+      "observed": "foreach (_multi_tensor_adam)",
+      "pass": true
+     },
+     {
+      "check": "reference snapshot grad_b1 written in full (338 tensors, 1543714304 elements)",
+      "observed": {
+       "bytes": 6174857216,
+       "data_sha256": "a1cdc88dafb3de2417c74e9d0ddf7f6b13e729a1395305854049dcf58afc9637",
+       "elements": 1543714304,
+       "tensors": 338
+      },
+      "pass": true
+     },
+     {
+      "check": "reference snapshot dtheta_final written in full (338 tensors, 1543714304 elements)",
+      "observed": {
+       "bytes": 6174857216,
+       "data_sha256": "7f3d1540ad3b7e16be348e378c7d975189f5940db1333aff2d6d7155cfbc02b8",
+       "elements": 1543714304,
+       "tensors": 338
+      },
+      "pass": true
+     },
+     {
+      "check": "reference scalars written",
+      "observed": "write",
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     }
+    ],
+    "integrity_pass": true,
+    "overall_grade": "reference",
+    "pass": true,
+    "pass_": true,
+    "reference_receipt_valid": true,
+    "witnesses": {}
+   },
+   "gate_polls": 3,
+   "gate_trail": [
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:18:48.497506+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:18:53.943060+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:18:59.350982+00:00"
+    }
+   ],
+   "grade": "reference",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 40553.8125,
+     "gpu4_power_w": 297.574,
+     "gpu4_temp_c": 41,
+     "node_gpu_power_w": 1201.166,
+     "samples": 177,
+     "worker_cpu_rate_max": 7.851137333553605,
+     "worker_memory_current_bytes": 20532867072,
+     "worker_memory_peak_bytes": 20589441024,
+     "worker_pids_max": 38
+    },
+    "power_watch_peak_w": 1201.166,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-01.scope",
+    "identity_error": null,
+    "leader_pid": 105447,
+    "leader_start_time": 5113295,
+    "unit": "mgbench-diag-w1a_20261016T061814Z-01.scope"
+   },
+   "index": 1,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 177.0763470009988,
+    "stop_and_reap": 0.020659569003328215
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 302,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "child_s": 300,
+    "fits": true,
+    "gate_deadline": 51383.849101234,
+    "grace_s": 60,
+    "per_case_s": 430,
+    "reap_s": 10,
+    "remaining_s": 2496.6310519209364
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "case": "a1_ddp_bf16_autocast",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-02.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w1a_20261016T061814Z-02"
+   },
+   "duration_s": 152.09534566200455,
+   "ended_utc": "2026-10-16T06:24:54.446296+00:00",
+   "evaluation": {
+    "category": "bf16_compute",
+    "grades": {
+     "grad_b1_global_cosine": {
+      "grade": "pass",
+      "marginal_limit": 0.985,
+      "pass_limit": 0.995,
+      "value": 0.9992052746092397
+     },
+     "grad_b1_global_rel_l2": {
+      "grade": "pass",
+      "marginal_limit": 0.15,
+      "pass_limit": 0.05,
+      "value": 0.03986057548886739
+     },
+     "loss_all_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.03,
+      "pass_limit": 0.01,
+      "value": 0.00010115105855478264
+     },
+     "loss_update1_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.015,
+      "pass_limit": 0.005,
+      "value": 5.556902132276093e-05
+     }
+    },
+    "gross_checks": [
+     {
+      "check": "dtheta_final global cosine >= 0.5",
+      "observed": 0.9927889548859609,
+      "pass": true
+     },
+     {
+      "check": "dtheta_final global norm ratio in [0.5, 2.0]",
+      "observed": 0.9999986437946894,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 2 in [0.5, 2.0]",
+      "observed": 0.998849739646031,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 3 in [0.5, 2.0]",
+      "observed": 0.9995982769036966,
+      "pass": true
+     },
+     {
+      "check": "Adam m global norm ratio in [0.5, 2.0]",
+      "observed": 0.9993117635725423,
+      "pass": true
+     },
+     {
+      "check": "Adam v global norm ratio in [0.25, 4.0]",
+      "observed": 0.9947789380452329,
+      "pass": true
+     }
+    ],
+    "gross_pass": true,
+    "integrity_checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.84,
+      "pass": true
+     },
+     {
+      "check": "warmup: 0 logical attempt(s), 0 microbatches",
+      "observed": [
+       0,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 12 microbatches",
+      "observed": [
+       3,
+       12
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [],
+       [
+        12.293548583984375,
+        12.247572898864746,
+        12.246603012084961,
+        12.237170219421387,
+        12.242341041564941,
+        12.252455711364746,
+        12.216048240661621,
+        12.23928165435791,
+        12.188774108886719,
+        12.233378410339355,
+        12.216798782348633,
+        12.248495101928711
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity chain NVML -> driver -> (DeepSpeed) -> torch checked with no problems before model setup",
+      "observed": {
+       "deepspeed": "not applicable (framework does not use DeepSpeed)",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "nvml": {
+        "index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all torch identity records carry the approved UUID and a PCI bus id",
+      "observed": [
+       [
+        "after set_device",
+        "0000:81:00.0"
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        "0000:81:00.0"
+       ],
+       [
+        "end of run",
+        "0000:81:00.0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: ineligible: diagnostic, not a measurement",
+      "observed": "ineligible: diagnostic instrumentation inside the timed path",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-step sample plan sampled completely at every measured boundary",
+      "observed": [
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ],
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ],
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "every base call has samples whose expected change exceeds tolerance (distinguishes a no-op)",
+      "observed": [
+       189,
+       189,
+       189
+      ],
+      "pass": true
+     },
+     {
+      "check": "runtime sample plan identical to the plan frozen before the window (names, sizes, indices)",
+      "observed": "80041503e5b729164621fc724ad6ad87de295583a39be74dfb8bc5d75380a4c1",
+      "pass": true
+     },
+     {
+      "check": "independent model-to-unit map without problems",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     },
+     {
+      "check": "pre-allocation torch identity receipt (after set_device, before any model allocation)",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck after the allocator cap",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck at the end of the run",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "declared common representable start realized after cast/wrap (full-state SHA-256)",
+      "observed": {
+       "expected_module_state": "canonical_fp32",
+       "module_state_matches_canonical": true,
+       "optimizer_master_matches_canonical": null
+      },
+      "pass": true
+     },
+     {
+      "check": "every microbatch input equals the frozen input plan",
+      "observed": "match",
+      "pass": true
+     },
+     {
+      "check": "precision state as declared (legacy interface only; no environment override)",
+      "observed": {
+       "autocast_bf16": true,
+       "env": {
+        "CUBLAS_WORKSPACE_CONFIG": null,
+        "NVIDIA_TF32_OVERRIDE": null,
+        "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null,
+        "TORCH_CUDNN_V8_API_DISABLED": null
+       },
+       "legacy": {
+        "cuda_matmul_allow_tf32": true,
+        "cudnn_allow_tf32": true,
+        "cudnn_benchmark": true,
+        "cudnn_deterministic": false,
+        "float32_matmul_precision": "high"
+       },
+       "sdpa": {
+        "cudnn": true,
+        "flash": true,
+        "math": true,
+        "mem_efficient": true
+       }
+      },
+      "pass": true
+     },
+     {
+      "check": "AdamW execution branch resolved and recorded",
+      "observed": "foreach (_multi_tensor_adam)",
+      "pass": true
+     },
+     {
+      "check": "grad_b1: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "dtheta_final: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all 12 raw microbatch losses compared",
+      "observed": 12,
+      "pass": true
+     },
+     {
+      "check": "gradient norms compared at all 3 boundaries, every tensor",
+      "observed": [
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "moment norms compared for every tensor",
+      "observed": [
+       338,
+       []
+      ],
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     }
+    ],
+    "integrity_pass": true,
+    "overall_grade": "pass",
+    "pass": true,
+    "pass_": true,
+    "witnesses": {
+     "dtheta_global_rel_l2": 0.12009192591762732,
+     "dtheta_max_abs_diff": {
+      "flat_index": 13124949,
+      "name": "model.layers.7.mlp.up_proj.weight",
+      "observed": 0.0002950923517346382,
+      "reference": -0.00029935501515865326,
+      "value": 0.0005944473668932915
+     },
+     "dtheta_worst_tensor": {
+      "cosine": 0.751148229150657,
+      "name": "model.layers.0.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.7100181404186889
+     },
+     "grad_b1_max_abs_diff": {
+      "flat_index": 106,
+      "name": "model.layers.0.self_attn.v_proj.bias",
+      "observed": -0.012592315673828125,
+      "reference": -0.005053482949733734,
+      "value": 0.007538832724094391
+     },
+     "grad_b1_worst_tensor": {
+      "cosine": 0.9989417376262933,
+      "max_abs_diff": 2.035946090472862e-05,
+      "name": "model.layers.1.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.04612871812301763
+     },
+     "grad_norm_ratios": [
+      {
+       "boundary": 0,
+       "global_norm_ratio": 0.9994204146377939,
+       "max_ratio": 1.0055950804777096,
+       "min_ratio": 0.9879589434607468,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 1,
+       "global_norm_ratio": 0.998849739646031,
+       "max_ratio": 1.0077754792366689,
+       "min_ratio": 0.9852644864163927,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 2,
+       "global_norm_ratio": 0.9995982769036966,
+       "max_ratio": 1.0051697914148416,
+       "min_ratio": 0.9888845309072535,
+       "missing": [],
+       "tensors": 338
+      }
+     ],
+     "loss_rel": [
+      1.7687455218931908e-05,
+      1.6585816650571417e-05,
+      7.631569028787836e-06,
+      5.556902132276093e-05,
+      5.10268868846878e-05,
+      7.005133439619369e-06,
+      8.463215189503802e-05,
+      4.5273070642509805e-05,
+      6.69706843652869e-05,
+      3.2741938564429704e-06,
+      5.152154037540156e-06,
+      0.00010115105855478264
+     ],
+     "moment_norm_ratios": {
+      "global": {
+       "m": 0.9993117635725423,
+       "v": 0.9947789380452329
+      },
+      "max": 1.0148294490022682,
+      "min": 0.9790084409834977,
+      "zero_reference": []
+     },
+     "zero_reference_tensors": {
+      "dtheta_final": [],
+      "grad_b1": []
+     }
+    }
+   },
+   "gate_polls": 3,
+   "gate_trail": [
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:22:11.106597+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:22:16.511335+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:22:21.912347+00:00"
+    }
+   ],
+   "grade": "pass",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 39891.8125,
+     "gpu4_power_w": 273.867,
+     "gpu4_temp_c": 38,
+     "node_gpu_power_w": 1177.076,
+     "samples": 152,
+     "worker_cpu_rate_max": 7.976785465095751,
+     "worker_memory_current_bytes": 10875359232,
+     "worker_memory_peak_bytes": 13304631296,
+     "worker_pids_max": 38
+    },
+    "power_watch_peak_w": 1177.076,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-02.scope",
+    "identity_error": null,
+    "leader_pid": 106284,
+    "leader_start_time": 5133551,
+    "unit": "mgbench-diag-w1a_20261016T061814Z-02.scope"
+   },
+   "index": 2,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 152.07330777899915,
+    "stop_and_reap": 0.020986483999877237
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 302,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "child_s": 300,
+    "fits": true,
+    "gate_deadline": 51548.30362163,
+    "grace_s": 60,
+    "per_case_s": 430,
+    "reap_s": 10,
+    "remaining_s": 2332.176531524936
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "case": "a2_fsdp2_bf16",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-03.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w1a_20261016T061814Z-03"
+   },
+   "duration_s": 155.091343883003,
+   "ended_utc": "2026-10-16T06:27:47.282370+00:00",
+   "evaluation": {
+    "category": "bf16_compute",
+    "grades": {
+     "grad_b1_global_cosine": {
+      "grade": "pass",
+      "marginal_limit": 0.985,
+      "pass_limit": 0.995,
+      "value": 0.998770050748062
+     },
+     "grad_b1_global_rel_l2": {
+      "grade": "pass",
+      "marginal_limit": 0.15,
+      "pass_limit": 0.05,
+      "value": 0.0495839709895369
+     },
+     "loss_all_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.03,
+      "pass_limit": 0.01,
+      "value": 0.00027721152306006637
+     },
+     "loss_update1_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.015,
+      "pass_limit": 0.005,
+      "value": 0.00014324805216161935
+     }
+    },
+    "gross_checks": [
+     {
+      "check": "dtheta_final global cosine >= 0.5",
+      "observed": 0.9904635686914979,
+      "pass": true
+     },
+     {
+      "check": "dtheta_final global norm ratio in [0.5, 2.0]",
+      "observed": 1.0000456286493413,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 2 in [0.5, 2.0]",
+      "observed": 0.9999138664040615,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 3 in [0.5, 2.0]",
+      "observed": 0.9976361020118785,
+      "pass": true
+     },
+     {
+      "check": "Adam m global norm ratio in [0.5, 2.0]",
+      "observed": 0.9988537159675754,
+      "pass": true
+     },
+     {
+      "check": "Adam v global norm ratio in [0.25, 4.0]",
+      "observed": 1.0009118210406964,
+      "pass": true
+     }
+    ],
+    "gross_pass": true,
+    "integrity_checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.77,
+      "pass": true
+     },
+     {
+      "check": "warmup: 0 logical attempt(s), 0 microbatches",
+      "observed": [
+       0,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 12 microbatches",
+      "observed": [
+       3,
+       12
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [],
+       [
+        12.293285369873047,
+        12.247886657714844,
+        12.24593734741211,
+        12.238243103027344,
+        12.239527702331543,
+        12.25194263458252,
+        12.215343475341797,
+        12.23896598815918,
+        12.186990737915039,
+        12.233295440673828,
+        12.215645790100098,
+        12.250651359558105
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity chain NVML -> driver -> (DeepSpeed) -> torch checked with no problems before model setup",
+      "observed": {
+       "deepspeed": "not applicable (framework does not use DeepSpeed)",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "nvml": {
+        "index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all torch identity records carry the approved UUID and a PCI bus id",
+      "observed": [
+       [
+        "after set_device",
+        "0000:81:00.0"
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        "0000:81:00.0"
+       ],
+       [
+        "end of run",
+        "0000:81:00.0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: ineligible: diagnostic, not a measurement",
+      "observed": "ineligible: diagnostic instrumentation inside the timed path",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-step sample plan sampled completely at every measured boundary",
+      "observed": [
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ],
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ],
+       [
+        "model.embed_tokens.weight",
+        "model.layers.14.self_attn.q_proj.weight",
+        "model.norm.weight"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "every base call has samples whose expected change exceeds tolerance (distinguishes a no-op)",
+      "observed": [
+       189,
+       189,
+       189
+      ],
+      "pass": true
+     },
+     {
+      "check": "runtime sample plan identical to the plan frozen before the window (names, sizes, indices)",
+      "observed": "80041503e5b729164621fc724ad6ad87de295583a39be74dfb8bc5d75380a4c1",
+      "pass": true
+     },
+     {
+      "check": "independent model-to-unit map without problems",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     },
+     {
+      "check": "pre-allocation torch identity receipt (after set_device, before any model allocation)",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck after the allocator cap",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck at the end of the run",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "declared common representable start realized after cast/wrap (full-state SHA-256)",
+      "observed": {
+       "expected_module_state": "canonical_fp32",
+       "module_state_matches_canonical": true,
+       "optimizer_master_matches_canonical": null
+      },
+      "pass": true
+     },
+     {
+      "check": "every microbatch input equals the frozen input plan",
+      "observed": "match",
+      "pass": true
+     },
+     {
+      "check": "precision state as declared (legacy interface only; no environment override)",
+      "observed": {
+       "autocast_bf16": false,
+       "env": {
+        "CUBLAS_WORKSPACE_CONFIG": null,
+        "NVIDIA_TF32_OVERRIDE": null,
+        "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null,
+        "TORCH_CUDNN_V8_API_DISABLED": null
+       },
+       "legacy": {
+        "cuda_matmul_allow_tf32": true,
+        "cudnn_allow_tf32": true,
+        "cudnn_benchmark": true,
+        "cudnn_deterministic": false,
+        "float32_matmul_precision": "high"
+       },
+       "sdpa": {
+        "cudnn": true,
+        "flash": true,
+        "math": true,
+        "mem_efficient": true
+       }
+      },
+      "pass": true
+     },
+     {
+      "check": "AdamW execution branch resolved and recorded",
+      "observed": "foreach (_multi_tensor_adam)",
+      "pass": true
+     },
+     {
+      "check": "grad_b1: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "dtheta_final: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all 12 raw microbatch losses compared",
+      "observed": 12,
+      "pass": true
+     },
+     {
+      "check": "gradient norms compared at all 3 boundaries, every tensor",
+      "observed": [
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "moment norms compared for every tensor",
+      "observed": [
+       338,
+       []
+      ],
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     }
+    ],
+    "integrity_pass": true,
+    "overall_grade": "pass",
+    "pass": true,
+    "pass_": true,
+    "witnesses": {
+     "dtheta_global_rel_l2": 0.13810769336984058,
+     "dtheta_max_abs_diff": {
+      "flat_index": 10326089,
+      "name": "model.layers.1.mlp.down_proj.weight",
+      "observed": 0.0002983631566166878,
+      "reference": -0.0002989731729030609,
+      "value": 0.0005973363295197487
+     },
+     "dtheta_worst_tensor": {
+      "cosine": 0.7901276590775831,
+      "name": "model.layers.13.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.670109024463481
+     },
+     "grad_b1_max_abs_diff": {
+      "flat_index": 116,
+      "name": "model.layers.0.self_attn.v_proj.bias",
+      "observed": -0.0380859375,
+      "reference": -0.047753605991601944,
+      "value": 0.009667668491601944
+     },
+     "grad_b1_worst_tensor": {
+      "cosine": 0.9983180426355369,
+      "max_abs_diff": 1.524155777588021e-06,
+      "name": "model.layers.22.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.05803464196784448
+     },
+     "grad_norm_ratios": [
+      {
+       "boundary": 0,
+       "global_norm_ratio": 0.9991995276123213,
+       "max_ratio": 1.007341217837711,
+       "min_ratio": 0.9880841528171584,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 1,
+       "global_norm_ratio": 0.9999138664040615,
+       "max_ratio": 1.0110415101487134,
+       "min_ratio": 0.9866955015517741,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 2,
+       "global_norm_ratio": 0.9976361020118785,
+       "max_ratio": 1.008974053776733,
+       "min_ratio": 0.9852793300956623,
+       "missing": [],
+       "tensors": 338
+      }
+     ],
+     "loss_rel": [
+      3.7236747829330333e-06,
+      4.2204284622580785e-05,
+      4.672389201298675e-05,
+      0.00014324805216161935,
+      0.00017878886320665422,
+      4.888026444534404e-05,
+      2.6935509597590514e-05,
+      1.9480667229995613e-05,
+      0.0002132734644623506,
+      3.508064846188897e-06,
+      8.922594037739997e-05,
+      0.00027721152306006637
+     ],
+     "moment_norm_ratios": {
+      "global": {
+       "m": 0.9988537159675754,
+       "v": 1.0009118210406964
+      },
+      "max": 1.0185507878161253,
+      "min": 0.9753474422000893,
+      "zero_reference": []
+     },
+     "zero_reference_tensors": {
+      "dtheta_final": [],
+      "grad_b1": []
+     }
+    }
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 83 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-16T06:24:55.564245+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:25:00.973780+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:25:06.374511+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:25:11.784860+00:00"
+    }
+   ],
+   "grade": "pass",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 36497.8125,
+     "gpu4_power_w": 255.695,
+     "gpu4_temp_c": 39,
+     "node_gpu_power_w": 1150.947,
+     "samples": 155,
+     "worker_cpu_rate_max": 7.9804387430085795,
+     "worker_memory_current_bytes": 11191169024,
+     "worker_memory_peak_bytes": 13306347520,
+     "worker_pids_max": 38
+    },
+    "power_watch_peak_w": 1150.947,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-03.scope",
+    "identity_error": null,
+    "leader_pid": 107063,
+    "leader_start_time": 5150535,
+    "unit": "mgbench-diag-w1a_20261016T061814Z-03.scope"
+   },
+   "index": 3,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 155.07148168799904,
+    "stop_and_reap": 0.018948119002743624
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 302,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "child_s": 300,
+    "fits": true,
+    "gate_deadline": 51720.458316856,
+    "grace_s": 60,
+    "per_case_s": 430,
+    "reap_s": 10,
+    "remaining_s": 2160.02183629894
+   },
+   "cache_events": {
+    "created": {
+     "triton/Fp16Matmul_2d_kernel.pickle": {
+      "bytes": 5,
+      "mtime": 1792132213.2908487,
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+     },
+     "triton/Fp16Matmul_2d_kernel.pickle.lock": {
+      "bytes": 0,
+      "mtime": 1792132213.290683,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     },
+     "triton/Fp16Matmul_4d_kernel.pickle": {
+      "bytes": 5,
+      "mtime": 1792132213.2965283,
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+     },
+     "triton/Fp16Matmul_4d_kernel.pickle.lock": {
+      "bytes": 0,
+      "mtime": 1792132213.2963526,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     }
+    },
+    "modified": {},
+    "removed": []
+   },
+   "case": "a3_zero1_bf16",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-04.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w1a_20261016T061814Z-04"
+   },
+   "duration_s": 132.09720174900576,
+   "ended_utc": "2026-10-16T06:30:16.466920+00:00",
+   "evaluation": {
+    "category": "bf16_weights_and_accumulation",
+    "grades": {
+     "grad_b1_global_cosine": {
+      "grade": "marginal",
+      "marginal_limit": 0.97,
+      "pass_limit": 0.99,
+      "value": 0.9761033425828329
+     },
+     "grad_b1_global_rel_l2": {
+      "grade": "marginal",
+      "marginal_limit": 0.24,
+      "pass_limit": 0.08,
+      "value": 0.21829581649013088
+     },
+     "loss_all_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.06,
+      "pass_limit": 0.02,
+      "value": 0.000671070024738889
+     },
+     "loss_update1_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.03,
+      "pass_limit": 0.01,
+      "value": 0.0005549051192149997
+     }
+    },
+    "gross_checks": [
+     {
+      "check": "DeepSpeed bf16 module equals bf16(fp32 master), every element",
+      "observed": {
+       "compared": 1543714304,
+       "coverage": "full (every element of every parameter)",
+       "first_mismatched_tensor": null,
+       "mismatched": 0,
+       "pass": true
+      },
+      "pass": true
+     },
+     {
+      "check": "dtheta_final global cosine >= 0.5",
+      "observed": 0.9396767638804722,
+      "pass": true
+     },
+     {
+      "check": "dtheta_final global norm ratio in [0.5, 2.0]",
+      "observed": 0.9999566549249487,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 2 in [0.5, 2.0]",
+      "observed": 0.9977535115211328,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 3 in [0.5, 2.0]",
+      "observed": 0.9987010282549521,
+      "pass": true
+     },
+     {
+      "check": "Adam m global norm ratio in [0.5, 2.0]",
+      "observed": 0.9984148539306719,
+      "pass": true
+     },
+     {
+      "check": "Adam v global norm ratio in [0.25, 4.0]",
+      "observed": 0.9844940350527419,
+      "pass": true
+     }
+    ],
+    "gross_pass": true,
+    "integrity_checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.9,
+      "pass": true
+     },
+     {
+      "check": "warmup: 0 logical attempt(s), 0 microbatches",
+      "observed": [
+       0,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 12 microbatches",
+      "observed": [
+       3,
+       12
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [],
+       [
+        12.300152778625488,
+        12.246108055114746,
+        12.245488166809082,
+        12.231720924377441,
+        12.241677284240723,
+        12.249740600585938,
+        12.211033821105957,
+        12.230514526367188,
+        12.187871932983398,
+        12.237001419067383,
+        12.212508201599121,
+        12.240705490112305
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity chain NVML -> driver -> (DeepSpeed) -> torch checked with no problems before model setup",
+      "observed": {
+       "deepspeed": {
+        "accelerator": "deepspeed.accelerator.cuda_accelerator.CUDA_Accelerator",
+        "expected_index": 4,
+        "logical": 0,
+        "nvml_index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "source_file": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/deepspeed/accelerator/cuda_accelerator.py",
+        "source_sha256": "b59b14bea374db7046708a508292b726c01dbf68ddde6e5e6df5d8146673ba56",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "nvml": {
+        "index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "DeepSpeed maps logical 0 to the approved NVML index",
+      "observed": {
+       "accelerator": "deepspeed.accelerator.cuda_accelerator.CUDA_Accelerator",
+       "expected_index": 4,
+       "logical": 0,
+       "nvml_index": 4,
+       "pci_bus_id": "00000000:81:00.0",
+       "source_file": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/deepspeed/accelerator/cuda_accelerator.py",
+       "source_sha256": "b59b14bea374db7046708a508292b726c01dbf68ddde6e5e6df5d8146673ba56",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "all torch identity records carry the approved UUID and a PCI bus id",
+      "observed": [
+       [
+        "after set_device",
+        "0000:81:00.0"
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        "0000:81:00.0"
+       ],
+       [
+        "end of run",
+        "0000:81:00.0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: ineligible: diagnostic, not a measurement",
+      "observed": "ineligible: diagnostic instrumentation inside the timed path",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-step sample plan sampled completely at every measured boundary",
+      "observed": [
+       [
+        "group0"
+       ],
+       [
+        "group0"
+       ],
+       [
+        "group0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "every base call has samples whose expected change exceeds tolerance (distinguishes a no-op)",
+      "observed": [
+       63,
+       63,
+       63
+      ],
+      "pass": true
+     },
+     {
+      "check": "independent model-to-unit map without problems",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     },
+     {
+      "check": "DeepSpeed optimizer class with identity-verified partition accounting",
+      "observed": [
+       "deepspeed.runtime.zero.stage_1_and_2.DeepSpeedZeroOptimizer",
+       [
+        {
+         "alignment_elements": 2,
+         "dp_world": 1,
+         "elements": 1543714304,
+         "flat_buffer_elements": 1543714304,
+         "flat_elements": 1543714304,
+         "names": 339,
+         "padding": 0,
+         "params": 338
+        }
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "bf16 module partition equals rounded fp32 master (sampled), every measured attempt",
+      "observed": [
+       {
+        "compared": 63,
+        "coverage": "sampled",
+        "mismatched": 0,
+        "pass": true
+       },
+       {
+        "compared": 63,
+        "coverage": "sampled",
+        "mismatched": 0,
+        "pass": true
+       },
+       {
+        "compared": 63,
+        "coverage": "sampled",
+        "mismatched": 0,
+        "pass": true
+       }
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-allocation torch identity receipt (after set_device, before any model allocation)",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck after the allocator cap",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck at the end of the run",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "declared common representable start realized after cast/wrap (full-state SHA-256)",
+      "observed": {
+       "expected_module_state": "canonical_bf16 (bf16 weight recipe)",
+       "module_state_matches_canonical": true,
+       "optimizer_master_matches_canonical": true
+      },
+      "pass": true
+     },
+     {
+      "check": "every microbatch input equals the frozen input plan",
+      "observed": "match",
+      "pass": true
+     },
+     {
+      "check": "precision state as declared (legacy interface only; no environment override)",
+      "observed": {
+       "autocast_bf16": false,
+       "env": {
+        "CUBLAS_WORKSPACE_CONFIG": null,
+        "NVIDIA_TF32_OVERRIDE": null,
+        "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null,
+        "TORCH_CUDNN_V8_API_DISABLED": null
+       },
+       "legacy": {
+        "cuda_matmul_allow_tf32": true,
+        "cudnn_allow_tf32": true,
+        "cudnn_benchmark": true,
+        "cudnn_deterministic": false,
+        "float32_matmul_precision": "high"
+       },
+       "sdpa": {
+        "cudnn": true,
+        "flash": true,
+        "math": true,
+        "mem_efficient": true
+       }
+      },
+      "pass": true
+     },
+     {
+      "check": "AdamW execution branch resolved and recorded",
+      "observed": "foreach (_multi_tensor_adam)",
+      "pass": true
+     },
+     {
+      "check": "grad_b1: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "dtheta_final: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all 12 raw microbatch losses compared",
+      "observed": 12,
+      "pass": true
+     },
+     {
+      "check": "gradient norms compared at all 3 boundaries, every tensor",
+      "observed": [
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "moment norms compared for every tensor",
+      "observed": [
+       338,
+       []
+      ],
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     }
+    ],
+    "integrity_pass": true,
+    "overall_grade": "marginal",
+    "pass": true,
+    "pass_": true,
+    "witnesses": {
+     "dtheta_global_rel_l2": 0.34733448531273026,
+     "dtheta_max_abs_diff": {
+      "flat_index": 10394558,
+      "name": "model.layers.2.mlp.gate_proj.weight",
+      "observed": 0.00030019599944353104,
+      "reference": -0.00029995571821928024,
+      "value": 0.0006001517176628113
+     },
+     "dtheta_worst_tensor": {
+      "cosine": 0.7181811618684097,
+      "name": "model.layers.0.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.7524413681632903
+     },
+     "grad_b1_max_abs_diff": {
+      "flat_index": 246,
+      "name": "model.layers.0.self_attn.v_proj.bias",
+      "observed": 0.0230712890625,
+      "reference": 0.07612759619951248,
+      "value": 0.05305630713701248
+     },
+     "grad_b1_worst_tensor": {
+      "cosine": 0.9634882425822464,
+      "max_abs_diff": 0.0014380482025444508,
+      "name": "model.layers.0.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.27046986866258743
+     },
+     "grad_norm_ratios": [
+      {
+       "boundary": 0,
+       "global_norm_ratio": 0.9968590381498704,
+       "max_ratio": 1.0298925224687876,
+       "min_ratio": 0.967507951029631,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 1,
+       "global_norm_ratio": 0.9977535115211328,
+       "max_ratio": 1.0370894819567602,
+       "min_ratio": 0.9425461176651857,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 2,
+       "global_norm_ratio": 0.9987010282549521,
+       "max_ratio": 1.0235579110727353,
+       "min_ratio": 0.9719734026454989,
+       "missing": [],
+       "tensors": 338
+      }
+     ],
+     "loss_rel": [
+      0.0005549051192149997,
+      0.00010301894567467599,
+      8.340214724318135e-05,
+      0.00038976251842233857,
+      3.1940494080491604e-06,
+      0.00022860085457957873,
+      0.00032588062916041394,
+      0.000671070024738889,
+      0.000140982679002625,
+      0.00029943282387136786,
+      0.0003460530128547805,
+      0.000534878076376291
+     ],
+     "moment_norm_ratios": {
+      "global": {
+       "m": 0.9984148539306719,
+       "v": 0.9844940350527419
+      },
+      "max": 1.0763257592923943,
+      "min": 0.9540316441079147,
+      "zero_reference": []
+     },
+     "zero_reference_tensors": {
+      "dtheta_final": [],
+      "grad_b1": []
+     }
+    }
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 89 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-16T06:27:47.710596+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:27:53.118517+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:27:58.531846+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:28:03.936831+00:00"
+    }
+   ],
+   "grade": "marginal",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 43389.8125,
+     "gpu4_power_w": 254.769,
+     "gpu4_temp_c": 38,
+     "node_gpu_power_w": 1149.298,
+     "samples": 132,
+     "worker_cpu_rate_max": 7.351439556056446,
+     "worker_memory_current_bytes": 12539969536,
+     "worker_memory_peak_bytes": 13841641472,
+     "worker_pids_max": 42
+    },
+    "power_watch_peak_w": 1149.298,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-04.scope",
+    "identity_error": null,
+    "leader_pid": 107812,
+    "leader_start_time": 5167753,
+    "unit": "mgbench-diag-w1a_20261016T061814Z-04.scope"
+   },
+   "index": 4,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 132.06944118300453,
+    "stop_and_reap": 0.025397603996680118
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 302,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "child_s": 300,
+    "fits": true,
+    "gate_deadline": 51869.646826052,
+    "grace_s": 60,
+    "per_case_s": 430,
+    "reap_s": 10,
+    "remaining_s": 2010.8333271029405
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "case": "a4_zero2_bf16",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-05.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w1a_20261016T061814Z-05"
+   },
+   "duration_s": 135.09099727399735,
+   "ended_utc": "2026-10-16T06:32:48.642526+00:00",
+   "evaluation": {
+    "category": "bf16_weights_and_accumulation",
+    "grades": {
+     "grad_b1_global_cosine": {
+      "grade": "marginal",
+      "marginal_limit": 0.97,
+      "pass_limit": 0.99,
+      "value": 0.9760927444031584
+     },
+     "grad_b1_global_rel_l2": {
+      "grade": "marginal",
+      "marginal_limit": 0.24,
+      "pass_limit": 0.08,
+      "value": 0.21835906775442193
+     },
+     "loss_all_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.06,
+      "pass_limit": 0.02,
+      "value": 0.0006307340833670049
+     },
+     "loss_update1_max_rel": {
+      "grade": "pass",
+      "marginal_limit": 0.03,
+      "pass_limit": 0.01,
+      "value": 0.0005549051192149997
+     }
+    },
+    "gross_checks": [
+     {
+      "check": "DeepSpeed bf16 module equals bf16(fp32 master), every element",
+      "observed": {
+       "compared": 1543714304,
+       "coverage": "full (every element of every parameter)",
+       "first_mismatched_tensor": null,
+       "mismatched": 0,
+       "pass": true
+      },
+      "pass": true
+     },
+     {
+      "check": "dtheta_final global cosine >= 0.5",
+      "observed": 0.939667545575988,
+      "pass": true
+     },
+     {
+      "check": "dtheta_final global norm ratio in [0.5, 2.0]",
+      "observed": 0.9999490730656183,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 2 in [0.5, 2.0]",
+      "observed": 0.9978821504554699,
+      "pass": true
+     },
+     {
+      "check": "gradient global norm ratio at boundary 3 in [0.5, 2.0]",
+      "observed": 0.9986423635672325,
+      "pass": true
+     },
+     {
+      "check": "Adam m global norm ratio in [0.5, 2.0]",
+      "observed": 0.9986391971932321,
+      "pass": true
+     },
+     {
+      "check": "Adam v global norm ratio in [0.25, 4.0]",
+      "observed": 0.991343283839561,
+      "pass": true
+     }
+    ],
+    "gross_pass": true,
+    "integrity_checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.92,
+      "pass": true
+     },
+     {
+      "check": "warmup: 0 logical attempt(s), 0 microbatches",
+      "observed": [
+       0,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 12 microbatches",
+      "observed": [
+       3,
+       12
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [],
+       [
+        12.300152778625488,
+        12.246108055114746,
+        12.245488166809082,
+        12.231720924377441,
+        12.241975784301758,
+        12.248479843139648,
+        12.21120834350586,
+        12.232048034667969,
+        12.187356948852539,
+        12.23668098449707,
+        12.21333122253418,
+        12.239531517028809
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity chain NVML -> driver -> (DeepSpeed) -> torch checked with no problems before model setup",
+      "observed": {
+       "deepspeed": {
+        "accelerator": "deepspeed.accelerator.cuda_accelerator.CUDA_Accelerator",
+        "expected_index": 4,
+        "logical": 0,
+        "nvml_index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "source_file": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/deepspeed/accelerator/cuda_accelerator.py",
+        "source_sha256": "b59b14bea374db7046708a508292b726c01dbf68ddde6e5e6df5d8146673ba56",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "nvml": {
+        "index": 4,
+        "pci_bus_id": "00000000:81:00.0",
+        "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+       },
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "DeepSpeed maps logical 0 to the approved NVML index",
+      "observed": {
+       "accelerator": "deepspeed.accelerator.cuda_accelerator.CUDA_Accelerator",
+       "expected_index": 4,
+       "logical": 0,
+       "nvml_index": 4,
+       "pci_bus_id": "00000000:81:00.0",
+       "source_file": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/deepspeed/accelerator/cuda_accelerator.py",
+       "source_sha256": "b59b14bea374db7046708a508292b726c01dbf68ddde6e5e6df5d8146673ba56",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "all torch identity records carry the approved UUID and a PCI bus id",
+      "observed": [
+       [
+        "after set_device",
+        "0000:81:00.0"
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        "0000:81:00.0"
+       ],
+       [
+        "end of run",
+        "0000:81:00.0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: ineligible: diagnostic, not a measurement",
+      "observed": "ineligible: diagnostic instrumentation inside the timed path",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-step sample plan sampled completely at every measured boundary",
+      "observed": [
+       [
+        "group0"
+       ],
+       [
+        "group0"
+       ],
+       [
+        "group0"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "every base call has samples whose expected change exceeds tolerance (distinguishes a no-op)",
+      "observed": [
+       63,
+       63,
+       63
+      ],
+      "pass": true
+     },
+     {
+      "check": "independent model-to-unit map without problems",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     },
+     {
+      "check": "DeepSpeed optimizer class with identity-verified partition accounting",
+      "observed": [
+       "deepspeed.runtime.zero.stage_1_and_2.DeepSpeedZeroOptimizer",
+       [
+        {
+         "alignment_elements": 2,
+         "dp_world": 1,
+         "elements": 1543714304,
+         "flat_buffer_elements": 1543714304,
+         "flat_elements": 1543714304,
+         "names": 339,
+         "padding": 0,
+         "params": 338
+        }
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "bf16 module partition equals rounded fp32 master (sampled), every measured attempt",
+      "observed": [
+       {
+        "compared": 63,
+        "coverage": "sampled",
+        "mismatched": 0,
+        "pass": true
+       },
+       {
+        "compared": 63,
+        "coverage": "sampled",
+        "mismatched": 0,
+        "pass": true
+       },
+       {
+        "compared": 63,
+        "coverage": "sampled",
+        "mismatched": 0,
+        "pass": true
+       }
+      ],
+      "pass": true
+     },
+     {
+      "check": "pre-allocation torch identity receipt (after set_device, before any model allocation)",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck after the allocator cap",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "identity recheck at the end of the run",
+      "observed": {
+       "device_count": 1,
+       "pci_bus_id": "0000:81:00.0",
+       "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+      },
+      "pass": true
+     },
+     {
+      "check": "declared common representable start realized after cast/wrap (full-state SHA-256)",
+      "observed": {
+       "expected_module_state": "canonical_bf16 (bf16 weight recipe)",
+       "module_state_matches_canonical": true,
+       "optimizer_master_matches_canonical": true
+      },
+      "pass": true
+     },
+     {
+      "check": "every microbatch input equals the frozen input plan",
+      "observed": "match",
+      "pass": true
+     },
+     {
+      "check": "precision state as declared (legacy interface only; no environment override)",
+      "observed": {
+       "autocast_bf16": false,
+       "env": {
+        "CUBLAS_WORKSPACE_CONFIG": null,
+        "NVIDIA_TF32_OVERRIDE": null,
+        "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null,
+        "TORCH_CUDNN_V8_API_DISABLED": null
+       },
+       "legacy": {
+        "cuda_matmul_allow_tf32": true,
+        "cudnn_allow_tf32": true,
+        "cudnn_benchmark": true,
+        "cudnn_deterministic": false,
+        "float32_matmul_precision": "high"
+       },
+       "sdpa": {
+        "cudnn": true,
+        "flash": true,
+        "math": true,
+        "mem_efficient": true
+       }
+      },
+      "pass": true
+     },
+     {
+      "check": "AdamW execution branch resolved and recorded",
+      "observed": "foreach (_multi_tensor_adam)",
+      "pass": true
+     },
+     {
+      "check": "grad_b1: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "dtheta_final: full coverage (338 tensors, 1543714304 elements, each tensor SHA-verified, no duplicate/unexpected)",
+      "observed": {
+       "compared_elements": 1543714304,
+       "compared_tensors": 338,
+       "coverage_complete": true,
+       "n_missing": 0,
+       "problems": []
+      },
+      "pass": true
+     },
+     {
+      "check": "all 12 raw microbatch losses compared",
+      "observed": 12,
+      "pass": true
+     },
+     {
+      "check": "gradient norms compared at all 3 boundaries, every tensor",
+      "observed": [
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ],
+       [
+        338,
+        []
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "moment norms compared for every tensor",
+      "observed": [
+       338,
+       []
+      ],
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     }
+    ],
+    "integrity_pass": true,
+    "overall_grade": "marginal",
+    "pass": true,
+    "pass_": true,
+    "witnesses": {
+     "dtheta_global_rel_l2": 0.34735970743262795,
+     "dtheta_max_abs_diff": {
+      "flat_index": 8739607,
+      "name": "model.layers.18.mlp.down_proj.weight",
+      "observed": -0.000299796462059021,
+      "reference": 0.0003000069409608841,
+      "value": 0.0005998034030199051
+     },
+     "dtheta_worst_tensor": {
+      "cosine": 0.7561171780386455,
+      "name": "model.layers.5.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.7257002434487695
+     },
+     "grad_b1_max_abs_diff": {
+      "flat_index": 246,
+      "name": "model.layers.0.self_attn.v_proj.bias",
+      "observed": 0.023681640625,
+      "reference": 0.07612759619951248,
+      "value": 0.05244595557451248
+     },
+     "grad_b1_worst_tensor": {
+      "cosine": 0.96421536167103,
+      "max_abs_diff": 0.0014380482025444508,
+      "name": "model.layers.0.self_attn.k_proj.bias",
+      "numel": 256,
+      "rel_l2": 0.2677104602933712
+     },
+     "grad_norm_ratios": [
+      {
+       "boundary": 0,
+       "global_norm_ratio": 0.9970146981137271,
+       "max_ratio": 1.0299361800932574,
+       "min_ratio": 0.9696449989410342,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 1,
+       "global_norm_ratio": 0.9978821504554699,
+       "max_ratio": 1.0375398023719007,
+       "min_ratio": 0.9392718360389287,
+       "missing": [],
+       "tensors": 338
+      },
+      {
+       "boundary": 2,
+       "global_norm_ratio": 0.9986423635672325,
+       "max_ratio": 1.0394841124013423,
+       "min_ratio": 0.9593294840722619,
+       "missing": [],
+       "tensors": 338
+      }
+     ],
+     "loss_rel": [
+      0.0005549051192149997,
+      0.00010301894567467599,
+      8.340214724318135e-05,
+      0.00038976251842233857,
+      2.118979119486272e-05,
+      0.0003314984813259877,
+      0.00031159309798256155,
+      0.0005457703731155571,
+      0.00018323054063493216,
+      0.0002732392730198241,
+      0.0002786846956669448,
+      0.0006307340833670049
+     ],
+     "moment_norm_ratios": {
+      "global": {
+       "m": 0.9986391971932321,
+       "v": 0.991343283839561
+      },
+      "max": 1.0784006659855871,
+      "min": 0.953387565445257,
+      "zero_reference": []
+     },
+     "zero_reference_tensors": {
+      "dtheta_final": [],
+      "grad_b1": []
+     }
+    }
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 84 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-16T06:30:16.902852+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:30:22.314369+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:30:27.723748+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T06:30:33.133583+00:00"
+    }
+   ],
+   "grade": "marginal",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 43341.8125,
+     "gpu4_power_w": 263.58,
+     "gpu4_temp_c": 39,
+     "node_gpu_power_w": 1159.806,
+     "samples": 135,
+     "worker_cpu_rate_max": 7.347675694715653,
+     "worker_memory_current_bytes": 11533185024,
+     "worker_memory_peak_bytes": 13842583552,
+     "worker_pids_max": 42
+    },
+    "power_watch_peak_w": 1159.806,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w1a_20261016T061814Z-05.scope",
+    "identity_error": null,
+    "leader_pid": 108510,
+    "leader_start_time": 5182671,
+    "unit": "mgbench-diag-w1a_20261016T061814Z-05.scope"
+   },
+   "index": 5,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 135.07045669099898,
+    "stop_and_reap": 0.018896155001129955
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 302,
+    "stop_timeout_s": 60
+   }
+  }
+ ],
+ "clock": {
+  "authorization_issued_utc": "2026-10-16T06:18:47.314180+00:00",
+  "budget": "120 + 5 x (60 + 300 + 60 + 10) + 120 = 2390 s within 2700 s",
+  "deadline_monotonic": 53820.48015315494,
+  "expiry_utc": "2026-10-16T07:03:47.314180+00:00",
+  "startup_deadline_monotonic": 51240.48015315494,
+  "supervisor_start_monotonic": 51120.745411944,
+  "supervisor_start_wall": 1792131527.5794387
+ },
+ "config": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/configs/s1a_qwen15b.yaml",
+ "config_sha256": "e8028a7f51b5e84a7a755be18a69e57e7e8e3364536be49dbc6f9080cd158214",
+ "ended_utc": "2026-10-16T06:32:48.667638+00:00",
+ "expectations_sha256": "3a82df6b18fa70e868a8da47aacbf770d78edcddb3c6eeca1c47a0f90d0d49e9",
+ "final_gpu4_check": [
+  "gpu4: power 87 W"
+ ],
+ "final_reserve_respected": true,
+ "interpreter": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+ "interpreter_realpath": "/usr/bin/python3.12",
+ "mgbench_file": "/PRIVATE_EVIDENCE/13_candidate_s1a/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+ "mode": "diagnostics",
+ "peak_concurrency": 1,
+ "reference": {
+  "budget_bytes": 13500000000,
+  "dir": "/PRIVATE_EVIDENCE/42_s1a_window/w1a_20261016T061814Z/reference",
+  "free_bytes_at_start": 657278083072
+ },
+ "repository_hold_active_at_end": true,
+ "reservation": "released",
+ "scope": "train-diagnostics",
+ "seconds_before_deadline_at_end": 1858.646524040938,
+ "stopped_because": "all approved cases attempted",
+ "supervisor_cgroup_end": {
+  "affinity": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   237,
+   238,
+   239,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255
+  ],
+  "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-sup-w1a_20261016T061814Z.scope",
+  "cpu.max": "100000 100000",
+  "cpu.stat.usage_usec": 135227703,
+  "memory.current": "52027392",
+  "memory.max": "2147483648",
+  "memory.peak": "76816384",
+  "memory.swap.max": "0",
+  "pids.current": "65"
+ },
+ "supervisor_cgroup_start": {
+  "affinity": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   237,
+   238,
+   239,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255
+  ],
+  "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-sup-w1a_20261016T061814Z.scope",
+  "cpu.max": "100000 100000",
+  "cpu.stat.usage_usec": 434845,
+  "memory.current": "19501056",
+  "memory.max": "2147483648",
+  "memory.peak": "20520960",
+  "memory.swap.max": "0",
+  "pids.current": "1"
+ },
+ "supervisor_started_utc": "2026-10-16T06:18:47.579439+00:00"
+}

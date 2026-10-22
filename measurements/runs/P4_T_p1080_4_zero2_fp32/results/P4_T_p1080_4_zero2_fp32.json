@@ -1,0 +1,2475 @@
+{
+  "config": {
+    "deepspeed_resolved_config": {
+      "_comment": "DeepSpeed ZeRO stage 2, no offload, no custom CUDA ops. The host nvcc is 10.1 against a 12.2 driver, so any JIT build would fail; DS_BUILD_OPS=0 and a plain torch.optim.AdamW keep this path pure Python + NCCL. CPU/NVMe offload is deliberately absent for the same reason (cpu_adam would need compiling).",
+      "bf16": {
+        "enabled": false
+      },
+      "fp16": {
+        "enabled": false
+      },
+      "gradient_accumulation_steps": 1,
+      "gradient_clipping": 1.0,
+      "steps_per_print": 100000,
+      "train_micro_batch_size_per_gpu": 4,
+      "wall_clock_breakdown": false,
+      "zero_allow_untested_optimizer": true,
+      "zero_force_ds_cpu_optimizer": false,
+      "zero_optimization": {
+        "allgather_bucket_size": 50000000,
+        "contiguous_gradients": true,
+        "overlap_comm": true,
+        "reduce_bucket_size": 50000000,
+        "stage": 2
+      }
+    },
+    "device_binding_preserved_across_memory_cap": true,
+    "device_identity_established": false,
+    "global_batch": 16,
+    "grad_ckpt": false,
+    "group": "p1080_4",
+    "initial_model_sha256": "d206291459f261cd23b8ae9228d5da6de5c8cf1d5bc1a49f2f4b1cf335764625",
+    "memory_fraction": 0.85,
+    "micro_batch_per_gpu": 4,
+    "mode": "deepspeed",
+    "model": "gpt2-124m",
+    "n_params": 124439808,
+    "numerical_checks": false,
+    "precision": "fp32",
+    "protocol_version": "scientific-v2",
+    "recipe_comparison_note": "DeepSpeed clipping/precision defaults may differ; not an isolated framework effect",
+    "runtime_device_identity_after_memory_cap": {
+      "current_device": 0,
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "local_rank": 0,
+      "phys_devices_env": "1,3,4,5",
+      "uuid": null,
+      "uuid_established": false,
+      "uuid_source": "unavailable_on_this_torch_build",
+      "visible_devices_env": "GTX_1080Ti#1,GTX_1080Ti#2,GTX_1080Ti#3,GTX_1080Ti#4"
+    },
+    "runtime_device_identity_before_memory_cap": {
+      "current_device": 0,
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "local_rank": 0,
+      "phys_devices_env": "1,3,4,5",
+      "uuid": null,
+      "uuid_established": false,
+      "uuid_source": "unavailable_on_this_torch_build",
+      "visible_devices_env": "GTX_1080Ti#1,GTX_1080Ti#2,GTX_1080Ti#3,GTX_1080Ti#4"
+    },
+    "seed": 1234,
+    "seq_len": 512,
+    "steps": 30,
+    "warmup": 5,
+    "world_size": 4,
+    "zero_stage": 2
+  },
+  "error": null,
+  "loss_first_last": [
+    10.970503807067871,
+    10.915497779846191
+  ],
+  "losses": [
+    10.970503807067871,
+    10.971668243408203,
+    10.9754638671875,
+    10.962919235229492,
+    10.980059623718262,
+    10.960890769958496,
+    10.964646339416504,
+    10.944826126098633,
+    10.993209838867188,
+    10.963799476623535,
+    10.962742805480957,
+    10.956302642822266,
+    10.944323539733887,
+    10.959123611450195,
+    10.936166763305664,
+    10.95666217803955,
+    10.950788497924805,
+    10.941431999206543,
+    10.940707206726074,
+    10.924375534057617,
+    10.93982219696045,
+    10.958841323852539,
+    10.947306632995605,
+    10.920175552368164,
+    10.924773216247559,
+    10.926055908203125,
+    10.907801628112793,
+    10.938729286193848,
+    10.923053741455078,
+    10.915497779846191
+  ],
+  "measurement_kind": "throughput_with_update_counter",
+  "memory": {
+    "peak_alloc_mib_rank0": 4886.9,
+    "peak_reserved_mib_rank0": 5704.0,
+    "per_rank_alloc_reserved_mib": [
+      [
+        4886.9,
+        5704.0
+      ],
+      [
+        4886.9,
+        5796.0
+      ],
+      [
+        4886.9,
+        5684.0
+      ],
+      [
+        4886.9,
+        5684.0
+      ]
+    ]
+  },
+  "meta": {
+    "cuda_device_order": "PCI_BUS_ID",
+    "cuda_visible_devices": "GTX_1080Ti#1,GTX_1080Ti#2,GTX_1080Ti#3,GTX_1080Ti#4",
+    "historical_dataset_overwritten": false,
+    "host": "TITAN_NODE",
+    "max_permitted_gap_s": 0.6,
+    "phys_devices": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "protocol_version": "scientific-v2",
+    "sample_interval_frozen_default_s": 0.2,
+    "timestamp": "2026-10-16T01:02:37"
+  },
+  "optimizer_update_audit_per_rank": [
+    {
+      "all_updates_observed": true,
+      "attempted_steps": "unobserved",
+      "base_optimizer_calls": "not_applicable_native_observer_not_in_this_path",
+      "certification_reasons": [],
+      "deepspeed_engine_aware_validated": true,
+      "deepspeed_engine_aware_validation": {
+        "checks_passed": [
+          "base_optimizer_state_advanced_every_step",
+          "base_optimizer_state_counter_equals_steps_driven",
+          "engine_global_steps_reconcile",
+          "every_rank_drove_the_same_step_count",
+          "global_grad_norm_finite_and_positive",
+          "gradient_source_identified_every_step",
+          "gradients_observed_finite_every_step",
+          "master_partition_changed_every_step"
+        ],
+        "deepspeed_version": "0.15.1",
+        "evidence_path": "$PROJECT_ROOT/titan_campaign_20261016/runs/D26_ds_zero2_observe_4gpu/results/deepspeed_observe_zero2.json",
+        "reason": null,
+        "validated": true,
+        "world_size": 4,
+        "zero_stage": 2
+      },
+      "deepspeed_hardware_validated": false,
+      "deepspeed_observer_status": "engine counters only; no native gradient observation brackets engine.step(); the DeepSpeed skip path has never been exercised on any host; this is NOT a native hardware validation of DeepSpeed",
+      "deepspeed_skip_path_exercised": false,
+      "engine_base_optimizer_calls": 30,
+      "engine_skipped_updates": 0,
+      "engine_successful_updates": 30,
+      "engine_update_boundaries": 30,
+      "expected_logical_updates": 30,
+      "gradient_checks_requested": false,
+      "gradient_coverage_complete": null,
+      "gradient_observations_finite": "unobserved",
+      "gradient_scaling_semantics": "unobserved",
+      "losses_all_finite": true,
+      "missing_gradient_steps": "unobserved",
+      "mode": "deepspeed",
+      "native_observer_reason": "scaling, overflow detection, the skip decision and the base optimizer call all occur inside engine.step(); the native observer does not bracket it",
+      "native_observer_status": "not_applicable_native_observer_not_in_this_path",
+      "native_skipped_steps": "not_applicable_native_observer_not_in_this_path",
+      "native_successful_logical_updates": "not_applicable_native_observer_not_in_this_path",
+      "nonfinite_gradient_steps": "unobserved",
+      "numerical_diagnostic_certified": null,
+      "observer_path": "engine_internal",
+      "parameter_state_delta_evidence": "not collected in benchmark runs; requires a separate approved diagnostic",
+      "per_step": [],
+      "scale_change_is_not_success_evidence": true,
+      "status_verdict": "ok",
+      "unobserved_attempt_steps": "unobserved",
+      "update_claim_verified": true,
+      "update_counter_source": "engine counters only; the native observer does not bracket engine.step(), so native gradient coverage is unobserved"
+    },
+    {
+      "all_updates_observed": true,
+      "attempted_steps": "unobserved",
+      "base_optimizer_calls": "not_applicable_native_observer_not_in_this_path",
+      "certification_reasons": [],
+      "deepspeed_engine_aware_validated": true,
+      "deepspeed_engine_aware_validation": {
+        "checks_passed": [
+          "base_optimizer_state_advanced_every_step",
+          "base_optimizer_state_counter_equals_steps_driven",
+          "engine_global_steps_reconcile",
+          "every_rank_drove_the_same_step_count",
+          "global_grad_norm_finite_and_positive",
+          "gradient_source_identified_every_step",
+          "gradients_observed_finite_every_step",
+          "master_partition_changed_every_step"
+        ],
+        "deepspeed_version": "0.15.1",
+        "evidence_path": "$PROJECT_ROOT/titan_campaign_20261016/runs/D26_ds_zero2_observe_4gpu/results/deepspeed_observe_zero2.json",
+        "reason": null,
+        "validated": true,
+        "world_size": 4,
+        "zero_stage": 2
+      },
+      "deepspeed_hardware_validated": false,
+      "deepspeed_observer_status": "engine counters only; no native gradient observation brackets engine.step(); the DeepSpeed skip path has never been exercised on any host; this is NOT a native hardware validation of DeepSpeed",
+      "deepspeed_skip_path_exercised": false,
+      "engine_base_optimizer_calls": 30,
+      "engine_skipped_updates": 0,
+      "engine_successful_updates": 30,
+      "engine_update_boundaries": 30,
+      "expected_logical_updates": 30,
+      "gradient_checks_requested": false,
+      "gradient_coverage_complete": null,
+      "gradient_observations_finite": "unobserved",
+      "gradient_scaling_semantics": "unobserved",
+      "losses_all_finite": true,
+      "missing_gradient_steps": "unobserved",
+      "mode": "deepspeed",
+      "native_observer_reason": "scaling, overflow detection, the skip decision and the base optimizer call all occur inside engine.step(); the native observer does not bracket it",
+      "native_observer_status": "not_applicable_native_observer_not_in_this_path",
+      "native_skipped_steps": "not_applicable_native_observer_not_in_this_path",
+      "native_successful_logical_updates": "not_applicable_native_observer_not_in_this_path",
+      "nonfinite_gradient_steps": "unobserved",
+      "numerical_diagnostic_certified": null,
+      "observer_path": "engine_internal",
+      "parameter_state_delta_evidence": "not collected in benchmark runs; requires a separate approved diagnostic",
+      "per_step": [],
+      "scale_change_is_not_success_evidence": true,
+      "status_verdict": "ok",
+      "unobserved_attempt_steps": "unobserved",
+      "update_claim_verified": true,
+      "update_counter_source": "engine counters only; the native observer does not bracket engine.step(), so native gradient coverage is unobserved"
+    },
+    {
+      "all_updates_observed": true,
+      "attempted_steps": "unobserved",
+      "base_optimizer_calls": "not_applicable_native_observer_not_in_this_path",
+      "certification_reasons": [],
+      "deepspeed_engine_aware_validated": true,
+      "deepspeed_engine_aware_validation": {
+        "checks_passed": [
+          "base_optimizer_state_advanced_every_step",
+          "base_optimizer_state_counter_equals_steps_driven",
+          "engine_global_steps_reconcile",
+          "every_rank_drove_the_same_step_count",
+          "global_grad_norm_finite_and_positive",
+          "gradient_source_identified_every_step",
+          "gradients_observed_finite_every_step",
+          "master_partition_changed_every_step"
+        ],
+        "deepspeed_version": "0.15.1",
+        "evidence_path": "$PROJECT_ROOT/titan_campaign_20261016/runs/D26_ds_zero2_observe_4gpu/results/deepspeed_observe_zero2.json",
+        "reason": null,
+        "validated": true,
+        "world_size": 4,
+        "zero_stage": 2
+      },
+      "deepspeed_hardware_validated": false,
+      "deepspeed_observer_status": "engine counters only; no native gradient observation brackets engine.step(); the DeepSpeed skip path has never been exercised on any host; this is NOT a native hardware validation of DeepSpeed",
+      "deepspeed_skip_path_exercised": false,
+      "engine_base_optimizer_calls": 30,
+      "engine_skipped_updates": 0,
+      "engine_successful_updates": 30,
+      "engine_update_boundaries": 30,
+      "expected_logical_updates": 30,
+      "gradient_checks_requested": false,
+      "gradient_coverage_complete": null,
+      "gradient_observations_finite": "unobserved",
+      "gradient_scaling_semantics": "unobserved",
+      "losses_all_finite": true,
+      "missing_gradient_steps": "unobserved",
+      "mode": "deepspeed",
+      "native_observer_reason": "scaling, overflow detection, the skip decision and the base optimizer call all occur inside engine.step(); the native observer does not bracket it",
+      "native_observer_status": "not_applicable_native_observer_not_in_this_path",
+      "native_skipped_steps": "not_applicable_native_observer_not_in_this_path",
+      "native_successful_logical_updates": "not_applicable_native_observer_not_in_this_path",
+      "nonfinite_gradient_steps": "unobserved",
+      "numerical_diagnostic_certified": null,
+      "observer_path": "engine_internal",
+      "parameter_state_delta_evidence": "not collected in benchmark runs; requires a separate approved diagnostic",
+      "per_step": [],
+      "scale_change_is_not_success_evidence": true,
+      "status_verdict": "ok",
+      "unobserved_attempt_steps": "unobserved",
+      "update_claim_verified": true,
+      "update_counter_source": "engine counters only; the native observer does not bracket engine.step(), so native gradient coverage is unobserved"
+    },
+    {
+      "all_updates_observed": true,
+      "attempted_steps": "unobserved",
+      "base_optimizer_calls": "not_applicable_native_observer_not_in_this_path",
+      "certification_reasons": [],
+      "deepspeed_engine_aware_validated": true,
+      "deepspeed_engine_aware_validation": {
+        "checks_passed": [
+          "base_optimizer_state_advanced_every_step",
+          "base_optimizer_state_counter_equals_steps_driven",
+          "engine_global_steps_reconcile",
+          "every_rank_drove_the_same_step_count",
+          "global_grad_norm_finite_and_positive",
+          "gradient_source_identified_every_step",
+          "gradients_observed_finite_every_step",
+          "master_partition_changed_every_step"
+        ],
+        "deepspeed_version": "0.15.1",
+        "evidence_path": "$PROJECT_ROOT/titan_campaign_20261016/runs/D26_ds_zero2_observe_4gpu/results/deepspeed_observe_zero2.json",
+        "reason": null,
+        "validated": true,
+        "world_size": 4,
+        "zero_stage": 2
+      },
+      "deepspeed_hardware_validated": false,
+      "deepspeed_observer_status": "engine counters only; no native gradient observation brackets engine.step(); the DeepSpeed skip path has never been exercised on any host; this is NOT a native hardware validation of DeepSpeed",
+      "deepspeed_skip_path_exercised": false,
+      "engine_base_optimizer_calls": 30,
+      "engine_skipped_updates": 0,
+      "engine_successful_updates": 30,
+      "engine_update_boundaries": 30,
+      "expected_logical_updates": 30,
+      "gradient_checks_requested": false,
+      "gradient_coverage_complete": null,
+      "gradient_observations_finite": "unobserved",
+      "gradient_scaling_semantics": "unobserved",
+      "losses_all_finite": true,
+      "missing_gradient_steps": "unobserved",
+      "mode": "deepspeed",
+      "native_observer_reason": "scaling, overflow detection, the skip decision and the base optimizer call all occur inside engine.step(); the native observer does not bracket it",
+      "native_observer_status": "not_applicable_native_observer_not_in_this_path",
+      "native_skipped_steps": "not_applicable_native_observer_not_in_this_path",
+      "native_successful_logical_updates": "not_applicable_native_observer_not_in_this_path",
+      "nonfinite_gradient_steps": "unobserved",
+      "numerical_diagnostic_certified": null,
+      "observer_path": "engine_internal",
+      "parameter_state_delta_evidence": "not collected in benchmark runs; requires a separate approved diagnostic",
+      "per_step": [],
+      "scale_change_is_not_success_evidence": true,
+      "status_verdict": "ok",
+      "unobserved_attempt_steps": "unobserved",
+      "update_claim_verified": true,
+      "update_counter_source": "engine counters only; the native observer does not bracket engine.step(), so native gradient coverage is unobserved"
+    }
+  ],
+  "perf": {
+    "step_time_max_s": 0.40642,
+    "step_time_mean_s": 0.40113,
+    "step_time_median_s": 0.40141,
+    "step_time_min_s": 0.39562,
+    "tokens_per_s": 20421.7,
+    "tokens_per_s_per_gpu": 5105.4,
+    "tokens_per_step": 8192,
+    "wall_time_s": 12.0342
+  },
+  "status": "ok",
+  "telemetry": {
+    "duration_s": 12.034229572862387,
+    "energy_per_gpu_j": {
+      "1": 2517.621968301176,
+      "3": 2372.3387090636347,
+      "4": 2236.411273535165,
+      "5": 2256.1399447721037
+    },
+    "energy_scope": "sampled GPU-board energy; not whole-node energy; sensor accuracy uncalibrated",
+    "energy_total_j": 9382.51,
+    "idle_raw_samples": [],
+    "integration": {
+      "1": {
+        "duration_s": 12.034229572862387,
+        "energy_j": 2517.621968301176,
+        "max_support_gap_s": 0.41915380861610174,
+        "method": "linear_interpolation_trapezoid",
+        "n_samples": 33,
+        "status": "ok",
+        "support_start_s": 5157892.415132738,
+        "support_stop_s": 5157904.589295868
+      },
+      "3": {
+        "duration_s": 12.034229572862387,
+        "energy_j": 2372.3387090636347,
+        "max_support_gap_s": 0.41915380861610174,
+        "method": "linear_interpolation_trapezoid",
+        "n_samples": 33,
+        "status": "ok",
+        "support_start_s": 5157892.415132738,
+        "support_stop_s": 5157904.589295868
+      },
+      "4": {
+        "duration_s": 12.034229572862387,
+        "energy_j": 2236.411273535165,
+        "max_support_gap_s": 0.41915380861610174,
+        "method": "linear_interpolation_trapezoid",
+        "n_samples": 33,
+        "status": "ok",
+        "support_start_s": 5157892.415132738,
+        "support_stop_s": 5157904.589295868
+      },
+      "5": {
+        "duration_s": 12.034229572862387,
+        "energy_j": 2256.1399447721037,
+        "max_support_gap_s": 0.41915380861610174,
+        "method": "linear_interpolation_trapezoid",
+        "n_samples": 33,
+        "status": "ok",
+        "support_start_s": 5157892.415132738,
+        "support_stop_s": 5157904.589295868
+      }
+    },
+    "max_permitted_gap_s": 0.6,
+    "mem_max_mib": {
+      "1": 6440.0,
+      "3": 6540.0,
+      "4": 6428.0,
+      "5": 6388.0
+    },
+    "n_samples": 33,
+    "net_energy_status": "diagnostic_only; baseline not a calibrated incremental-energy measurement",
+    "power_max_w": {
+      "1": 307.45,
+      "3": 332.26,
+      "4": 235.52,
+      "5": 266.07
+    },
+    "power_mean_w": {
+      "1": 209.20508064583564,
+      "3": 197.13257875795742,
+      "4": 185.83751124196198,
+      "5": 187.4768909062346
+    },
+    "protocol_version": "scientific-v2",
+    "raw_samples": [
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 69.61,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 41.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 213.45,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 49.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 182.37,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 183.38,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 36.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157892.322886259,
+        "query_stop_s": 5157892.507379216,
+        "time_s": 5157892.415132738
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 227.57,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 2.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 84.82,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 49.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 76.84,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1923.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 71.84,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 36.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157892.507671993,
+        "query_stop_s": 5157892.684414803,
+        "time_s": 5157892.596043399
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1822.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 253.64,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 235.21,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 49.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 205.75,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1873.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 182.73,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 36.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157892.884592793,
+        "query_stop_s": 5157893.090713905,
+        "time_s": 5157892.987653349
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 179.0,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1721.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 172.6,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 49.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 176.66,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 177.04,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 37.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157893.290872765,
+        "query_stop_s": 5157893.506154803,
+        "time_s": 5157893.398513784
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 201.94,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1721.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 170.13,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 179.4,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 41.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 178.45,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 37.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157893.7063154,
+        "query_stop_s": 5157893.915293605,
+        "time_s": 5157893.810804503
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1797.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 231.15,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1809.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 206.01,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 182.32,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 41.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1885.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 194.46,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 37.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157894.115474006,
+        "query_stop_s": 5157894.306853294,
+        "time_s": 5157894.21116365
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 221.87,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1835.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 197.7,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 190.13,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 41.0,
+            "utilization.gpu": 96.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 170.22,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 37.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157894.507040097,
+        "query_stop_s": 5157894.698396262,
+        "time_s": 5157894.60271818
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 198.51,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 197.06,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1860.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 197.5,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 182.24,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 37.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157894.898555595,
+        "query_stop_s": 5157895.104608074,
+        "time_s": 5157895.001581835
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1797.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 193.38,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 173.27,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 169.5,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1835.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 191.78,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157895.304805571,
+        "query_stop_s": 5157895.513218996,
+        "time_s": 5157895.409012284
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 194.95,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 189.54,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 189.57,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 174.9,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157895.713387259,
+        "query_stop_s": 5157895.908243877,
+        "time_s": 5157895.810815568
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 204.42,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 201.35,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1822.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 192.72,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1784.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 186.21,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157896.108473137,
+        "query_stop_s": 5157896.30548635,
+        "time_s": 5157896.206979744
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1797.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 223.59,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 168.49,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 164.7,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1860.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 204.19,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157896.505654027,
+        "query_stop_s": 5157896.703064793,
+        "time_s": 5157896.60435941
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 183.88,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 230.98,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 228.65,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 198.32,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157896.903234701,
+        "query_stop_s": 5157897.068087394,
+        "time_s": 5157896.9856610475
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1873.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 304.03,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 200.91,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 210.58,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1822.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 259.09,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157897.268241018,
+        "query_stop_s": 5157897.459026037,
+        "time_s": 5157897.363633527
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 294.35,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 332.26,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 229.18,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 212.77,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157897.65919347,
+        "query_stop_s": 5157897.872255345,
+        "time_s": 5157897.7657244075
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1885.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 307.45,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 304.01,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 50.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 220.36,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1797.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 247.76,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157898.072478973,
+        "query_stop_s": 5157898.261719848,
+        "time_s": 5157898.167099411
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 167.57,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1974.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 216.76,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1961.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 235.52,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 42.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 266.07,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 38.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157898.461882145,
+        "query_stop_s": 5157898.555151889,
+        "time_s": 5157898.508517018
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1898.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 133.39,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1974.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 103.37,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1961.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 101.56,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 85.85,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157898.755315063,
+        "query_stop_s": 5157898.880030935,
+        "time_s": 5157898.817672999
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1898.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 185.88,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1860.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 191.79,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1873.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 203.01,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 43.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 163.57,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157899.080239995,
+        "query_stop_s": 5157899.241975058,
+        "time_s": 5157899.161107527
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1835.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 196.0,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 199.95,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1923.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 161.37,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1923.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 174.44,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157899.442144829,
+        "query_stop_s": 5157899.611903216,
+        "time_s": 5157899.527024022
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1721.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 172.24,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1835.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 205.49,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 172.23,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1936.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 209.55,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157899.812053487,
+        "query_stop_s": 5157899.930574531,
+        "time_s": 5157899.871314009
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 230.12,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 182.88,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1797.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 191.76,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1860.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 205.46,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157900.130894744,
+        "query_stop_s": 5157900.311043021,
+        "time_s": 5157900.220968883
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 230.58,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 207.56,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 178.86,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 176.99,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157900.511222555,
+        "query_stop_s": 5157900.719097117,
+        "time_s": 5157900.615159836
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 213.6,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1721.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 225.48,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1670.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 198.58,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1797.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 197.79,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157900.919272065,
+        "query_stop_s": 5157901.108728667,
+        "time_s": 5157901.0140003655
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 218.07,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1721.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 206.08,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 186.03,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1860.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 208.9,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 97.0
+          }
+        ],
+        "query_start_s": 5157901.308867819,
+        "query_stop_s": 5157901.517574481,
+        "time_s": 5157901.41322115
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 209.43,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 185.68,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1822.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 193.67,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 168.92,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157901.717678854,
+        "query_stop_s": 5157901.947071063,
+        "time_s": 5157901.832374958
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 193.78,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1822.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 197.0,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 182.11,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1898.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 202.1,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157902.14722338,
+        "query_stop_s": 5157902.342393734,
+        "time_s": 5157902.2448085565
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 190.54,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1721.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 186.1,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1708.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 171.48,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 183.08,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 97.0
+          }
+        ],
+        "query_start_s": 5157902.542644092,
+        "query_stop_s": 5157902.725183607,
+        "time_s": 5157902.6339138495
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1809.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 195.96,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 180.48,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 52.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 206.57,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 188.13,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157902.925353064,
+        "query_stop_s": 5157903.17100357,
+        "time_s": 5157903.048178317
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 178.31,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1695.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 177.36,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 53.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 180.86,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1873.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 210.18,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 40.0,
+            "utilization.gpu": 99.0
+          }
+        ],
+        "query_start_s": 5157903.371149684,
+        "query_stop_s": 5157903.53439057,
+        "time_s": 5157903.452770127
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1847.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 184.07,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1771.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 192.41,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 53.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1759.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 184.76,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 97.0
+          },
+          {
+            "clocks.sm": 1733.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 169.04,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 41.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157903.734628974,
+        "query_stop_s": 5157903.946903225,
+        "time_s": 5157903.8407661
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1835.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 202.56,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 46.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1746.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 180.91,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 53.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1822.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 192.1,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1911.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 168.88,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 41.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157904.147077032,
+        "query_stop_s": 5157904.358426639,
+        "time_s": 5157904.252751836
+      },
+      {
+        "gpus": [
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 1,
+            "memory.total": 11264.0,
+            "memory.used": 6440.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 71.51,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 45.0,
+            "utilization.gpu": 90.0
+          },
+          {
+            "clocks.sm": 1961.0,
+            "compute_cap": "6.1",
+            "index": 3,
+            "memory.total": 11264.0,
+            "memory.used": 6540.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 78.71,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 51.0,
+            "utilization.gpu": 99.0
+          },
+          {
+            "clocks.sm": 1961.0,
+            "compute_cap": "6.1",
+            "index": 4,
+            "memory.total": 11264.0,
+            "memory.used": 6428.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 75.02,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 44.0,
+            "utilization.gpu": 98.0
+          },
+          {
+            "clocks.sm": 1949.0,
+            "compute_cap": "6.1",
+            "index": 5,
+            "memory.total": 11264.0,
+            "memory.used": 6388.0,
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "power.draw": 70.17,
+            "power.limit": 250.0,
+            "pstate": "P2",
+            "temperature.gpu": 39.0,
+            "utilization.gpu": 98.0
+          }
+        ],
+        "query_start_s": 5157904.542211045,
+        "query_stop_s": 5157904.63638069,
+        "time_s": 5157904.589295868
+      }
+    ],
+    "sample_interval_frozen_default_s": 0.2,
+    "sample_interval_matches_frozen": true,
+    "sample_interval_s": 0.2,
+    "sampling_errors": [],
+    "sm_clock_mean_mhz": {
+      "1": 1811.8,
+      "3": 1789.7,
+      "4": 1788.1,
+      "5": 1831.8
+    },
+    "temp_max_c": {
+      "1": 46.0,
+      "3": 53.0,
+      "4": 45.0,
+      "5": 41.0
+    },
+    "timebase": "time.perf_counter, monotonic, host-local",
+    "util_max_pct": {
+      "1": 99.0,
+      "3": 99.0,
+      "4": 99.0,
+      "5": 99.0
+    },
+    "util_mean_pct": {
+      "1": 95.65,
+      "3": 98.32,
+      "4": 97.71,
+      "5": 98.29
+    },
+    "window_start_s": 5157892.507737273,
+    "window_stop_s": 5157904.541966846
+  },
+  "torch_env": {
+    "arch_list": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "device_count": 4,
+    "devices": [
+      {
+        "capability": "6.1",
+        "local_index": 0,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 1,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 2,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 3,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      }
+    ],
+    "nccl": "2.20.5",
+    "torch": "2.4.1+cu121"
+  }
+}

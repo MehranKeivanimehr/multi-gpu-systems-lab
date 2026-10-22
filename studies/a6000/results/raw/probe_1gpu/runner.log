@@ -1,0 +1,61 @@
+2026-10-12 23:34:43 == probe_1gpu: 8 runs (dry_run=False)
+2026-10-12 23:34:56 [1/8] resnet50-mb128__ddp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:35:29 [1/8] resnet50-mb128__ddp__g1__r0 gpus=[4]: OK in 30 s resnet50-mb128__ddp__g1__r0: 1060.3 samples/s, step 120.7 ms, peak 6.0 GiB, util 98%, MFU 0.166
+2026-10-12 23:35:29 [idle-gate] waiting for GPUs [4]: gpu4: power 69 W
+2026-10-12 23:35:47 [2/8] resnet50-mb128__fsdp__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:36:21 [2/8] resnet50-mb128__fsdp__g1__r0 gpus=[4]: OK in 31 s resnet50-mb128__fsdp__g1__r0: 1050.4 samples/s, step 121.8 ms, peak 5.9 GiB, util 99%, MFU 0.165
+2026-10-12 23:36:34 [3/8] resnet50-mb128__zero1__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:37:17 [3/8] resnet50-mb128__zero1__g1__r0 gpus=[4]: OK in 40 s resnet50-mb128__zero1__g1__r0: 831.8 samples/s, step 153.9 ms, peak 7.6 GiB, util 81%, MFU 0.131
+2026-10-12 23:37:17 [idle-gate] waiting for GPUs [4]: gpu4: power 66 W
+2026-10-12 23:37:35 [4/8] resnet50-mb128-autocast__zero1__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:38:15 [4/8] resnet50-mb128-autocast__zero1__g1__r0 gpus=[4]: OK in 37 s resnet50-mb128-autocast__zero1__g1__r0: 981.6 samples/s, step 130.4 ms, peak 13.4 GiB, util 93%, MFU 0.154
+2026-10-12 23:38:15 [idle-gate] waiting for GPUs [4]: gpu4: power 73 W
+2026-10-12 23:38:33 [5/8] qwen2.5-1.5b-mb4__ddp__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:38:49 [5/8] qwen2.5-1.5b-mb4__ddp__g1__r0 gpus=[4]: OOM in 13 s CUDA out of memory. Tried to allocate 2.32 GiB. GPU 0 has a total capacity of 47.40 GiB of which 3.70 GiB is free. Including non-PyTorch memory, this process has 43.69 GiB memory in use. 43.61 GiB allowed; Of the allocated memory 42.26 GiB is allocated by PyTorch, and 674.45 MiB is reserved by PyTor
+2026-10-12 23:38:49 [idle-gate] waiting for GPUs [4]: gpu4: power 81 W
+2026-10-12 23:39:07 [6/8] qwen2.5-1.5b-mb4__fsdp__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:39:47 [6/8] qwen2.5-1.5b-mb4__fsdp__g1__r0 gpus=[4]: OK in 37 s qwen2.5-1.5b-mb4__fsdp__g1__r0: 4.5 samples/s, 4574 tok/s, step 888.8 ms, peak 35.8 GiB, util 100%, MFU 0.289
+2026-10-12 23:39:47 [idle-gate] waiting for GPUs [4]: gpu4: power 91 W
+2026-10-12 23:40:05 [7/8] qwen2.5-1.5b-mb4__zero1__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:40:53 [7/8] qwen2.5-1.5b-mb4__zero1__g1__r0 gpus=[4]: OK in 45 s qwen2.5-1.5b-mb4__zero1__g1__r0: 3.5 samples/s, 3562 tok/s, step 1038.8 ms, peak 38.2 GiB, util 99%, MFU 0.225
+2026-10-12 23:40:53 [idle-gate] waiting for GPUs [4]: gpu4: power 92 W; gpu4: temp 52 C
+2026-10-12 23:41:11 [8/8] qwen2.5-1.5b-mb4__zero2__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:41:59 [8/8] qwen2.5-1.5b-mb4__zero2__g1__r0 gpus=[4]: OK in 45 s qwen2.5-1.5b-mb4__zero2__g1__r0: 3.5 samples/s, 3563 tok/s, step 1042.0 ms, peak 38.2 GiB, util 98%, MFU 0.225
+2026-10-12 23:41:59 [idle-gate] waiting for GPUs [4]: gpu4: power 92 W; gpu4: temp 53 C
+2026-10-12 23:42:14 final idle check on [4]: idle after 15 s
+2026-10-12 23:42:14 == probe_1gpu done: {'ok': 7, 'oom': 1}
+2026-10-12 23:43:00 == probe_1gpu: 9 runs (dry_run=False)
+2026-10-12 23:43:00 [1/9] resnet50-mb128__ddp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:00 [2/9] resnet50-mb128__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:00 [3/9] resnet50-mb128__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:00 [4/9] resnet50-mb128-autocast__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:00 [5/9] qwen2.5-1.5b-mb4__ddp__g1__r0 gpus=[4]: already oom, skipping
+2026-10-12 23:43:00 [6/9] qwen2.5-1.5b-mb4__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:00 [7/9] qwen2.5-1.5b-mb4__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:00 [8/9] qwen2.5-1.5b-mb4__zero2__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:13 [9/9] qwen2.5-1.5b-mb2-ga2__ddp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:43:31 [9/9] qwen2.5-1.5b-mb2-ga2__ddp__g1__r0 gpus=[4]: OOM in 15 s CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 47.40 GiB of which 3.68 GiB is free. Including non-PyTorch memory, this process has 43.72 GiB memory in use. 43.61 GiB allowed; Of the allocated memory 40.47 GiB is allocated by PyTorch, and 2.48 GiB is reserved by PyTorch
+2026-10-12 23:43:31 [idle-gate] waiting for GPUs [4]: gpu4: power 86 W
+2026-10-12 23:43:46 final idle check on [4]: idle after 15 s
+2026-10-12 23:43:46 == probe_1gpu done: {'oom': 1}
+2026-10-13 00:02:39 == probe_1gpu: 12 runs (dry_run=False)
+2026-10-13 00:02:39 [1/12] resnet50-mb128__ddp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [2/12] resnet50-mb128__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [3/12] resnet50-mb128__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [4/12] resnet50-mb128-autocast__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [5/12] qwen2.5-1.5b-mb4__ddp__g1__r0 gpus=[4]: already oom, skipping
+2026-10-13 00:02:39 [6/12] qwen2.5-1.5b-mb4__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [7/12] qwen2.5-1.5b-mb4__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [8/12] qwen2.5-1.5b-mb4__zero2__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:02:39 [9/12] qwen2.5-1.5b-mb2-ga2__ddp__g1__r0 gpus=[4]: already oom, skipping
+2026-10-13 00:02:52 [10/12] qwen2.5-1.5b-mb1-ga4__ddp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-13 00:03:34 [10/12] qwen2.5-1.5b-mb1-ga4__ddp__g1__r0 gpus=[4]: OK in 39 s qwen2.5-1.5b-mb1-ga4__ddp__g1__r0: 3.9 samples/s, 3983 tok/s, step 1029.0 ms, peak 36.6 GiB, util 99%, MFU 0.252
+2026-10-13 00:03:34 [idle-gate] waiting for GPUs [4]: gpu4: power 85 W; gpu4: temp 51 C
+2026-10-13 00:03:52 [11/12] qwen2.5-1.5b-mb1-ga4__fsdp__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-13 00:04:38 [11/12] qwen2.5-1.5b-mb1-ga4__fsdp__g1__r0 gpus=[4]: OK in 43 s qwen2.5-1.5b-mb1-ga4__fsdp__g1__r0: 3.5 samples/s, 3557 tok/s, step 1151.8 ms, peak 28.8 GiB, util 92%, MFU 0.225
+2026-10-13 00:04:38 [idle-gate] waiting for GPUs [4]: gpu4: power 94 W; gpu4: temp 55 C
+2026-10-13 00:05:01 [12/12] qwen2.5-1.5b-mb1-ga4__zero1__g1__r0 gpus=[4]: start (idle after 20 s)
+2026-10-13 00:05:46 [12/12] qwen2.5-1.5b-mb1-ga4__zero1__g1__r0 gpus=[4]: OK in 42 s qwen2.5-1.5b-mb1-ga4__zero1__g1__r0: 4.0 samples/s, 4076 tok/s, step 1004.5 ms, peak 31.6 GiB, util 98%, MFU 0.258
+2026-10-13 00:05:46 [idle-gate] waiting for GPUs [4]: gpu4: power 94 W; gpu4: temp 55 C
+2026-10-13 00:06:06 final idle check on [4]: idle after 20 s
+2026-10-13 00:06:06 == probe_1gpu done: {'ok': 3}

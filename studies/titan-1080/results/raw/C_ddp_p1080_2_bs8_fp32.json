@@ -1,0 +1,84 @@
+{
+  "config": {
+    "global_batch": 16,
+    "grad_ckpt": false,
+    "group": "p1080_2",
+    "memory_fraction": 0.85,
+    "micro_batch_per_gpu": 8,
+    "mode": "ddp",
+    "model": "gpt2-124m",
+    "n_params": 124439808,
+    "precision": "fp32",
+    "seq_len": 512,
+    "steps": 30,
+    "warmup": 5,
+    "world_size": 2,
+    "zero_stage": null
+  },
+  "error": "CUDA out of memory. Tried to allocate 784.00 MiB. GPU 0 has a total capacity of 10.91 GiB of which 1.63 GiB is free. Including non-PyTorch memory, this process has 9.14 GiB memory in use. Process 127483 has 136.00 MiB memory in use. Of the allocated memory 8.23 GiB is allocated by PyTorch, and 681.12 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try settin",
+  "loss_first_last": null,
+  "memory": {
+    "peak_alloc_mib_rank0": 8426.9,
+    "peak_reserved_mib_rank0": 9120.0,
+    "per_rank_alloc_reserved_mib": [
+      [
+        8426.9,
+        9120.0
+      ]
+    ]
+  },
+  "meta": {
+    "cuda_device_order": "PCI_BUS_ID",
+    "cuda_visible_devices": "1,3",
+    "host": "TITAN_NODE",
+    "phys_devices": [
+      1,
+      3
+    ],
+    "timestamp": "2026-10-13T20:09:56"
+  },
+  "perf": {
+    "step_time_max_s": null,
+    "step_time_mean_s": null,
+    "step_time_median_s": null,
+    "step_time_min_s": null,
+    "tokens_per_s": null,
+    "tokens_per_s_per_gpu": null,
+    "tokens_per_step": 8192,
+    "wall_time_s": null
+  },
+  "status": "oom",
+  "telemetry": null,
+  "torch_env": {
+    "arch_list": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "device_count": 2,
+    "devices": [
+      {
+        "capability": "6.1",
+        "local_index": 0,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 1,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      }
+    ],
+    "nccl": "2.20.5",
+    "torch": "2.4.1+cu121"
+  }
+}

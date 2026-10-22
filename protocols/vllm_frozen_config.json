@@ -1,0 +1,21 @@
+{
+  "frozen_before_any_performance_measurement": true,
+  "applies_identically_to": ["vllm_offline_tp1", "vllm_offline_tp2", "vllm_loopback_streaming"],
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "weights_source": "already present in the project HF cache; no new download",
+  "dtype": "float16",
+  "prompt_len": 256,
+  "max_new_tokens": 128,
+  "max_model_len": 1024,
+  "gpu_memory_utilization": 0.85,
+  "enable_prefix_caching": false,
+  "disable_custom_all_reduce": true,
+  "enforce_eager": false,
+  "seed": 1234,
+  "guided_decoding_backend": "lm-format-enforcer",
+  "guided_decoding_backend_rationale": "outlines 0.0.46 requires pyairports.airports, which the only published pyairports release (0.0.1) does not provide. lm-format-enforcer 0.10.6 is already installed and frozen in this prefix and is an accepted value of vllm's guided_decoding_backend. It is a DIFFERENT backend, not a repair of outlines.",
+  "arms_not_withdrawn": "the TP1, TP2 and streaming arms are retained; the outlines failure is recorded as its own N3 status and does not withdraw them",
+  "recording_rule": "backend CONFIGURED and guided backend EXERCISED are recorded as separate fields and never merged",
+  "controller_rule": "one controller per vLLM engine"
+}

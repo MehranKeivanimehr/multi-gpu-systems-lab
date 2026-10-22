@@ -1,0 +1,27 @@
+{
+  "seq_len": 1024,
+  "activation_checkpointing": true,
+  "warmup_steps": 3,
+  "measure_steps": 15,
+  "seed": 1234,
+  "grad_accum": 1,
+  "model": "llama3.1-8b",
+  "variant": "cap95-expseg",
+  "micro_batch": 2,
+  "mem_fraction": 0.95,
+  "env": {
+    "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+  },
+  "kind": "train",
+  "experiment": "llama8b_memory_rerun",
+  "framework": "fsdp",
+  "n_gpus": 4,
+  "gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "repeat": 0,
+  "run_id": "llama3.1-8b-cap95-expseg__fsdp__g4__r0"
+}

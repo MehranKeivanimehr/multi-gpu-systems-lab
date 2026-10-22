@@ -1,0 +1,57 @@
+# Hard safety limits for the shared 8x RTX A6000 node.
+# The runner refuses any run that asks for a GPU outside `allowed_gpus`.
+
+allowed_gpus: [4, 5, 6, 7]        # user decision 2026-10-12: GPUs 0-3 belong to other people's work
+
+# Owner-controlled hold on every GPU launch (recovery review 20261015r). run_matrix.py refuses to launch anything
+# unless this says `active: false`; a missing entry counts as active. Only the repository owner lifts it.
+launch_hold:
+  active: true
+  since: "2026-10-15"
+  reason: "incident review after the 2026-10-14 ~22:14 host failure; GPU work needs explicit owner authorization"
+
+# Approved physical GPUs by UUID (nvidia-smi --query-gpu=index,uuid; identical on 2026-10-14 and 2026-10-15).
+# Before every launch the runner checks that each index still maps to this UUID; unreadable or different -> no launch.
+gpu_uuids:
+  4: GPU-00000000-0000-0000-0000-000000000109
+  5: GPU-00000000-0000-0000-0000-000000000112
+  6: GPU-00000000-0000-0000-0000-000000000116
+  7: GPU-00000000-0000-0000-0000-000000000108
+
+# Physical GPUs used for each GPU count (nvidia-smi / PCI bus order).
+# Topology (nvidia-smi topo -m): 4-5 and 6-7 are NVLink (NV4) pairs; 4/5 <-> 6/7 is PCIe within NUMA node 1.
+gpu_sets:
+  1: [4]
+  2: [4, 5]                       # NVLink pair
+  4: [4, 5, 6, 7]                 # two NVLink pairs joined over PCIe
+
+numa_node: 1                      # GPUs 4-7 hang off socket 1 (cores 64-127,192-255); runs are pinned there
+omp_threads_per_rank: 8           # caps CPU threads per process so runs never thrash the host
+
+mem_cap_gib: 44.0                 # estimator: skip configs whose model states alone exceed this per GPU
+per_process_mem_fraction: 0.92    # torch allocator hard cap inside every rank (~44 GiB of 48 GiB)
+
+run_timeout_s: 1200               # wall-clock limit per run; then SIGTERM, then SIGKILL after kill_grace_s
+kill_grace_s: 60
+max_consecutive_failures: 3       # abort the whole matrix if runs keep failing
+
+# Every run waits until its GPUs (plus the GPUs of the previous run) are idle in every respect.
+idle:
+  poll_s: 5
+  consecutive_polls: 3            # all criteria must hold for 3 polls in a row (15 s)
+  max_wait_s: 1800                # give up (abort the matrix) after 30 min
+  max_mem_mib: 100                # idle A6000 reports ~1 MiB
+  max_util_pct: 0
+  max_power_w: 60                 # idle (P8) is ~20-25 W
+  max_temp_c: 50                  # idle is ~26 C; lets the card cool down between runs
+  min_free_ram_gib: 150           # host RAM headroom for other users
+  # Node guard (added 2026-10-15 after the 2026-10-14 22:14 host failure during a 4-GPU run; cause unknown).
+  # Conservative empirical limits, NOT a power-supply specification (PSU capacity is unknown to this account).
+  node_guard:
+    planned_w_per_gpu: 300        # A6000 board power limit, assumed for every GPU a run will use
+    start_budget_w: 1500          # start only if other GPUs' measured draw + 300 W x our GPUs <= this
+    abort_total_w: 1700           # stop our run if all 8 GPUs together draw more than this ...
+    abort_after_s: 5              # ... for this many consecutive 1-second samples
+    max_load1: 96                 # host 1-minute load average limit before starting
+    max_gpus_per_run: 2           # no cross-pair (4-GPU) runs until the incident is explained
+    node_gpu_count: 8             # NVML must list all 8 GPUs; fewer (e.g. a GPU lost after a fault) -> no launch

@@ -1,0 +1,142 @@
+{
+  "bind_source": {
+    "file": "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-vllm/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py",
+    "lines": [
+      [
+        543,
+        "sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)"
+      ],
+      [
+        544,
+        "sock.bind((\"\", args.port))"
+      ]
+    ]
+  },
+  "datasets_in_sys_modules_after": false,
+  "decoding_config": {
+    "class_default_backend": "outlines",
+    "configured_backend": "lm-format-enforcer"
+  },
+  "dispatch_source": {
+    "branch_lines": [
+      "if guided_params.backend == 'outlines' or guided_params.grammar:",
+      "if guided_params.backend == 'lm-format-enforcer':",
+      "if guided_params.backend == 'outlines' or guided_params.grammar:",
+      "if guided_params.backend == 'lm-format-enforcer':"
+    ],
+    "file": "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-vllm/lib/python3.10/site-packages/vllm/model_executor/guided_decoding/__init__.py"
+  },
+  "grammar_control": {
+    "backend": "lm-format-enforcer",
+    "branch_selects_outlines": true,
+    "grammar": "root ::= \"a\""
+  },
+  "outlines_backend_control": "ImportError: cannot import name 'BucketNotFoundError' from 'huggingface_hub.errors' ($PROJECT_ROOT/gpu_bench_stage1/envs/bench-vllm/lib/python3.10/site-packages/huggingface_hub/errors.py)",
+  "outlines_in_sys_modules_after": false,
+  "outlines_in_sys_modules_before": false,
+  "payload_constraint_fields_present": [],
+  "payload_keys": [
+    "max_tokens",
+    "model",
+    "prompt",
+    "stream",
+    "stream_options",
+    "temperature"
+  ],
+  "payload_prompt_is_ids": true,
+  "payload_prompt_len": 256,
+  "pip_check": {
+    "returncode": 1,
+    "stderr": "",
+    "stdout": [
+      "datasets 5.1.0 has requirement huggingface-hub<3.0,>=1.31.0, but you have huggingface-hub 0.36.2."
+    ]
+  },
+  "production_server_argv": [
+    "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-vllm/bin/python",
+    "-m",
+    "vllm.entrypoints.openai.api_server",
+    "--model",
+    "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "--revision",
+    "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "--tokenizer-revision",
+    "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "12345",
+    "--dtype",
+    "float16",
+    "--max-model-len",
+    "1024",
+    "--gpu-memory-utilization",
+    "0.85",
+    "--guided-decoding-backend",
+    "lm-format-enforcer",
+    "--disable-log-requests"
+  ],
+  "real_dispatch": {
+    "branch_would_select_outlines": false,
+    "default_backend_supplied": "lm-format-enforcer",
+    "guided_decoding_after": null,
+    "logits_processors_after": null,
+    "max_tokens_after": 64,
+    "request_backend_before": null,
+    "resolved_processor_is_none": true,
+    "temperature_after": 0.0,
+    "tokenizer_class": "LlamaTokenizerFast",
+    "tokenizer_vocab_size": 32000
+  },
+  "request": {
+    "best_of": null,
+    "constraint_fields_set_on_request": {},
+    "guided_decoding_backend_field": null,
+    "max_tokens": 64,
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "n": 1,
+    "prompt_len": 256,
+    "stream": true,
+    "temperature": 0.0
+  },
+  "sampling_params": {
+    "best_of": null,
+    "guided_backend_on_request": null,
+    "guided_choice": null,
+    "guided_decoding_is_none": false,
+    "guided_grammar": null,
+    "guided_json": null,
+    "guided_json_object": null,
+    "guided_regex": null,
+    "logits_processors_before": null,
+    "max_tokens": 64,
+    "n": 1,
+    "seed": null,
+    "temperature": 0.0,
+    "top_k": -1,
+    "top_p": 1.0
+  },
+  "server_args": {
+    "disable_log_requests": true,
+    "dtype": "float16",
+    "engine_args_backend": "lm-format-enforcer",
+    "gpu_memory_utilization": 0.85,
+    "host": "127.0.0.1",
+    "max_model_len": 1024,
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "namespace_backend": "lm-format-enforcer",
+    "port": 12345,
+    "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "tokenizer_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6"
+  },
+  "versions": {
+    "datasets": "5.1.0",
+    "huggingface_hub": "0.36.2",
+    "lm-format-enforcer": "0.10.6",
+    "outlines": "0.0.46",
+    "prometheus_client": "0.26.0",
+    "torch": "2.4.0",
+    "transformers": "4.45.2",
+    "vllm": "0.6.3.post1"
+  }
+}

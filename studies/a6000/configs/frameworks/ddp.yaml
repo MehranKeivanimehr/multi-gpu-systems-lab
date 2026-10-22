@@ -1,0 +1,8 @@
+# PyTorch DistributedDataParallel: full replica per GPU, gradient all-reduce.
+name: ddp
+launcher: torchrun
+param_dtype: fp32            # fp32 weights + torch.autocast(bfloat16) compute (standard AMP recipe)
+grad_reduce_dtype: fp32      # gradients are fp32, so the all-reduce is fp32
+bucket_cap_mb: 25            # PyTorch default
+gradient_as_bucket_view: true
+optimizer: adamw             # torch.optim.AdamW (foreach), lr 1e-4

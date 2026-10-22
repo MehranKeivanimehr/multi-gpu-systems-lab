@@ -1,0 +1,34 @@
+# Model registry.
+# Training benchmarks build the architecture from the vendored config.json with random weights:
+# weights do not change throughput, and this keeps training runs fully offline and reproducible.
+# vLLM inference loads the real pretrained weights from the local Hugging Face cache (pinned revisions).
+
+qwen2.5-0.5b:
+  kind: causal_lm
+  role: quick smoke-test model
+  hf_config_dir: configs/models/qwen2.5-0.5b
+  hf_repo: Qwen/Qwen2.5-0.5B-Instruct
+  hf_revision: 7ae557604adf67be50417f59c2c2f167def9a775
+
+qwen2.5-1.5b:
+  kind: causal_lm
+  role: main training-scaling model (fits every framework on one GPU)
+  hf_config_dir: configs/models/qwen2.5-1.5b
+  hf_repo: Qwen/Qwen2.5-1.5B-Instruct
+  hf_revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+
+llama3.1-8b:
+  kind: causal_lm
+  role: large language model (sharded training, vLLM inference)
+  hf_config_dir: configs/models/llama3.1-8b
+  # Ungated re-upload of meta-llama/Llama-3.1-8B-Instruct (identical architecture/config);
+  # the official repo is gated and this account has no access. Llama 3.1 Community License applies.
+  hf_repo: unsloth/Llama-3.1-8B-Instruct
+  hf_revision: 4699cc75b550f9c6f3173fb80f4703b62d946aa5
+
+resnet50:
+  kind: vision
+  role: vision model (torchvision, random init, synthetic ImageNet-shaped data)
+  torchvision_name: resnet50
+  image_size: 224
+  num_classes: 1000

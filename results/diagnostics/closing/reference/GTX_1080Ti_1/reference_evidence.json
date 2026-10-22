@@ -1,0 +1,356 @@
+{
+  "case_id": "R_p1080_1_tinyllama_fp32",
+  "child_device_capability": "6.1",
+  "child_device_name": "NVIDIA GeForce GTX 1080 Ti",
+  "child_visible_devices": "GTX_1080Ti#1",
+  "comparison_metadata_written": true,
+  "consumed_lengths_all_equal_protocol": true,
+  "consumed_token_lengths": [
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256
+  ],
+  "containment": {
+    "affinity": {
+      "available_before": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "is_a_scheduler_quota": false,
+      "is_exclusive_cpu_reservation": false,
+      "mechanism": "os.sched_setaffinity",
+      "n_permitted": 8,
+      "note": "a restriction on which CPUs may be used, inherited by children and threads created after this call; not a reservation",
+      "permitted_cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "requested_max_cpus": 8,
+      "supplementary_thread_vars": {
+        "MKL_NUM_THREADS": "8",
+        "NUMEXPR_NUM_THREADS": "8",
+        "OMP_NUM_THREADS": "8",
+        "OPENBLAS_NUM_THREADS": "8"
+      }
+    },
+    "monitor": {
+      "attempt_successful": true,
+      "attribution": "owned process group only, by pgid",
+      "breach_sample": null,
+      "breached": false,
+      "budget_bytes": 34359738368,
+      "budget_gib": 32.0,
+      "enforced_cap": false,
+      "interval_s": 0.5,
+      "limitations": "sampled at 0.50s; transients shorter than the interval can be missed. This is monitoring, not an enforced aggregate memory cap.",
+      "monitored_from": "worker startup, before the workload is built",
+      "owned_process_never_observed": false,
+      "peak_owned_rss_bytes": 17850368,
+      "peak_owned_rss_gib": 0.017,
+      "samples": 1,
+      "sampling_failure": null,
+      "stop_behaviour": "SIGTERM to the owned process group, 5.0s grace, then SIGKILL; the attempt is classified unsuccessful",
+      "stopped_reason": null,
+      "unreadable_monitoring_is_a_refusal": true
+    }
+  },
+  "corpus_check": {
+    "convention": "digest of the object with corpus_sha256 removed, compact sorted JSON; the file-bytes digest differs by construction and is recorded, not compared",
+    "expected": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350",
+    "field_declared": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350",
+    "file_bytes_sha256": "254bee77d30364e640ef376fa5a62b6ae583df8f0eae30ebbca36f7e016623e7",
+    "n_prompts": 64,
+    "ok": true,
+    "policy": {
+      "enable_prefix_caching": false,
+      "exact_output_tokens": 128,
+      "greedy": true,
+      "ignore_eos": true,
+      "streaming_output_tokens": 64,
+      "temperature": 0.0
+    },
+    "prompt_len": 256,
+    "reason": null,
+    "self_digest": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350"
+  },
+  "corpus_representation": {
+    "consumed_as": "token ids via model(input_ids=...)",
+    "declared_prompt_len": 256,
+    "excluded_special_ids": [
+      0,
+      1,
+      2
+    ],
+    "n_prompts": 64,
+    "prompts_are_pre_tokenized_id_lists": true,
+    "special_tokens_added_by_us": false,
+    "tokenizer_used_to_tokenize": false
+  },
+  "cuda_peak_alloc_mib": 8392.7,
+  "device_contact": "one device, read via torch properties",
+  "does_not_establish": "independent full-gradient verification; training quality; any historical throughput or energy claim",
+  "dropout_active": false,
+  "elapsed_s": 32.571,
+  "establishes": "cross-family output agreement on verified identical realized inputs from a verified identical initial state",
+  "final_logits": {
+    "digest_role": "integrity metadata only; the verdict is computed from the retained array",
+    "dtype": "torch.float32",
+    "sha256": "e6681bee63d9c4faf715c916c683aec253aba08881dc6a4a8f04d024e4760a8a",
+    "shape": [
+      8,
+      32000
+    ],
+    "token_position": 255,
+    "token_position_convention": "zero-based index into the input sequence; the last input position, i.e. the logits that predict the first new token"
+  },
+  "generated": {
+    "exact_output_tokens_requested": 64,
+    "n_new_tokens_per_prompt": 64,
+    "output_ids_sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+    "shape": [
+      8,
+      64
+    ]
+  },
+  "initial_state": {
+    "parameter_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d"
+  },
+  "kind": "reference",
+  "length_deviations": [],
+  "memory_monitor": {
+    "attempt_successful": true,
+    "attribution": "owned process group only, by pgid",
+    "breach_sample": null,
+    "breached": false,
+    "budget_bytes": 34359738368,
+    "budget_gib": 32.0,
+    "enforced_cap": false,
+    "interval_s": 0.5,
+    "limitations": "sampled at 0.50s; transients shorter than the interval can be missed. This is monitoring, not an enforced aggregate memory cap.",
+    "monitored_from": "worker startup, before the workload is built",
+    "owned_process_never_observed": false,
+    "peak_owned_rss_bytes": 4877635584,
+    "peak_owned_rss_gib": 4.543,
+    "samples": 66,
+    "sampling_failure": null,
+    "stop_behaviour": "SIGTERM to the owned process group, 5.0s grace, then SIGKILL; the attempt is classified unsuccessful",
+    "stopped_reason": null,
+    "unreadable_monitoring_is_a_refusal": true
+  },
+  "model_dtype": "torch.float32",
+  "n_parameters": 1100048384,
+  "observation_phase": "model.eval(); generation only. Dropout is inactive, so no claim is made about matching dropout masks.",
+  "protocol": {
+    "amendments": [],
+    "corpus": "protocols/prompt_corpus.json",
+    "corpus_sha256": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350",
+    "do_sample": false,
+    "does_not_establish": "independent full-gradient verification; training quality; any historical throughput or energy claim",
+    "dtype": "float32",
+    "establishes": "cross-family output agreement on verified identical realized inputs from a verified identical initial state",
+    "greedy": true,
+    "matching_rules": {
+      "comparison": "greedy output token ids compared exactly; final-token logits compared with the oracle's dtype-derived tolerance policy",
+      "initial_state": "sha256 over float64 parameter bytes, streamed",
+      "realized_input": "sha256 over the exact tokenized input id tensor",
+      "refuse_on": "any realized-input or initial-state digest mismatch between the two singletons"
+    },
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+    "output_tokens_exact": 64,
+    "phases": {
+      "measurement": "1 recorded generate call per singleton",
+      "warmup": "1 untimed generate call, discarded"
+    },
+    "prompt_len_tokens": 256,
+    "recipe": "hf_generate",
+    "schema": "titan_reference_protocol_v1",
+    "status": "INFORMED control, not blind",
+    "thresholds": {
+      "logits_rtol": "64u for the compared dtype (oracle tolerance policy)",
+      "note": "no tolerance is widened to accommodate a disagreement",
+      "output_ids": "exact equality required"
+    }
+  },
+  "protocol_digest": "fa1b5a888f912a044aef989221a34729092945c36c22cfcf4accdb0d6972bd63",
+  "rank": 0,
+  "realized_input": {
+    "attention_mask_policy": "all ones; no padding is present",
+    "attention_mask_sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+    "dtype": "torch.int64",
+    "first_ids": [
+      4381,
+      23872,
+      18382,
+      16878,
+      21765,
+      22327,
+      13451,
+      17958
+    ],
+    "last_ids": [
+      28692,
+      28264,
+      12226,
+      6821,
+      17862,
+      3416,
+      30602,
+      13893
+    ],
+    "n_prompts_used": 8,
+    "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+    "shape": [
+      8,
+      256
+    ]
+  },
+  "reference_case_complete": true,
+  "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "retained": {
+    "attention_mask": {
+      "byte_order": "little",
+      "c_contiguous": true,
+      "container": "raw binary, no header, not pickle",
+      "dtype": "int64",
+      "file": "attention_mask.bin",
+      "itemsize": 8,
+      "n_bytes": 16384,
+      "n_elements": 2048,
+      "name": "attention_mask",
+      "note": "all ones; no padding present",
+      "read_with": "numpy.fromfile('attention_mask.bin', dtype='<i8').reshape([8, 256])",
+      "schema": "titan_lossless_array_v1",
+      "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+      "shape": [
+        8,
+        256
+      ]
+    },
+    "final_logits": {
+      "byte_order": "little",
+      "c_contiguous": true,
+      "container": "raw binary, no header, not pickle",
+      "dtype": "float32",
+      "file": "final_logits.bin",
+      "itemsize": 4,
+      "n_bytes": 1024000,
+      "n_elements": 256000,
+      "name": "final_logits",
+      "note": "complete final-step logits, position 255 (last input token), shape [n_prompts, vocab]",
+      "read_with": "numpy.fromfile('final_logits.bin', dtype='<f4').reshape([8, 32000])",
+      "schema": "titan_lossless_array_v1",
+      "sha256": "4097ab66757684cc198a63d106df8a54ee09a831ea61d583a5ebd7b3f84d6e36",
+      "shape": [
+        8,
+        32000
+      ]
+    },
+    "generated_ids": {
+      "byte_order": "little",
+      "c_contiguous": true,
+      "container": "raw binary, no header, not pickle",
+      "dtype": "int64",
+      "file": "generated_ids.bin",
+      "itemsize": 8,
+      "n_bytes": 4096,
+      "n_elements": 512,
+      "name": "generated_ids",
+      "note": "greedy new token ids only, input prefix removed",
+      "read_with": "numpy.fromfile('generated_ids.bin', dtype='<i8').reshape([8, 64])",
+      "schema": "titan_lossless_array_v1",
+      "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+      "shape": [
+        8,
+        64
+      ]
+    },
+    "input_ids": {
+      "byte_order": "little",
+      "c_contiguous": true,
+      "container": "raw binary, no header, not pickle",
+      "dtype": "int64",
+      "file": "input_ids.bin",
+      "itemsize": 8,
+      "n_bytes": 16384,
+      "n_elements": 2048,
+      "name": "input_ids",
+      "note": "exact token ids consumed via model(input_ids=...)",
+      "read_with": "numpy.fromfile('input_ids.bin', dtype='<i8').reshape([8, 256])",
+      "schema": "titan_lossless_array_v1",
+      "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+      "shape": [
+        8,
+        256
+      ]
+    }
+  },
+  "retained_arrays": {
+    "ok": true,
+    "required": [
+      "final_logits",
+      "input_ids",
+      "attention_mask",
+      "generated_ids"
+    ],
+    "verified": {
+      "attention_mask": {
+        "dtype": "int64",
+        "n_bytes": 16384,
+        "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+        "shape": [
+          8,
+          256
+        ]
+      },
+      "final_logits": {
+        "dtype": "float32",
+        "n_bytes": 1024000,
+        "sha256": "4097ab66757684cc198a63d106df8a54ee09a831ea61d583a5ebd7b3f84d6e36",
+        "shape": [
+          8,
+          32000
+        ]
+      },
+      "generated_ids": {
+        "dtype": "int64",
+        "n_bytes": 4096,
+        "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+        "shape": [
+          8,
+          64
+        ]
+      },
+      "input_ids": {
+        "dtype": "int64",
+        "n_bytes": 16384,
+        "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+        "shape": [
+          8,
+          256
+        ]
+      }
+    }
+  },
+  "stage": "completed",
+  "status": "INFORMED control, not blind",
+  "torch_version": "2.4.1+cu121",
+  "world_size": 1
+}

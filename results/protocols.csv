@@ -1,0 +1,14 @@
+campaign,task,model,length_or_shape,precision,recipe,comparison_scope
+a6000,train,qwen2.5-1.5b DDP,seq1024,fp32 persistent params; bf16 autocast,mb1; accumulation4; AdamW; fp32 gradient reduction,within-recipe scaling; not precision-matched to ZeRO
+a6000,train,qwen2.5-1.5b FSDP2,seq1024,fp32 persistent shards; bf16 compute; fp32 reduction,mb1; accumulation4; AdamW; no checkpointing,within-recipe scaling; not precision-matched to ZeRO
+a6000,train,qwen2.5-1.5b ZeRO-1/2,seq1024,bf16 model; fp32 optimizer master; fp32 communication,mb1; accumulation4; DeepSpeed bf16 mode,complete-recipe comparison; not framework-only effect
+a6000,train,llama3.1-8b,seq1024,bf16; fp32/bf16 reduction variants,mb2; checkpointing; FSDP2/ZeRO3,campaign-local scaling and audit
+a6000,train,resnet50,224x224,bf16 autocast,AdamW; batch128/GPU,not Titan inference or A100 SGD
+a100,train,gpt2-124m,seq1024,fp32/tf32/fp16/bf16,fused AdamW; batch8/16/32,not Titan seq512
+a100,train,qwen2.5-1.5b,seq512/1024,bf16 and bf16-pure separated,fused AdamW; batch/checkpoint sweep,not A6000 accumulation recipe
+a100,train,resnet50,224x224,fp32/tf32/fp16/bf16,SGD momentum; channels_last,not Titan inference or A6000 AdamW
+titan-1080,train,gpt2-124m,seq512,fp32/amp_fp16,AdamW; accumulation1,campaign-local scaling
+titan-1080,inference,resnet50,224x224,fp32/amp_fp16,forward-only batch sweep,no supplied A6000 inference baseline
+a6000,inference,qwen2.5-1.5b / llama3.1-8b,prompt512; output256,bf16,vLLM TP/DP; 1024 requests; original/audit separate,campaign-local matched-concurrency audit
+a100,inference,qwen2.5-1.5b-instruct,prompt128; output256,bf16,HF/vLLM; batch1/8/32/128/512,campaign-local engine comparison
+titan-1080,inference,tinyllama-1.1b,prompt256; output128,float32/float16,HF all families; vLLM TITAN RTX only,campaign-local GPU/engine comparison

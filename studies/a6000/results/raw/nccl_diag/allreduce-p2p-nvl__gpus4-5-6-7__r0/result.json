@@ -1,0 +1,138 @@
+{
+  "status": "ok",
+  "spec": {
+    "sizes_mib": [
+      1,
+      4,
+      16,
+      64,
+      256,
+      1024
+    ],
+    "dtype": "bf16",
+    "warmup_iters": 5,
+    "iters": 20,
+    "kind": "nccl",
+    "experiment": "nccl_diag",
+    "framework": "nccl",
+    "model": "allreduce",
+    "n_gpus": 4,
+    "gpus": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "repeat": 0,
+    "env": {
+      "NCCL_DEBUG": "INFO",
+      "NCCL_P2P_LEVEL": "NVL"
+    },
+    "variant": "p2p-nvl",
+    "run_id": "allreduce-p2p-nvl__gpus4-5-6-7__r0"
+  },
+  "rows": [
+    {
+      "size_mib": 1,
+      "time_us": 238.43074995966163,
+      "algbw_gbs": 4.39782200985989,
+      "busbw_gbs": 6.5967330147898355
+    },
+    {
+      "size_mib": 4,
+      "time_us": 862.1625500381924,
+      "algbw_gbs": 4.8648645198219285,
+      "busbw_gbs": 7.297296779732893
+    },
+    {
+      "size_mib": 16,
+      "time_us": 3828.1476499832934,
+      "algbw_gbs": 4.382593759170501,
+      "busbw_gbs": 6.573890638755751
+    },
+    {
+      "size_mib": 64,
+      "time_us": 16026.049950232844,
+      "algbw_gbs": 4.18748626195471,
+      "busbw_gbs": 6.281229392932065
+    },
+    {
+      "size_mib": 256,
+      "time_us": 30830.180349948932,
+      "algbw_gbs": 8.706905147911165,
+      "busbw_gbs": 13.060357721866747
+    },
+    {
+      "size_mib": 1024,
+      "time_us": 130305.0118502142,
+      "algbw_gbs": 8.2402189198545,
+      "busbw_gbs": 12.360328379781752
+    }
+  ],
+  "env": {
+    "timestamp": "2026-10-13T03:12:43-0400",
+    "hostname": "A6000_NODE",
+    "kernel": "7.0.0-38-generic",
+    "software": {
+      "python": "3.12.3",
+      "torch": "2.11.0",
+      "torchvision": "0.26.0",
+      "transformers": "5.19.0",
+      "deepspeed": "0.19.7",
+      "vllm": "0.26.0",
+      "nvidia-ml-py": "13.615.71",
+      "torch_cuda": "13.0",
+      "nccl": "2.28.9",
+      "cudnn": 91900
+    },
+    "driver": {
+      "driver_version": "580.178.04",
+      "nvml_cuda_driver_version": 13000
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:81:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:A1:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 6,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:C1:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 7,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:E1:00.0",
+        "mem_total_mib": 49140.0
+      }
+    ],
+    "links": {
+      "4-5": "NV4",
+      "4-6": "NODE",
+      "4-7": "NODE",
+      "5-6": "NODE",
+      "5-7": "NODE",
+      "6-7": "NV4"
+    },
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "4,5,6,7",
+      "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+      "OMP_NUM_THREADS": "8",
+      "NCCL_DEBUG": "INFO",
+      "NCCL_ALGO": null,
+      "NCCL_PROTO": null,
+      "NCCL_P2P_DISABLE": null,
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
+      "HF_HUB_OFFLINE": "1"
+    }
+  }
+}

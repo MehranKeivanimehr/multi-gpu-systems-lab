@@ -1,0 +1,131 @@
+{
+  "status": "ok",
+  "spec": {
+    "warmup_steps": 5,
+    "measure_steps": 20,
+    "seed": 1234,
+    "grad_accum": 4,
+    "model": "qwen2.5-1.5b",
+    "variant": "mb1-ga4",
+    "seq_len": 1024,
+    "micro_batch": 1,
+    "activation_checkpointing": false,
+    "kind": "train",
+    "experiment": "probe_1gpu",
+    "framework": "ddp",
+    "n_gpus": 1,
+    "gpus": [
+      4
+    ],
+    "repeat": 0,
+    "run_id": "qwen2.5-1.5b-mb1-ga4__ddp__g1__r0"
+  },
+  "framework_config": {
+    "name": "ddp",
+    "launcher": "torchrun",
+    "param_dtype": "fp32",
+    "grad_reduce_dtype": "fp32",
+    "bucket_cap_mb": 25,
+    "gradient_as_bucket_view": true,
+    "optimizer": "adamw"
+  },
+  "model_entry": {
+    "kind": "causal_lm",
+    "role": "main training-scaling model (fits every framework on one GPU)",
+    "hf_config_dir": "configs/models/qwen2.5-1.5b",
+    "hf_repo": "Qwen/Qwen2.5-1.5B-Instruct",
+    "hf_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "n_params": 1543714304,
+  "trainer_info": {
+    "precision": "fp32 params + autocast bf16"
+  },
+  "setup_s": 4.360948667002958,
+  "window_s": 20.566761245005182,
+  "samples_per_step": 4,
+  "throughput_samples_s": 3.8897714154886054,
+  "throughput_tokens_s": 3983.125929460332,
+  "throughput_per_gpu_samples_s": 3.8897714154886054,
+  "step_time": {
+    "n": 20,
+    "median_ms": 1028.9690815006907,
+    "mean_ms": 1028.3243927497097,
+    "std_ms": 2.2481029288940975,
+    "p10_ms": 1025.5983296017803,
+    "p90_ms": 1030.4423331050202,
+    "min_ms": 1024.9693480000133,
+    "max_ms": 1033.4351199999219
+  },
+  "flops_per_sample": 10024856322048.0,
+  "tflops_per_gpu": 38.994399565882546,
+  "mfu": 0.2519018059811534,
+  "peak_mem_alloc_gib": 36.62793016433716,
+  "peak_mem_reserved_gib": 38.16015625,
+  "setup_peak_alloc_gib": 11.502332210540771,
+  "peak_mem_alloc_gib_per_rank": [
+    36.62793016433716
+  ],
+  "final_loss": 0.001545931096188724,
+  "loss_finite": true,
+  "gpu": {
+    "gpu_util_mean_pct": 99.18446601941747,
+    "gpu_util_min_pct": 99.18446601941747,
+    "nvml_mem_peak_gib": 38.93731689453125,
+    "power_mean_w_per_gpu": 286.2988932038835,
+    "temp_max_c": 58,
+    "sm_clock_mean_mhz": 1833.495145631068
+  },
+  "gpu_per_device": {
+    "4": {
+      "n_samples": 103,
+      "util_mean_pct": 99.18446601941747,
+      "util_median_pct": 100,
+      "mem_used_peak_gib": 38.93731689453125,
+      "power_mean_w": 286.2988932038835,
+      "power_max_w": 289.54,
+      "temp_max_c": 58,
+      "sm_clock_mean_mhz": 1833.495145631068
+    }
+  },
+  "env": {
+    "timestamp": "2026-10-13T00:03:29-0400",
+    "hostname": "A6000_NODE",
+    "kernel": "7.0.0-38-generic",
+    "software": {
+      "python": "3.12.3",
+      "torch": "2.11.0",
+      "torchvision": "0.26.0",
+      "transformers": "5.19.0",
+      "deepspeed": "0.19.7",
+      "vllm": "0.26.0",
+      "nvidia-ml-py": "13.615.71",
+      "torch_cuda": "13.0",
+      "nccl": "2.28.9",
+      "cudnn": 91900
+    },
+    "driver": {
+      "driver_version": "580.178.04",
+      "nvml_cuda_driver_version": 13000
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:81:00.0",
+        "mem_total_mib": 49140.0
+      }
+    ],
+    "links": {},
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "4",
+      "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+      "OMP_NUM_THREADS": "8",
+      "NCCL_DEBUG": "WARN",
+      "NCCL_ALGO": null,
+      "NCCL_PROTO": null,
+      "NCCL_P2P_DISABLE": null,
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
+      "HF_HUB_OFFLINE": "1"
+    }
+  }
+}

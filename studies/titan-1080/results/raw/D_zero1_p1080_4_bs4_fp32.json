@@ -1,0 +1,167 @@
+{
+  "config": {
+    "global_batch": 16,
+    "grad_ckpt": false,
+    "group": "p1080_4",
+    "memory_fraction": 0.85,
+    "micro_batch_per_gpu": 4,
+    "mode": "deepspeed",
+    "model": "gpt2-124m",
+    "n_params": 124439808,
+    "precision": "fp32",
+    "seq_len": 512,
+    "steps": 30,
+    "warmup": 5,
+    "world_size": 4,
+    "zero_stage": 1
+  },
+  "error": null,
+  "loss_first_last": [
+    10.964056015014648,
+    10.913975715637207
+  ],
+  "memory": {
+    "peak_alloc_mib_rank0": 4886.9,
+    "peak_reserved_mib_rank0": 5704.0,
+    "per_rank_alloc_reserved_mib": [
+      [
+        4886.9,
+        5704.0
+      ],
+      [
+        4886.9,
+        5796.0
+      ],
+      [
+        4886.9,
+        5684.0
+      ],
+      [
+        4886.9,
+        5684.0
+      ]
+    ]
+  },
+  "meta": {
+    "cuda_device_order": "PCI_BUS_ID",
+    "cuda_visible_devices": "1,3,4,5",
+    "host": "TITAN_NODE",
+    "phys_devices": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "timestamp": "2026-10-13T22:09:20"
+  },
+  "perf": {
+    "step_time_max_s": 0.40023,
+    "step_time_mean_s": 0.3977,
+    "step_time_median_s": 0.39763,
+    "step_time_min_s": 0.39444,
+    "tokens_per_s": 20598.0,
+    "tokens_per_s_per_gpu": 5149.5,
+    "tokens_per_step": 8192,
+    "wall_time_s": 11.9312
+  },
+  "status": "ok",
+  "telemetry": {
+    "duration_s": 11.573620319366455,
+    "energy_per_gpu_j": {
+      "1": 2284.1,
+      "3": 2201.59,
+      "4": 2205.61,
+      "5": 2201.42
+    },
+    "energy_total_j": 8892.72,
+    "mem_max_mib": {
+      "1": 6440.0,
+      "3": 6540.0,
+      "4": 6428.0,
+      "5": 6388.0
+    },
+    "n_samples": 33,
+    "power_max_w": {
+      "1": 292.79,
+      "3": 299.91,
+      "4": 283.73,
+      "5": 287.73
+    },
+    "power_mean_w": {
+      "1": 196.15,
+      "3": 189.55,
+      "4": 190.08,
+      "5": 188.96
+    },
+    "sm_clock_mean_mhz": {
+      "1": 1876.2,
+      "3": 1856.2,
+      "4": 1851.6,
+      "5": 1868.3
+    },
+    "temp_max_c": {
+      "1": 30.0,
+      "3": 36.0,
+      "4": 34.0,
+      "5": 31.0
+    },
+    "util_max_pct": {
+      "1": 99.0,
+      "3": 99.0,
+      "4": 99.0,
+      "5": 99.0
+    },
+    "util_mean_pct": {
+      "1": 96.82,
+      "3": 97.48,
+      "4": 98.3,
+      "5": 98.27
+    }
+  },
+  "torch_env": {
+    "arch_list": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "device_count": 4,
+    "devices": [
+      {
+        "capability": "6.1",
+        "local_index": 0,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 1,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 2,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      },
+      {
+        "capability": "6.1",
+        "local_index": 3,
+        "multi_processor_count": 28,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "total_mem_mib": 11172.2
+      }
+    ],
+    "nccl": "2.20.5",
+    "torch": "2.4.1+cu121"
+  }
+}

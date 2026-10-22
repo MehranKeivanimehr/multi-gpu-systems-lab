@@ -1,0 +1,3579 @@
+{
+ "schema": "titan-1080-run-plan/1",
+ "generated_utc": null,
+ "author_of_repository": "Mehran Keivanimehr",
+ "status": "FROZEN PROPOSAL - NOT AUTHORIZED, NOT RUN",
+ "authorization_global": {
+  "granted": null,
+  "allocation_mechanism": null,
+  "max_concurrent_gpus": null,
+  "wall_clock_budget_s": null,
+  "start_utc": null,
+  "expiry_utc": null,
+  "timezone": null,
+  "stop_conditions": null,
+  "note": "device-selection discretion, maximum concurrency and duration are INDEPENDENT parameters and must each be named explicitly"
+ },
+ "source_candidate": {
+  "archive": "titan-validation-candidate-20261015e.zip",
+  "sha256": "aba08010baf7e0aab83117abcbb2b93de158ad056ef1d6389c78a6df51a4f47d",
+  "benchmark_root": "multigpu-bench/",
+  "baseline": "v2.1 d4326cd1a9a883e93d495f681fd1246ac567c8b9811b1381ff41fbdc05e71d89"
+ },
+ "historical_evidence_not_reused": {
+  "over_limit_cases": [
+   "P18_ddp_1080x4",
+   "P19_fsdp_1080x4",
+   "P20_zero1_1080x4",
+   "P21_zero2_1080x4",
+   "P22_ddp_1080x6",
+   "P23_fsdp_1080x6",
+   "P24_zero2_1080x6"
+  ],
+  "disposition": "retained as historical pilot evidence with their original authorization disclosure intact; NOT reused as campaign data and NOT relabelled"
+ },
+ "configuration_count": 50,
+ "total_planned_runs": 195,
+ "configurations": [
+  {
+   "case_id": "T_p1080_1_single_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "single",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_2_ddp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_2",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 2,
+   "recipe": "ddp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_2_fsdp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_2",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 2,
+   "recipe": "fsdp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_2_zero1_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_2",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 2,
+   "recipe": "zero1",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_2_zero2_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_2",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 2,
+   "recipe": "zero2",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_4_ddp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_4",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 4,
+   "recipe": "ddp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 16,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_4_fsdp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_4",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 4,
+   "recipe": "fsdp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 16,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_4_zero1_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_4",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 4,
+   "recipe": "zero1",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 16,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_4_zero2_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_4",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 4,
+   "recipe": "zero2",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 16,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_6_ddp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_6",
+   "topology_worst_link": "PHB",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4",
+    "GTX_1080Ti#5",
+    "GTX_1080Ti#6"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 6,
+   "recipe": "ddp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 24,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_6_fsdp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_6",
+   "topology_worst_link": "PHB",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4",
+    "GTX_1080Ti#5",
+    "GTX_1080Ti#6"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 6,
+   "recipe": "fsdp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 24,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_6_zero1_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_6",
+   "topology_worst_link": "PHB",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4",
+    "GTX_1080Ti#5",
+    "GTX_1080Ti#6"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 6,
+   "recipe": "zero1",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 24,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_6_zero2_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_6",
+   "topology_worst_link": "PHB",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4",
+    "GTX_1080Ti#5",
+    "GTX_1080Ti#6"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 6,
+   "recipe": "zero2",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; deliberately rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 24,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_1_single_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "single",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_1_single_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "single",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_ddp_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "ddp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_fsdp_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "fsdp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": "FSDP is FP32-only by protocol: fp16 FSDP needs ShardedGradScaler and would change numerics vs DDP/ZeRO",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_zero1_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "zero1",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_zero2_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "zero2",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_ddp_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "ddp",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_zero1_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "zero1",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_rtx_2_zero2_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "zero2",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 8,
+    "scaling": "weak (per-rank work fixed)"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": null,
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "C_rtx_1_resnet50_fp32",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "cnn_forward_only",
+   "dtype": "fp32",
+   "model": "resnet50",
+   "model_revision": "torchvision resnet50(weights=None), random init",
+   "input_policy": "synthetic 3x224x224 batches, fixed seed",
+   "workload": {
+    "batch_size": 32,
+    "task": "forward only",
+    "gflop_per_image": 8.2,
+    "convention": "4.1 GMAC at FMA=2; analytical, not occupancy"
+   },
+   "warmup_steps": 10,
+   "measured_window_s": 60,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 600,
+   "expected_artifacts": [
+    "result.json with raw power samples, query start/stop, window bounds, P-state, clocks, temps",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "energy: readings bracket both workload boundaries per device",
+    "energy: independent reintegration over the exact window",
+    "AMP rows must carry NO FP32-peak percentage"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": "gross sampled board energy only; net energy stays diagnostic",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "C_rtx_1_resnet50_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "cnn_forward_only",
+   "dtype": "amp_fp16",
+   "model": "resnet50",
+   "model_revision": "torchvision resnet50(weights=None), random init",
+   "input_policy": "synthetic 3x224x224 batches, fixed seed",
+   "workload": {
+    "batch_size": 32,
+    "task": "forward only",
+    "gflop_per_image": 8.2,
+    "convention": "4.1 GMAC at FMA=2; analytical, not occupancy"
+   },
+   "warmup_steps": 10,
+   "measured_window_s": 60,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 600,
+   "expected_artifacts": [
+    "result.json with raw power samples, query start/stop, window bounds, P-state, clocks, temps",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "energy: readings bracket both workload boundaries per device",
+    "energy: independent reintegration over the exact window",
+    "AMP rows must carry NO FP32-peak percentage"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": "gross sampled board energy only; net energy stays diagnostic",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "C_p1080_1_resnet50_fp32",
+   "stage": "stage2_performance",
+   "family": "NVIDIA GeForce GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "cnn_forward_only",
+   "dtype": "fp32",
+   "model": "resnet50",
+   "model_revision": "torchvision resnet50(weights=None), random init",
+   "input_policy": "synthetic 3x224x224 batches, fixed seed",
+   "workload": {
+    "batch_size": 32,
+    "task": "forward only",
+    "gflop_per_image": 8.2,
+    "convention": "4.1 GMAC at FMA=2; analytical, not occupancy"
+   },
+   "warmup_steps": 10,
+   "measured_window_s": 60,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 600,
+   "expected_artifacts": [
+    "result.json with raw power samples, query start/stop, window bounds, P-state, clocks, temps",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "energy: readings bracket both workload boundaries per device",
+    "energy: independent reintegration over the exact window",
+    "AMP rows must carry NO FP32-peak percentage"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": "gross sampled board energy only; net energy stays diagnostic",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "C_xp_1_resnet50_fp32",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN Xp",
+   "group": "xp_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    7
+   ],
+   "device_uuids": [
+    "TITAN_Xp#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN Xp"
+   ],
+   "world_size": 1,
+   "recipe": "cnn_forward_only",
+   "dtype": "fp32",
+   "model": "resnet50",
+   "model_revision": "torchvision resnet50(weights=None), random init",
+   "input_policy": "synthetic 3x224x224 batches, fixed seed",
+   "workload": {
+    "batch_size": 32,
+    "task": "forward only",
+    "gflop_per_image": 8.2,
+    "convention": "4.1 GMAC at FMA=2; analytical, not occupancy"
+   },
+   "warmup_steps": 10,
+   "measured_window_s": 60,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 600,
+   "expected_artifacts": [
+    "result.json with raw power samples, query start/stop, window bounds, P-state, clocks, temps",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "energy: readings bracket both workload boundaries per device",
+    "energy: independent reintegration over the exact window",
+    "AMP rows must carry NO FP32-peak percentage"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "notes": "gross sampled board energy only; net energy stays diagnostic",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "H_rtx_1_tinyllama_float16",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "hf_generate",
+   "dtype": "float16",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt IDs, identical across devices",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "batch_sizes": [
+     1,
+     4,
+     16
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact new-token count enforced",
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 1800,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "finite outputs; exact new-token counts",
+    "labels must remain prefill-proxy / decode-proxy, never TTFT"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "H_rtx_1_tinyllama_float32",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "hf_generate",
+   "dtype": "float32",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt IDs, identical across devices",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "batch_sizes": [
+     1,
+     4,
+     16
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact new-token count enforced",
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 1800,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "finite outputs; exact new-token counts",
+    "labels must remain prefill-proxy / decode-proxy, never TTFT"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "H_p1080_1_tinyllama_float16",
+   "stage": "stage2_performance",
+   "family": "NVIDIA GeForce GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "hf_generate",
+   "dtype": "float16",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt IDs, identical across devices",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "batch_sizes": [
+     1,
+     4,
+     16
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact new-token count enforced",
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 1800,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "finite outputs; exact new-token counts",
+    "labels must remain prefill-proxy / decode-proxy, never TTFT"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "H_p1080_1_tinyllama_float32",
+   "stage": "stage2_performance",
+   "family": "NVIDIA GeForce GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "hf_generate",
+   "dtype": "float32",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt IDs, identical across devices",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "batch_sizes": [
+     1,
+     4,
+     16
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact new-token count enforced",
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 1800,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "finite outputs; exact new-token counts",
+    "labels must remain prefill-proxy / decode-proxy, never TTFT"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "H_xp_1_tinyllama_float16",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN Xp",
+   "group": "xp_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    7
+   ],
+   "device_uuids": [
+    "TITAN_Xp#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN Xp"
+   ],
+   "world_size": 1,
+   "recipe": "hf_generate",
+   "dtype": "float16",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt IDs, identical across devices",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "batch_sizes": [
+     1,
+     4,
+     16
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact new-token count enforced",
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 1800,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "finite outputs; exact new-token counts",
+    "labels must remain prefill-proxy / decode-proxy, never TTFT"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "H_xp_1_tinyllama_float32",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN Xp",
+   "group": "xp_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    7
+   ],
+   "device_uuids": [
+    "TITAN_Xp#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN Xp"
+   ],
+   "world_size": 1,
+   "recipe": "hf_generate",
+   "dtype": "float32",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt IDs, identical across devices",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "batch_sizes": [
+     1,
+     4,
+     16
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact new-token count enforced",
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 1800,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "finite outputs; exact new-token counts",
+    "labels must remain prefill-proxy / decode-proxy, never TTFT"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "V_rtx_1_tinyllama_tp1",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "vllm_offline_tp1",
+   "dtype": "float16",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt token IDs; identical across TP settings",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "concurrency": [
+     1,
+     4,
+     16,
+     64
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact output-token count enforced",
+   "memory": {
+    "gpu_memory_utilization": 0.85,
+    "max_model_len": 1024
+   },
+   "per_case_timeout_s": 2400,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "engine metadata: prefix caching, token budget, graph/eager, custom-all-reduce policy, guided-decoding backend"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "BLOCKER: N3 environment proposal approved and applied, OR the decoding-backend recipe explicitly frozen as a protocol parameter",
+    "vLLM requires compute capability >= 7.0: TITAN RTX only"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "V_rtx_2_tinyllama_tp2",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "vllm_offline_tp2",
+   "dtype": "float16",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed synthetic prompt token IDs; identical across TP settings",
+   "workload": {
+    "prompt_len": 256,
+    "max_new_tokens": 128,
+    "concurrency": [
+     1,
+     4,
+     16,
+     64
+    ]
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact output-token count enforced",
+   "memory": {
+    "gpu_memory_utilization": 0.85,
+    "max_model_len": 1024
+   },
+   "per_case_timeout_s": 2400,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "engine metadata: prefix caching, token budget, graph/eager, custom-all-reduce policy, guided-decoding backend"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "BLOCKER: N3 environment proposal approved and applied, OR the decoding-backend recipe explicitly frozen as a protocol parameter",
+    "vLLM requires compute capability >= 7.0: TITAN RTX only"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "N_rtx_2_allreduce",
+   "stage": "stage2_performance",
+   "family": "NVIDIA TITAN RTX",
+   "group": "rtx_2",
+   "topology_worst_link": "PHB, no PCIe P2P",
+   "device_indices": [
+    0,
+    2
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1",
+    "TITAN_RTX#2"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX",
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 2,
+   "recipe": "nccl_allreduce_fixed_payload",
+   "dtype": "fp32",
+   "model": null,
+   "model_revision": null,
+   "input_policy": "fixed payload sizes; 497 MB equals the GPT-2 124M FP32 gradient volume",
+   "workload": {
+    "payload_mb": [
+     4,
+     16,
+     64,
+     256,
+     497
+    ],
+    "iters": 20
+   },
+   "warmup_steps": 5,
+   "measured_steps": 20,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json with algbw/busbw per size",
+    "p2p capability matrix",
+    "stdout.log",
+    "stderr.log"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "topology/P2P remains an OBSERVATION; no causal attribution without profiler evidence plus an intervention control"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "N_p1080_2_allreduce",
+   "stage": "stage2_performance",
+   "family": "NVIDIA GeForce GTX 1080 Ti",
+   "group": "p1080_2",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 2,
+   "recipe": "nccl_allreduce_fixed_payload",
+   "dtype": "fp32",
+   "model": null,
+   "model_revision": null,
+   "input_policy": "fixed payload sizes; 497 MB equals the GPT-2 124M FP32 gradient volume",
+   "workload": {
+    "payload_mb": [
+     4,
+     16,
+     64,
+     256,
+     497
+    ],
+    "iters": 20
+   },
+   "warmup_steps": 5,
+   "measured_steps": 20,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json with algbw/busbw per size",
+    "p2p capability matrix",
+    "stdout.log",
+    "stderr.log"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "topology/P2P remains an OBSERVATION; no causal attribution without profiler evidence plus an intervention control"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "N_p1080_4_allreduce",
+   "stage": "stage2_performance",
+   "family": "NVIDIA GeForce GTX 1080 Ti",
+   "group": "p1080_4",
+   "topology_worst_link": "PIX",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 4,
+   "recipe": "nccl_allreduce_fixed_payload",
+   "dtype": "fp32",
+   "model": null,
+   "model_revision": null,
+   "input_policy": "fixed payload sizes; 497 MB equals the GPT-2 124M FP32 gradient volume",
+   "workload": {
+    "payload_mb": [
+     4,
+     16,
+     64,
+     256,
+     497
+    ],
+    "iters": 20
+   },
+   "warmup_steps": 5,
+   "measured_steps": 20,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json with algbw/busbw per size",
+    "p2p capability matrix",
+    "stdout.log",
+    "stderr.log"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "topology/P2P remains an OBSERVATION; no causal attribution without profiler evidence plus an intervention control"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "N_p1080_6_allreduce",
+   "stage": "stage2_performance",
+   "family": "NVIDIA GeForce GTX 1080 Ti",
+   "group": "p1080_6",
+   "topology_worst_link": "PHB",
+   "device_indices": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1",
+    "GTX_1080Ti#2",
+    "GTX_1080Ti#3",
+    "GTX_1080Ti#4",
+    "GTX_1080Ti#5",
+    "GTX_1080Ti#6"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti",
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 6,
+   "recipe": "nccl_allreduce_fixed_payload",
+   "dtype": "fp32",
+   "model": null,
+   "model_revision": null,
+   "input_policy": "fixed payload sizes; 497 MB equals the GPT-2 124M FP32 gradient volume",
+   "workload": {
+    "payload_mb": [
+     4,
+     16,
+     64,
+     256,
+     497
+    ],
+    "iters": 20
+   },
+   "warmup_steps": 5,
+   "measured_steps": 20,
+   "memory": {
+    "memory_fraction": 0.85
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json with algbw/busbw per size",
+    "p2p capability matrix",
+    "stdout.log",
+    "stderr.log"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity",
+    "topology/P2P remains an OBSERVATION; no causal attribution without profiler evidence plus an intervention control"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "S_rtx_1_stream_latency",
+   "stage": "stage2_performance_conditional",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "vllm_loopback_streaming",
+   "dtype": "float16",
+   "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "input_policy": "fixed prompt IDs; declared arrival policy and concurrency",
+   "workload": {
+    "requests": 100,
+    "concurrency": 4,
+    "prompt_len": 256,
+    "output_len": 64,
+    "note": "100 requests proposed so a median is defensible; NOT sufficient for a tail percentile"
+   },
+   "warmup_steps": 1,
+   "measured_steps": "exact output-token count enforced",
+   "memory": {
+    "gpu_memory_utilization": 0.85,
+    "max_model_len": 1024
+   },
+   "per_case_timeout_s": 2400,
+   "expected_artifacts": [
+    "per-request raw SSE events, dispatch/first-output/completion timestamps, usage counts, failures",
+    "server.log",
+    "client.log"
+   ],
+   "numerical_prerequisites": [
+    "OPEN DECISION: retain client streaming at all?",
+    "BLOCKER: N3 proposal approved, or backend frozen as a protocol parameter",
+    "client-observed first-output only; NO internal GPU TTFT claim; chunk gaps are NOT per-token ITL"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use"
+  },
+  {
+   "case_id": "T_p1080_1_ddp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "ddp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for ddp fp32 on GTX 1080 Ti",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_rtx_1_ddp_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "ddp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for ddp fp32 on TITAN RTX",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_p1080_1_fsdp_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "fsdp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for fsdp fp32 on GTX 1080 Ti",
+   "notes": "SINGLETON FSDP uses no-shard behaviour at world_size 1: the effective implementation is disclosed and no within-wrapper efficiency is invented for it"
+  },
+  {
+   "case_id": "T_rtx_1_fsdp_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "fsdp",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for fsdp fp32 on TITAN RTX",
+   "notes": "SINGLETON FSDP uses no-shard behaviour at world_size 1: the effective implementation is disclosed and no within-wrapper efficiency is invented for it"
+  },
+  {
+   "case_id": "T_p1080_1_zero1_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "zero1",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for zero1 fp32 on GTX 1080 Ti",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_rtx_1_zero1_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "zero1",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for zero1 fp32 on TITAN RTX",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_p1080_1_zero2_fp32",
+   "stage": "stage2_performance",
+   "family": "GTX 1080 Ti",
+   "group": "p1080_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    1
+   ],
+   "device_uuids": [
+    "GTX_1080Ti#1"
+   ],
+   "device_names": [
+    "NVIDIA GeForce GTX 1080 Ti"
+   ],
+   "world_size": 1,
+   "recipe": "zero2",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for zero2 fp32 on GTX 1080 Ti",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_rtx_1_zero2_fp32",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "zero2",
+   "dtype": "fp32",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for zero2 fp32 on TITAN RTX",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_rtx_1_ddp_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "ddp",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for ddp amp_fp16 on TITAN RTX",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_rtx_1_zero1_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "zero1",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for zero1 amp_fp16 on TITAN RTX",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  },
+  {
+   "case_id": "T_rtx_1_zero2_amp_fp16",
+   "stage": "stage2_performance",
+   "family": "TITAN RTX",
+   "group": "rtx_1",
+   "topology_worst_link": "N/A",
+   "device_indices": [
+    0
+   ],
+   "device_uuids": [
+    "TITAN_RTX#1"
+   ],
+   "device_names": [
+    "NVIDIA TITAN RTX"
+   ],
+   "world_size": 1,
+   "recipe": "zero2",
+   "dtype": "amp_fp16",
+   "model": "gpt2-124m",
+   "model_revision": "no hub revision: architecture instantiated from transformers GPT2Config() defaults, random init, 124M params",
+   "input_policy": "synthetic token IDs; shared model seed; rank-distinct data streams (seed+rank)",
+   "workload": {
+    "seq_len": 512,
+    "micro_batch_per_gpu": 4,
+    "global_batch": 4,
+    "scaling": "weak (per-rank work fixed); N=1 baseline"
+   },
+   "warmup_steps": 5,
+   "measured_steps": 30,
+   "memory": {
+    "memory_fraction": 0.85,
+    "grad_checkpointing": false
+   },
+   "per_case_timeout_s": 900,
+   "expected_artifacts": [
+    "result.json",
+    "stdout.log",
+    "stderr.log",
+    "gate_receipt.json",
+    "command.json",
+    "child_identity.json",
+    "attempt.json"
+   ],
+   "numerical_prerequisites": [
+    "Stage1.allocation_and_identity: per-rank local-rank/current-device/UUID match",
+    "Stage1.memory_cap_restoration: current device preserved on every rank; bounded collective succeeds",
+    "Stage1.native_observer: per-attempt finite nonempty gradients, real optimizer calls, parameter+optimizer-state deltas",
+    "Stage1.numerical_comparison: matched post-warmup state, realized per-rank input IDs, predeclared tolerances",
+    "Stage1.deepspeed_paths: engine-specific observability reviewed; live dtype/step-counter evidence; matched numerical reference",
+    "BLOCKER: run_report.certify() currently returns numerics_unobservable_on_engine_path for --numerical-checks on the engine path; this must be resolved by engine-specific instrumentation, NOT bypassed"
+   ],
+   "planned_independent_repeats": 6,
+   "repeats_justification": "6 fresh-process blocks; [min,max] then has 31/32 = 96.875% pointwise median coverage for 6 IID continuous observations",
+   "outcome": "not_run",
+   "authorization": {
+    "allocation_id": null,
+    "approved_device_uuids": null,
+    "max_concurrent_gpus": null,
+    "wall_clock_budget_s": null,
+    "start_utc": null,
+    "expiry_utc": null,
+    "timezone": null,
+    "approved_jobs": null,
+    "stop_conditions": null
+   },
+   "inventory_provenance": "HISTORICAL archived inventory from pilot 20261015a; requires fresh authorized verification before use",
+   "baseline_role": "same-wrapper N=1 baseline for zero2 amp_fp16 on TITAN RTX",
+   "notes": "singleton wrapper baseline; if the mode is unsupported at N=1 no within-wrapper efficiency is invented"
+  }
+ ],
+ "blocks": 6,
+ "total_planned_job_launches": 300,
+ "unit_note": "total_planned_job_launches counts JOB LAUNCHES, not scalar observations. A sweep job contains several arms (e.g. HF batches 1/4/16); ranks within one job and requests within one session are NOT independent repeats.",
+ "superseded_estimate": {
+  "prior": "39 configurations / 195 runs",
+  "status": "SUPERSEDED by this frozen 50/300 matrix"
+ },
+ "frozen_defaults": {
+  "training": {
+   "model": "gpt2-124m",
+   "seq_len": 512,
+   "micro_batch_per_gpu": 4,
+   "accumulation_steps": 1,
+   "warmup_attempts": 5,
+   "measured_attempts": 30,
+   "optimizer": "torch.optim.AdamW lr=1e-4 (betas/eps/weight_decay at torch defaults)",
+   "gradient_clipping": "native paths: none; DeepSpeed config sets gradient_clipping=1.0 (a recorded recipe difference, not claimed equivalent)",
+   "dropout": "GPT2Config defaults (resid/embd/attn 0.1); RNG controlled and replayed for the matched reference",
+   "precisions": "FP32 everywhere; AMP-fp16 retained on TITAN RTX only",
+   "scaling": "global batch = 4N at world size N => WEAK scaling, not fixed-global-batch strong scaling",
+   "speedup_def": "T(N)/T(1)",
+   "efficiency_def": "T(N)/(N*T(1))",
+   "baseline_rule": "each recipe uses its OWN same-wrapper N=1 baseline, measured afresh in the same blocked campaign",
+   "quality_claims": "none; no equal-quality or time-to-quality claim follows"
+  },
+  "cnn": {
+   "batch_size": 32,
+   "input": "3x224x224",
+   "arms": 4,
+   "measured_window_s_min": 60,
+   "work_convention": "~8.2 GFLOP/image at FMA=2",
+   "work_label": "ANALYTICAL work, not occupancy; AMP carries no percentage of FP32 peak",
+   "energy_denominator": "actual complete-work interval, NOT an assumed exactly-60-second denominator"
+  },
+  "inference": {
+   "model_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+   "prompt_len": 256,
+   "output_tokens_exact": 128,
+   "greedy": true,
+   "corpus": "bundle/inputs/prompt_corpus.json",
+   "corpus_sha256": "f2d11005cbce3e5419be77a3c3b05eff7a0b3e56b791e0d3c13327d2ac611350",
+   "prompt_ids_sha256": "ab65f4a304b009015fc7d1a05d0f0ded328a771b77723e03df6114d02e228266",
+   "enable_prefix_caching": false,
+   "enforce_eager": false,
+   "disable_custom_all_reduce": true,
+   "max_model_len": 1024,
+   "gpu_memory_utilization": 0.85,
+   "vllm_launch_shape": "ONE parent per case, local multiprocessing, not Ray",
+   "throughput_def": "total output tokens / matching end-to-end generation interval, NOT reciprocal median latency"
+  },
+  "collectives": {
+   "payloads_mib": [
+    4,
+    16,
+    64,
+    256,
+    497
+   ],
+   "payload_bytes": [
+    4194304,
+    16777216,
+    67108864,
+    268435456,
+    521142272
+   ],
+   "gpt2_124m_fp32_gradient_bytes": 497759232,
+   "note_497": "497 MiB = 521142272 B is ~4.7% LARGER than the 497759232 B gradient volume",
+   "warmups": 5,
+   "measured_iters": 20,
+   "bandwidth_label": "ring-equivalent NORMALISATION, not measured wire traffic; no topology causality"
+  },
+  "streaming": {
+   "server": "one fresh loopback-only server per block",
+   "requests": 100,
+   "concurrency": 4,
+   "prompt_len": 256,
+   "output_tokens": 64,
+   "reporting": "session variation + descriptive request summaries only; no tail percentiles, no internal GPU TTFT, no chunk-gap-as-ITL"
+  },
+  "timing": {
+   "exclude": "initialization and warmup",
+   "sync": "CUDA synchronize at both measurement boundaries",
+   "distributed_throughput": "total completed work over the COMMON job interval; never summed rank rates nor the fastest rank; per-rank timings persisted with their relation to that interval",
+   "counting": "completed tokens/images/updates counted explicitly",
+   "sampling_interval_s": 0.2,
+   "energy_gap_cutoff_s": 0.6,
+   "gap_rule": "3 x the CONFIGURED nominal interval, declared before data; never an observed mean",
+   "diagnostics": "timed observers declared; audit-instrumented throughput labelled; no zero-overhead claim without evidence"
+  },
+  "statistics": {
+   "estimand": "median throughput per measurement arm across 6 sessions",
+   "report": "every point, median, sample CV, range/median",
+   "interval": "[min,max] over 6 IID continuous observations = 31/32 pointwise median coverage",
+   "not": "not simultaneous intervals; not a global significance ranking",
+   "comparisons": "matched-block ratios, same median method",
+   "precision_goal": "endpoints within +/-5% of the median",
+   "extension": "no automatic extra blocks beyond six",
+   "partial": "n<6 receives no six-block confidence claim",
+   "exclusions": "prespecified validity only; a valid slow run is never excluded for being slow"
+  }
+ }
+}

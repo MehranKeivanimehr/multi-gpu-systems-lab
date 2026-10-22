@@ -1,0 +1,17 @@
+# Mechanics only. Change name for a new attempt; never overwrite a prior pilot.
+name: validation_v2_training_pilot
+kind: train
+repeats: 1
+gpu_counts: [1, 2]
+defaults:
+  warmup_steps: 3
+  measure_steps: 5
+  seed: 1234
+  grad_accum: 2
+  numerical_checks: true
+workloads:
+  - model: qwen2.5-0.5b
+    seq_len: 512
+    micro_batch: 1
+    activation_checkpointing: false
+    frameworks: [ddp, fsdp, zero1, zero2]

@@ -1,0 +1,204 @@
+{
+  "a6000": {
+    "calibration": {
+      "all_pass": true,
+      "endpoints": {
+        "G1_cosine": 1.0,
+        "G1_rel_l2": 5.23273276745e-08,
+        "L_k0_rel": 0.0,
+        "L_max_k0_4_rel": 1.94834174491e-08,
+        "U_cosine": 0.999999999949,
+        "U_rel_l2": 1.01312111194e-05
+      },
+      "kind": "fixed_slice_control_C",
+      "limits": {
+        "G1_cosine": [
+          "lower",
+          0.99999
+        ],
+        "G1_rel_l2": [
+          "upper",
+          0.0001
+        ],
+        "L_k0_rel": [
+          "upper",
+          1e-06
+        ],
+        "L_max_k0_4_rel": [
+          "upper",
+          1e-05
+        ],
+        "U_cosine": [
+          "lower",
+          0.999
+        ],
+        "U_rel_l2": [
+          "upper",
+          0.05
+        ]
+      },
+      "payload_bytes": 12607488,
+      "scope": "Five-update FP32 DDP, Qwen2.5-1.5B, one versus two A6000s; fixed slices, not full-model equality.",
+      "slice_elements": 787968,
+      "verdicts": {
+        "G1_cosine": "pass",
+        "G1_rel_l2": "pass",
+        "L_k0_rel": "pass",
+        "L_max_k0_4_rel": "pass",
+        "U_cosine": "pass",
+        "U_rel_l2": "pass"
+      }
+    },
+    "claim_counts": {
+      "deferred": 2,
+      "historical_qualified": 1,
+      "not_established": 3,
+      "supported": 8,
+      "supported_qualified": 10,
+      "withdrawn": 4
+    },
+    "precision": {
+      "native_vs_deepspeed": {
+        "cosine": 1.0,
+        "identity_check_abs": 0.0,
+        "norm_ratio": 1.0,
+        "rel_l2": 0.0
+      },
+      "rows": [
+        {
+          "case": "G1_ddp_autocast",
+          "cosine": 0.999344851741,
+          "label": "FP32 parameters + BF16 autocast",
+          "rel_l2": 0.0361971881109
+        },
+        {
+          "case": "G3_ddp_bf16_params",
+          "cosine": 0.976270400315,
+          "label": "Native BF16 policy",
+          "rel_l2": 0.217543869147
+        },
+        {
+          "case": "G4_ds_bf16",
+          "cosine": 0.976270400315,
+          "label": "DeepSpeed BF16 policy",
+          "rel_l2": 0.217543869147
+        },
+        {
+          "case": "X1_fp32_order_permuted",
+          "cosine": 1.0,
+          "label": "FP32, permuted accumulation",
+          "rel_l2": 5.35217690066e-08
+        }
+      ],
+      "scope": "One accumulation boundary, one A6000, matched TF32-off/math-SDPA policy; no optimizer update."
+    },
+    "serving": [
+      {
+        "aggregate_cap": 512,
+        "arms": {
+          "DP2": {
+            "mean_tok_s": 15736.2046715,
+            "n": 2,
+            "runs": [
+              "qwen2.5-1.5b__vllm_tp1_dp2__g2__r0",
+              "qwen2.5-1.5b__vllm_tp1_dp2__g2__r1"
+            ],
+            "source": "original",
+            "values_tok_s": [
+              15747.9512809,
+              15724.4580622
+            ]
+          },
+          "TP2": {
+            "mean_tok_s": 11810.9050435,
+            "n": 2,
+            "runs": [
+              "qwen2.5-1.5b__vllm_tp2_dp1-conc512__g2__r0",
+              "qwen2.5-1.5b__vllm_tp2_dp1-conc512__g2__r1"
+            ],
+            "source": "rerun",
+            "values_tok_s": [
+              11812.3505621,
+              11809.4595249
+            ]
+          }
+        },
+        "dp2_advantage_pct": 33.2345371808,
+        "gpus": 2,
+        "model": "qwen2.5-1.5b",
+        "scope": "qualified historical throughput; not output/reference validation"
+      },
+      {
+        "aggregate_cap": 512,
+        "arms": {
+          "DP2": {
+            "mean_tok_s": 3565.39975072,
+            "n": 2,
+            "runs": [
+              "llama3.1-8b__vllm_tp1_dp2__g2__r0",
+              "llama3.1-8b__vllm_tp1_dp2__g2__r1"
+            ],
+            "source": "original",
+            "values_tok_s": [
+              3566.25619673,
+              3564.5433047
+            ]
+          },
+          "TP2": {
+            "mean_tok_s": 3100.69554728,
+            "n": 2,
+            "runs": [
+              "llama3.1-8b__vllm_tp2_dp1-conc512__g2__r0",
+              "llama3.1-8b__vllm_tp2_dp1-conc512__g2__r1"
+            ],
+            "source": "rerun",
+            "values_tok_s": [
+              3102.37673086,
+              3099.01436369
+            ]
+          }
+        },
+        "dp2_advantage_pct": 14.9870955195,
+        "gpus": 2,
+        "model": "llama3.1-8b",
+        "scope": "qualified historical throughput; not output/reference validation"
+      }
+    ]
+  },
+  "author": "Mehran Keivanimehr",
+  "provenance": "Derived from retained public evidence; no new GPU execution.",
+  "release_date": "2026-10-22",
+  "schema_version": 1,
+  "titan": {
+    "contexts": 19,
+    "historical_baseline_tokens_s": 6719.8,
+    "historical_weak_scaling": [
+      {
+        "efficiency_pct": 88.23,
+        "gpus": 2,
+        "tokens_s": 11857.9
+      },
+      {
+        "efficiency_pct": 83.73,
+        "gpus": 4,
+        "tokens_s": 22507.2
+      },
+      {
+        "efficiency_pct": 80.83,
+        "gpus": 6,
+        "tokens_s": 32589.0
+      }
+    ],
+    "status_counts": {
+      "completed_with_qualifications": 2,
+      "completed_with_supported_checks": 17
+    },
+    "training_contexts": 16,
+    "training_world_sizes": [
+      1,
+      2,
+      4,
+      6
+    ]
+  }
+}

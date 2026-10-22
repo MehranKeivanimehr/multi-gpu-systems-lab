@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "author": "Mehran Keivanimehr",
+  "date": "2026-10-15",
+  "status": "passed",
+  "artifact_hashes_identical": true,
+  "historical_manifest_sha256": "0ad8cb56203a3a5be5f7fc17e58d0e0455cc3376f3e35f18a28d1645fb0e682a",
+  "raw_measurements_modified": false,
+  "gpu_experiments_performed": false,
+  "rounding_method": "exact rational statistics; CV rounded using binary64 midpoint comparisons",
+  "scope": "only the exact versions/platforms listed below; target Linux 3.10.22 rerun still required",
+  "results": [
+    {
+      "artifact_sha256": {
+        "results/corrections/a6000_kv_capacity.csv": "e8e73dd1cde012f10305a5dc463b3ec07f82b0788b99e3befd4eb15d7046d2c6",
+        "results/corrections/a6000_repeats.csv": "4e30d70280227784d633f968b33255cb59e97f3c8d1f11d375e7fd029e123c06",
+        "results/corrections/proof.json": "0981e48879d3131da5767c0404fae4cdabdd96ccd4c99bf77128d9fd38f156cf",
+        "results/corrections/titan_cnn.csv": "bdbce46f18cca466c00d72122147db5c4c88831814dfc8484327047892e2f44d",
+        "results/corrections/titan_inference.csv": "b5879fd87237b5cea44f39b26842df0009d77a976e82db9189ffb9baf173f853"
+      },
+      "implementation": "CPython",
+      "platform": "Windows-10-10.0.22621-SP0",
+      "python": "3.10.20",
+      "reported_case_cv": "0.047801172563880445",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "tools/validate.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Measurement hashes, Python/JSON syntax, repository structure, and local links passed.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_a6000_window_excludes_setup_and_teardown (test_measurement_controls.MeasurementControlTests) ... ok\ntest_active_titan_output_names_do_not_claim_proxy_ttft (test_measurement_controls.MeasurementControlTests) ... ok\ntest_all_findings_have_evidence_without_false_gpu_closure (test_measurement_controls.MeasurementControlTests) ... ok\ntest_optimizer_observer_counts_actual_calls_not_attempts (test_measurement_controls.MeasurementControlTests) ... ok\ntest_protocols_do_not_merge_qwen_precision_recipes (test_measurement_controls.MeasurementControlTests) ... ok\ntest_status_document_is_current (test_measurement_controls.MeasurementControlTests) ... ok\ntest_titan_missing_gpu_reading_fails_closed (test_measurement_controls.MeasurementControlTests) ... ok\ntest_titan_real_sampler_uses_workload_not_sample_span (test_measurement_controls.MeasurementControlTests) ... ok\ntest_titan_results_cannot_replace_existing_run (test_measurement_controls.MeasurementControlTests) ... ok\ntest_a100_combined_csv_matches_jsonl (test_repository.RepositoryTests) ... ok\ntest_a6000_main_summary_medians (test_repository.RepositoryTests) ... ok\ntest_active_local_links_exist (test_repository.RepositoryTests) ... ok\ntest_author_is_the_named_person (test_repository.RepositoryTests) ... ok\ntest_catalog_covers_all_canonical_artifacts (test_repository.RepositoryTests) ... ok\ntest_clean_notebook_has_no_historical_side_effect_cells (test_repository.RepositoryTests) ... ok\ntest_generated_artifacts_are_current (test_repository.RepositoryTests) ... ok\ntest_manifest_detects_tampering (test_repository.RepositoryTests) ... ok\ntest_manifest_is_intact (test_repository.RepositoryTests) ... ok\ntest_manifest_rejects_path_escape (test_repository.RepositoryTests) ... ok\ntest_titan_communication_units_and_ring_factor (test_repository.RepositoryTests) ... ok\ntest_titan_scaling_uses_matching_single_gpu_baseline (test_repository.RepositoryTests) ... ok\ntest_titan_training_throughput_and_energy_from_raw (test_repository.RepositoryTests) ... ok\ntest_all_recorded_cv_values_have_correct_rounding_bounds (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_amp_has_no_fp32_peak_percentage (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_boundary_sample_does_not_require_extrapolation (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_cluster_reported_one_ulp_regression (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_cnn_fma_convention (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_constant_power_exact_boundaries (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_corrections_are_reproducible (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_decode_excludes_first_token_per_request (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_dispersion_does_not_depend_on_stdlib_stdev (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_dispersion_exposes_range_not_only_cv (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_dispersion_handles_equal_values_and_extreme_scale (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_duplicates_and_invalid_intervals (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_linear_power_analytic_integral (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_missing_reading_is_not_silently_zero (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_rational_sqrt_midpoints_round_ties_to_even (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_rational_sqrt_subnormal_and_invalid_domain (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_resnet_architecture_count (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_uncovered_window_is_not_shortened (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_ignore_empty_output_and_usage_events (test_stream_latency.StreamingTests) ... ok\ntest_missing_or_wrong_token_count_is_not_success (test_stream_latency.StreamingTests) ... ok\ntest_sse_payloads_and_completion_are_retained (test_stream_latency.StreamingTests) ... ok\ntest_token_evidence_can_be_present_before_nonempty_text (test_stream_latency.StreamingTests) ... ok\ntest_truncated_or_error_stream_is_rejected (test_stream_latency.StreamingTests) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 1.011s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "tools/scientific_corrections.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Scientific correction artifacts verified.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/scientific_status.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Scientific status register matches the ledger.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/build_report.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Generated catalog and report are current.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/prepare_notebook.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Clean notebook is current.\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "artifact_sha256": {
+        "results/corrections/a6000_kv_capacity.csv": "e8e73dd1cde012f10305a5dc463b3ec07f82b0788b99e3befd4eb15d7046d2c6",
+        "results/corrections/a6000_repeats.csv": "4e30d70280227784d633f968b33255cb59e97f3c8d1f11d375e7fd029e123c06",
+        "results/corrections/proof.json": "0981e48879d3131da5767c0404fae4cdabdd96ccd4c99bf77128d9fd38f156cf",
+        "results/corrections/titan_cnn.csv": "bdbce46f18cca466c00d72122147db5c4c88831814dfc8484327047892e2f44d",
+        "results/corrections/titan_inference.csv": "b5879fd87237b5cea44f39b26842df0009d77a976e82db9189ffb9baf173f853"
+      },
+      "implementation": "CPython",
+      "platform": "Windows-11-10.0.22621-SP0",
+      "python": "3.12.14",
+      "reported_case_cv": "0.047801172563880445",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "tools/validate.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Measurement hashes, Python/JSON syntax, repository structure, and local links passed.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_a6000_window_excludes_setup_and_teardown (test_measurement_controls.MeasurementControlTests.test_a6000_window_excludes_setup_and_teardown) ... ok\ntest_active_titan_output_names_do_not_claim_proxy_ttft (test_measurement_controls.MeasurementControlTests.test_active_titan_output_names_do_not_claim_proxy_ttft) ... ok\ntest_all_findings_have_evidence_without_false_gpu_closure (test_measurement_controls.MeasurementControlTests.test_all_findings_have_evidence_without_false_gpu_closure) ... ok\ntest_optimizer_observer_counts_actual_calls_not_attempts (test_measurement_controls.MeasurementControlTests.test_optimizer_observer_counts_actual_calls_not_attempts) ... ok\ntest_protocols_do_not_merge_qwen_precision_recipes (test_measurement_controls.MeasurementControlTests.test_protocols_do_not_merge_qwen_precision_recipes) ... ok\ntest_status_document_is_current (test_measurement_controls.MeasurementControlTests.test_status_document_is_current) ... ok\ntest_titan_missing_gpu_reading_fails_closed (test_measurement_controls.MeasurementControlTests.test_titan_missing_gpu_reading_fails_closed) ... ok\ntest_titan_real_sampler_uses_workload_not_sample_span (test_measurement_controls.MeasurementControlTests.test_titan_real_sampler_uses_workload_not_sample_span) ... ok\ntest_titan_results_cannot_replace_existing_run (test_measurement_controls.MeasurementControlTests.test_titan_results_cannot_replace_existing_run) ... ok\ntest_a100_combined_csv_matches_jsonl (test_repository.RepositoryTests.test_a100_combined_csv_matches_jsonl) ... ok\ntest_a6000_main_summary_medians (test_repository.RepositoryTests.test_a6000_main_summary_medians) ... ok\ntest_active_local_links_exist (test_repository.RepositoryTests.test_active_local_links_exist) ... ok\ntest_author_is_the_named_person (test_repository.RepositoryTests.test_author_is_the_named_person) ... ok\ntest_catalog_covers_all_canonical_artifacts (test_repository.RepositoryTests.test_catalog_covers_all_canonical_artifacts) ... ok\ntest_clean_notebook_has_no_historical_side_effect_cells (test_repository.RepositoryTests.test_clean_notebook_has_no_historical_side_effect_cells) ... ok\ntest_generated_artifacts_are_current (test_repository.RepositoryTests.test_generated_artifacts_are_current) ... ok\ntest_manifest_detects_tampering (test_repository.RepositoryTests.test_manifest_detects_tampering) ... ok\ntest_manifest_is_intact (test_repository.RepositoryTests.test_manifest_is_intact) ... ok\ntest_manifest_rejects_path_escape (test_repository.RepositoryTests.test_manifest_rejects_path_escape) ... ok\ntest_titan_communication_units_and_ring_factor (test_repository.RepositoryTests.test_titan_communication_units_and_ring_factor) ... ok\ntest_titan_scaling_uses_matching_single_gpu_baseline (test_repository.RepositoryTests.test_titan_scaling_uses_matching_single_gpu_baseline) ... ok\ntest_titan_training_throughput_and_energy_from_raw (test_repository.RepositoryTests.test_titan_training_throughput_and_energy_from_raw) ... ok\ntest_all_recorded_cv_values_have_correct_rounding_bounds (test_scientific_metrics.ScientificMetricTests.test_all_recorded_cv_values_have_correct_rounding_bounds) ... ok\ntest_amp_has_no_fp32_peak_percentage (test_scientific_metrics.ScientificMetricTests.test_amp_has_no_fp32_peak_percentage) ... ok\ntest_boundary_sample_does_not_require_extrapolation (test_scientific_metrics.ScientificMetricTests.test_boundary_sample_does_not_require_extrapolation) ... ok\ntest_cluster_reported_one_ulp_regression (test_scientific_metrics.ScientificMetricTests.test_cluster_reported_one_ulp_regression) ... ok\ntest_cnn_fma_convention (test_scientific_metrics.ScientificMetricTests.test_cnn_fma_convention) ... ok\ntest_constant_power_exact_boundaries (test_scientific_metrics.ScientificMetricTests.test_constant_power_exact_boundaries) ... ok\ntest_corrections_are_reproducible (test_scientific_metrics.ScientificMetricTests.test_corrections_are_reproducible) ... ok\ntest_decode_excludes_first_token_per_request (test_scientific_metrics.ScientificMetricTests.test_decode_excludes_first_token_per_request) ... ok\ntest_dispersion_does_not_depend_on_stdlib_stdev (test_scientific_metrics.ScientificMetricTests.test_dispersion_does_not_depend_on_stdlib_stdev) ... ok\ntest_dispersion_exposes_range_not_only_cv (test_scientific_metrics.ScientificMetricTests.test_dispersion_exposes_range_not_only_cv) ... ok\ntest_dispersion_handles_equal_values_and_extreme_scale (test_scientific_metrics.ScientificMetricTests.test_dispersion_handles_equal_values_and_extreme_scale) ... ok\ntest_duplicates_and_invalid_intervals (test_scientific_metrics.ScientificMetricTests.test_duplicates_and_invalid_intervals) ... ok\ntest_linear_power_analytic_integral (test_scientific_metrics.ScientificMetricTests.test_linear_power_analytic_integral) ... ok\ntest_missing_reading_is_not_silently_zero (test_scientific_metrics.ScientificMetricTests.test_missing_reading_is_not_silently_zero) ... ok\ntest_rational_sqrt_midpoints_round_ties_to_even (test_scientific_metrics.ScientificMetricTests.test_rational_sqrt_midpoints_round_ties_to_even) ... ok\ntest_rational_sqrt_subnormal_and_invalid_domain (test_scientific_metrics.ScientificMetricTests.test_rational_sqrt_subnormal_and_invalid_domain) ... ok\ntest_resnet_architecture_count (test_scientific_metrics.ScientificMetricTests.test_resnet_architecture_count) ... ok\ntest_uncovered_window_is_not_shortened (test_scientific_metrics.ScientificMetricTests.test_uncovered_window_is_not_shortened) ... ok\ntest_ignore_empty_output_and_usage_events (test_stream_latency.StreamingTests.test_ignore_empty_output_and_usage_events) ... ok\ntest_missing_or_wrong_token_count_is_not_success (test_stream_latency.StreamingTests.test_missing_or_wrong_token_count_is_not_success) ... ok\ntest_sse_payloads_and_completion_are_retained (test_stream_latency.StreamingTests.test_sse_payloads_and_completion_are_retained) ... ok\ntest_token_evidence_can_be_present_before_nonempty_text (test_stream_latency.StreamingTests.test_token_evidence_can_be_present_before_nonempty_text) ... ok\ntest_truncated_or_error_stream_is_rejected (test_stream_latency.StreamingTests.test_truncated_or_error_stream_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 1.199s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "tools/scientific_corrections.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Scientific correction artifacts verified.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/scientific_status.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Scientific status register matches the ledger.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/build_report.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Generated catalog and report are current.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/prepare_notebook.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Clean notebook is current.\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "artifact_sha256": {
+        "results/corrections/a6000_kv_capacity.csv": "e8e73dd1cde012f10305a5dc463b3ec07f82b0788b99e3befd4eb15d7046d2c6",
+        "results/corrections/a6000_repeats.csv": "4e30d70280227784d633f968b33255cb59e97f3c8d1f11d375e7fd029e123c06",
+        "results/corrections/proof.json": "0981e48879d3131da5767c0404fae4cdabdd96ccd4c99bf77128d9fd38f156cf",
+        "results/corrections/titan_cnn.csv": "bdbce46f18cca466c00d72122147db5c4c88831814dfc8484327047892e2f44d",
+        "results/corrections/titan_inference.csv": "b5879fd87237b5cea44f39b26842df0009d77a976e82db9189ffb9baf173f853"
+      },
+      "implementation": "CPython",
+      "platform": "Windows-11-10.0.22621-SP0",
+      "python": "3.13.1",
+      "reported_case_cv": "0.047801172563880445",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "tools/validate.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Measurement hashes, Python/JSON syntax, repository structure, and local links passed.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_a6000_window_excludes_setup_and_teardown (test_measurement_controls.MeasurementControlTests.test_a6000_window_excludes_setup_and_teardown) ... ok\ntest_active_titan_output_names_do_not_claim_proxy_ttft (test_measurement_controls.MeasurementControlTests.test_active_titan_output_names_do_not_claim_proxy_ttft) ... ok\ntest_all_findings_have_evidence_without_false_gpu_closure (test_measurement_controls.MeasurementControlTests.test_all_findings_have_evidence_without_false_gpu_closure) ... ok\ntest_optimizer_observer_counts_actual_calls_not_attempts (test_measurement_controls.MeasurementControlTests.test_optimizer_observer_counts_actual_calls_not_attempts) ... ok\ntest_protocols_do_not_merge_qwen_precision_recipes (test_measurement_controls.MeasurementControlTests.test_protocols_do_not_merge_qwen_precision_recipes) ... ok\ntest_status_document_is_current (test_measurement_controls.MeasurementControlTests.test_status_document_is_current) ... ok\ntest_titan_missing_gpu_reading_fails_closed (test_measurement_controls.MeasurementControlTests.test_titan_missing_gpu_reading_fails_closed) ... ok\ntest_titan_real_sampler_uses_workload_not_sample_span (test_measurement_controls.MeasurementControlTests.test_titan_real_sampler_uses_workload_not_sample_span) ... ok\ntest_titan_results_cannot_replace_existing_run (test_measurement_controls.MeasurementControlTests.test_titan_results_cannot_replace_existing_run) ... ok\ntest_a100_combined_csv_matches_jsonl (test_repository.RepositoryTests.test_a100_combined_csv_matches_jsonl) ... ok\ntest_a6000_main_summary_medians (test_repository.RepositoryTests.test_a6000_main_summary_medians) ... ok\ntest_active_local_links_exist (test_repository.RepositoryTests.test_active_local_links_exist) ... ok\ntest_author_is_the_named_person (test_repository.RepositoryTests.test_author_is_the_named_person) ... ok\ntest_catalog_covers_all_canonical_artifacts (test_repository.RepositoryTests.test_catalog_covers_all_canonical_artifacts) ... ok\ntest_clean_notebook_has_no_historical_side_effect_cells (test_repository.RepositoryTests.test_clean_notebook_has_no_historical_side_effect_cells) ... ok\ntest_generated_artifacts_are_current (test_repository.RepositoryTests.test_generated_artifacts_are_current) ... ok\ntest_manifest_detects_tampering (test_repository.RepositoryTests.test_manifest_detects_tampering) ... ok\ntest_manifest_is_intact (test_repository.RepositoryTests.test_manifest_is_intact) ... ok\ntest_manifest_rejects_path_escape (test_repository.RepositoryTests.test_manifest_rejects_path_escape) ... ok\ntest_titan_communication_units_and_ring_factor (test_repository.RepositoryTests.test_titan_communication_units_and_ring_factor) ... ok\ntest_titan_scaling_uses_matching_single_gpu_baseline (test_repository.RepositoryTests.test_titan_scaling_uses_matching_single_gpu_baseline) ... ok\ntest_titan_training_throughput_and_energy_from_raw (test_repository.RepositoryTests.test_titan_training_throughput_and_energy_from_raw) ... ok\ntest_all_recorded_cv_values_have_correct_rounding_bounds (test_scientific_metrics.ScientificMetricTests.test_all_recorded_cv_values_have_correct_rounding_bounds) ... ok\ntest_amp_has_no_fp32_peak_percentage (test_scientific_metrics.ScientificMetricTests.test_amp_has_no_fp32_peak_percentage) ... ok\ntest_boundary_sample_does_not_require_extrapolation (test_scientific_metrics.ScientificMetricTests.test_boundary_sample_does_not_require_extrapolation) ... ok\ntest_cluster_reported_one_ulp_regression (test_scientific_metrics.ScientificMetricTests.test_cluster_reported_one_ulp_regression) ... ok\ntest_cnn_fma_convention (test_scientific_metrics.ScientificMetricTests.test_cnn_fma_convention) ... ok\ntest_constant_power_exact_boundaries (test_scientific_metrics.ScientificMetricTests.test_constant_power_exact_boundaries) ... ok\ntest_corrections_are_reproducible (test_scientific_metrics.ScientificMetricTests.test_corrections_are_reproducible) ... ok\ntest_decode_excludes_first_token_per_request (test_scientific_metrics.ScientificMetricTests.test_decode_excludes_first_token_per_request) ... ok\ntest_dispersion_does_not_depend_on_stdlib_stdev (test_scientific_metrics.ScientificMetricTests.test_dispersion_does_not_depend_on_stdlib_stdev) ... ok\ntest_dispersion_exposes_range_not_only_cv (test_scientific_metrics.ScientificMetricTests.test_dispersion_exposes_range_not_only_cv) ... ok\ntest_dispersion_handles_equal_values_and_extreme_scale (test_scientific_metrics.ScientificMetricTests.test_dispersion_handles_equal_values_and_extreme_scale) ... ok\ntest_duplicates_and_invalid_intervals (test_scientific_metrics.ScientificMetricTests.test_duplicates_and_invalid_intervals) ... ok\ntest_linear_power_analytic_integral (test_scientific_metrics.ScientificMetricTests.test_linear_power_analytic_integral) ... ok\ntest_missing_reading_is_not_silently_zero (test_scientific_metrics.ScientificMetricTests.test_missing_reading_is_not_silently_zero) ... ok\ntest_rational_sqrt_midpoints_round_ties_to_even (test_scientific_metrics.ScientificMetricTests.test_rational_sqrt_midpoints_round_ties_to_even) ... ok\ntest_rational_sqrt_subnormal_and_invalid_domain (test_scientific_metrics.ScientificMetricTests.test_rational_sqrt_subnormal_and_invalid_domain) ... ok\ntest_resnet_architecture_count (test_scientific_metrics.ScientificMetricTests.test_resnet_architecture_count) ... ok\ntest_uncovered_window_is_not_shortened (test_scientific_metrics.ScientificMetricTests.test_uncovered_window_is_not_shortened) ... ok\ntest_ignore_empty_output_and_usage_events (test_stream_latency.StreamingTests.test_ignore_empty_output_and_usage_events) ... ok\ntest_missing_or_wrong_token_count_is_not_success (test_stream_latency.StreamingTests.test_missing_or_wrong_token_count_is_not_success) ... ok\ntest_sse_payloads_and_completion_are_retained (test_stream_latency.StreamingTests.test_sse_payloads_and_completion_are_retained) ... ok\ntest_token_evidence_can_be_present_before_nonempty_text (test_stream_latency.StreamingTests.test_token_evidence_can_be_present_before_nonempty_text) ... ok\ntest_truncated_or_error_stream_is_rejected (test_stream_latency.StreamingTests.test_truncated_or_error_stream_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 1.037s\n\nOK\n"
+        },
+        {
+          "command": [
+            "python",
+            "tools/scientific_corrections.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Scientific correction artifacts verified.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/scientific_status.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Scientific status register matches the ledger.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/build_report.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Generated catalog and report are current.\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "python",
+            "tools/prepare_notebook.py",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "Clean notebook is current.\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ]
+}

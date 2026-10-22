@@ -1,0 +1,17 @@
+# 4-GPU probe for Llama-3.1-8B: does micro-batch 2 (seq 1024, activation checkpointing) fit FSDP2 / ZeRO-3?
+name: probe_4gpu
+kind: train
+repeats: 1
+gpu_counts: [4]
+defaults:
+  warmup_steps: 2
+  measure_steps: 5
+  seed: 1234
+  grad_accum: 1
+workloads:
+  - model: llama3.1-8b
+    variant: mb2
+    seq_len: 1024
+    micro_batch: 2
+    activation_checkpointing: true
+    frameworks: [fsdp, zero3]

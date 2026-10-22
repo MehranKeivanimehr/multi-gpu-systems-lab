@@ -1,0 +1,50 @@
+# Owner-approved conditional stage S1a: single-GPU numerical diagnostics of the retained Qwen2.5-1.5B recipe against an
+# FP32 higher-precision control. Physical GPU 4 only. Not a performance measurement. Five cases at most; no retry.
+scope: train-diagnostics
+allowed_gpus: [4]
+gpu_uuids:
+  4: GPU-00000000-0000-0000-0000-000000000109
+gpu_pci:
+  4: "00000000:81:00.0"
+numa_node: 1
+threads_per_rank: 8
+limits:                      # aggregate job (supervisor + worker, incl. every helper/compiler child) <= 16 CPU / 48 GiB
+  supervisor_cpu_quota_pct: 100
+  supervisor_memory: 2G
+  supervisor_memory_bytes: 2147483648
+  worker_cpu_quota_pct: 1500
+  worker_memory: 46G
+  worker_memory_bytes: 49392123904
+timing:                      # 120 + 5 x (60 + 300 + 60 + 10) + 120 = 2390 <= 2700
+  window_s: 2700
+  startup_s: 120
+  gate_s: 60
+  child_s: 300
+  grace_s: 60
+  reap_s: 10
+  final_reserve_s: 120
+  telemetry_timeout_s: 5
+max_cases: 5
+reference_budget_bytes: 13500000000    # two full fp32 snapshots of 1,543,714,304 elements (12.35 GB) + indices
+min_free_disk_bytes: 100000000000
+common:                      # retained recipe (configs/experiments/train_scaling.yaml == validation/a6000/training_repeats.yaml)
+  model: qwen2.5-1.5b
+  seq_len: 1024
+  micro_batch: 1
+  grad_accum: 4
+  activation_checkpointing: false
+  seed: 1234
+  # declared diagnostic deviations (not recipe changes): step counts, instrumentation, start and input corpus
+  warmup_steps: 0
+  measure_steps: 3
+  numerical_checks: true
+  canonical_init: true
+  canonical_start: bf16_representable
+  global_inputs: true
+  measurement_role: diagnostic
+cases:                       # frozen order; mem_fraction = smallest justified value from the frozen feasibility file
+  - {id: r0_fp32_control, framework: ddp, fp32_reference: true, reference_role: write, mem_fraction: 0.91}
+  - {id: a1_ddp_bf16_autocast, framework: ddp, reference_role: compare, depends_on: r0_fp32_control, mem_fraction: 0.84}
+  - {id: a2_fsdp2_bf16, framework: fsdp, reference_role: compare, depends_on: r0_fp32_control, mem_fraction: 0.77}
+  - {id: a3_zero1_bf16, framework: zero1, reference_role: compare, depends_on: r0_fp32_control, mem_fraction: 0.90}
+  - {id: a4_zero2_bf16, framework: zero2, reference_role: compare, depends_on: r0_fp32_control, mem_fraction: 0.92}

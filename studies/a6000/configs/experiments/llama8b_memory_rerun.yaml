@@ -1,0 +1,41 @@
+# Re-run 1 (audit follow-up, 2026-10-13): Llama-3.1-8B training on 4 GPUs without allocator pressure.
+# In train_scaling the 8B runs reserved 43.3-43.6 GiB of the 43.6 GiB allowed (per-process cap 0.92), and every
+# ZeRO-3 run logged ~2 "pytorch allocator cache flushes" per step. Two ways to remove the pressure:
+#   cap95: the identical workload (2 x 1024 tokens per GPU, activation checkpointing, fp32 gradient reduction) with
+#          the per-process cap raised 0.92 -> 0.95 (45.0 of 47.4 GiB). Directly comparable with the old numbers.
+#   mb1:   micro-batch 1 at the original 0.92 cap. Guaranteed headroom, but half the tokens per step with the same
+#          communication per step, so its tokens/s is NOT directly comparable with the old mb2 numbers.
+# Allocator retries / OOMs are recorded per run (result.json: allocator_train, allocator_measured).
+name: llama8b_memory_rerun
+kind: train
+repeats: 2
+gpu_counts: [4]
+defaults:
+  seq_len: 1024
+  activation_checkpointing: true
+  warmup_steps: 3
+  measure_steps: 15
+  seed: 1234
+  grad_accum: 1
+workloads:
+  - model: llama3.1-8b
+    variant: cap95
+    micro_batch: 2
+    mem_fraction: 0.95
+    frameworks: [fsdp, zero3]
+  - model: llama3.1-8b
+    variant: mb1
+    micro_batch: 1
+    repeats: 1
+    frameworks: [fsdp, zero3]
+  # Fallback (added after cap95 ZeRO-3 r0 still showed 35 cache flushes / 30 cudaMalloc retries in the timed
+  # window: the allocator filled the 0.95 cap and fragmented there too). Same as cap95 plus PyTorch's
+  # expandable-segments allocator, which maps memory in growable segments instead of fixed blocks (less
+  # fragmentation). Process-level env only; no system change.
+  - model: llama3.1-8b
+    variant: cap95-expseg
+    micro_batch: 2
+    mem_fraction: 0.95
+    repeats: 1
+    env: {PYTORCH_CUDA_ALLOC_CONF: "expandable_segments:True"}
+    frameworks: [fsdp, zero3]

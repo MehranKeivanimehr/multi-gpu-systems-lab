@@ -1,0 +1,13 @@
+# vLLM plumbing check: small workload, every layout type (single engine, TP, DP) on the small model.
+name: vllm_smoke
+kind: vllm
+repeats: 1
+defaults:
+  num_prompts: 64
+  input_len: 128
+  output_len: 64
+  warmup_prompts: 8
+  seed: 1234
+workloads:
+  - model: qwen2.5-1.5b
+    layouts: [{tp: 1, dp: 1}, {tp: 2, dp: 1}, {tp: 1, dp: 2}]

@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "author": "Mehran Keivanimehr",
+  "date": "2026-10-15",
+  "baseline_commit": "0b6385e02d4b8582c9027334f04d4af3ae243615",
+  "gpu_validation_performed": false,
+  "a100_available": false,
+  "meaning": "Corrected code, restricted claims and completed experimental validation are separate states; no zero-error certification.",
+  "findings": [
+    {
+      "id": "A01",
+      "priority": "High",
+      "problem": "MAC/FLOP convention",
+      "local_status": "corrected_offline",
+      "experimental_status": "not_required_for_arithmetic",
+      "change": "30-row corrected compute table; new code uses FMA=2 and no AMP/FP32-peak percentage",
+      "local_evidence": [
+        "results/corrections/titan_cnn.csv",
+        "results/corrections/proof.json",
+        "tests/test_scientific_metrics.py"
+      ],
+      "required_evidence": "None for arithmetic correction; new execution remains subject to the pilot",
+      "node": "Titan/1080"
+    },
+    {
+      "id": "A02",
+      "priority": "High",
+      "problem": "Titan energy boundaries",
+      "local_status": "code_corrected",
+      "experimental_status": "pending",
+      "change": "Monotonic workload markers, bracketing raw queries, query uncertainty and fail-closed integration",
+      "local_evidence": [
+        "studies/titan-1080/bench/common.py",
+        "tools/scientific_metrics.py",
+        "tests/test_scientific_metrics.py"
+      ],
+      "required_evidence": "Long-window node runs; verify complete GPU coverage, sampling gaps, sensor behavior and energy sensitivity",
+      "node": "Titan/1080"
+    },
+    {
+      "id": "A03",
+      "priority": "High",
+      "problem": "A6000 inference telemetry window",
+      "local_status": "code_corrected",
+      "experimental_status": "pending",
+      "change": "Generation-only window selected from worker monotonic timestamps; raw readings retained",
+      "local_evidence": [
+        "studies/a6000/src/mgbench/infer/vllm_bench.py",
+        "studies/a6000/src/mgbench/gpu_monitor.py",
+        "tests/test_measurement_controls.py"
+      ],
+      "required_evidence": "Run TP/DP pilot; independently recompute summaries from saved readings and worker boundaries",
+      "node": "A6000"
+    },
+    {
+      "id": "A04",
+      "priority": "High",
+      "problem": "Physical fit and headroom claims",
+      "local_status": "claim_withdrawn",
+      "experimental_status": "unavailable_a100",
+      "change": "Current A100 interpretation distinguishes allocator and sampled device memory; 16-GiB fit withdrawn",
+      "local_evidence": [
+        "studies/a100/CURRENT_REPORT.md",
+        "studies/a100/train_qwen2.5-1.5b.jsonl"
+      ],
+      "required_evidence": "Direct target-device execution only if the physical-fit claim is restored",
+      "node": "A100/target capacity"
+    },
+    {
+      "id": "A05",
+      "priority": "High",
+      "problem": "TTFT definitions",
+      "local_status": "proxies_relabelled_client_added",
+      "experimental_status": "pending",
+      "change": "Forward and one-token batch estimates not called true TTFT; separate raw-event streaming client added",
+      "local_evidence": [
+        "studies/titan-1080/bench/infer_hf.py",
+        "validation/stream_latency.py",
+        "tests/test_stream_latency.py",
+        "studies/a100/CURRENT_REPORT.md"
+      ],
+      "required_evidence": "Localhost serving runs with per-request raw events, token usage, engine metadata and independent restarts",
+      "node": "A6000; Titan RTX; A100 unavailable"
+    },
+    {
+      "id": "A06",
+      "priority": "Medium",
+      "problem": "Decode numerator",
+      "local_status": "corrected_offline_proxy_only",
+      "experimental_status": "pending_for_actual_decode",
+      "change": "One token per request excluded; corrected quantity remains a separate-forward subtraction proxy",
+      "local_evidence": [
+        "results/corrections/titan_inference.csv",
+        "tools/scientific_metrics.py",
+        "tests/test_scientific_metrics.py"
+      ],
+      "required_evidence": "Actual decode measurements require timestamps from the same generation call",
+      "node": "Titan/1080"
+    },
+    {
+      "id": "A07",
+      "priority": "Medium",
+      "problem": "Batch versus request latency",
+      "local_status": "corrected_offline",
+      "experimental_status": "pending_for_request_distributions",
+      "change": "Future field renamed batch_completion_duration_s; no request percentile inferred from batch makespan",
+      "local_evidence": [
+        "studies/titan-1080/bench/infer_vllm.py",
+        "studies/titan-1080/reports/README.md",
+        "tests/test_measurement_controls.py"
+      ],
+      "required_evidence": "Use streaming experiment for request-level distributions",
+      "node": "Titan RTX"
+    },
+    {
+      "id": "A08",
+      "priority": "High",
+      "problem": "Numerical correctness and successful updates",
+      "local_status": "instrumented_not_gpu_verified",
+      "experimental_status": "pending",
+      "change": "Actual optimizer-call hooks, all-step finite-loss checks, per-rank counters and optional gradient diagnostics",
+      "local_evidence": [
+        "studies/titan-1080/bench/train_llm.py",
+        "studies/a6000/src/mgbench/train/frameworks.py",
+        "studies/a6000/src/mgbench/train/__main__.py",
+        "tests/test_measurement_controls.py"
+      ],
+      "required_evidence": "Verify hooks under real DeepSpeed/AMP; inspect live states and parameter changes; compare short reference updates; A100 pending",
+      "node": "A6000; Titan/1080; A100 unavailable"
+    },
+    {
+      "id": "A09",
+      "priority": "High",
+      "problem": "Unsupported bottleneck explanations",
+      "local_status": "claims_restricted",
+      "experimental_status": "pending_if_restored",
+      "change": "Current interpretations separate observations from bottleneck and host-setting hypotheses",
+      "local_evidence": [
+        "studies/a6000/CURRENT_REPORT.md",
+        "studies/a100/CURRENT_REPORT.md",
+        "docs/METHODOLOGY.md"
+      ],
+      "required_evidence": "Retain hypotheses or acquire profiler traces plus intervention/control evidence; timing alone is insufficient",
+      "node": "A6000; Titan/1080"
+    },
+    {
+      "id": "A10",
+      "priority": "High",
+      "problem": "Framework precision recipes",
+      "local_status": "metadata_corrected",
+      "experimental_status": "pending_live_dtype_validation",
+      "change": "Separate DDP/FSDP2/ZeRO protocol identities and live parameter dtype counters; no framework-only attribution",
+      "local_evidence": [
+        "results/protocols.csv",
+        "studies/a6000/src/mgbench/train/frameworks.py",
+        "tests/test_measurement_controls.py"
+      ],
+      "required_evidence": "Record live parameter/gradient/optimizer/compute dtypes; matched control required for framework-only claims",
+      "node": "A6000"
+    },
+    {
+      "id": "A11",
+      "priority": "Medium",
+      "problem": "BF16 emulation interpretation",
+      "local_status": "semantics_corrected",
+      "experimental_status": "pending_per_device_probe",
+      "change": "Emulation-inclusive and native API flags separated; representative old coverage not described as ten-device coverage",
+      "local_evidence": [
+        "studies/titan-1080/bench/dtype_probe.py",
+        "studies/titan-1080/bench/preflight.py",
+        "studies/titan-1080/reports/README.md"
+      ],
+      "required_evidence": "Run capability/finite-output checks on each allocated GPU; do not infer universal workload speed from GEMM",
+      "node": "Titan/1080"
+    },
+    {
+      "id": "A12",
+      "priority": "Medium",
+      "problem": "Repeatability overstatement",
+      "local_status": "corrected_offline",
+      "experimental_status": "pending_new_repeat_campaign",
+      "change": "Per-group sample CV and full range/median derived from all 28 successful main training groups; version-independent exact-rational statistics replace version-sensitive stdev rounding",
+      "local_evidence": [
+        "results/corrections/a6000_repeats.csv",
+        "results/corrections/proof.json",
+        "tests/test_scientific_metrics.py",
+        "validation/PORTABILITY_FIX.md",
+        "validation/compatibility_proof.json"
+      ],
+      "required_evidence": "Five fresh process sessions per retained headline configuration is the starting design, not a guarantee of precision",
+      "node": "A6000; Titan/1080"
+    },
+    {
+      "id": "A13",
+      "priority": "Medium",
+      "problem": "KV concurrency rating",
+      "local_status": "corrected_offline",
+      "experimental_status": "pending_scheduler_causality",
+      "change": "832-token rating not applied to actual 768-token requests; token-capacity arithmetic traced to worker logs",
+      "local_evidence": [
+        "results/corrections/a6000_kv_capacity.csv",
+        "studies/a6000/CURRENT_REPORT.md"
+      ],
+      "required_evidence": "Scheduler occupancy/paging traces only if a KV-limit explanation is claimed",
+      "node": "A6000"
+    },
+    {
+      "id": "A14",
+      "priority": "Medium",
+      "problem": "Idle-subtracted energy",
+      "local_status": "diagnostic_only",
+      "experimental_status": "pending_if_promoted",
+      "change": "Negative net differences retained; baseline readings and P-states logged; no calibrated net-efficiency claim",
+      "local_evidence": [
+        "studies/titan-1080/bench/common.py",
+        "studies/titan-1080/bench/bench_cnn.py",
+        "studies/titan-1080/reports/README.md"
+      ],
+      "required_evidence": "Controlled before/after baselines, thermal/clock/P-state records and uncertainty; otherwise keep diagnostic",
+      "node": "Titan/1080"
+    },
+    {
+      "id": "A15",
+      "priority": "Medium",
+      "problem": "Independent uncertainty and broad rankings",
+      "local_status": "claims_restricted",
+      "experimental_status": "pending",
+      "change": "Single-run point observations retained; new repetition protocol separates fresh sessions from within-run iterations",
+      "local_evidence": [
+        "validation/ACCEPTANCE.md",
+        "studies/a100/CURRENT_REPORT.md"
+      ],
+      "required_evidence": "Independent repeated sessions, balanced order, raw point plots and predefined precision/extension rules",
+      "node": "A6000; Titan/1080; A100 unavailable"
+    },
+    {
+      "id": "A16",
+      "priority": "Medium",
+      "problem": "Initial-state and input controls",
+      "local_status": "partly_corrected",
+      "experimental_status": "pending",
+      "change": "Titan full-model hash agreement across ranks, fixed model seed, pinned HF revision and CPU-seeded prompts; A6000 meta-path equivalence explicitly unverified",
+      "local_evidence": [
+        "studies/titan-1080/bench/train_llm.py",
+        "studies/titan-1080/bench/infer_hf.py",
+        "studies/a6000/src/mgbench/train/frameworks.py",
+        "validation/ACCEPTANCE.md"
+      ],
+      "required_evidence": "Cross-framework full-state/input checks and short numerical reference runs; resolve A6000 meta initialization before claiming matched controls",
+      "node": "A6000; Titan/1080"
+    },
+    {
+      "id": "A17",
+      "priority": "Medium",
+      "problem": "Untested extrapolations",
+      "local_status": "claims_withdrawn",
+      "experimental_status": "pending_if_restored",
+      "change": "Untested batch fits, universal model ceilings and free precision recommendations removed from current interpretation",
+      "local_evidence": [
+        "studies/a100/CURRENT_REPORT.md",
+        "docs/LIMITATIONS.md"
+      ],
+      "required_evidence": "Direct target configuration and numerical-quality evidence before restoring any prediction as a finding",
+      "node": "A100/target hardware"
+    },
+    {
+      "id": "A18",
+      "priority": "Medium",
+      "problem": "Analytical MFU and memory windows",
+      "local_status": "definitions_restricted",
+      "experimental_status": "pending_instrumentation_validation",
+      "change": "Analytical work distinguished from hardware counters; timed/whole-run device peaks separated; raw telemetry retained",
+      "local_evidence": [
+        "docs/METHODOLOGY.md",
+        "studies/a6000/src/mgbench/gpu_monitor.py",
+        "studies/titan-1080/bench/common.py"
+      ],
+      "required_evidence": "Verify raw trace windows on target hosts; profiling/quality evidence only for corresponding stronger claims",
+      "node": "A6000; Titan/1080; A100 unavailable"
+    }
+  ]
+}

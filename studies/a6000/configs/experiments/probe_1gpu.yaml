@@ -1,0 +1,45 @@
+# Single-GPU probes used to choose the micro-batch and precision recipe for train_scaling.yaml
+# (largest per-GPU batch that fits every framework under the 44 GiB cap). Kept for reproducibility.
+name: probe_1gpu
+kind: train
+repeats: 1
+gpu_counts: [1]
+defaults:
+  warmup_steps: 5
+  measure_steps: 20
+  seed: 1234
+  grad_accum: 1
+workloads:
+  - model: resnet50
+    variant: mb128
+    micro_batch: 128
+    warmup_steps: 10
+    measure_steps: 100
+    frameworks: [ddp, fsdp, zero1]
+  - model: resnet50
+    variant: mb128-autocast
+    micro_batch: 128
+    warmup_steps: 10
+    measure_steps: 100
+    ds_precision: autocast
+    frameworks: [zero1]
+  - model: qwen2.5-1.5b
+    variant: mb4
+    seq_len: 1024
+    micro_batch: 4
+    activation_checkpointing: false
+    frameworks: [ddp, fsdp, zero1, zero2]
+  - model: qwen2.5-1.5b
+    variant: mb2-ga2
+    seq_len: 1024
+    micro_batch: 2
+    grad_accum: 2
+    activation_checkpointing: false
+    frameworks: [ddp]
+  - model: qwen2.5-1.5b
+    variant: mb1-ga4
+    seq_len: 1024
+    micro_batch: 1
+    grad_accum: 4
+    activation_checkpointing: false
+    frameworks: [ddp, fsdp, zero1]

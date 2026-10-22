@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "author": "Mehran Keivanimehr",
+  "status": "completed",
+  "created_utc": "2026-10-15T05:54:46.477580+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.22621-SP0",
+  "baseline_commit": "0b6385e02d4b8582c9027334f04d4af3ae243615",
+  "git_diff_check_available": true,
+  "command_recording": "interpreter represented portably as python; exact version recorded above",
+  "working_tree_has_corrections": true,
+  "gpu_experiments_performed": false,
+  "cuda_and_framework_integration_tested": false,
+  "yaml_templates_executed": false,
+  "scientific_certification": false,
+  "checks": [
+    {
+      "name": "measurement_integrity_syntax_structure_links",
+      "command": [
+        "python",
+        "tools/validate.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Measurement hashes, Python/JSON syntax, repository structure, and local links passed.\n",
+      "stderr": ""
+    },
+    {
+      "name": "offline_regressions",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_a6000_window_excludes_setup_and_teardown (test_measurement_controls.MeasurementControlTests.test_a6000_window_excludes_setup_and_teardown) ... ok\ntest_active_titan_output_names_do_not_claim_proxy_ttft (test_measurement_controls.MeasurementControlTests.test_active_titan_output_names_do_not_claim_proxy_ttft) ... ok\ntest_all_findings_have_evidence_without_false_gpu_closure (test_measurement_controls.MeasurementControlTests.test_all_findings_have_evidence_without_false_gpu_closure) ... ok\ntest_optimizer_observer_counts_actual_calls_not_attempts (test_measurement_controls.MeasurementControlTests.test_optimizer_observer_counts_actual_calls_not_attempts) ... ok\ntest_protocols_do_not_merge_qwen_precision_recipes (test_measurement_controls.MeasurementControlTests.test_protocols_do_not_merge_qwen_precision_recipes) ... ok\ntest_status_document_is_current (test_measurement_controls.MeasurementControlTests.test_status_document_is_current) ... ok\ntest_titan_missing_gpu_reading_fails_closed (test_measurement_controls.MeasurementControlTests.test_titan_missing_gpu_reading_fails_closed) ... ok\ntest_titan_real_sampler_uses_workload_not_sample_span (test_measurement_controls.MeasurementControlTests.test_titan_real_sampler_uses_workload_not_sample_span) ... ok\ntest_titan_results_cannot_replace_existing_run (test_measurement_controls.MeasurementControlTests.test_titan_results_cannot_replace_existing_run) ... ok\ntest_a100_combined_csv_matches_jsonl (test_repository.RepositoryTests.test_a100_combined_csv_matches_jsonl) ... ok\ntest_a6000_main_summary_medians (test_repository.RepositoryTests.test_a6000_main_summary_medians) ... ok\ntest_active_local_links_exist (test_repository.RepositoryTests.test_active_local_links_exist) ... ok\ntest_author_is_the_named_person (test_repository.RepositoryTests.test_author_is_the_named_person) ... ok\ntest_catalog_covers_all_canonical_artifacts (test_repository.RepositoryTests.test_catalog_covers_all_canonical_artifacts) ... ok\ntest_clean_notebook_has_no_historical_side_effect_cells (test_repository.RepositoryTests.test_clean_notebook_has_no_historical_side_effect_cells) ... ok\ntest_generated_artifacts_are_current (test_repository.RepositoryTests.test_generated_artifacts_are_current) ... ok\ntest_manifest_detects_tampering (test_repository.RepositoryTests.test_manifest_detects_tampering) ... ok\ntest_manifest_is_intact (test_repository.RepositoryTests.test_manifest_is_intact) ... ok\ntest_manifest_rejects_path_escape (test_repository.RepositoryTests.test_manifest_rejects_path_escape) ... ok\ntest_titan_communication_units_and_ring_factor (test_repository.RepositoryTests.test_titan_communication_units_and_ring_factor) ... ok\ntest_titan_scaling_uses_matching_single_gpu_baseline (test_repository.RepositoryTests.test_titan_scaling_uses_matching_single_gpu_baseline) ... ok\ntest_titan_training_throughput_and_energy_from_raw (test_repository.RepositoryTests.test_titan_training_throughput_and_energy_from_raw) ... ok\ntest_all_recorded_cv_values_have_correct_rounding_bounds (test_scientific_metrics.ScientificMetricTests.test_all_recorded_cv_values_have_correct_rounding_bounds) ... ok\ntest_amp_has_no_fp32_peak_percentage (test_scientific_metrics.ScientificMetricTests.test_amp_has_no_fp32_peak_percentage) ... ok\ntest_boundary_sample_does_not_require_extrapolation (test_scientific_metrics.ScientificMetricTests.test_boundary_sample_does_not_require_extrapolation) ... ok\ntest_cluster_reported_one_ulp_regression (test_scientific_metrics.ScientificMetricTests.test_cluster_reported_one_ulp_regression) ... ok\ntest_cnn_fma_convention (test_scientific_metrics.ScientificMetricTests.test_cnn_fma_convention) ... ok\ntest_constant_power_exact_boundaries (test_scientific_metrics.ScientificMetricTests.test_constant_power_exact_boundaries) ... ok\ntest_corrections_are_reproducible (test_scientific_metrics.ScientificMetricTests.test_corrections_are_reproducible) ... ok\ntest_decode_excludes_first_token_per_request (test_scientific_metrics.ScientificMetricTests.test_decode_excludes_first_token_per_request) ... ok\ntest_dispersion_does_not_depend_on_stdlib_stdev (test_scientific_metrics.ScientificMetricTests.test_dispersion_does_not_depend_on_stdlib_stdev) ... ok\ntest_dispersion_exposes_range_not_only_cv (test_scientific_metrics.ScientificMetricTests.test_dispersion_exposes_range_not_only_cv) ... ok\ntest_dispersion_handles_equal_values_and_extreme_scale (test_scientific_metrics.ScientificMetricTests.test_dispersion_handles_equal_values_and_extreme_scale) ... ok\ntest_duplicates_and_invalid_intervals (test_scientific_metrics.ScientificMetricTests.test_duplicates_and_invalid_intervals) ... ok\ntest_linear_power_analytic_integral (test_scientific_metrics.ScientificMetricTests.test_linear_power_analytic_integral) ... ok\ntest_missing_reading_is_not_silently_zero (test_scientific_metrics.ScientificMetricTests.test_missing_reading_is_not_silently_zero) ... ok\ntest_rational_sqrt_midpoints_round_ties_to_even (test_scientific_metrics.ScientificMetricTests.test_rational_sqrt_midpoints_round_ties_to_even) ... ok\ntest_rational_sqrt_subnormal_and_invalid_domain (test_scientific_metrics.ScientificMetricTests.test_rational_sqrt_subnormal_and_invalid_domain) ... ok\ntest_resnet_architecture_count (test_scientific_metrics.ScientificMetricTests.test_resnet_architecture_count) ... ok\ntest_uncovered_window_is_not_shortened (test_scientific_metrics.ScientificMetricTests.test_uncovered_window_is_not_shortened) ... ok\ntest_ignore_empty_output_and_usage_events (test_stream_latency.StreamingTests.test_ignore_empty_output_and_usage_events) ... ok\ntest_missing_or_wrong_token_count_is_not_success (test_stream_latency.StreamingTests.test_missing_or_wrong_token_count_is_not_success) ... ok\ntest_sse_payloads_and_completion_are_retained (test_stream_latency.StreamingTests.test_sse_payloads_and_completion_are_retained) ... ok\ntest_token_evidence_can_be_present_before_nonempty_text (test_stream_latency.StreamingTests.test_token_evidence_can_be_present_before_nonempty_text) ... ok\ntest_truncated_or_error_stream_is_rejected (test_stream_latency.StreamingTests.test_truncated_or_error_stream_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 1.197s\n\nOK\n"
+    },
+    {
+      "name": "correction_artifacts",
+      "command": [
+        "python",
+        "tools/scientific_corrections.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Scientific correction artifacts verified.\n",
+      "stderr": ""
+    },
+    {
+      "name": "status_register",
+      "command": [
+        "python",
+        "tools/scientific_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Scientific status register matches the ledger.\n",
+      "stderr": ""
+    },
+    {
+      "name": "combined_report",
+      "command": [
+        "python",
+        "tools/build_report.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Generated catalog and report are current.\n",
+      "stderr": ""
+    },
+    {
+      "name": "historical_notebook_builder",
+      "command": [
+        "python",
+        "tools/prepare_notebook.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Clean notebook is current.\n",
+      "stderr": ""
+    },
+    {
+      "name": "whitespace_diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/a6000/scripts/cleanup.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/a6000/scripts/run_all.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/00_preflight.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/01_dtype_probe.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/10_single_gpu.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/20_cnn_a6000_compare.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/30_ddp.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/31_comm_bw.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/40_deepspeed.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/50_fsdp.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/60_infer_hf.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/70_infer_vllm.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell_syntax:studies/titan-1080/scripts/_common.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "shell_scripts_checked": 13,
+  "source_sha256": {
+    ".github/ISSUE_TEMPLATE/bug_report.yml": "614d0a235427eafafec84aeba8224796246dadba21c005b05e004fd568e19541",
+    ".github/ISSUE_TEMPLATE/measurement.yml": "d426f995ac71e6967d10b779d224c2d594c8732a3c6e5f407722f572a11b5165",
+    ".github/pull_request_template.md": "25c71e38010c55aa6752faee1ca851f5b844132e752cb952320464e2c6802302",
+    ".github/workflows/validate.yml": "d93aee9c3c34747e6f98edce2e608e4f95c12b0ecb9642b999b8db8fc87a1ef3",
+    "audit/README.md": "dd11895d53b9fc703af9252575b7a957b4b128ef4d17e75411369cdad5cd6caa",
+    "CHANGELOG.md": "b3a4b84accf8b5c5c3e002954604450ec0582f248ac384383b5f6dbb8bcbd457",
+    "CONTRIBUTING.md": "94c5e17c7b09c9ec95fcd59ee6bf03652bc750c8660414054b3ccb0fd3815108",
+    "docs/DATA.md": "9294d0ffc9db4a49074d967e621f903b98bdde3c9bd49deb11601c1b45d52506",
+    "docs/LICENSING.md": "01bdca6026289dbfa2a555318880a260f84a9fa5af1906a04c54dd3128d5d2b5",
+    "docs/LIMITATIONS.md": "db3981b08b6dbe6958d16f8e8f5f2403d4a7ef389c93c1ece153b4422649c5f0",
+    "docs/METHODOLOGY.md": "2f41a0368b78d2e49728aea416b45fb9e7d4d0cb20f737748f819a1c5f806b25",
+    "docs/REPRODUCING.md": "0d4a03fdef4cc0a35e1d8eb4ffcba11f0d76fb21980071e8e2de2276146bb769",
+    "docs/SCIENTIFIC_STATUS.md": "4813258cb7091499273663cc84bffae4683412d9dbb1d1dff396e6c4c0004fca",
+    "docs/VALIDATION.md": "e6b2baf96970fb71de42b84479ee5b8ae94eb126c32470b78c3995ef7c66f972",
+    "provenance/a100-original.ipynb": "6438af17f7e77bb608b5d690dfeddc5d3cb8385d23c5c285c939a14f1146babc",
+    "provenance/README.md": "f21fe70cfbdb64ec97e38d3ed48fea6e2829546bc650b8d77e44a846693d5509",
+    "provenance/titan-README.original.md": "f755d25a39514cb6623b053ca45ffc74717793c789943ac24d2cf1b2441e8378",
+    "provenance/titan-reports-README.original.md": "ff861157ecf8aadeb550858455152c34bb70731b77c739d0ee397b0e550c3138",
+    "provenance/titan-reports-SUMMARY.original.md": "4268e69231d6632ab891b3ac6e2eb3879cd44a0f4372621d831f152aaa523371",
+    "README.md": "718d6d637c083c5dbaf2f241a3a399650a7b6ffda4f5a85c90bde0588db699d7",
+    "reports/REPORT.md": "79fce9224ab8a5633fbfa4ba2cbd8400ba184a8aced6f25a6f9603c71dcbd4d5",
+    "SECURITY.md": "db7b44ce1d0cf668e589b6bd457a34c4113a6e74a7daac625d44f52e2be669f0",
+    "studies/a100/CURRENT_REPORT.md": "eb1c370d48af80d2fe882cce0567ffdedb1963064f3c2179e384d5f3bfff98da",
+    "studies/a100/README.md": "bb708aebe475e40735e8784fd9f53c4b5db90514caa8d6440cb12e04ae9975bb",
+    "studies/a100/REPORT.md": "4c82df4728d931bf57992dd6cb22b680bc786be6014a8556e4ec29270f93e47c",
+    "studies/a100/reproduce.ipynb": "7d266f652695923c7025bbe20e02bb8d98b02e1cee5aaf43519d66b61be1d35a",
+    "studies/a100/summary.md": "150725c65e80108a2eedb48b0203f015cfc9b349c9c90146f78944d0c8c56ef4",
+    "studies/a100/vllm_bench.py": "9ae849114f12c97737d500f601908d9a21a476d2b0027b742b765a1167ab7313",
+    "studies/a6000/configs/cluster.yaml": "393d681f7b54fd8ace5084a99c6a1027fdd15712b73ebc948a4642a06203b310",
+    "studies/a6000/configs/experiments/llama8b_memory_rerun.yaml": "b2d733d11d4c99b5f0bff19a66c888857719eefef0565f4e2037b1bd1281a63d",
+    "studies/a6000/configs/experiments/nccl.yaml": "0b61db4e101b42896d0fd6d0fabe31a5c11d149bf63cbe252ed5b11b237fb810",
+    "studies/a6000/configs/experiments/nccl_diag.yaml": "ea7bfcab0ca94b97c76cd4e14bcbfc899d54cdbbe71ed3a07c6f32b888b99887",
+    "studies/a6000/configs/experiments/probe_1gpu.yaml": "52cc4f39d5b495823a462956576cf4bb0e475f0a772f9005db80b4a7e9b0d712",
+    "studies/a6000/configs/experiments/probe_4gpu.yaml": "3a081698a4ae5fb86981d08760ad11a4594711628d3522a05f5409ec4fa45b7b",
+    "studies/a6000/configs/experiments/smoke.yaml": "26e0e71e0389f1a46c78756269c5d3d8ecfc381cc74fa0c48d3d1a11c62cd61e",
+    "studies/a6000/configs/experiments/train_scaling.yaml": "f6ae315b1a1396463cf835c7e26325c4a268b123c171dccdc96882b415083b36",
+    "studies/a6000/configs/experiments/vllm_scaling.yaml": "b895e28626228cd410125c1e5ca0835b4e5b160c05e0975e15408ba085c2dbcd",
+    "studies/a6000/configs/experiments/vllm_smoke.yaml": "619e55b531a1e645b1c0f7ace5bd92c326c7b779fb09647104aa3691d27e7167",
+    "studies/a6000/configs/experiments/vllm_tp4_diag.yaml": "e70ca241ef505474308c0271ce672426cf6f17df6f8f9aa334ee831470c58453",
+    "studies/a6000/configs/experiments/vllm_tp_concurrency_rerun.yaml": "4cfe748f6181a1b2bc51996f9ea3ad2ed7490b9b89290d634aea3e2881eb4e4e",
+    "studies/a6000/configs/frameworks/ddp.yaml": "9106dbe6a5d794618bd8901f0f04e6780ccbb4cee55c6d9fa29ec80b13db724d",
+    "studies/a6000/configs/frameworks/fsdp.yaml": "47c0a49c1066e0c97730dc4f244ab3b993cd6b175806424517da9006370f80db",
+    "studies/a6000/configs/frameworks/vllm.yaml": "c4b86830930207f6b2d9bcbd5284add999aa4867a06e0c08a94b72519f2b30be",
+    "studies/a6000/configs/models.yaml": "83092beb0a4fdd5465494dc041c4bc72fc038f1c1c87d91b60d6e130d2b903c3",
+    "studies/a6000/CURRENT_REPORT.md": "7be89505952ecc0291f5e35df4920c8d3bc1a7504cfe97740bad102c573dafc5",
+    "studies/a6000/README.md": "76d0f807104bb4d4bac1bf93438b641ef138735fde1f0dcac307c80d6cd86666",
+    "studies/a6000/reports/REPORT.md": "ead29706892af649e413ec30ea4baa842ef30d6fe0c778c2d8873a8c7e6570bc",
+    "studies/a6000/results/rerun/RERUN_ANALYSIS.md": "4d5e45e99e92e37b5f440f3553c4dee71c89cb49ac9fc50577b397d8b1f3a10a",
+    "studies/a6000/results/rerun/tables.md": "9c25759a0506b6e35397ba75c71070ee90157f91f573dd387843a7da5f1ead70",
+    "studies/a6000/scripts/aggregate.py": "a4b4c2ff25d2b025642bc599f66388d1c24ee797d1bf8d4b6be148f3b251269e",
+    "studies/a6000/scripts/cleanup.sh": "582e7405b9457fb9aab726c25ebd7f918f01ecb591e4b27584f83405bca4e07e",
+    "studies/a6000/scripts/compare_reruns.py": "a2cfc224b1d1709a2a91c0570f020ab1b335a2ccdca77abbf5ccdc5cd1077fc3",
+    "studies/a6000/scripts/make_report.py": "45384a0a2ca0e501265ec8f747c6ab209a879384e29d09e6ffd9327bdbbcb062",
+    "studies/a6000/scripts/run_all.sh": "26d1e8fdbec1c51bf76dee09d3fc2cf734004ad780fb2041099ad48af68ce583",
+    "studies/a6000/scripts/run_matrix.py": "c84cb06e19b61dcfa171a6a51b1d653ccb37851e2062bb8e0c2d5892f47063ba",
+    "studies/a6000/src/mgbench/__init__.py": "a944c6f275b1d48f0adf6bd907e334e16704266c9df796fe0b533580d8c4b183",
+    "studies/a6000/src/mgbench/comm/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "studies/a6000/src/mgbench/comm/__main__.py": "4697caaaa0c9a87c4dbd5717071f6b670e58f24fc52508e313243c3932703a20",
+    "studies/a6000/src/mgbench/config.py": "3e8c3afd36c3d4672a3e92a8ec5ad0a6f788bd63bee0015bab330b74efe20a69",
+    "studies/a6000/src/mgbench/data.py": "ae0b2c0447bcd38c40d80dc8dc127498f81b624fd3208a729594ed02c0c3322b",
+    "studies/a6000/src/mgbench/gpu_monitor.py": "ce7ab1514102632ffdd43c49510ee669e475e25389d035b503c840c345bb5bfa",
+    "studies/a6000/src/mgbench/infer/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "studies/a6000/src/mgbench/infer/vllm_bench.py": "7c5732c08be0ffa52d543ab0b289934d9923ba0a90bc7ca8bbbd1ca5124f395f",
+    "studies/a6000/src/mgbench/metrics.py": "8e945e0745d0250bb68afafb4ebb4fa2a3c40ac6389984c8a090fc453efcce04",
+    "studies/a6000/src/mgbench/models.py": "c5cd7313bd458d2795c30515a704a6dd656c7028641a9cb877c57da352a57b48",
+    "studies/a6000/src/mgbench/results.py": "275a7c3c7af6f3850128619148baf1424d25365a99e1d2e2ae9c1007ed784704",
+    "studies/a6000/src/mgbench/safety.py": "adcf08c79930fba5afd2a18c07985d9723fa5ef0fc284711042577963a1bef89",
+    "studies/a6000/src/mgbench/train/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "studies/a6000/src/mgbench/train/__main__.py": "aa2b2c7dc97dc1b50b34fa2c9c38a357481823075bbeab5b73730517f4d06517",
+    "studies/a6000/src/mgbench/train/frameworks.py": "b73e81f720650d0f70ed8f9a76c6b3dde2db576cad1fe3859fb34855c2e3f62f",
+    "studies/a6000/tests/test_core.py": "9e91ca5aa7a31a5e5304036fa530db5e31ca37285d174a9633b82aff2c866045",
+    "studies/titan-1080/bench/aggregate.py": "ff44cdf99fea1aac6110d13503d15388b4d8a40fd6634df27e1618e747f3b3dc",
+    "studies/titan-1080/bench/bench_cnn.py": "5fe762908bf0daafbd2b8d6dc22603ca6eba8aa58eb92306776af46e04faec2f",
+    "studies/titan-1080/bench/comm_bench.py": "9a9eea51e066058d4e4c7effc8eb48e71e5967e9c2177dbbd76da9b3d60b5272",
+    "studies/titan-1080/bench/common.py": "9b70bcb8d131be06f93ab79755d11ddda06093b0fdb07f1b18233c361d61d7c0",
+    "studies/titan-1080/bench/dtype_probe.py": "86c074af399033eef1fbb06d1f7a372342afc55e4a6bd489cdd5e21a3b8cf6c1",
+    "studies/titan-1080/bench/infer_hf.py": "d29bce01118fdb5eabd1a65fb232fa22344701385eb9a7700e034a767aadebc1",
+    "studies/titan-1080/bench/infer_vllm.py": "16d1b1343bb23a508bbff4cdf9a2433a111029451bc5756ae1138d282b6f3653",
+    "studies/titan-1080/bench/make_report.py": "14508ae994206255a204a6db8c564c4be174a47d8b03e4b380735500fd8d706b",
+    "studies/titan-1080/bench/preflight.py": "e158ad7b3a6be7e53c12b662c3bdf1fd0aa4658eaf98447a7dc6d16047d4b914",
+    "studies/titan-1080/bench/topology.py": "54ae25cdd678001befc3b1d8f8c61ac1a72a80864017e09eeef2a9be2a527ced",
+    "studies/titan-1080/bench/train_llm.py": "e7f8b192010f0c97d72857da3d3c6d061d458dfadf9a868849c82b8b1e42ea53",
+    "studies/titan-1080/environment.yml": "2964f2b72ea4692c8fcc844ccda79e01cd84c39aaff08c55c30a01f2ac414b86",
+    "studies/titan-1080/README.md": "5cbf9b1522ddbe2440b30dcebc65c5e36854793c0104a0a255a80515058b8914",
+    "studies/titan-1080/reports/README.md": "0f51ca6492f982c70e9afe3852e0d73c61cc13af8a24371418f99378dde2b73e",
+    "studies/titan-1080/reports/SUMMARY.md": "fa05e2fc7c1afcad8218ca005e87b78a6a04c29405c350a09b948035fc60b140",
+    "studies/titan-1080/scripts/00_preflight.sh": "e71306542deba80a5bfaa47a5161741767cd1517451a91469fb25519983ebd9c",
+    "studies/titan-1080/scripts/01_dtype_probe.sh": "f2d24ee810199d1c70d54355f06a8818eab20f9d551e6d2ce15c39d7d28e4b33",
+    "studies/titan-1080/scripts/10_single_gpu.sh": "b1c76e657f244b3862688c0c9394c6b804fe45b8b15fec0c8f5f9ec25e1a77fc",
+    "studies/titan-1080/scripts/20_cnn_a6000_compare.sh": "8f4639c33836a2607b40964475b0f47969c53caa2c2ee7f896c2eda45293d9c7",
+    "studies/titan-1080/scripts/30_ddp.sh": "4f682b722ace7cee411cae871a771627fb1fbfebb994d0dc4d72338fd73a9448",
+    "studies/titan-1080/scripts/31_comm_bw.sh": "3b40eab2ef93f86d4e5ccb3c533776e49f74ea228c040346334125a820e536fb",
+    "studies/titan-1080/scripts/40_deepspeed.sh": "a82d79c0e287cb6ed2af822734f6610df0992bbf4854dd25b1fe048a8ae1b485",
+    "studies/titan-1080/scripts/50_fsdp.sh": "50d56a65b8260981966c39855690012f4268d9e75f7f1fd751c020838adc1418",
+    "studies/titan-1080/scripts/60_infer_hf.sh": "40eadbbe901e5bd259da2a40ddfa88fc6bb8c26ac7e4f2925484f0b3e802b39b",
+    "studies/titan-1080/scripts/70_infer_vllm.sh": "bc6543aeacd536d2d4aec3ba1a804bba80edc2d7362b4614cc954526a95e446b",
+    "studies/titan-1080/scripts/_common.sh": "4c38f46c2579e5ecbf44db4f1d51e832994e1ec817975986b29de7c4edecd797",
+    "tests/test_measurement_controls.py": "312833395848615334eb9bd4797253fec9310b7392d14ebabf5cd0cb47ed6648",
+    "tests/test_repository.py": "281216084c9c0af3116ecced9050bccd1f91b0abb88d73c573d175e076309227",
+    "tests/test_scientific_metrics.py": "371b30bd4e15383008712018f8178273c8b41c47b2bf62082dd4d31e4a06c4e1",
+    "tests/test_stream_latency.py": "35982a750e20e5bf3a1cfd39d1ceb9bbac6edbd6aebfac83ebe4eda6e89cedfa",
+    "tools/__init__.py": "390b094db41b60927fe83699cacc8d9b17656c96cf3f38444409e9ac061f0503",
+    "tools/build_report.py": "7c6ad40c23a6d2ce13d3678de382c74b8e1397981cb1048865de0fbb815188d4",
+    "tools/check_portability.py": "c9cc0a529c6b178af4f2624f913a6f6fd38b3ce6aa081f3be887fb64693b02f2",
+    "tools/freeze_measurements.py": "41760a895c1f336e07bb02ce5a0dd2f711a560c19a173be21d4586dc54650861",
+    "tools/package_release.py": "24b08d839abe51e30cd4ba85f457f9ccd1f82f25817b4833608238c0642e7c43",
+    "tools/prepare_notebook.py": "42a7fe86dae89200d7a4b6945ed68ddb8bfe3fcef21a9ffaaacf4e46175c3ef0",
+    "tools/scientific_corrections.py": "32242bfb65d19e521d8f76abeab7b8585c2821309d401e115f884db82876dd89",
+    "tools/scientific_metrics.py": "d4d99dab573f0542b2af700f9b97812aa4a650fc89467c700428be658f682c04",
+    "tools/scientific_status.py": "57e7b0a06f7bdd2436f2932ff4e1058cbe4379636de47f0f5d4c872eef59ae11",
+    "tools/validate.py": "9b056518f6b045fa28265241cf350c3d75584113e1851a014a00558d16637e89",
+    "tools/verify_scientific.py": "b2f46ba73766121af719dbe03f9bf1c44f3aa1585c0e906f243304166b268a36",
+    "validation/a6000/inference_pilot.yaml": "86ae89ca4de070931d42e3626fc1ae0bef373e89977bd8de60f3eb6ac7714141",
+    "validation/a6000/inference_repeats.yaml": "93772e6846becc5e592be8794149c4ad035cd048b65238fccb0d5aedf2c0de06",
+    "validation/a6000/large_model_repeats.yaml": "985847449da4e0afe2ad7ef14f6e026c7e4aed95dbaacc6d05a92e4ed8b366db",
+    "validation/a6000/pilot.yaml": "f8f60b696ff9a1702c78161f288b88ebb0b81456a85df7ca8a749baab1fa4db3",
+    "validation/a6000/recipe_diagnostics.yaml": "6cee683823b70dc594e4857eb2d74fc4586b060ec0e8f96c34f297c47ec9653e",
+    "validation/a6000/training_repeats.yaml": "47617846daf1f6021626fc95903635150fd82d4dd692825ee804b9da50bf5a5d",
+    "validation/A6000_HANDOFF.md": "db36156183e366d675c22796f41d088fda2e85b884f3b452bd47e246447ddfae",
+    "validation/ACCEPTANCE.md": "eddd37e98424dcef8660dcc8cf0a601fdea3150795ec56fa4f9cb9fe832986d7",
+    "validation/PORTABILITY_FIX.md": "fcf247a65f5f1b27609c68bd7e7a448a5609c37d9aae9a44ebed922c0d2695a0",
+    "validation/README.md": "6a2aa3068896f499fffd3681d7aafb2d3f032fedb0a88153bcfbda3e3d8c2d2c",
+    "validation/stream_latency.py": "d5be7478b4024c8b69ecce904ed4570edd341a317beb251dcee395cf4ca9a8a5",
+    "validation/TITAN_1080_CONTINUE.md": "10e9e41ec5d65b389eed98cbb1a3a4f67431a3644459e4ecff526ade3b0d1951",
+    "validation/TITAN_1080_HANDOFF.md": "a18c57ebab7d473a6d6400e4333ef8bd007afc4a131a6effe136c3576f89496e"
+  },
+  "boundary": "CPU regression and integrity evidence only; new GPU and original framework tests remain pending"
+}

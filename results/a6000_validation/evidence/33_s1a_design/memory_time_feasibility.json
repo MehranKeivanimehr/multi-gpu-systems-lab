@@ -1,0 +1,129 @@
+{
+ "model_elements": 1543714304,
+ "torch_total_memory_gib": 47.402,
+ "nvml_total_gib": 47.988,
+ "non_allocator_gib": 0.8,
+ "increments_gib": {
+  "observer": 0.5,
+  "math_sdpa_fp32": 2.63
+ },
+ "increment_basis": {
+  "observer": "boundary scans (flags), sampled AdamW, ledger, chunked reference comparison buffers (<= ~0.4 GiB) at low-memory points",
+  "math_sdpa_fp32": "saved fp32 attention probabilities 12 x 1024 x 1024 x 4 B x 28 layers = 1.31 GiB, doubled for the transient score tensor"
+ },
+ "rule": "fraction = min(0.92, ceil100(1.02 x (historical reserved + increments) / torch_total)); eligible iff (historical reserved + increments) <= 0.92 x torch_total AND 1.02 x (historical allocated + increments) + 2 GiB <= fraction x torch_total AND whole-device headroom (torch_total - fraction x torch_total - non-allocator) >= 2 GiB",
+ "cases": {
+  "r0_fp32_control": {
+   "historical": {
+    "source": "pilot numref_qwen15b_ref fp32ref__ddp__g1 (canonical init, TF32 off, default SDPA)",
+    "reserved": 38.83,
+    "allocated": 37.41
+   },
+   "increments_gib": 3.13,
+   "predicted_reserved_gib": 41.96,
+   "predicted_allocated_gib": 40.54,
+   "analytic_state_lower_bound_gib": 28.75,
+   "lower_bound_terms": "fp32 param 4 + fp32 grad 4 + exp_avg/exp_avg_sq 8 + foreach sqrt temporary 4",
+   "fraction": 0.91,
+   "allowance_gib": 43.14,
+   "reserved_margin_gib": 1.18,
+   "whole_device_headroom_gib": 3.47,
+   "eligible": false,
+   "classification": "margin >= 0.5 GiB"
+  },
+  "a1_ddp_bf16_autocast": {
+   "historical": {
+    "source": "pilot recipe_diagnostics ddp g1 / train_scaling ddp g1",
+    "reserved": 38.16,
+    "allocated": 36.63
+   },
+   "increments_gib": 0.5,
+   "predicted_reserved_gib": 38.66,
+   "predicted_allocated_gib": 37.13,
+   "analytic_state_lower_bound_gib": 28.75,
+   "lower_bound_terms": "same as r0",
+   "fraction": 0.84,
+   "allowance_gib": 39.82,
+   "reserved_margin_gib": 1.16,
+   "whole_device_headroom_gib": 6.78,
+   "eligible": false,
+   "classification": "margin >= 0.5 GiB"
+  },
+  "a2_fsdp2_bf16": {
+   "historical": {
+    "source": "pilot recipe_diagnostics fsdp g1",
+    "reserved": 35.05,
+    "allocated": 28.8
+   },
+   "increments_gib": 0.5,
+   "predicted_reserved_gib": 35.55,
+   "predicted_allocated_gib": 29.3,
+   "analytic_state_lower_bound_gib": 28.75,
+   "lower_bound_terms": "fp32 shard 4 + grad 4 + moments 8 + foreach temp 4 (+ transient bf16 unsharded units)",
+   "fraction": 0.77,
+   "allowance_gib": 36.5,
+   "reserved_margin_gib": 0.95,
+   "whole_device_headroom_gib": 10.1,
+   "eligible": true,
+   "classification": "margin >= 0.5 GiB"
+  },
+  "a3_zero1_bf16": {
+   "historical": {
+    "source": "pilot recipe_diagnostics zero1 g1",
+    "reserved": 41.21,
+    "allocated": 35.96
+   },
+   "increments_gib": 0.5,
+   "predicted_reserved_gib": 41.71,
+   "predicted_allocated_gib": 36.46,
+   "analytic_state_lower_bound_gib": 34.5,
+   "lower_bound_terms": "bf16 param 2 + bf16 grad 2 + fp32 master 4 + fp32 grad partition 4 + moments 8 + foreach temp 4",
+   "fraction": 0.9,
+   "allowance_gib": 42.66,
+   "reserved_margin_gib": 0.95,
+   "whole_device_headroom_gib": 3.94,
+   "eligible": true,
+   "classification": "margin >= 0.5 GiB"
+  },
+  "a4_zero2_bf16": {
+   "historical": {
+    "source": "pilot recipe_diagnostics zero2 g1",
+    "reserved": 42.98,
+    "allocated": 35.96
+   },
+   "increments_gib": 0.5,
+   "predicted_reserved_gib": 43.48,
+   "predicted_allocated_gib": 36.46,
+   "analytic_state_lower_bound_gib": 34.5,
+   "lower_bound_terms": "same as ZeRO-1 at world size 1",
+   "fraction": 0.92,
+   "allowance_gib": 43.61,
+   "reserved_margin_gib": 0.13,
+   "whole_device_headroom_gib": 2.99,
+   "eligible": true,
+   "classification": "thin reserved margin: relies on allocator cache release under the cap; OOM would stop the window"
+  }
+ },
+ "host": {
+  "canonical_cpu_fp32_model_gib": 5.75,
+  "theta0_cpu_copy_gib": 5.75,
+  "reference_stream_buffers_gib": 2.8,
+  "process_baseline_gib": 4.0,
+  "deepspeed_extra_gib": 2.0,
+  "predicted_worker_host_peak_gib": 20.3
+ },
+ "host_limit_gib": 46,
+ "disk": {
+  "reference_bytes": 12349714432,
+  "budget_bytes": 13500000000,
+  "min_free_bytes": 100000000000
+ },
+ "time": {
+  "pilot_canonical_1p5b_setup_s": 82,
+  "pilot_case_duration_s": "111-124",
+  "expected_case_s": "150-200 (+ reference write ~30 s or compare ~40 s)",
+  "child_budget_s": 300
+ },
+ "status_of_numbers": "historical values are measurements of the identical recipe with OLDER instrumentation: lower bounds for the new code, not upper bounds; increments are estimates; the analytic values are lower bounds",
+ "not_bounded_by_allocator": "set_per_process_memory_fraction limits only the caching allocator; CUDA context, cuBLAS/NCCL workspaces and foreach temporaries above the cap would raise OOM, not exceed the device"
+}

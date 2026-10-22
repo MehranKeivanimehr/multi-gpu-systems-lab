@@ -1,0 +1,46 @@
+{
+ "method": "corrected admission (cushion 1.02, ceil 0.01, cap 0.92 => ineligible, headroom >= 2 GiB) per GPU",
+ "torch_total_memory_gib": 47.402,
+ "non_allocator_gib": 0.8,
+ "status_of_numbers": "MEASURED = S1a r0 (3 updates); ESTIMATE = steps 4-5 growth, NCCL; no 5-update or world-2 run of this model has been measured",
+ "host": {
+  "R5": "S1a r0 MEASURED host peak 19.2 GiB (canonical CPU model + theta0 + snapshot buffers)",
+  "C5": "rank 0 ~19.2 (theta0 + snapshots) + rank 1 ~10 (canonical CPU model transient, no theta0) ~ 29 GiB in ONE 46-GiB worker scope (ESTIMATE)"
+ },
+ "cases": {
+  "R5_fp32_world1_ga4": {
+   "predicted_reserved_gib": 39.83,
+   "non_allocator_gib": 0.8,
+   "basis": "MEASURED S1a r0 (identical FP32/math/no-TF32 DDP config, world 1, GA 4, 3 updates incl. optimizer states, foreach temporaries and both snapshot writes): reserved 38.83 / allocated 37.41 GiB; + 1.0 GiB ESTIMATE for steps 4-5 allocator growth (states are allocated at step 1; not measured beyond 3 updates)",
+   "fraction": 0.86,
+   "eligible": true,
+   "admission": {
+    "eligible": true,
+    "fraction": 0.86,
+    "reasons": [],
+    "required_allowance_gib": "40.6266",
+    "required_fraction": "0.86",
+    "cap": "0.92",
+    "allowance_gib": "40.76572",
+    "whole_device_headroom_gib": "5.83628"
+   }
+  },
+  "C5_fp32_world2_ga2": {
+   "predicted_reserved_gib": 40.83,
+   "non_allocator_gib": 1.8,
+   "basis": "per GPU: S1a r0 MEASURED 38.83 (activation peak per microbatch is world-independent; DDP replicates params/grads/states) + 1.0 steps 4-5 (ESTIMATE) + 1.0 NCCL/communication buffers inside the allocator (ESTIMATE); non-allocator raised to 1.8 GiB for NCCL's own buffers (ESTIMATE). Same budget assessed independently on GPU 4 and GPU 5; GPU 5 capacity must be read at gate time",
+   "fraction": 0.88,
+   "eligible": true,
+   "admission": {
+    "eligible": true,
+    "fraction": 0.88,
+    "reasons": [],
+    "required_allowance_gib": "41.6466",
+    "required_fraction": "0.88",
+    "cap": "0.92",
+    "allowance_gib": "41.71376",
+    "whole_device_headroom_gib": "3.88824"
+   }
+  }
+ }
+}

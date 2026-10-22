@@ -1,0 +1,701 @@
+{
+  "agreed_checks": {
+    "base_optimizer_state_advanced_every_step": false,
+    "engine_global_steps_reconcile": true,
+    "every_rank_drove_the_same_step_count": true,
+    "global_grad_norm_finite_and_positive": true,
+    "gradient_source_identified_every_step": true,
+    "gradients_observed_finite_every_step": true,
+    "losses_finite": true,
+    "master_partition_changed_every_step": true,
+    "no_overflow_reported": true
+  },
+  "all_agreed_checks_passed": false,
+  "collective_discipline": "every rank executes OBSERVATION_ORDER in full each step; no accessor is called on rank zero alone; verdicts are MIN-all-reduced",
+  "deepspeed_version": "0.15.1",
+  "fault_injection": "none",
+  "measurement_kind": "deepspeed_engine_aware_observation_not_performance",
+  "native_observer_status_unchanged": "numerics_unobservable_on_engine_path; this diagnostic is additional evidence, not a repair of the native bracket",
+  "observation_order": [
+    "forward",
+    "engine_backward",
+    "grad_evidence_after_backward_before_step",
+    "master_partition_norms_before",
+    "base_optimizer_state_steps_before",
+    "engine_step",
+    "master_partition_norms_after",
+    "base_optimizer_state_steps_after",
+    "engine_counters"
+  ],
+  "per_rank": [
+    {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "driven_steps": 8,
+      "global_steps_delta": 8,
+      "grad_sources": [
+        "averaged_gradients"
+      ],
+      "local_checks": {
+        "base_optimizer_state_advanced_every_step": false,
+        "engine_global_steps_reconcile": true,
+        "global_grad_norm_finite_and_positive": true,
+        "gradient_source_identified_every_step": true,
+        "gradients_observed_finite_every_step": true,
+        "losses_finite": true,
+        "master_partition_changed_every_step": true,
+        "no_overflow_reported": true
+      },
+      "n_base_state_entries": 1,
+      "n_master_partitions": 1,
+      "rank": 0
+    },
+    {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "driven_steps": 8,
+      "global_steps_delta": 8,
+      "grad_sources": [
+        "averaged_gradients"
+      ],
+      "local_checks": {
+        "base_optimizer_state_advanced_every_step": false,
+        "engine_global_steps_reconcile": true,
+        "global_grad_norm_finite_and_positive": true,
+        "gradient_source_identified_every_step": true,
+        "gradients_observed_finite_every_step": true,
+        "losses_finite": true,
+        "master_partition_changed_every_step": true,
+        "no_overflow_reported": true
+      },
+      "n_base_state_entries": 1,
+      "n_master_partitions": 1,
+      "rank": 1
+    }
+  ],
+  "per_step_rank0": [
+    {
+      "base_state_advanced": false,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          1
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": []
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 4.272701263427734
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 1
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 1
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 3.312189817428589,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 10.977068901062012,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6485137939453
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6533660888672
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 0
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          2
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          1
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 2.033269166946411
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 2
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 2
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 1.3679991960525513,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 11.003876686096191,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6464080810547
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6485137939453
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 1
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          3
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          2
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 1.4508212804794312
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 3
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 3
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 0.9249414205551147,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 10.985518455505371,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.64630126953125
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6464080810547
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 2
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          4
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          3
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 1.1324214935302734
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 4
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 4
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 0.7450413703918457,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 10.99676513671875,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.64703369140625
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.64630126953125
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 3
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          5
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          4
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 0.9696597456932068
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 5
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 5
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 0.645872950553894,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 11.00037670135498,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.64845275878906
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.64703369140625
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 4
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          6
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          5
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 0.8196091055870056
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 6
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 6
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 0.5783190131187439,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 10.95543098449707,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.65045166015625
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.64845275878906
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 5
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          7
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          6
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 0.7915427684783936
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 7
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 7
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 0.5612819194793701,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 10.963010787963867,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6528778076172
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.65045166015625
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 6
+    },
+    {
+      "base_state_advanced": true,
+      "base_steps_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          8
+        ]
+      },
+      "base_steps_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          7
+        ]
+      },
+      "counters": {
+        "global_grad_norm": {
+          "available": true,
+          "error": null,
+          "value": 0.7160604000091553
+        },
+        "global_steps": {
+          "available": true,
+          "error": null,
+          "value": 8
+        },
+        "micro_steps": {
+          "available": true,
+          "error": null,
+          "value": 8
+        },
+        "overflow": {
+          "available": true,
+          "error": null,
+          "value": false
+        }
+      },
+      "grad_evidence": {
+        "averaged_gradients": {
+          "all_finite": true,
+          "available": true,
+          "error": null,
+          "l2_norm": 0.5308253169059753,
+          "n_tensors": 41,
+          "total_elements": 62023296
+        },
+        "evidence_sources_with_data": [
+          "averaged_gradients"
+        ],
+        "param_dot_grad": {
+          "all_finite": null,
+          "available": true,
+          "error": null,
+          "l2_norm": null,
+          "n_tensors": 0,
+          "total_elements": 0
+        },
+        "verdict": "observed_finite"
+      },
+      "loss": 10.959650993347168,
+      "master_after": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.65567016601562
+        ]
+      },
+      "master_before": {
+        "available": true,
+        "error": null,
+        "value": [
+          163.6528778076172
+        ]
+      },
+      "master_partition_changed": true,
+      "step": 7
+    }
+  ],
+  "steps": 8,
+  "world_size": 2,
+  "zero_stage": 1
+}

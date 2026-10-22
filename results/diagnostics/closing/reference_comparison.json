@@ -1,0 +1,239 @@
+{
+  "array_locations": {
+    "a": {
+      "considered": [
+        "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0/arrays",
+        "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0/arrays",
+        "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0"
+      ],
+      "declared_arrays_dir": "arrays",
+      "resolved": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0/arrays"
+    },
+    "b": {
+      "considered": [
+        "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/rank0/arrays",
+        "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/rank0/arrays",
+        "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/rank0"
+      ],
+      "declared_arrays_dir": "arrays",
+      "resolved": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/rank0/arrays"
+    }
+  },
+  "greedy_tokens": {
+    "criterion": "exact equality required",
+    "differing_tokens": 0,
+    "dtype": "int64",
+    "first_difference_flat_index": null,
+    "note": "token agreement is reported separately from the logit comparison and does not substitute for it",
+    "shape": [
+      8,
+      64
+    ],
+    "total_tokens": 512,
+    "verdict": "IDENTICAL"
+  },
+  "inputs": {
+    "basis": "recorded digests, not seeds",
+    "checks": {
+      "attention_mask_sha256": true,
+      "dropout_active": true,
+      "initial_state_sha256": true,
+      "input_shape": true,
+      "model_dtype": true,
+      "realized_input_sha256": true,
+      "resolved_revision": true
+    },
+    "cross_family": true,
+    "devices": [
+      "NVIDIA TITAN RTX",
+      "NVIDIA GeForce GTX 1080 Ti"
+    ],
+    "matched": true
+  },
+  "logits": {
+    "a": {
+      "dtype": "float32",
+      "n_elements": 256000,
+      "sha256": "aa443be494b925309ba7e82ca8fba65c9bf70874ad06d3a62845baa9505f8ac4",
+      "shape": [
+        8,
+        32000
+      ]
+    },
+    "aggregation": "maximum absolute deviation over all elements",
+    "arrays": "final_logits",
+    "atol": 6.133678834885359e-05,
+    "b": {
+      "dtype": "float32",
+      "n_elements": 256000,
+      "sha256": "4097ab66757684cc198a63d106df8a54ee09a831ea61d583a5ebd7b3f84d6e36",
+      "shape": [
+        8,
+        32000
+      ]
+    },
+    "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+    "criterion": "titan_reference_logit_criterion_v1",
+    "digests_identical": false,
+    "dtype": "float32",
+    "failing_elements": 0,
+    "magnitude_scale_M": 16.079071044921875,
+    "max_abs_error": 2.765655517578125e-05,
+    "rtol_term": 6.133678834885359e-05,
+    "threshold_widened": false,
+    "tolerance": 0.00012267357669770718,
+    "total_elements": 256000,
+    "u": 5.960464477539063e-08,
+    "verdict": "PASS",
+    "worst_witness": {
+      "a": -11.310945510864258,
+      "abs_error": 2.765655517578125e-05,
+      "b": -11.310917854309082,
+      "flat_index": 250964,
+      "position": [
+        7,
+        26964
+      ]
+    }
+  },
+  "metadata": {
+    "a": {
+      "arrays": {
+        "attention_mask": {
+          "dtype": "int64",
+          "file": "attention_mask.bin",
+          "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+          "shape": [
+            8,
+            256
+          ]
+        },
+        "final_logits": {
+          "dtype": "float32",
+          "file": "final_logits.bin",
+          "sha256": "aa443be494b925309ba7e82ca8fba65c9bf70874ad06d3a62845baa9505f8ac4",
+          "shape": [
+            8,
+            32000
+          ]
+        },
+        "generated_ids": {
+          "dtype": "int64",
+          "file": "generated_ids.bin",
+          "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+          "shape": [
+            8,
+            64
+          ]
+        },
+        "input_ids": {
+          "dtype": "int64",
+          "file": "input_ids.bin",
+          "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+          "shape": [
+            8,
+            256
+          ]
+        }
+      },
+      "arrays_dir": "arrays",
+      "attention_mask_sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+      "case_id": "R_rtx_1_tinyllama_fp32",
+      "child_device_capability": "7.5",
+      "child_device_name": "NVIDIA TITAN RTX",
+      "child_visible_devices": "TITAN_RTX#1",
+      "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+      "criterion": "titan_reference_logit_criterion_v1",
+      "dropout_active": false,
+      "eval_settings": {
+        "do_sample": false,
+        "grad_enabled": false,
+        "max_new_tokens": 64,
+        "module_training_mode": false,
+        "num_beams": 1,
+        "pad_token_id": 2
+      },
+      "initial_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d",
+      "input_shape": [
+        8,
+        256
+      ],
+      "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "model_dtype": "torch.float32",
+      "precision_policy": null,
+      "protocol_digest": "fa1b5a888f912a044aef989221a34729092945c36c22cfcf4accdb0d6972bd63",
+      "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+      "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+      "torch_version": "2.4.1+cu121"
+    },
+    "b": {
+      "arrays": {
+        "attention_mask": {
+          "dtype": "int64",
+          "file": "attention_mask.bin",
+          "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+          "shape": [
+            8,
+            256
+          ]
+        },
+        "final_logits": {
+          "dtype": "float32",
+          "file": "final_logits.bin",
+          "sha256": "4097ab66757684cc198a63d106df8a54ee09a831ea61d583a5ebd7b3f84d6e36",
+          "shape": [
+            8,
+            32000
+          ]
+        },
+        "generated_ids": {
+          "dtype": "int64",
+          "file": "generated_ids.bin",
+          "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+          "shape": [
+            8,
+            64
+          ]
+        },
+        "input_ids": {
+          "dtype": "int64",
+          "file": "input_ids.bin",
+          "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+          "shape": [
+            8,
+            256
+          ]
+        }
+      },
+      "arrays_dir": "arrays",
+      "attention_mask_sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+      "case_id": "R_p1080_1_tinyllama_fp32",
+      "child_device_capability": "6.1",
+      "child_device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "child_visible_devices": "GTX_1080Ti#1",
+      "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+      "criterion": "titan_reference_logit_criterion_v1",
+      "dropout_active": false,
+      "eval_settings": {
+        "do_sample": false,
+        "grad_enabled": false,
+        "max_new_tokens": 64,
+        "module_training_mode": false,
+        "num_beams": 1,
+        "pad_token_id": 2
+      },
+      "initial_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d",
+      "input_shape": [
+        8,
+        256
+      ],
+      "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "model_dtype": "torch.float32",
+      "precision_policy": null,
+      "protocol_digest": "fa1b5a888f912a044aef989221a34729092945c36c22cfcf4accdb0d6972bd63",
+      "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+      "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+      "torch_version": "2.4.1+cu121"
+    }
+  }
+}

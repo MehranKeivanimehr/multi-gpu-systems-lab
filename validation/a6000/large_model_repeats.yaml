@@ -1,0 +1,26 @@
+# TEMPLATE only. Resource-safe initialization and recipe diagnostics required.
+name: validation_v2_large_model_repeats
+kind: train
+repeats: 5
+gpu_counts: [4]
+defaults:
+  warmup_steps: 5
+  measure_steps: 15
+  seed: 1234
+  grad_accum: 1
+  numerical_checks: false
+workloads:
+  - model: llama3.1-8b
+    seq_len: 1024
+    micro_batch: 2
+    activation_checkpointing: true
+    frameworks: [fsdp, zero3]
+  - model: llama3.1-8b
+    variant: bf16-reduce
+    seq_len: 1024
+    micro_batch: 2
+    activation_checkpointing: true
+    fw_overrides:
+      fsdp: {grad_reduce_dtype: bf16}
+      zero3: {deepspeed: {communication_data_type: bf16}}
+    frameworks: [fsdp, zero3]

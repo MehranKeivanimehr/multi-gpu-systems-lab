@@ -1,0 +1,367 @@
+{
+ "cases": {
+  "a1_ddp_bf16_autocast": {
+   "G1_four_named_tensors_whole": {
+    "cosine": 0.9992135068308852,
+    "rel_l2": 0.03965314409608818
+   },
+   "G1_full_vector": {
+    "cosine": 0.9992052746092397,
+    "norm_ratio": 0.9994204146377945,
+    "rel_l2": 0.03986057548886739
+   },
+   "G1_per_named_tensor": {
+    "model.layers.0.mlp.down_proj.weight": {
+     "cosine": 0.9992254598318773,
+     "rel_l2": 0.03935079061972664
+    },
+    "model.layers.0.self_attn.q_proj.weight": {
+     "cosine": 0.9991866652565233,
+     "rel_l2": 0.04032384221314487
+    },
+    "model.layers.27.mlp.up_proj.weight": {
+     "cosine": 0.9993006130277807,
+     "rel_l2": 0.03739519030840801
+    },
+    "model.norm.weight": {
+     "cosine": 0.999838129374623,
+     "rel_l2": 0.021559918984802758
+    }
+   },
+   "L_k0": 2.435557142255757e-05,
+   "L_max_k0_2": 4.3486989440922535e-05,
+   "L_per_step_rel": [
+    2.435557142255757e-05,
+    4.3486989440922535e-05,
+    1.0690252432754215e-05
+   ],
+   "autocast_bf16": true,
+   "category": "bf16_compute",
+   "grad_norm_ratios_b2_b3": [
+    {
+     "boundary": 0,
+     "global_norm_ratio": 0.9994204146377939,
+     "max_ratio": 1.0055950804777096,
+     "min_ratio": 0.9879589434607468,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 1,
+     "global_norm_ratio": 0.998849739646031,
+     "max_ratio": 1.0077754792366689,
+     "min_ratio": 0.9852644864163927,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 2,
+     "global_norm_ratio": 0.9995982769036966,
+     "max_ratio": 1.0051697914148416,
+     "min_ratio": 0.9888845309072535,
+     "missing": [],
+     "tensors": 338
+    }
+   ],
+   "limits_prereg": {
+    "G1_cos": 0.995,
+    "G1_rel_l2": 0.05,
+    "L_k0": 0.005,
+    "L_max": 0.01
+   },
+   "precision_flags": {
+    "cuda_matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": true,
+    "cudnn_deterministic": false,
+    "float32_matmul_precision": "high"
+   },
+   "verdicts_prereg_limits": {
+    "G1_cosine (four named tensors)": "pass",
+    "G1_cosine (full vector)": "pass",
+    "G1_rel_l2 (four named tensors)": "pass",
+    "G1_rel_l2 (full vector)": "pass",
+    "L_k0": "pass",
+    "L_max_k0_2 (3 updates, not 5)": "pass"
+   }
+  },
+  "a2_fsdp2_bf16": {
+   "G1_four_named_tensors_whole": {
+    "cosine": 0.9987777466105684,
+    "rel_l2": 0.04942750440216874
+   },
+   "G1_full_vector": {
+    "cosine": 0.998770050748062,
+    "norm_ratio": 0.9991995276123216,
+    "rel_l2": 0.0495839709895369
+   },
+   "G1_per_named_tensor": {
+    "model.layers.0.mlp.down_proj.weight": {
+     "cosine": 0.9987967386218161,
+     "rel_l2": 0.04904246649458094
+    },
+    "model.layers.0.self_attn.q_proj.weight": {
+     "cosine": 0.9987354673197865,
+     "rel_l2": 0.050274191193938306
+    },
+    "model.layers.27.mlp.up_proj.weight": {
+     "cosine": 0.9988604928964576,
+     "rel_l2": 0.047725548373707995
+    },
+    "model.norm.weight": {
+     "cosine": 0.99974797815482,
+     "rel_l2": 0.025298715320292216
+    }
+   },
+   "L_k0": 3.369317068999178e-05,
+   "L_max_k0_2": 4.527946391608601e-05,
+   "L_per_step_rel": [
+    3.369317068999178e-05,
+    4.527946391608601e-05,
+    6.8667314896523425e-06
+   ],
+   "autocast_bf16": false,
+   "category": "bf16_compute",
+   "grad_norm_ratios_b2_b3": [
+    {
+     "boundary": 0,
+     "global_norm_ratio": 0.9991995276123213,
+     "max_ratio": 1.007341217837711,
+     "min_ratio": 0.9880841528171584,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 1,
+     "global_norm_ratio": 0.9999138664040615,
+     "max_ratio": 1.0110415101487134,
+     "min_ratio": 0.9866955015517741,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 2,
+     "global_norm_ratio": 0.9976361020118785,
+     "max_ratio": 1.008974053776733,
+     "min_ratio": 0.9852793300956623,
+     "missing": [],
+     "tensors": 338
+    }
+   ],
+   "limits_prereg": {
+    "G1_cos": 0.995,
+    "G1_rel_l2": 0.05,
+    "L_k0": 0.005,
+    "L_max": 0.01
+   },
+   "precision_flags": {
+    "cuda_matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": true,
+    "cudnn_deterministic": false,
+    "float32_matmul_precision": "high"
+   },
+   "verdicts_prereg_limits": {
+    "G1_cosine (four named tensors)": "pass",
+    "G1_cosine (full vector)": "pass",
+    "G1_rel_l2 (four named tensors)": "pass",
+    "G1_rel_l2 (full vector)": "pass",
+    "L_k0": "pass",
+    "L_max_k0_2 (3 updates, not 5)": "pass"
+   }
+  },
+  "a3_zero1_bf16": {
+   "G1_four_named_tensors_whole": {
+    "cosine": 0.9751659554414702,
+    "rel_l2": 0.22260195018424855
+   },
+   "G1_full_vector": {
+    "cosine": 0.9761033425828329,
+    "norm_ratio": 0.9968590381498703,
+    "rel_l2": 0.21829581649013088
+   },
+   "G1_per_named_tensor": {
+    "model.layers.0.mlp.down_proj.weight": {
+     "cosine": 0.9760471744160802,
+     "rel_l2": 0.21854242657815767
+    },
+    "model.layers.0.self_attn.q_proj.weight": {
+     "cosine": 0.9732127293363176,
+     "rel_l2": 0.23137276710046514
+    },
+    "model.layers.27.mlp.up_proj.weight": {
+     "cosine": 0.9794676554271768,
+     "rel_l2": 0.202544815343502
+    },
+    "model.norm.weight": {
+     "cosine": 0.996093078593369,
+     "rel_l2": 0.08870980645183822
+    }
+   },
+   "L_k0": 4.746612960945724e-06,
+   "L_max_k0_2": 0.00030705867096278633,
+   "L_per_step_rel": [
+    4.746612960945724e-06,
+    0.00030705867096278633,
+    0.00018071988784130484
+   ],
+   "autocast_bf16": false,
+   "category": "bf16_weights",
+   "grad_norm_ratios_b2_b3": [
+    {
+     "boundary": 0,
+     "global_norm_ratio": 0.9968590381498704,
+     "max_ratio": 1.0298925224687876,
+     "min_ratio": 0.967507951029631,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 1,
+     "global_norm_ratio": 0.9977535115211328,
+     "max_ratio": 1.0370894819567602,
+     "min_ratio": 0.9425461176651857,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 2,
+     "global_norm_ratio": 0.9987010282549521,
+     "max_ratio": 1.0235579110727353,
+     "min_ratio": 0.9719734026454989,
+     "missing": [],
+     "tensors": 338
+    }
+   ],
+   "limits_prereg": {
+    "G1_cos": 0.99,
+    "G1_rel_l2": 0.08,
+    "L_k0": 0.01,
+    "L_max": 0.02
+   },
+   "precision_flags": {
+    "cuda_matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": true,
+    "cudnn_deterministic": false,
+    "float32_matmul_precision": "high"
+   },
+   "verdicts_prereg_limits": {
+    "G1_cosine (four named tensors)": "not_pass (band undefined in the pre-registration)",
+    "G1_cosine (full vector)": "not_pass (band undefined in the pre-registration)",
+    "G1_rel_l2 (four named tensors)": "marginal (investigate)",
+    "G1_rel_l2 (full vector)": "marginal (investigate)",
+    "L_k0": "pass",
+    "L_max_k0_2 (3 updates, not 5)": "pass"
+   }
+  },
+  "a4_zero2_bf16": {
+   "G1_four_named_tensors_whole": {
+    "cosine": 0.9751465377376478,
+    "rel_l2": 0.2226935111854112
+   },
+   "G1_full_vector": {
+    "cosine": 0.9760927444031584,
+    "norm_ratio": 0.9970146981137267,
+    "rel_l2": 0.21835906775442193
+   },
+   "G1_per_named_tensor": {
+    "model.layers.0.mlp.down_proj.weight": {
+     "cosine": 0.976020159861258,
+     "rel_l2": 0.21867389994859857
+    },
+    "model.layers.0.self_attn.q_proj.weight": {
+     "cosine": 0.9732092758012814,
+     "rel_l2": 0.23138252919822086
+    },
+    "model.layers.27.mlp.up_proj.weight": {
+     "cosine": 0.9794676554271768,
+     "rel_l2": 0.202544815343502
+    },
+    "model.norm.weight": {
+     "cosine": 0.996093078593369,
+     "rel_l2": 0.08870980645183822
+    }
+   },
+   "L_k0": 4.746612960945724e-06,
+   "L_max_k0_2": 0.0002918616047603134,
+   "L_per_step_rel": [
+    4.746612960945724e-06,
+    0.0002918616047603134,
+    0.00020498754117405347
+   ],
+   "autocast_bf16": false,
+   "category": "bf16_weights",
+   "grad_norm_ratios_b2_b3": [
+    {
+     "boundary": 0,
+     "global_norm_ratio": 0.9970146981137271,
+     "max_ratio": 1.0299361800932574,
+     "min_ratio": 0.9696449989410342,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 1,
+     "global_norm_ratio": 0.9978821504554699,
+     "max_ratio": 1.0375398023719007,
+     "min_ratio": 0.9392718360389287,
+     "missing": [],
+     "tensors": 338
+    },
+    {
+     "boundary": 2,
+     "global_norm_ratio": 0.9986423635672325,
+     "max_ratio": 1.0394841124013423,
+     "min_ratio": 0.9593294840722619,
+     "missing": [],
+     "tensors": 338
+    }
+   ],
+   "limits_prereg": {
+    "G1_cos": 0.99,
+    "G1_rel_l2": 0.08,
+    "L_k0": 0.01,
+    "L_max": 0.02
+   },
+   "precision_flags": {
+    "cuda_matmul_allow_tf32": true,
+    "cudnn_allow_tf32": true,
+    "cudnn_benchmark": true,
+    "cudnn_deterministic": false,
+    "float32_matmul_precision": "high"
+   },
+   "verdicts_prereg_limits": {
+    "G1_cosine (four named tensors)": "not_pass (band undefined in the pre-registration)",
+    "G1_cosine (full vector)": "not_pass (band undefined in the pre-registration)",
+    "G1_rel_l2 (four named tensors)": "marginal (investigate)",
+    "G1_rel_l2 (full vector)": "marginal (investigate)",
+    "L_k0": "pass",
+    "L_max_k0_2 (3 updates, not 5)": "pass"
+   }
+  }
+ },
+ "control_C_met": true,
+ "control_C_source": "44_c18_comparison/comparison_c18b.json",
+ "deviations_from_preregistered_design": [
+  "S1a recipes ran at world 1 (the pre-registered recipe runs were world 2): data-parallel reduction across ranks is not exercised",
+  "3 updates, not 5: L max covers k = 0..2; U (descriptive only for bf16 recipes) is not comparable",
+  "G1 exact on full vectors and on the four named tensors taken whole; the pre-registered prefix slices (first 262,144 elements) are not recoverable for a1-a4 (norm.weight, 1,536 elements, is exact)",
+  "informed, not blind: the S1a tolerance file was frozen before any S1a GPU result but with the pilot ZeRO ~0.23 visible (CORRECTIONS C18)",
+  "control C calibrates the FP32 DDP harness and reference; it does not calibrate the DeepSpeed-specific gradient read used for a3/a4"
+ ],
+ "preregistration_sha256": "cd367fc553cb56d38cd7d17673c442253757ddc42923dfac85a8bcf67a668ce3",
+ "s1a_reference_equals_calibrated_R5_grad_b1": true,
+ "shared_losses_r0_vs_R5": [
+  [
+   12.255925178527832,
+   12.23699951171875,
+   12.22173023223877
+  ],
+  [
+   12.255925178527832,
+   12.23699951171875,
+   12.22173023223877
+  ]
+ ]
+}

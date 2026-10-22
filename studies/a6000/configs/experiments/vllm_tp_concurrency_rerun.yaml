@@ -1,0 +1,24 @@
+# Re-run 2 (audit follow-up, 2026-10-13): vLLM tensor parallel with concurrency matched to the GPU count.
+# In vllm_scaling every engine was capped at max_num_seqs=256, so a TP engine on N GPUs ran 256 requests at once
+# while N data-parallel engines ran 256 each. Here TP2 gets 512 and TP4 gets 1024 (= 256 per GPU).
+# Everything else is identical to vllm_scaling: 1024 requests, 512 random prompt tokens, exactly 256 greedy output
+# tokens (ignore_eos), bf16, gpu_memory_utilization 0.85, max_num_batched_tokens = vLLM default (8192 on a 48 GB GPU),
+# CUDA-graph capture up to vLLM's default 512, and NCCL_P2P_LEVEL=NVL for TP4 (PCIe P2P between the pairs hangs).
+name: vllm_tp_concurrency_rerun
+kind: vllm
+repeats: 2
+defaults:
+  num_prompts: 1024
+  input_len: 512
+  output_len: 256
+  warmup_prompts: 32
+  seed: 1234
+workloads:
+  - model: qwen2.5-1.5b
+    layouts:
+      - {tp: 2, dp: 1, max_num_seqs: 512, tag: conc512}
+      - {tp: 4, dp: 1, max_num_seqs: 1024, tag: conc1024, env: {NCCL_P2P_LEVEL: NVL}}
+  - model: llama3.1-8b
+    layouts:
+      - {tp: 2, dp: 1, max_num_seqs: 512, tag: conc512}
+      - {tp: 4, dp: 1, max_num_seqs: 1024, tag: conc1024, env: {NCCL_P2P_LEVEL: NVL}}

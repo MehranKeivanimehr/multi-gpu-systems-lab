@@ -1,0 +1,623 @@
+{
+  "attempts_used": 4,
+  "authorization": {
+    "approved_by": "repository owner (Mehran Keivanimehr)",
+    "approved_devices": [
+      {
+        "cases": [
+          "R_p1080_1_tinyllama_fp32"
+        ],
+        "index": 1,
+        "name": "NVIDIA GeForce GTX 1080 Ti",
+        "uuid": "GTX_1080Ti#1"
+      },
+      {
+        "cases": [
+          "R_rtx_1_tinyllama_fp32",
+          "S_rtx_1_stream_256_64"
+        ],
+        "index": 0,
+        "name": "NVIDIA TITAN RTX",
+        "uuid": "TITAN_RTX#1"
+      }
+    ],
+    "authorization_id": "CLOSED-20261020T125221Z",
+    "basis": "owner approval 2026-10-20: one fresh nonrenewable 7200 s window to close the reference logit comparison and the streaming session",
+    "candidate": "$PROJECT_ROOT/titan_closed_20261020/candidate",
+    "candidate_manifest_sha256": "04d50f37bf3682685cccb6206ed10396305984b0cfede326cb68a984cbc7656d",
+    "criterion_clarification_sha256": "5e334d780659ef9e53c139cb7ddcb3a71a1ebd2e798c1af039f89f58435c23a8",
+    "device_groups_sha256": "cad1695285574316d037aa950c07f03715224518ce8f7cc224200cf71e920372",
+    "eligible_physical_indices": [
+      0,
+      1
+    ],
+    "expiry_epoch": 1792507941.903163,
+    "expiry_utc": "2026-10-20T14:52:21Z",
+    "issue_epoch": 1792500741.903163,
+    "issued_utc": "2026-10-20T12:52:21Z",
+    "jobs_at_a_time": 1,
+    "limits": {
+      "aggregate_host_rss_gib": 32,
+      "cleanup_allowance_s": 90,
+      "max_logical_cpus": 8,
+      "reference_timeout_s": 300,
+      "streaming_timeout_s": 900
+    },
+    "lossless_sha256": "0db3dc95c19c37da0a7abe60b4b6b562c6889e4517759227b05088ec5fcc8ac6",
+    "max_concurrent_gpus": 1,
+    "prohibited": [
+      "no sudo",
+      "no host-service changes",
+      "no GPU resets",
+      "no power or clock changes",
+      "no system-package installation",
+      "no large model downloads",
+      "no substitute GPU",
+      "no multi-GPU job",
+      "no change to model, corpus, generation policy, precision, thresholds or acceptance criteria"
+    ],
+    "ref_compare_sha256": "b1a0b3c5c95710bd08a45dd8e8979ed0f0c813dc1c678f7fab6d1963eabda1c6",
+    "ref_runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+    "renewable": false,
+    "repair_policy": {
+      "in_window_cpu_repair_budget_min": 45,
+      "max_attempts_overall": 6,
+      "max_attempts_per_case": 2
+    },
+    "revoked": false,
+    "separate_from": "FOLLOWUP-20261020T113750Z and BATCH-20261020T095841Z accounting, both preserved unchanged",
+    "source_digest": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb",
+    "stream_runner_sha256": "3d5880d38932633508b91b71898153a3dea9f67e764c4af24f2628f54363242a",
+    "window_s": 7200,
+    "worker_sha256": "17eeebf0a6925c16b9952545aacdda825dbb06065f67e210c64bc947c0cdf3a2"
+  },
+  "finished_utc": "2026-10-20T12:55:05Z",
+  "reference_comparison": {
+    "a": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0",
+    "b": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/rank0",
+    "evaluated": true,
+    "rc": 95,
+    "result": {
+      "greedy_tokens": {
+        "reason": "FileNotFoundError: missing schema sidecar for 'generated_ids': $PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0/generated_ids.json",
+        "verdict": "REFUSED"
+      },
+      "inputs": {
+        "basis": "recorded digests, not seeds",
+        "checks": {
+          "attention_mask_sha256": true,
+          "dropout_active": true,
+          "initial_state_sha256": true,
+          "input_shape": true,
+          "model_dtype": true,
+          "realized_input_sha256": true,
+          "resolved_revision": true
+        },
+        "cross_family": true,
+        "devices": [
+          "NVIDIA TITAN RTX",
+          "NVIDIA GeForce GTX 1080 Ti"
+        ],
+        "matched": true
+      },
+      "logits": {
+        "arrays": "final_logits",
+        "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+        "criterion": "titan_reference_logit_criterion_v1",
+        "note": "a missing or corrupt array is a refusal; a digest comparison is never substituted for the numerical outcome",
+        "reason": "FileNotFoundError: missing schema sidecar for 'final_logits': $PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0/final_logits.json",
+        "verdict": "REFUSED"
+      },
+      "metadata": {
+        "a": {
+          "arrays": {
+            "attention_mask": {
+              "dtype": "int64",
+              "file": "attention_mask.bin",
+              "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+              "shape": [
+                8,
+                256
+              ]
+            },
+            "final_logits": {
+              "dtype": "float32",
+              "file": "final_logits.bin",
+              "sha256": "aa443be494b925309ba7e82ca8fba65c9bf70874ad06d3a62845baa9505f8ac4",
+              "shape": [
+                8,
+                32000
+              ]
+            },
+            "generated_ids": {
+              "dtype": "int64",
+              "file": "generated_ids.bin",
+              "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+              "shape": [
+                8,
+                64
+              ]
+            },
+            "input_ids": {
+              "dtype": "int64",
+              "file": "input_ids.bin",
+              "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+              "shape": [
+                8,
+                256
+              ]
+            }
+          },
+          "arrays_dir": "arrays",
+          "attention_mask_sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+          "case_id": "R_rtx_1_tinyllama_fp32",
+          "child_device_capability": "7.5",
+          "child_device_name": "NVIDIA TITAN RTX",
+          "child_visible_devices": "TITAN_RTX#1",
+          "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+          "criterion": "titan_reference_logit_criterion_v1",
+          "dropout_active": false,
+          "eval_settings": {
+            "do_sample": false,
+            "grad_enabled": false,
+            "max_new_tokens": 64,
+            "module_training_mode": false,
+            "num_beams": 1,
+            "pad_token_id": 2
+          },
+          "initial_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d",
+          "input_shape": [
+            8,
+            256
+          ],
+          "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+          "model_dtype": "torch.float32",
+          "precision_policy": null,
+          "protocol_digest": "fa1b5a888f912a044aef989221a34729092945c36c22cfcf4accdb0d6972bd63",
+          "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+          "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+          "torch_version": "2.4.1+cu121"
+        },
+        "b": {
+          "arrays": {
+            "attention_mask": {
+              "dtype": "int64",
+              "file": "attention_mask.bin",
+              "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+              "shape": [
+                8,
+                256
+              ]
+            },
+            "final_logits": {
+              "dtype": "float32",
+              "file": "final_logits.bin",
+              "sha256": "4097ab66757684cc198a63d106df8a54ee09a831ea61d583a5ebd7b3f84d6e36",
+              "shape": [
+                8,
+                32000
+              ]
+            },
+            "generated_ids": {
+              "dtype": "int64",
+              "file": "generated_ids.bin",
+              "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1",
+              "shape": [
+                8,
+                64
+              ]
+            },
+            "input_ids": {
+              "dtype": "int64",
+              "file": "input_ids.bin",
+              "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+              "shape": [
+                8,
+                256
+              ]
+            }
+          },
+          "arrays_dir": "arrays",
+          "attention_mask_sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904",
+          "case_id": "R_p1080_1_tinyllama_fp32",
+          "child_device_capability": "6.1",
+          "child_device_name": "NVIDIA GeForce GTX 1080 Ti",
+          "child_visible_devices": "GTX_1080Ti#1",
+          "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+          "criterion": "titan_reference_logit_criterion_v1",
+          "dropout_active": false,
+          "eval_settings": {
+            "do_sample": false,
+            "grad_enabled": false,
+            "max_new_tokens": 64,
+            "module_training_mode": false,
+            "num_beams": 1,
+            "pad_token_id": 2
+          },
+          "initial_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d",
+          "input_shape": [
+            8,
+            256
+          ],
+          "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+          "model_dtype": "torch.float32",
+          "precision_policy": null,
+          "protocol_digest": "fa1b5a888f912a044aef989221a34729092945c36c22cfcf4accdb0d6972bd63",
+          "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+          "resolved_revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+          "torch_version": "2.4.1+cu121"
+        }
+      }
+    },
+    "stderr_tail": ""
+  },
+  "results": {
+    "R_p1080_1_tinyllama_fp32": {
+      "attempt": 1,
+      "disposition": "completed_with_supported_checks",
+      "elapsed_s": 33.9,
+      "evidence_dir": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/rank0",
+      "out": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1",
+      "rc": 0,
+      "reason": "the expected rank completed",
+      "stderr_tail": "",
+      "stdout_tail": "case R_p1080_1_tinyllama_fp32: kind=reference world_size=1 stage=None precision=fp32 group=p1080_1\n  runner: zerodiag/ref_runner.py\n  devices [1] (NVIDIA GeForce GTX 1080 Ti)\n  worker sha256: bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3\n  cpu affinity: [0, 1, 2, 3, 4, 5, 6, 7] via os.sched_setaffinity (a restriction, not a quota and not an exclusive reservation)\n  launched 1/1 rank(s); ownership token zd-5926fb52bc0d5e25\n  ranks: 1/1 completed, 1/1 with evidence\n  aggregate peak owned RSS: 5.2493 GiB of 32.0 GiB over 58 sample(s)\n  elapsed 33.8s  cleanup_confirmed=True\ncase completed; every expected rank reconciled\n",
+      "summary": {
+        "aggregate_memory": {
+          "budget_bytes": 34359738368,
+          "budget_gib": 32.0,
+          "discovery": "union of recorded rank pgids and a /proc token sweep",
+          "enforced_cap": false,
+          "interval_s": 0.5,
+          "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+          "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+          "peak_owned_rss_bytes": 5636415488,
+          "peak_owned_rss_gib": 5.2493,
+          "samples": 58,
+          "shared_pages": "counted once per sharing process: an over-estimate"
+        },
+        "authorization_id": "CLOSED-20261020T125221Z",
+        "authorization_revoked": true,
+        "budget_breached": false,
+        "case_id": "R_p1080_1_tinyllama_fp32",
+        "device_uuids": [
+          "GTX_1080Ti#1"
+        ],
+        "elapsed_s": 33.83,
+        "exit_codes": [
+          0
+        ],
+        "group": "p1080_1",
+        "group_absent_confirmed": true,
+        "interpreter": "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-train/bin/python",
+        "kind": "reference",
+        "lifecycle": {
+          "aggregate": {
+            "budget_bytes": 34359738368,
+            "budget_gib": 32.0,
+            "discovery": "union of recorded rank pgids and a /proc token sweep",
+            "enforced_cap": false,
+            "interval_s": 0.5,
+            "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+            "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+            "peak_owned_rss_bytes": 5636415488,
+            "peak_owned_rss_gib": 5.2493,
+            "samples": 58,
+            "shared_pages": "counted once per sharing process: an over-estimate"
+          },
+          "budget_breached": false,
+          "cleanup": {
+            "basis": "a leader's exit is not sufficient; every owned pid and token-carrying descendant is checked. Zombies are excluded: they have exited and hold nothing.",
+            "foreign_processes_signalled": 0,
+            "owned_absent_confirmed": true,
+            "scope": "owned ranks and their descendants only",
+            "steps": [
+              {
+                "error": "ProcessLookupError",
+                "pgid": 596092,
+                "sent": false,
+                "signal": "TERM"
+              }
+            ],
+            "surviving_pids": []
+          },
+          "elapsed_s": 33.83,
+          "exit_codes": {
+            "0": 0
+          },
+          "launch_errors": {},
+          "ledger": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/ownership_ledger.json",
+          "n_launched": 1,
+          "owned_absent_confirmed": true,
+          "partial_launch": false,
+          "ranks_launched": [
+            0
+          ],
+          "timed_out": false,
+          "token": "zd-5926fb52bc0d5e25",
+          "world_size": 1
+        },
+        "monitoring_note": "sampled aggregate owned RSS; a guard, not an enforced aggregate memory cap",
+        "ownership_token": "zd-5926fb52bc0d5e25",
+        "per_rank": {
+          "0": {
+            "amp_semantics": null,
+            "evidence_present": true,
+            "exit_code": 0,
+            "expected_base_calls": null,
+            "initial_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d",
+            "rank_reported": 0,
+            "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+            "reason": null,
+            "stage": "completed"
+          }
+        },
+        "precision": "fp32",
+        "rank_reconciliation": {
+          "kind": "reference",
+          "note": "a reference case carries no partition reconciliation; its terminal status is the runner's own verdict",
+          "ranks_completed": 1,
+          "ranks_expected": 1,
+          "reason": null,
+          "verification_successful": true
+        },
+        "ranks_completed": 1,
+        "ranks_expected": 1,
+        "ranks_with_evidence": 1,
+        "reconciliation_successful": true,
+        "runner": "zerodiag/ref_runner.py",
+        "runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+        "source_digest": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb",
+        "stage": null,
+        "timed_out": false,
+        "worker_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+        "world_size": 1
+      }
+    },
+    "R_rtx_1_tinyllama_fp32": {
+      "attempt": 1,
+      "disposition": "completed_with_supported_checks",
+      "elapsed_s": 33.7,
+      "evidence_dir": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/rank0",
+      "out": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1",
+      "rc": 0,
+      "reason": "the expected rank completed",
+      "stderr_tail": "",
+      "stdout_tail": "case R_rtx_1_tinyllama_fp32: kind=reference world_size=1 stage=None precision=fp32 group=rtx_1\n  runner: zerodiag/ref_runner.py\n  devices [0] (NVIDIA TITAN RTX)\n  worker sha256: bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3\n  cpu affinity: [0, 1, 2, 3, 4, 5, 6, 7] via os.sched_setaffinity (a restriction, not a quota and not an exclusive reservation)\n  launched 1/1 rank(s); ownership token zd-b2aff764a5d5816d\n  ranks: 1/1 completed, 1/1 with evidence\n  aggregate peak owned RSS: 4.6372 GiB of 32.0 GiB over 57 sample(s)\n  elapsed 33.5s  cleanup_confirmed=True\ncase completed; every expected rank reconciled\n",
+      "summary": {
+        "aggregate_memory": {
+          "budget_bytes": 34359738368,
+          "budget_gib": 32.0,
+          "discovery": "union of recorded rank pgids and a /proc token sweep",
+          "enforced_cap": false,
+          "interval_s": 0.5,
+          "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+          "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+          "peak_owned_rss_bytes": 4979138560,
+          "peak_owned_rss_gib": 4.6372,
+          "samples": 57,
+          "shared_pages": "counted once per sharing process: an over-estimate"
+        },
+        "authorization_id": "CLOSED-20261020T125221Z",
+        "authorization_revoked": true,
+        "budget_breached": false,
+        "case_id": "R_rtx_1_tinyllama_fp32",
+        "device_uuids": [
+          "TITAN_RTX#1"
+        ],
+        "elapsed_s": 33.55,
+        "exit_codes": [
+          0
+        ],
+        "group": "rtx_1",
+        "group_absent_confirmed": true,
+        "interpreter": "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-train/bin/python",
+        "kind": "reference",
+        "lifecycle": {
+          "aggregate": {
+            "budget_bytes": 34359738368,
+            "budget_gib": 32.0,
+            "discovery": "union of recorded rank pgids and a /proc token sweep",
+            "enforced_cap": false,
+            "interval_s": 0.5,
+            "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+            "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+            "peak_owned_rss_bytes": 4979138560,
+            "peak_owned_rss_gib": 4.6372,
+            "samples": 57,
+            "shared_pages": "counted once per sharing process: an over-estimate"
+          },
+          "budget_breached": false,
+          "cleanup": {
+            "basis": "a leader's exit is not sufficient; every owned pid and token-carrying descendant is checked. Zombies are excluded: they have exited and hold nothing.",
+            "foreign_processes_signalled": 0,
+            "owned_absent_confirmed": true,
+            "scope": "owned ranks and their descendants only",
+            "steps": [
+              {
+                "error": "ProcessLookupError",
+                "pgid": 596134,
+                "sent": false,
+                "signal": "TERM"
+              }
+            ],
+            "surviving_pids": []
+          },
+          "elapsed_s": 33.55,
+          "exit_codes": {
+            "0": 0
+          },
+          "launch_errors": {},
+          "ledger": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/ownership_ledger.json",
+          "n_launched": 1,
+          "owned_absent_confirmed": true,
+          "partial_launch": false,
+          "ranks_launched": [
+            0
+          ],
+          "timed_out": false,
+          "token": "zd-b2aff764a5d5816d",
+          "world_size": 1
+        },
+        "monitoring_note": "sampled aggregate owned RSS; a guard, not an enforced aggregate memory cap",
+        "ownership_token": "zd-b2aff764a5d5816d",
+        "per_rank": {
+          "0": {
+            "amp_semantics": null,
+            "evidence_present": true,
+            "exit_code": 0,
+            "expected_base_calls": null,
+            "initial_state_sha256": "90a5cfc17697cf5152de6ac738745dc4f76307aeee84e8905f2103bedb5f2a1d",
+            "rank_reported": 0,
+            "realized_input_sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff",
+            "reason": null,
+            "stage": "completed"
+          }
+        },
+        "precision": "fp32",
+        "rank_reconciliation": {
+          "kind": "reference",
+          "note": "a reference case carries no partition reconciliation; its terminal status is the runner's own verdict",
+          "ranks_completed": 1,
+          "ranks_expected": 1,
+          "reason": null,
+          "verification_successful": true
+        },
+        "ranks_completed": 1,
+        "ranks_expected": 1,
+        "ranks_with_evidence": 1,
+        "reconciliation_successful": true,
+        "runner": "zerodiag/ref_runner.py",
+        "runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+        "source_digest": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb",
+        "stage": null,
+        "timed_out": false,
+        "worker_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+        "world_size": 1
+      }
+    },
+    "S_rtx_1_stream_256_64": {
+      "attempt": 2,
+      "disposition": "invalid_diagnostic_or_software_failure",
+      "elapsed_s": 41.7,
+      "evidence_dir": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/S_rtx_1_stream_256_64/attempt2/run/rank0",
+      "out": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/S_rtx_1_stream_256_64/attempt2",
+      "rc": 1,
+      "reason": "ranks did not complete: the session lacks required evidence (no raw stream events were recorded, no completion marker (DONE sentinel or finish_reason)); a streaming case is not complete without an actual request, recorded events and a completion marker",
+      "stderr_tail": "",
+      "stdout_tail": "case S_rtx_1_stream_256_64: kind=streaming world_size=1 stage=None precision=None group=rtx_1\n  runner: zerodiag/stream_runner.py\n  devices [0] (NVIDIA TITAN RTX)\n  worker sha256: 3d5880d38932633508b91b71898153a3dea9f67e764c4af24f2628f54363242a\n  cpu affinity: [0, 1, 2, 3, 4, 5, 6, 7] via os.sched_setaffinity (a restriction, not a quota and not an exclusive reservation)\n  launched 1/1 rank(s); ownership token zd-87403b212caf916c\n  ranks: 0/1 completed, 1/1 with evidence\n  aggregate peak owned RSS: 8.0574 GiB of 32.0 GiB over 71 sample(s)\n  elapsed 41.6s  cleanup_confirmed=True\nSTOP: rank(s) did not complete: {'0': 'the session lacks required evidence (no raw stream events were recorded, no completion marker (DONE sentinel or finish_reason)); a streaming case is not complete without an actual request, recorded events and a completion marker'}\n",
+      "summary": {
+        "aggregate_memory": {
+          "budget_bytes": 34359738368,
+          "budget_gib": 32.0,
+          "discovery": "union of recorded rank pgids and a /proc token sweep",
+          "enforced_cap": false,
+          "interval_s": 0.5,
+          "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+          "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+          "peak_owned_rss_bytes": 8651522048,
+          "peak_owned_rss_gib": 8.0574,
+          "samples": 71,
+          "shared_pages": "counted once per sharing process: an over-estimate"
+        },
+        "authorization_id": "CLOSED-20261020T125221Z",
+        "authorization_revoked": true,
+        "budget_breached": false,
+        "case_id": "S_rtx_1_stream_256_64",
+        "device_uuids": [
+          "TITAN_RTX#1"
+        ],
+        "elapsed_s": 41.57,
+        "exit_codes": [
+          0
+        ],
+        "group": "rtx_1",
+        "group_absent_confirmed": true,
+        "interpreter": "$PROJECT_ROOT/gpu_bench_stage1/envs/bench-vllm/bin/python",
+        "kind": "streaming",
+        "lifecycle": {
+          "aggregate": {
+            "budget_bytes": 34359738368,
+            "budget_gib": 32.0,
+            "discovery": "union of recorded rank pgids and a /proc token sweep",
+            "enforced_cap": false,
+            "interval_s": 0.5,
+            "limitations": "sampled at 0.5s; transients shorter than the interval can be missed. Monitoring, not a cap.",
+            "method": "sum of /proc/<pid>/status VmRSS over owned pids",
+            "peak_owned_rss_bytes": 8651522048,
+            "peak_owned_rss_gib": 8.0574,
+            "samples": 71,
+            "shared_pages": "counted once per sharing process: an over-estimate"
+          },
+          "budget_breached": false,
+          "cleanup": {
+            "basis": "a leader's exit is not sufficient; every owned pid and token-carrying descendant is checked. Zombies are excluded: they have exited and hold nothing.",
+            "foreign_processes_signalled": 0,
+            "owned_absent_confirmed": true,
+            "scope": "owned ranks and their descendants only",
+            "steps": [
+              {
+                "error": "ProcessLookupError",
+                "pgid": 596364,
+                "sent": false,
+                "signal": "TERM"
+              }
+            ],
+            "surviving_pids": []
+          },
+          "elapsed_s": 41.57,
+          "exit_codes": {
+            "0": 0
+          },
+          "launch_errors": {},
+          "ledger": "$PROJECT_ROOT/titan_closed_20261020/out/batch/closed_attempts/S_rtx_1_stream_256_64/attempt2/run/ownership_ledger.json",
+          "n_launched": 1,
+          "owned_absent_confirmed": true,
+          "partial_launch": false,
+          "ranks_launched": [
+            0
+          ],
+          "timed_out": false,
+          "token": "zd-87403b212caf916c",
+          "world_size": 1
+        },
+        "monitoring_note": "sampled aggregate owned RSS; a guard, not an enforced aggregate memory cap",
+        "ownership_token": "zd-87403b212caf916c",
+        "per_rank": {
+          "0": {
+            "amp_semantics": null,
+            "evidence_present": true,
+            "exit_code": 0,
+            "expected_base_calls": null,
+            "initial_state_sha256": null,
+            "rank_reported": 0,
+            "realized_input_sha256": null,
+            "reason": "the session lacks required evidence (no raw stream events were recorded, no completion marker (DONE sentinel or finish_reason)); a streaming case is not complete without an actual request, recorded events and a completion marker",
+            "stage": "refused"
+          }
+        },
+        "precision": null,
+        "rank_reconciliation": {
+          "kind": "streaming",
+          "note": "a streaming case carries no partition reconciliation; its terminal status is the runner's own verdict",
+          "ranks_completed": 0,
+          "ranks_expected": 1,
+          "reason": "1 of 1 rank(s) did not complete",
+          "verification_successful": false
+        },
+        "ranks_completed": 0,
+        "ranks_expected": 1,
+        "ranks_with_evidence": 1,
+        "reconciliation_successful": false,
+        "runner": "zerodiag/stream_runner.py",
+        "runner_sha256": "3d5880d38932633508b91b71898153a3dea9f67e764c4af24f2628f54363242a",
+        "source_digest": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb",
+        "stage": null,
+        "timed_out": false,
+        "worker_sha256": "3d5880d38932633508b91b71898153a3dea9f67e764c4af24f2628f54363242a",
+        "world_size": 1
+      }
+    }
+  },
+  "stopped": null
+}

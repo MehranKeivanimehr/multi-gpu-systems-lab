@@ -1,0 +1,2480 @@
+{
+  "accounting_reconciliation": {
+    "followup_batch": {
+      "case_attempts": 14,
+      "case_summaries": 14,
+      "ceiling": 26,
+      "ownership_ledgers": 14,
+      "rank_process_records": 36
+    },
+    "original_batch": {
+      "case_attempts": 22,
+      "case_summaries": 21,
+      "ceiling": 36,
+      "ownership_ledgers": 22,
+      "rank_process_records": 47
+    },
+    "why_denominators_differ": [
+      "a case attempt is one launcher invocation; it creates one attempt directory",
+      "a case summary exists only if the launcher reached its post-wait verification; an attempt terminated by the operator has none, which is why summaries can be fewer than attempts",
+      "a rank process record is one per rank per attempt, so a six-rank case contributes six to that denominator and one to the attempt denominator",
+      "an ownership ledger is written once per attempt that reached the spawn stage, so it tracks attempts, not ranks",
+      "the two batches have SEPARATE ceilings and are never summed"
+    ]
+  },
+  "append_only_note": "v5 adds the streaming-only window to v4. Original, follow-up and closing outcomes, qualifications, dates and authorizations are preserved verbatim under `original_*`, `followup`, `closing_window`, `v3_*`, `v4_*` and `preserved_failure_history`. No earlier failure is erased and no sample is invented. Local v6 preserves v5 dispositions and adds a qualified streaming closeout; no new hardware observations.",
+  "authorizations": [
+    "followup",
+    "original",
+    {
+      "approved_by": "repository owner (Mehran Keivanimehr)",
+      "approved_devices": [
+        {
+          "cases": [
+            "R_p1080_1_tinyllama_fp32"
+          ],
+          "index": 1,
+          "name": "NVIDIA GeForce GTX 1080 Ti",
+          "uuid": "GTX_1080Ti#1"
+        },
+        {
+          "cases": [
+            "R_rtx_1_tinyllama_fp32",
+            "S_rtx_1_stream_256_64"
+          ],
+          "index": 0,
+          "name": "NVIDIA TITAN RTX",
+          "uuid": "TITAN_RTX#1"
+        }
+      ],
+      "attempts_unused_overall": 2,
+      "attempts_used": 4,
+      "authorization_id": "CLOSED-20261020T125221Z",
+      "basis": "owner approval 2026-10-20: one fresh nonrenewable 7200 s window to close the reference logit comparison and the streaming session",
+      "candidate": "$PROJECT_ROOT/titan_closed_20261020/candidate",
+      "candidate_manifest_sha256": "04d50f37bf3682685cccb6206ed10396305984b0cfede326cb68a984cbc7656d",
+      "cleanup_verified": true,
+      "criterion_clarification_sha256": "5e334d780659ef9e53c139cb7ddcb3a71a1ebd2e798c1af039f89f58435c23a8",
+      "device_groups_sha256": "cad1695285574316d037aa950c07f03715224518ce8f7cc224200cf71e920372",
+      "eligible_physical_indices": [
+        0,
+        1
+      ],
+      "expiry_epoch": 1792507941.903163,
+      "expiry_utc": "2026-10-20T14:52:21Z",
+      "final_device_state": [
+        "0, NVIDIA TITAN RTX, TITAN_RTX#1, 6, 0",
+        "1, NVIDIA GeForce GTX 1080 Ti, GTX_1080Ti#1, 6, 0"
+      ],
+      "foreign_compute_apps_after": null,
+      "issue_epoch": 1792500741.903163,
+      "issued_utc": "2026-10-20T12:52:21Z",
+      "jobs_at_a_time": 1,
+      "limits": {
+        "aggregate_host_rss_gib": 32,
+        "cleanup_allowance_s": 90,
+        "max_logical_cpus": 8,
+        "reference_timeout_s": 300,
+        "streaming_timeout_s": 900
+      },
+      "lossless_sha256": "0db3dc95c19c37da0a7abe60b4b6b562c6889e4517759227b05088ec5fcc8ac6",
+      "max_concurrent_gpus": 1,
+      "owned_ledgers": [
+        {
+          "case": "R_p1080_1_tinyllama_fp32",
+          "ledger": "out/batch/closed_attempts/R_p1080_1_tinyllama_fp32/attempt1/run/ownership_ledger.json",
+          "ranks": 1,
+          "still_present": [],
+          "token": "zd-5926fb52bc0d5e25"
+        },
+        {
+          "case": "R_rtx_1_tinyllama_fp32",
+          "ledger": "out/batch/closed_attempts/R_rtx_1_tinyllama_fp32/attempt1/run/ownership_ledger.json",
+          "ranks": 1,
+          "still_present": [],
+          "token": "zd-b2aff764a5d5816d"
+        },
+        {
+          "case": "S_rtx_1_stream_256_64",
+          "ledger": "out/batch/closed_attempts/S_rtx_1_stream_256_64/attempt1/run/ownership_ledger.json",
+          "ranks": 1,
+          "still_present": [],
+          "token": "zd-d433e53e525273f3"
+        },
+        {
+          "case": "S_rtx_1_stream_256_64",
+          "ledger": "out/batch/closed_attempts/S_rtx_1_stream_256_64/attempt2/run/ownership_ledger.json",
+          "ranks": 1,
+          "still_present": [],
+          "token": "zd-87403b212caf916c"
+        }
+      ],
+      "prohibited": [
+        "no sudo",
+        "no host-service changes",
+        "no GPU resets",
+        "no power or clock changes",
+        "no system-package installation",
+        "no large model downloads",
+        "no substitute GPU",
+        "no multi-GPU job",
+        "no change to model, corpus, generation policy, precision, thresholds or acceptance criteria"
+      ],
+      "ref_compare_sha256": "b1a0b3c5c95710bd08a45dd8e8979ed0f0c813dc1c678f7fab6d1963eabda1c6",
+      "ref_runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+      "renewable": false,
+      "repair_policy": {
+        "in_window_cpu_repair_budget_min": 45,
+        "max_attempts_overall": 6,
+        "max_attempts_per_case": 2
+      },
+      "revoked": true,
+      "revoked_epoch": 1792501008.04624,
+      "revoked_utc": "2026-10-20T12:56:48Z",
+      "separate_from": "FOLLOWUP-20261020T113750Z and BATCH-20261020T095841Z accounting, both preserved unchanged",
+      "source_digest": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb",
+      "stream_runner_sha256": "3d5880d38932633508b91b71898153a3dea9f67e764c4af24f2628f54363242a",
+      "window_s": 7200,
+      "window_unused_s": 6933.9,
+      "window_used_s": 266.1,
+      "worker_sha256": "17eeebf0a6925c16b9952545aacdda825dbb06065f67e210c64bc947c0cdf3a2"
+    },
+    {
+      "approved_by": "repository owner (Mehran Keivanimehr)",
+      "approved_device": {
+        "index": 0,
+        "name": "NVIDIA TITAN RTX",
+        "uuid": "TITAN_RTX#1"
+      },
+      "attempts_unused": 2,
+      "attempts_used": 1,
+      "authorization_id": "FINAL-20261020T141800Z",
+      "basis": "owner approval 2026-10-20: one fresh nonrenewable 5400 s streaming-only window on physical GPU 0 after CPU acceptance",
+      "candidate": "$PROJECT_ROOT/titan_final_20261020/candidate",
+      "candidate_manifest_sha256": "782fed1981a0ae1656bf3891f42175ed08ab24e02343561e53198c02e9159600",
+      "cleanup_verified": true,
+      "corpus_file_sha256": "254bee77d30364e640ef376fa5a62b6ae583df8f0eae30ebbca36f7e016623e7",
+      "dependency_conflict_present_at_issue": true,
+      "device_groups_sha256": "cad1695285574316d037aa950c07f03715224518ce8f7cc224200cf71e920372",
+      "effective_config_sha256": "4bd56157bc4aca2452cb3c74535e6bd2f96170129523d9ea749fb0ad31e361b3",
+      "eligible_physical_indices": [
+        0
+      ],
+      "environment_identities": {
+        "datasets": "5.1.0",
+        "huggingface_hub": "0.36.2",
+        "lm-format-enforcer": "0.10.6",
+        "outlines": "0.0.46",
+        "prometheus_client": "0.26.0",
+        "torch": "2.4.0",
+        "transformers": "4.45.2",
+        "vllm": "0.6.3.post1"
+      },
+      "expiry_epoch": 1792511280.0755436,
+      "expiry_utc": "2026-10-20T15:48:00Z",
+      "final_device_state": [
+        "0, NVIDIA TITAN RTX, TITAN_RTX#1, 6, 0"
+      ],
+      "foreign_compute_apps_after": null,
+      "in_window_cpu_repair_used_min": 0,
+      "issue_epoch": 1792505880.0755436,
+      "issued_utc": "2026-10-20T14:18:00Z",
+      "jobs_at_a_time": 1,
+      "limits": {
+        "aggregate_host_rss_gib": 32,
+        "cleanup_allowance_s": 90,
+        "max_logical_cpus": 8,
+        "streaming_timeout_s": 900
+      },
+      "max_concurrent_gpus": 1,
+      "owned_ledgers": [
+        {
+          "ledger": "out/batch/final_attempts/attempt1/run/ownership_ledger.json",
+          "ranks": 1,
+          "still_present": [],
+          "token": "zd-127828124f4bcfed"
+        }
+      ],
+      "previous_windows_preserved": [
+        "BATCH-20261020T095841Z",
+        "FOLLOWUP-20261020T113750Z",
+        "CLOSED-20261020T125221Z"
+      ],
+      "prohibited": [
+        "no new large model downloads",
+        "no system-package installs",
+        "no sudo",
+        "no GPU resets",
+        "no host-service changes",
+        "no power or clock changes",
+        "no global environment mutation",
+        "no substitute GPU",
+        "no second concurrent job",
+        "no change to model, corpus, precision, generation policy, workload or scientific acceptance criteria"
+      ],
+      "renewable": false,
+      "repair_policy": {
+        "attempt_note": "one initial attempt and up to two engineering retries",
+        "in_window_cpu_repair_budget_min": 30,
+        "max_attempts": 3,
+        "repair_budget_is_inside_the_window": true
+      },
+      "reuses_a_previous_window": false,
+      "revoked": true,
+      "revoked_epoch": 1792506058.1418302,
+      "revoked_utc": "2026-10-20T14:20:58Z",
+      "safety_stops": 0,
+      "scope": "streaming only; no training, reference, Gate-0, performance or energy work",
+      "server_group_still_present": [],
+      "source_digest": "37f1347d53e54c3b0cae9b55a359c94748d3315ef33ee6ef5d0e6357a16099c3",
+      "stream_runner_sha256": "0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1",
+      "streaming_module_sha256": "39484431ade8d3db1100c6bc2ecc5e9dd0694f4fd727aa1271902575dd17b233",
+      "success_rule_sha256": "860f6954ba4d5514143fa8083c54287334303247ad761f82952fb10fda0dc849",
+      "window_s": 5400,
+      "window_unused_s": 5221.9,
+      "window_used_s": 178.1
+    }
+  ],
+  "by_final_status": {
+    "completed_with_qualifications": 2,
+    "completed_with_supported_checks": 17
+  },
+  "by_original_status": {
+    "completed_with_qualifications": 11,
+    "completed_with_supported_checks": 5,
+    "invalid_diagnostic_or_software_failure": 3
+  },
+  "by_v3_status": {
+    "completed_with_qualifications": 3,
+    "completed_with_supported_checks": 15,
+    "invalid_diagnostic_or_software_failure": 1
+  },
+  "by_v4_status": {
+    "completed_with_qualifications": 1,
+    "completed_with_supported_checks": 17,
+    "invalid_diagnostic_or_software_failure": 1
+  },
+  "by_v5_status": {
+    "completed_with_qualifications": 1,
+    "completed_with_supported_checks": 18
+  },
+  "contexts": [
+    {
+      "attempts": 1,
+      "authorization_id": "GATE0-20261020T041835Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "G0_1080ti_zero1_w1_fp32",
+      "does_not_establish": [
+        "independent gradient correctness (the gradient is observed, not recomputed; dropout p=0.1 is active in the retained recipe)",
+        "training quality or convergence",
+        "retrospective validity of any historical run"
+      ],
+      "evidence": "private_review/gate0/attempt_gate0/run/integration_evidence.json",
+      "evidence_sha256": "f45b26062044bb08a560223524f23ca2d8a9be05ab926d25fb870b36733508b1",
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_qualifications",
+      "followup": {
+        "linked_attempts": 0,
+        "note": "not in the authorized follow-up scope; original evidence stands unchanged"
+      },
+      "kind": "training",
+      "newly_established_checks": [],
+      "not_re_executed": "this context is complete; later changes to the consistency checker and the launcher do not re-open it",
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "the module/master consistency criterion in force at the time used a generic 1e-3 tolerance that was NON-discriminating for this update size; the measured difference was exactly 0.0, and that measurement, not the criterion, carries the conclusion (CORRECTION_004)",
+        "complete checked coverage does not mean every individual element had a separately discriminating update; discrimination was assessed per partition from the maximum intended movement",
+        "CPU arithmetic does not establish bitwise agreement with the same computation on CUDA"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "the module/master consistency criterion in force at the time used a generic 1e-3 tolerance that was NON-discriminating for this update size; the measured difference was exactly 0.0, and that measurement, not the criterion, carries the conclusion (CORRECTION_004)",
+        "complete checked coverage does not mean every individual element had a separately discriminating update; discrimination was assessed per partition from the maximum intended movement",
+        "CPU arithmetic does not establish bitwise agreement with the same computation on CUDA"
+      ],
+      "rank_records": 1,
+      "remaining_qualifications": [
+        "the module/master consistency criterion in force at the time used a generic 1e-3 tolerance that was NON-discriminating for this update size; the measured difference was exactly 0.0, and that measurement, not the criterion, carries the conclusion (CORRECTION_004)",
+        "complete checked coverage does not mean every individual element had a separately discriminating update; discrimination was assessed per partition from the maximum intended movement",
+        "CPU arithmetic does not establish bitwise agreement with the same computation on CUDA"
+      ],
+      "stage": 1,
+      "status": "completed_with_qualifications",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "supported_conclusion": "conditional optimizer-update agreement on one GTX 1080 Ti, ZeRO-1, world size one, FP32, one audited boundary: max |param deviation| 5.96046e-08 against tolerance 7.62977e-06, with intended movement 1.0103e-04 so the check was discriminating; coverage complete over 124,439,808 of 124,439,808 expected elements in 30 chunks",
+      "v3_final_status": "completed_with_qualifications",
+      "v3_remaining_qualifications": [
+        "the module/master consistency criterion in force at the time used a generic 1e-3 tolerance that was NON-discriminating for this update size; the measured difference was exactly 0.0, and that measurement, not the criterion, carries the conclusion (CORRECTION_004)",
+        "complete checked coverage does not mean every individual element had a separately discriminating update; discrimination was assessed per partition from the maximum intended movement",
+        "CPU arithmetic does not establish bitwise agreement with the same computation on CUDA"
+      ],
+      "v4_final_status": "completed_with_qualifications",
+      "v4_remaining_qualifications": [
+        "the module/master consistency criterion in force at the time used a generic 1e-3 tolerance that was NON-discriminating for this update size; the measured difference was exactly 0.0, and that measurement, not the criterion, carries the conclusion (CORRECTION_004)",
+        "complete checked coverage does not mean every individual element had a separately discriminating update; discrimination was assessed per partition from the maximum intended movement",
+        "CPU arithmetic does not establish bitwise agreement with the same computation on CUDA"
+      ],
+      "world_size": 1
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_2_zero1_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 62219904,
+          "1": 62219904
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "GTX_1080Ti#1",
+        "GTX_1080Ti#2"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_2",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4760.3,
+        "elapsed_s": 22.45,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 6.6241
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 2,
+        "boundaries": 2,
+        "chunks": 15,
+        "discriminating": true,
+        "elements_per_rank": 62219904,
+        "final_chunk_elems": 3499648,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 5.960464477539063e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 2,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 2,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 2
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_4_zero1_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 31109952,
+          "1": 31109952,
+          "2": 31109952,
+          "3": 31109952
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "GTX_1080Ti#1",
+        "GTX_1080Ti#2",
+        "GTX_1080Ti#3",
+        "GTX_1080Ti#4"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_4",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4641.1,
+        "elapsed_s": 26.98,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 9.8569
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 4,
+        "boundaries": 4,
+        "chunks": 8,
+        "discriminating": true,
+        "elements_per_rank": 31109952,
+        "final_chunk_elems": 1749824,
+        "intended_movement": 0.00010009855031967163,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 4,
+        "tolerance": 4.255009287135181e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (31109952,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 31,109,952 of 124,439,808 model elements by design at world size 4; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (31109952,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 31,109,952 of 124,439,808 model elements by design at world size 4; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 4,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 4
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_6_zero1_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 20739968,
+          "1": 20739968,
+          "2": 20739968,
+          "3": 20739968,
+          "4": 20739968,
+          "5": 20739968
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "GTX_1080Ti#1",
+        "GTX_1080Ti#2",
+        "GTX_1080Ti#3",
+        "GTX_1080Ti#4",
+        "GTX_1080Ti#5",
+        "GTX_1080Ti#6"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_6",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4603.0,
+        "elapsed_s": 27.76,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 12.7952
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 6,
+        "boundaries": 6,
+        "chunks": 5,
+        "discriminating": true,
+        "elements_per_rank": 20739968,
+        "final_chunk_elems": 3962752,
+        "intended_movement": 0.00010009855031967163,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 6,
+        "tolerance": 4.255009514508856e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (20739968,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 20,739,968 of 124,439,808 model elements by design at world size 6; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (20739968,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 20,739,968 of 124,439,808 model elements by design at world size 6; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 6,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 6
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_1_zero2_fp32",
+      "device_labels": [
+        "GTX_1080Ti#1"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "linked_attempts": 0,
+        "note": "not in the authorized follow-up scope; original evidence stands unchanged"
+      },
+      "group": "p1080_1",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4995.7,
+        "elapsed_s": 18.58,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 5.2554
+      },
+      "newly_established_checks": [],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 1,
+        "boundaries": 1,
+        "chunks": 30,
+        "discriminating": true,
+        "elements_per_rank": 124439808,
+        "final_chunk_elems": 2804992,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 5.960464477539063e-08,
+        "module_master_criterion": "fp32_exact_equality",
+        "module_master_established": true,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 1,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_supported_checks",
+      "original_qualifications": [],
+      "precision": "fp32",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 1
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_2_zero2_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 62219904,
+          "1": 62219904
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "GTX_1080Ti#1",
+        "GTX_1080Ti#2"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_2",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4760.3,
+        "elapsed_s": 21.81,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 6.7515
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 2,
+        "boundaries": 2,
+        "chunks": 15,
+        "discriminating": true,
+        "elements_per_rank": 62219904,
+        "final_chunk_elems": 3499648,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 5.960464477539063e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 2,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 2,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 2
+    },
+    {
+      "attempts": 2,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_4_zero2_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 31109952,
+          "1": 31109952,
+          "2": 31109952,
+          "3": 31109952
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "GTX_1080Ti#1",
+        "GTX_1080Ti#2",
+        "GTX_1080Ti#3",
+        "GTX_1080Ti#4"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_4",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4641.1,
+        "elapsed_s": 27.23,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 9.7287
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 4,
+        "boundaries": 4,
+        "chunks": 8,
+        "discriminating": true,
+        "elements_per_rank": 31109952,
+        "final_chunk_elems": 1749824,
+        "intended_movement": 0.00010009855031967163,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 4,
+        "tolerance": 4.255009287135181e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (31109952,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 31,109,952 of 124,439,808 model elements by design at world size 4; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (31109952,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 31,109,952 of 124,439,808 model elements by design at world size 4; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 4,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 4
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_p1080_6_zero2_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 20739968,
+          "1": 20739968,
+          "2": 20739968,
+          "3": 20739968,
+          "4": 20739968,
+          "5": 20739968
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "GTX_1080Ti#1",
+        "GTX_1080Ti#2",
+        "GTX_1080Ti#3",
+        "GTX_1080Ti#4",
+        "GTX_1080Ti#5",
+        "GTX_1080Ti#6"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_6",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4603.0,
+        "elapsed_s": 29.0,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 12.7534
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 6,
+        "boundaries": 6,
+        "chunks": 5,
+        "discriminating": true,
+        "elements_per_rank": 20739968,
+        "final_chunk_elems": 3962752,
+        "intended_movement": 0.00010009855031967163,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 6,
+        "tolerance": 4.255009514508856e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (20739968,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 20,739,968 of 124,439,808 model elements by design at world size 6; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (20739968,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 20,739,968 of 124,439,808 model elements by design at world size 6; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 6,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 6
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_1_zero1_fp32",
+      "device_labels": [
+        "TITAN_RTX#1"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "linked_attempts": 0,
+        "note": "not in the authorized follow-up scope; original evidence stands unchanged"
+      },
+      "group": "rtx_1",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4995.7,
+        "elapsed_s": 18.51,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 5.4021
+      },
+      "newly_established_checks": [],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 1,
+        "boundaries": 1,
+        "chunks": 30,
+        "discriminating": true,
+        "elements_per_rank": 124439808,
+        "final_chunk_elems": 2804992,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 5.960464477539063e-08,
+        "module_master_criterion": "fp32_exact_equality",
+        "module_master_established": true,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 1,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_supported_checks",
+      "original_qualifications": [],
+      "precision": "fp32",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 1
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_2_zero1_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 62219904,
+          "1": 62219904
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "TITAN_RTX#1",
+        "TITAN_RTX#2"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "rtx_2",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4760.3,
+        "elapsed_s": 23.61,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 7.089
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 2,
+        "boundaries": 2,
+        "chunks": 15,
+        "discriminating": true,
+        "elements_per_rank": 62219904,
+        "final_chunk_elems": 3499648,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 2,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 2,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 2
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_1_zero2_fp32",
+      "device_labels": [
+        "TITAN_RTX#1"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "linked_attempts": 0,
+        "note": "not in the authorized follow-up scope; original evidence stands unchanged"
+      },
+      "group": "rtx_1",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4995.7,
+        "elapsed_s": 18.62,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 5.4061
+      },
+      "newly_established_checks": [],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 1,
+        "boundaries": 1,
+        "chunks": 30,
+        "discriminating": true,
+        "elements_per_rank": 124439808,
+        "final_chunk_elems": 2804992,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 5.960464477539063e-08,
+        "module_master_criterion": "fp32_exact_equality",
+        "module_master_established": true,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 1,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_supported_checks",
+      "original_qualifications": [],
+      "precision": "fp32",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 1
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_2_zero2_fp32",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 62219904,
+          "1": 62219904
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "TITAN_RTX#1",
+        "TITAN_RTX#2"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "rtx_2",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 4760.3,
+        "elapsed_s": 22.59,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 7.0543
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "fp32_exact_equality",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (fp32_exact_equality), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": false,
+        "base_calls": 2,
+        "boundaries": 2,
+        "chunks": 15,
+        "discriminating": true,
+        "elements_per_rank": 62219904,
+        "final_chunk_elems": 3499648,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": null,
+        "skipped_updates": 0,
+        "successful_updates": 2,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "fp32",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 2,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 2
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_1_zero1_amp",
+      "device_labels": [
+        "TITAN_RTX#1"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "linked_attempts": 0,
+        "note": "not in the authorized follow-up scope; original evidence stands unchanged"
+      },
+      "group": "rtx_1",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 2944.1,
+        "elapsed_s": 18.59,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 5.4337
+      },
+      "newly_established_checks": [],
+      "numerical": {
+        "amp_fp16_enabled": true,
+        "base_calls": 1,
+        "boundaries": 1,
+        "chunks": 30,
+        "discriminating": true,
+        "elements_per_rank": 124439808,
+        "final_chunk_elems": 2804992,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "mixed_precision_expected_cast",
+        "module_master_established": true,
+        "scaler": "DeepSpeed dynamic loss scaling",
+        "skipped_updates": 0,
+        "successful_updates": 1,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_supported_checks",
+      "original_qualifications": [],
+      "precision": "amp_fp16",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 1
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_2_zero1_amp",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 62219904,
+          "1": 62219904
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "TITAN_RTX#1",
+        "TITAN_RTX#2"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "rtx_2",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 2533.6,
+        "elapsed_s": 22.8,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 7.1175
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "mixed_precision_expected_cast",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (mixed_precision_expected_cast), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": true,
+        "base_calls": 2,
+        "boundaries": 2,
+        "chunks": 15,
+        "discriminating": true,
+        "elements_per_rank": 62219904,
+        "final_chunk_elems": 3499648,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 1.4901161193847656e-08,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": "DeepSpeed dynamic loss scaling",
+        "skipped_updates": 0,
+        "successful_updates": 2,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "amp_fp16",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 2,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 1,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 2
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_1_zero2_amp",
+      "device_labels": [
+        "TITAN_RTX#1"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "linked_attempts": 0,
+        "note": "not in the authorized follow-up scope; original evidence stands unchanged"
+      },
+      "group": "rtx_1",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 2944.1,
+        "elapsed_s": 18.66,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 5.4284
+      },
+      "newly_established_checks": [],
+      "numerical": {
+        "amp_fp16_enabled": true,
+        "base_calls": 1,
+        "boundaries": 1,
+        "chunks": 30,
+        "discriminating": true,
+        "elements_per_rank": 124439808,
+        "final_chunk_elems": 2804992,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 1.1920928955078125e-07,
+        "module_master_criterion": "mixed_precision_expected_cast",
+        "module_master_established": true,
+        "scaler": "DeepSpeed dynamic loss scaling",
+        "skipped_updates": 0,
+        "successful_updates": 1,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_supported_checks",
+      "original_qualifications": [],
+      "precision": "amp_fp16",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 1
+    },
+    {
+      "attempts": 1,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [],
+      "closing_window": {
+        "linked_attempts": 0,
+        "note": "not in the closing scope; the v3 outcome and its qualifications stand unchanged"
+      },
+      "context_id": "D_rtx_2_zero2_amp",
+      "coverage_reconciliation": {
+        "basis": "per-rank unpadded partition spans, tiled per group; padding excluded; tied aliases already deduplicated by storage",
+        "complete": true,
+        "duplicate_ranks": [],
+        "elements_covered_once": 124439808,
+        "elements_unaccounted": 0,
+        "missing_ranks": [],
+        "overlapping_spans": [],
+        "per_rank_elements": {
+          "0": 62219904,
+          "1": 62219904
+        },
+        "unexpected_ranks": [],
+        "unique_model_elements": 124439808,
+        "unmapped_ranks": []
+      },
+      "device_labels": [
+        "TITAN_RTX#1",
+        "TITAN_RTX#2"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "rtx_2",
+      "kind": "training",
+      "measured_resources": {
+        "aggregate_budget_gib": 32.0,
+        "cuda_peak_alloc_mib": 2533.6,
+        "elapsed_s": 23.12,
+        "note": "peak_alloc is torch max_memory_allocated, a floor on board usage; sampled RSS is a guard, not a cap",
+        "peak_aggregate_owned_rss_gib": 7.1716
+      },
+      "module_master": {
+        "bitwise_identical": true,
+        "criterion": "mixed_precision_expected_cast",
+        "established": true,
+        "mapping_derived_from": "parallel_partitioned_bit16_groups[i][rank], the view stage_1_and_2.py:1915 copies into",
+        "padding_elements": 0
+      },
+      "newly_established_checks": [
+        "working/master consistency established against this rank's own partition view (mixed_precision_expected_cast), bitwise identical, 0 differing elements",
+        "whole-model coverage reconciled exactly once across the rank set: 124,439,808 of 124,439,808 elements, no missing, duplicate, unexpected or overlapping spans"
+      ],
+      "numerical": {
+        "amp_fp16_enabled": true,
+        "base_calls": 2,
+        "boundaries": 2,
+        "chunks": 15,
+        "discriminating": true,
+        "elements_per_rank": 62219904,
+        "final_chunk_elems": 3499648,
+        "intended_movement": 0.00010102987289428711,
+        "max_abs_param_deviation": 1.1920928955078125e-07,
+        "module_master_criterion": "unchecked",
+        "module_master_established": false,
+        "scaler": "DeepSpeed dynamic loss scaling",
+        "skipped_updates": 0,
+        "successful_updates": 2,
+        "tolerance": 7.629771971551236e-06,
+        "whole_model_verified_across_rank_set": true
+      },
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "completed_with_qualifications",
+      "original_qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "precision": "amp_fp16",
+      "qualifications": [
+        "module/master consistency NOT established: unchecked (master shape (62219904,) vs working (124439808,); shapes must match exactly and no broadca)",
+        "per-rank coverage is 62,219,904 of 124,439,808 model elements by design at world size 2; whole-model coverage rests on the rank-set reconciliation, not on any single rank"
+      ],
+      "rank_records": 2,
+      "reason": "all expected ranks reconciled",
+      "remaining_qualifications": [],
+      "stage": 2,
+      "status": "completed_with_supported_checks",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_supported_checks",
+      "v3_remaining_qualifications": [],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [],
+      "world_size": 2
+    },
+    {
+      "attempts": 2,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [
+        "complete final-step logit array retained losslessly (raw little-endian binary + JSON schema + sha256), together with the input ids, attention mask and greedy output ids",
+        "input, attention-mask and initial-state digests match the other family's singleton exactly, so the comparison is a controlled one",
+        "the frozen 64u final-step logit comparison was EVALUATED from the retained arrays: PASS, max absolute deviation 2.765656e-05 against tolerance 1.226736e-04, 0 failing elements of 256000",
+        "greedy output tokens: IDENTICAL (0 of 512 differ), reported separately from the logits",
+        "the two logit arrays are NOT bitwise identical, so the tolerance comparison was discriminating: a digest comparison would have reported only 'different'"
+      ],
+      "closing_window": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "CLOSED-20261020T125221Z",
+        "disposition": "completed_with_supported_checks",
+        "elapsed_s": 33.7,
+        "linked_attempts": 1,
+        "reason": "the expected rank completed",
+        "retained_arrays": {
+          "arrays": {
+            "attention_mask": {
+              "bytes": 16384,
+              "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904"
+            },
+            "final_logits": {
+              "bytes": 1024000,
+              "sha256": "aa443be494b925309ba7e82ca8fba65c9bf70874ad06d3a62845baa9505f8ac4"
+            },
+            "generated_ids": {
+              "bytes": 4096,
+              "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1"
+            },
+            "input_ids": {
+              "bytes": 16384,
+              "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff"
+            }
+          },
+          "comparison_metadata_sha256": "8f447b33b56c8e62cc44dd7a7ee95d794f46c7b99fe88c33fd8fb99b066db105",
+          "evidence_sha256": "19db91c0370db3a3aa06a9bf7bfb15e3cbda7dc01b41aa85879befc564c509a2"
+        },
+        "runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+        "source_digest_at_measurement": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb"
+      },
+      "context_id": "R_rtx_1_tinyllama_fp32",
+      "device_labels": [
+        "TITAN_RTX#1"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "rtx_1",
+      "kind": "reference",
+      "newly_established_checks": [
+        "realized token-id input and attention mask recorded and digested; initial state recorded and digested",
+        "greedy output token ids compared across families"
+      ],
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "invalid_diagnostic_or_software_failure",
+      "original_qualifications": [],
+      "precision": "fp32",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "ranks did not complete: ValueError: text input must be of type `str` (single example), `List[str]` (batch or single pretokenized example) or `List[List[str]]` (batch of pretokenized examples).",
+      "remaining_qualifications": [
+        "the comparison is between two single-device FP32 inference runs of one pinned model on one corpus; it is a cross-family numerical agreement result and establishes nothing about gradients, convergence or training correctness"
+      ],
+      "stage": null,
+      "status": "completed_with_qualifications",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_qualifications",
+      "v3_qualifications_status": [
+        {
+          "as_of": "FOLLOWUP-20261020T113750Z",
+          "note": "the comparison the v3 qualification said could not be evaluated has now been evaluated from retained arrays",
+          "status": "superseded",
+          "v3_qualification": "the final-step logit comparison against the 64u tolerance could NOT be evaluated: only digests of the logits were retained, and a digest mismatch does not say whether the difference is inside the tolerance"
+        }
+      ],
+      "v3_remaining_qualifications": [
+        "the final-step logit comparison against the 64u tolerance could NOT be evaluated: only digests of the logits were retained, and a digest mismatch does not say whether the difference is inside the tolerance"
+      ],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [
+        "the comparison is between two single-device FP32 inference runs of one pinned model on one corpus; it is a cross-family numerical agreement result and establishes nothing about gradients, convergence or training correctness"
+      ],
+      "world_size": 1
+    },
+    {
+      "attempts": 2,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [
+        "complete final-step logit array retained losslessly (raw little-endian binary + JSON schema + sha256), together with the input ids, attention mask and greedy output ids",
+        "input, attention-mask and initial-state digests match the other family's singleton exactly, so the comparison is a controlled one",
+        "the frozen 64u final-step logit comparison was EVALUATED from the retained arrays: PASS, max absolute deviation 2.765656e-05 against tolerance 1.226736e-04, 0 failing elements of 256000",
+        "greedy output tokens: IDENTICAL (0 of 512 differ), reported separately from the logits",
+        "the two logit arrays are NOT bitwise identical, so the tolerance comparison was discriminating: a digest comparison would have reported only 'different'"
+      ],
+      "closing_window": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "CLOSED-20261020T125221Z",
+        "disposition": "completed_with_supported_checks",
+        "elapsed_s": 33.9,
+        "linked_attempts": 1,
+        "reason": "the expected rank completed",
+        "retained_arrays": {
+          "arrays": {
+            "attention_mask": {
+              "bytes": 16384,
+              "sha256": "3ff6c238a98ca6a7da11b2e65354523857170384301c95ae445e24514d8fc904"
+            },
+            "final_logits": {
+              "bytes": 1024000,
+              "sha256": "4097ab66757684cc198a63d106df8a54ee09a831ea61d583a5ebd7b3f84d6e36"
+            },
+            "generated_ids": {
+              "bytes": 4096,
+              "sha256": "4ea7212ac170499f360062d283e367d8c0fa1ae17826a9bb787ffffc097c9db1"
+            },
+            "input_ids": {
+              "bytes": 16384,
+              "sha256": "494cc55d3917c9521c011915fe9c1f4883b06ae7f62e8d9aad060f45ede812ff"
+            }
+          },
+          "comparison_metadata_sha256": "8d85493ed93637d5f7def73679c629d348423d9ebebc3017c3bf5d00bdb0a47c",
+          "evidence_sha256": "026714a1001d7290e905394f46be8419e6feb7406e2f907a45bcfed4d866dc6f"
+        },
+        "runner_sha256": "bd299637db7dbd81b53ea84cfbead1d24280ce62db74450c76f352d44bf6eae3",
+        "source_digest_at_measurement": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb"
+      },
+      "context_id": "R_p1080_1_tinyllama_fp32",
+      "device_labels": [
+        "GTX_1080Ti#1"
+      ],
+      "family": "GTX 1080 Ti",
+      "final_status": "completed_with_supported_checks",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "completed_with_supported_checks",
+        "linked_attempts": 1,
+        "reason": "all expected ranks reconciled",
+        "summaries_written": 1
+      },
+      "group": "p1080_1",
+      "kind": "reference",
+      "newly_established_checks": [
+        "realized token-id input and attention mask recorded and digested; initial state recorded and digested",
+        "greedy output token ids compared across families"
+      ],
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "invalid_diagnostic_or_software_failure",
+      "original_qualifications": [],
+      "precision": "fp32",
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "ranks did not complete: ValueError: text input must be of type `str` (single example), `List[str]` (batch or single pretokenized example) or `List[List[str]]` (batch of pretokenized examples).",
+      "remaining_qualifications": [
+        "the comparison is between two single-device FP32 inference runs of one pinned model on one corpus; it is a cross-family numerical agreement result and establishes nothing about gradients, convergence or training correctness"
+      ],
+      "stage": null,
+      "status": "completed_with_qualifications",
+      "streaming_window": {
+        "linked_attempts": 0,
+        "note": "not in the streaming-only scope; the v4 outcome and its qualifications stand unchanged"
+      },
+      "v3_final_status": "completed_with_qualifications",
+      "v3_qualifications_status": [
+        {
+          "as_of": "FOLLOWUP-20261020T113750Z",
+          "note": "the comparison the v3 qualification said could not be evaluated has now been evaluated from retained arrays",
+          "status": "superseded",
+          "v3_qualification": "the final-step logit comparison against the 64u tolerance could NOT be evaluated: only digests of the logits were retained, and a digest mismatch does not say whether the difference is inside the tolerance"
+        }
+      ],
+      "v3_remaining_qualifications": [
+        "the final-step logit comparison against the 64u tolerance could NOT be evaluated: only digests of the logits were retained, and a digest mismatch does not say whether the difference is inside the tolerance"
+      ],
+      "v4_final_status": "completed_with_supported_checks",
+      "v4_remaining_qualifications": [
+        "the comparison is between two single-device FP32 inference runs of one pinned model on one corpus; it is a cross-family numerical agreement result and establishes nothing about gradients, convergence or training correctness"
+      ],
+      "world_size": 1
+    },
+    {
+      "attempts": 2,
+      "authorization_id": "BATCH-20261020T095841Z",
+      "closing_established_checks": [
+        "the Prometheus multiprocess-directory defect is closed: a fresh private per-attempt directory was created and exported before the server started, the server became healthy, and the installed client wrote its .db file there",
+        "100 requests were issued to an owned loopback server on the bound device and each returned an HTTP status"
+      ],
+      "closing_window": {
+        "attempt_dirs": [
+          "attempt1",
+          "attempt2"
+        ],
+        "authorization": "CLOSED-20261020T125221Z",
+        "disposition": "invalid_diagnostic_or_software_failure",
+        "elapsed_s": 41.7,
+        "linked_attempts": 2,
+        "metrics_initialization_repaired": true,
+        "reason": "ranks did not complete: the session lacks required evidence (no raw stream events were recorded, no completion marker (DONE sentinel or finish_reason)); a streaming case is not complete without an actual request, recorded events and a completion marker",
+        "repair_prepared_not_executed": {
+          "change": "server started with --guided-decoding-backend lm-format-enforcer",
+          "executed_on_gpu": false,
+          "reason": "the case reached its two-attempt ceiling in this window",
+          "verified_on": "CPU, inside the device-denying sandbox"
+        },
+        "requests_issued": 100,
+        "root_cause": "every vLLM 0.6.3.post1 completion request builds a guided-decoding processor (GuidedDecodingParams.from_optional never returns None), and the default 'outlines' backend's import chain is broken in this environment (datasets 5.1.0 against huggingface_hub 0.36.2). The server raised inside the already-started SSE response, so the client saw HTTP 200 with an empty body and zero events.",
+        "runner_sha256": "3d5880d38932633508b91b71898153a3dea9f67e764c4af24f2628f54363242a",
+        "server_became_healthy": true,
+        "source_digest_at_measurement": "6aaa7a259d378a1bb7e1342bc4596172103bf9924db0b76a753d19a3d7ebadfb",
+        "stream_events_recorded": 0
+      },
+      "context_id": "S_rtx_1_stream_256_64",
+      "device_labels": [
+        "TITAN_RTX#1"
+      ],
+      "family": "TITAN RTX",
+      "final_status": "completed_with_qualifications",
+      "followup": {
+        "attempt_dirs": [
+          "attempt1",
+          "attempt2"
+        ],
+        "authorization": "FOLLOWUP-20261020T113750Z",
+        "disposition": "invalid_diagnostic_or_software_failure",
+        "linked_attempts": 2,
+        "reason": "ranks did not complete: the loopback server did not become healthy within the allowance",
+        "summaries_written": 2
+      },
+      "group": "rtx_1",
+      "kind": "streaming",
+      "local_release_correction": {
+        "field": "summary.per_request.*.first_text_latency_s",
+        "first_text_latency_s": null,
+        "id": "LOCAL_STREAM_004",
+        "local_replacement_runner": "CPU-tested only; not installed-vLLM/CUDA validated",
+        "median_session_relative_first_event_s": 6.753719,
+        "operational_qualifications": [
+          "all-interface listener",
+          "aggregate server/client RSS not measured"
+        ],
+        "raw_events_unchanged": true,
+        "reason": "One t_origin was created for the whole session; no per-request start timestamps were retained.",
+        "status": "WITHDRAWN as latency; session-relative event arrivals only"
+      },
+      "newly_established_checks": [],
+      "original_authorization": "BATCH-20261020T095841Z",
+      "original_outcome": "invalid_diagnostic_or_software_failure",
+      "original_qualifications": [],
+      "precision": null,
+      "preserved_failure_history": [
+        {
+          "authorization": "BATCH-20261020T095841Z",
+          "note": "original attempt; preserved unchanged",
+          "outcome": "invalid_diagnostic_or_software_failure"
+        },
+        {
+          "authorization": "FOLLOWUP-20261020T113750Z",
+          "note": "two attempts; the loopback server never became healthy",
+          "outcome": "invalid_diagnostic_or_software_failure",
+          "reason": "ranks did not complete: the loopback server did not become healthy within the allowance"
+        },
+        {
+          "authorization": "CLOSED-20261020T125221Z",
+          "note": "two attempts; the server became healthy and 100 requests were answered with HTTP 200 and empty bodies, caused by the outlines/datasets import chain",
+          "outcome": "invalid_diagnostic_or_software_failure",
+          "reason": "ranks did not complete: the session lacks required evidence (no raw stream events were recorded, no completion marker (DONE sentinel or finish_reason)); a streaming case is not complete without an actual request, recorded events and a completion marker"
+        },
+        {
+          "authorization": "FINAL-20261020T141800Z",
+          "note": "one attempt; the frozen success rule was met",
+          "outcome": "completed_with_supported_checks"
+        }
+      ],
+      "qualifications": [],
+      "rank_records": 1,
+      "reason": "ranks did not complete: ValueError: text input must be of type `str` (single example), `List[str]` (batch or single pretokenized example) or `List[List[str]]` (batch of pretokenized examples).",
+      "remaining_qualifications": [
+        "one prospective session; its 100 concurrent requests are not independent repeated sessions and no cross-session distribution or tail percentile is reported",
+        "chunk measurements are chunk measurements; per-token timing is withheld because no event carried token identity or a per-token timestamp",
+        "the listener was bound to all interfaces by the installed server (CORR_STREAM_001); every accepted connection was from 127.0.0.1",
+        "the aggregate host RSS including the server process was not measured (CORR_STREAM_003); the monitored client group peaked at 0.418 GiB of 32 GiB",
+        "the vLLM environment's datasets/huggingface-hub conflict is still present; selecting an importable guided-decoding backend is not a repair of it",
+        "nothing here bears on training quality, gradient correctness, repeated-session performance or the historical measurements",
+        "True request-to-first-text latency is unavailable: no per-request start timestamp was retained.",
+        "Session-relative first-event arrival median is 6.753719 s; this includes pre-dispatch client scheduling."
+      ],
+      "stage": null,
+      "status": "invalid_diagnostic_or_software_failure",
+      "streaming_established_checks": [
+        "the frozen workload was issued in full: 100 of 100 requests at concurrency 4, 256 input token ids and a 64-token output policy, with the consumed input length verified before the first request",
+        "100 of 100 requests satisfied the frozen success rule (content event + completion marker, HTTP 200 alone insufficient); 0 incomplete, 0 failed, 0 length mismatch",
+        "the server's own reported completion length was 64 tokens for every request and its reported prompt length was 256, matching the frozen protocol",
+        "the repair reaches the real request path: vLLM's own parser resolved the production argv to the lm-format-enforcer backend, the frozen request carried no grammar, JSON, regex or choice constraint, the real builder returned no logits processor, and the broken outlines import was never entered",
+        "the server process group, including its engine descendant, was signalled and confirmed absent after the session"
+      ],
+      "streaming_window": {
+        "attempt_dirs": [
+          "attempt1"
+        ],
+        "authorization": "FINAL-20261020T141800Z",
+        "authorization_issued_utc": "2026-10-20T14:18:00Z",
+        "corrections_sha256": "56ab2a153ba584882ee81558ff1d67f19ba23087e46cb5a18980ed7f5025d67f",
+        "disposition": "completed_with_supported_checks",
+        "elapsed_s": 53.7,
+        "evidence_sha256": "3f4c4baa920b4b090395025395fc938d2189375e012443a67ae19eb33d08b833",
+        "linked_attempts": 1,
+        "raw_events_sha256": "5c70319e09238e2d84d064c6558a8120d5f2141dcb764ab679449cd2553410ab",
+        "reason": "the frozen rule was met",
+        "session": {
+          "accounting": {
+            "accounting_complete": true,
+            "classes_sum": 100,
+            "counts": {
+              "failed": 0,
+              "incomplete": 0,
+              "length_mismatch": 0,
+              "successful": 100
+            },
+            "nothing_discarded": "every recorded request is in exactly one class",
+            "requests_expected": 100,
+            "requests_recorded": 100,
+            "successful_without_length_evidence": 0
+          },
+          "attempt": 1,
+          "attempts_permitted": 3,
+          "authorization": "FINAL-20261020T141800Z",
+          "chunk_measurements": {
+            "content_events_per_request": {
+              "max": 64,
+              "mean": 64.0,
+              "median": 64,
+              "min": 64,
+              "n": 100
+            },
+            "first_event_latency_s": {
+              "max": 12.226531,
+              "mean": 6.734338410000003,
+              "median": 6.753794,
+              "min": 1.223144,
+              "n": 100
+            },
+            "inter_event_gap_s": {
+              "max": 0.011106,
+              "mean": 0.005878533538461517,
+              "median": 0.006,
+              "min": 7.8e-05,
+              "n": 6500
+            },
+            "naming": "CHUNK measurements. first_text_latency_s is time to the first event of a request, not time to first token; inter_event_gaps_s are gaps between network events, not inter-token latencies.",
+            "per_request_span_s": {
+              "max": 0.40317099999999995,
+              "median": 0.38120599999999993,
+              "min": 0.377891
+            },
+            "queueing_note": "100 requests were issued at concurrency 4, so the first-event latency of a request includes the time it waited in the server queue. It is not a per-request time to first token and not an unloaded latency.",
+            "session_span_s": 11.382872
+          },
+          "closed": true,
+          "concurrency": 4,
+          "content_events_equal_reported_tokens": true,
+          "content_events_equal_reported_tokens_note": "for every request the number of content events equalled the server's own reported completion-token count (64). That is an observation about this server configuration. It is NOT a licence to call an inter-event gap an inter-token latency: no event carried token identity or a per-token timestamp, so per-token timing stays withheld.",
+          "disposition": "completed_with_supported_checks",
+          "effective_guided_backend": "lm-format-enforcer",
+          "evidence_corrections": [
+            "CORR_STREAM_001: server.loopback_only",
+            "CORR_STREAM_002: cuda_peak_alloc_mib",
+            "CORR_STREAM_003: memory_monitor.peak_owned_rss_gib"
+          ],
+          "finish_reasons": [
+            "length"
+          ],
+          "guided_backend_resolved_by_vllm_parser": "lm-format-enforcer",
+          "input_length_verified": true,
+          "issued_as_frozen": true,
+          "limitations": [
+            "one prospective session; its 100 concurrent requests are not independent repeated sessions and no cross-session distribution or tail percentile is reported",
+            "chunk measurements are chunk measurements; per-token timing is withheld because no event carried token identity or a per-token timestamp",
+            "first-event latency includes server queueing at concurrency 4",
+            "the listener was bound to all interfaces by the installed server (CORR_STREAM_001); every accepted connection was from 127.0.0.1",
+            "the aggregate host RSS including the server process was not measured (CORR_STREAM_003); the monitored client group peaked at 0.418 GiB of 32 GiB",
+            "the vLLM environment's datasets/huggingface-hub conflict is still present; selecting an importable guided-decoding backend is not a repair of it",
+            "nothing here bears on training quality, gradient correctness, repeated-session performance or the historical measurements"
+          ],
+          "offline_verdict": "SESSION_OBSERVED",
+          "outlines_import_entered": false,
+          "requests_expected": 100,
+          "requests_recorded": 100,
+          "requests_with_done_sentinel": 100,
+          "requests_with_finish_reason": 100,
+          "resolved_logits_processor_is_none": true,
+          "rule": {
+            "classes": [
+              "successful",
+              "length_mismatch",
+              "incomplete",
+              "failed"
+            ],
+            "conditions": [
+              "transport status is ok (HTTP 200, body read to its end)",
+              "at least one data event carries non-empty text",
+              "a completion marker: finish_reason or the [DONE] sentinel",
+              "no error event recorded for the request"
+            ],
+            "document": "protocols/STREAMING_SUCCESS_RULE.md",
+            "http_200_alone_is_not_success": true,
+            "length_check": "where usage.completion_tokens is present it must equal the frozen output length; otherwise the request is length_mismatch and is not counted as successful",
+            "schema": "titan_streaming_success_rule_v1",
+            "sha256": "860f6954ba4d5514143fa8083c54287334303247ad761f82952fb10fda0dc849"
+          },
+          "server_descendants_terminated": [
+            610448,
+            610449
+          ],
+          "server_reported_completion_tokens": [
+            64
+          ],
+          "server_reported_prompt_tokens": [
+            256
+          ],
+          "server_shutdown_confirmed": true,
+          "token_level_timing": {
+            "reason": "no request carried per-token identity and per-token timestamps, so no token-level timing is computed; chunk intervals were not divided and text was not retokenized",
+            "reported": false
+          }
+        },
+        "source_digest_at_measurement": "37f1347d53e54c3b0cae9b55a359c94748d3315ef33ee6ef5d0e6357a16099c3",
+        "stream_runner_sha256_at_measurement": "0ed811e1860fb419a2d762d0052f543d20fa890d0db68f1f4a03d370ae23dce1"
+      },
+      "v3_final_status": "invalid_diagnostic_or_software_failure",
+      "v3_qualifications_status": [
+        {
+          "as_of": "FOLLOWUP-20261020T113750Z",
+          "note": "a server WAS started and 100 requests WERE issued in the closing window, so the 'no server, no request' part no longer describes the latest attempt; the 'no stream event, no streaming observation' part still holds",
+          "status": "partially_superseded",
+          "v3_qualification": "no server, request or stream event was produced; there are no streaming observations"
+        }
+      ],
+      "v3_remaining_qualifications": [
+        "no server, request or stream event was produced; there are no streaming observations"
+      ],
+      "v4_final_status": "invalid_diagnostic_or_software_failure",
+      "v4_qualifications_status": [
+        {
+          "as_of": "CLOSED-20261020T125221Z",
+          "note": "a valid session was obtained in the streaming-only window; the earlier absence of stream events is preserved as history, not deleted",
+          "status": "superseded",
+          "v4_qualification": "there are still NO stream events, completion markers or latency observations: the session produced none, so no streaming metric is reported"
+        },
+        {
+          "as_of": "CLOSED-20261020T125221Z",
+          "note": "a valid session was obtained in the streaming-only window; the earlier absence of stream events is preserved as history, not deleted",
+          "status": "superseded",
+          "v4_qualification": "the streaming gap is therefore NOT closed; it remains an invalid diagnostic / software failure, now with an identified root cause and a CPU-verified repair that has not been executed on a GPU"
+        }
+      ],
+      "v4_remaining_qualifications": [
+        "there are still NO stream events, completion markers or latency observations: the session produced none, so no streaming metric is reported",
+        "the streaming gap is therefore NOT closed; it remains an invalid diagnostic / software failure, now with an identified root cause and a CPU-verified repair that has not been executed on a GPU"
+      ],
+      "v5_final_status": "completed_with_supported_checks",
+      "world_size": 1
+    }
+  ],
+  "counts": {
+    "contexts": 19
+  },
+  "device_label_map_is_private": true,
+  "device_labels": {
+    "GTX_1080Ti#1": {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "family": "GTX_1080Ti",
+      "groups": [
+        "p1080_1",
+        "p1080_2",
+        "p1080_4",
+        "p1080_6"
+      ]
+    },
+    "GTX_1080Ti#2": {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "family": "GTX_1080Ti",
+      "groups": [
+        "p1080_2",
+        "p1080_4",
+        "p1080_6"
+      ]
+    },
+    "GTX_1080Ti#3": {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "family": "GTX_1080Ti",
+      "groups": [
+        "p1080_4",
+        "p1080_6"
+      ]
+    },
+    "GTX_1080Ti#4": {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "family": "GTX_1080Ti",
+      "groups": [
+        "p1080_4",
+        "p1080_6"
+      ]
+    },
+    "GTX_1080Ti#5": {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "family": "GTX_1080Ti",
+      "groups": [
+        "p1080_6"
+      ]
+    },
+    "GTX_1080Ti#6": {
+      "device_name": "NVIDIA GeForce GTX 1080 Ti",
+      "family": "GTX_1080Ti",
+      "groups": [
+        "p1080_6"
+      ]
+    },
+    "TITAN_RTX#1": {
+      "device_name": "NVIDIA TITAN RTX",
+      "family": "TITAN_RTX",
+      "groups": [
+        "rtx_1",
+        "rtx_2"
+      ]
+    },
+    "TITAN_RTX#2": {
+      "device_name": "NVIDIA TITAN RTX",
+      "family": "TITAN_RTX",
+      "groups": [
+        "rtx_2"
+      ]
+    },
+    "TITAN_Xp#1": {
+      "device_name": "NVIDIA TITAN Xp",
+      "family": "TITAN_Xp",
+      "groups": [
+        "xp_1"
+      ]
+    }
+  },
+  "generated_utc": "2026-10-20T15:18:30Z",
+  "preserved_limits": [
+    "conditional update agreement and working/master consistency do not establish gradient correctness, convergence, or retrospective validation of earlier campaigns",
+    "the A6000 material is unchanged and uncertified"
+  ],
+  "reference_comparison": {
+    "atol": 6.133678834885359e-05,
+    "clarification": "protocols/REFERENCE_CRITERION_CLARIFICATION.md",
+    "criterion": "titan_reference_logit_criterion_v1",
+    "devices": [
+      "NVIDIA TITAN RTX",
+      "NVIDIA GeForce GTX 1080 Ti"
+    ],
+    "digests_identical": false,
+    "dtype": "float32",
+    "evaluated": true,
+    "failing_elements": 0,
+    "greedy_tokens": {
+      "criterion": "exact equality required",
+      "differing_tokens": 0,
+      "dtype": "int64",
+      "first_difference_flat_index": null,
+      "note": "token agreement is reported separately from the logit comparison and does not substitute for it",
+      "shape": [
+        8,
+        64
+      ],
+      "total_tokens": 512,
+      "verdict": "IDENTICAL"
+    },
+    "independent_reimplementation_agrees": true,
+    "inputs": {
+      "basis": "recorded digests, not seeds",
+      "checks": {
+        "attention_mask_sha256": true,
+        "dropout_active": true,
+        "initial_state_sha256": true,
+        "input_shape": true,
+        "model_dtype": true,
+        "realized_input_sha256": true,
+        "resolved_revision": true
+      },
+      "cross_family": true,
+      "devices": [
+        "NVIDIA TITAN RTX",
+        "NVIDIA GeForce GTX 1080 Ti"
+      ],
+      "matched": true
+    },
+    "magnitude_scale_M": 16.079071044921875,
+    "max_abs_error": 2.765655517578125e-05,
+    "rtol_term": 6.133678834885359e-05,
+    "threshold_widened": false,
+    "tolerance": 0.00012267357669770718,
+    "total_elements": 256000,
+    "u": 5.960464477539063e-08,
+    "verdict": "PASS",
+    "worst_witness": {
+      "a": -11.310945510864258,
+      "abs_error": 2.765655517578125e-05,
+      "b": -11.310917854309082,
+      "flat_index": 250964,
+      "position": [
+        7,
+        26964
+      ]
+    }
+  },
+  "schema": "titan_context_ledger_v6_local_qualified_closeout",
+  "streaming_outcome": {
+    "accounting": {
+      "accounting_complete": true,
+      "classes_sum": 100,
+      "counts": {
+        "failed": 0,
+        "incomplete": 0,
+        "length_mismatch": 0,
+        "successful": 100
+      },
+      "nothing_discarded": "every recorded request is in exactly one class",
+      "requests_expected": 100,
+      "requests_recorded": 100,
+      "successful_without_length_evidence": 0
+    },
+    "attempt": 1,
+    "attempts_permitted": 3,
+    "authorization": "FINAL-20261020T141800Z",
+    "chunk_measurements": {
+      "clock": "seconds from t_origin, from time.monotonic(); monotonic, same process, not wall-clock and not comparable across machines",
+      "computed_over": "successful requests only",
+      "content_events_per_successful_request": {
+        "max": 64,
+        "mean": 64.0,
+        "median": 64.0,
+        "min": 64,
+        "n": 100
+      },
+      "first_text_latency_s": null,
+      "gap_population": "all adjacent timestamped events, including metadata and completion events",
+      "inter_event_gap_s": {
+        "max": 0.011106,
+        "mean": 0.005878533538461538,
+        "median": 0.006,
+        "min": 7.8e-05,
+        "n": 6500
+      },
+      "note": "CHUNK measurements, not time to first token. Session-relative arrivals are not request latency. Missing request starts cannot be recovered; inter_event_gaps_s are gaps between network events, not inter-token latencies.",
+      "request_latency_available": false,
+      "request_latency_limitation": "No per-request start timestamps were retained. True first-text latency is unavailable.",
+      "session_relative_first_event_s": {
+        "max": 12.226531,
+        "mean": 6.73433841,
+        "median": 6.753719,
+        "min": 1.223144,
+        "n": 100
+      }
+    },
+    "closed": true,
+    "concurrency": 4,
+    "content_events_equal_reported_tokens": true,
+    "content_events_equal_reported_tokens_note": "for every request the number of content events equalled the server's own reported completion-token count (64). That is an observation about this server configuration. It is NOT a licence to call an inter-event gap an inter-token latency: no event carried token identity or a per-token timestamp, so per-token timing stays withheld.",
+    "disposition": "completed_with_qualifications",
+    "effective_guided_backend": "lm-format-enforcer",
+    "evidence_corrections": [
+      "CORR_STREAM_001: server.loopback_only",
+      "CORR_STREAM_002: cuda_peak_alloc_mib",
+      "CORR_STREAM_003: memory_monitor.peak_owned_rss_gib",
+      "LOCAL_STREAM_004"
+    ],
+    "finish_reasons": [
+      "length"
+    ],
+    "guided_backend_resolved_by_vllm_parser": "lm-format-enforcer",
+    "input_length_verified": true,
+    "issued_as_frozen": true,
+    "limitations": [
+      "one prospective session; its 100 concurrent requests are not independent repeated sessions and no cross-session distribution or tail percentile is reported",
+      "chunk measurements are chunk measurements; per-token timing is withheld because no event carried token identity or a per-token timestamp",
+      "the listener was bound to all interfaces by the installed server (CORR_STREAM_001); every accepted connection was from 127.0.0.1",
+      "the aggregate host RSS including the server process was not measured (CORR_STREAM_003); the monitored client group peaked at 0.418 GiB of 32 GiB",
+      "the vLLM environment's datasets/huggingface-hub conflict is still present; selecting an importable guided-decoding backend is not a repair of it",
+      "nothing here bears on training quality, gradient correctness, repeated-session performance or the historical measurements",
+      "True request-to-first-text latency is unavailable: no per-request start timestamp was retained.",
+      "Session-relative first-event arrival median is 6.753719 s; this includes pre-dispatch client scheduling."
+    ],
+    "offline_verdict": "SESSION_OBSERVED",
+    "outlines_import_entered": false,
+    "request_latency_available": false,
+    "requests_expected": 100,
+    "requests_recorded": 100,
+    "requests_with_done_sentinel": 100,
+    "requests_with_finish_reason": 100,
+    "resolved_logits_processor_is_none": true,
+    "rule": {
+      "classes": [
+        "successful",
+        "length_mismatch",
+        "incomplete",
+        "failed"
+      ],
+      "conditions": [
+        "transport status is ok (HTTP 200, body read to its end)",
+        "at least one data event carries non-empty text",
+        "a completion marker: finish_reason or the [DONE] sentinel",
+        "no error event recorded for the request"
+      ],
+      "document": "protocols/STREAMING_SUCCESS_RULE.md",
+      "http_200_alone_is_not_success": true,
+      "length_check": "where usage.completion_tokens is present it must equal the frozen output length; otherwise the request is length_mismatch and is not counted as successful",
+      "schema": "titan_streaming_success_rule_v1",
+      "sha256": "860f6954ba4d5514143fa8083c54287334303247ad761f82952fb10fda0dc849"
+    },
+    "server_descendants_terminated": [
+      610448,
+      610449
+    ],
+    "server_reported_completion_tokens": [
+      64
+    ],
+    "server_reported_prompt_tokens": [
+      256
+    ],
+    "server_shutdown_confirmed": true,
+    "token_level_timing": {
+      "reason": "no request carried per-token identity and per-token timestamps, so no token-level timing is computed; chunk intervals were not divided and text was not retokenized",
+      "reported": false
+    },
+    "v5_disposition": "completed_with_supported_checks"
+  }
+}

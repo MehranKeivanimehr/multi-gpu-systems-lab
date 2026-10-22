@@ -1,0 +1,205 @@
+{
+  "status": "ok",
+  "spec": {
+    "warmup_steps": 3,
+    "measure_steps": 15,
+    "seed": 1234,
+    "grad_accum": 1,
+    "model": "llama3.1-8b",
+    "variant": "bf16-reduce",
+    "seq_len": 1024,
+    "micro_batch": 2,
+    "activation_checkpointing": true,
+    "fw_overrides": {
+      "fsdp": {
+        "grad_reduce_dtype": "bf16"
+      },
+      "zero3": {
+        "deepspeed": {
+          "communication_data_type": "bf16"
+        }
+      }
+    },
+    "kind": "train",
+    "experiment": "train_scaling",
+    "framework": "fsdp",
+    "n_gpus": 4,
+    "gpus": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "repeat": 0,
+    "run_id": "llama3.1-8b-bf16-reduce__fsdp__g4__r0"
+  },
+  "framework_config": {
+    "name": "fsdp",
+    "launcher": "torchrun",
+    "api": "fully_shard",
+    "reshard_after_forward": true,
+    "param_dtype": "bf16",
+    "grad_reduce_dtype": "bf16",
+    "meta_init_threshold_gib": 8,
+    "optimizer": "adamw"
+  },
+  "model_entry": {
+    "kind": "causal_lm",
+    "role": "large language model (sharded training, vLLM inference)",
+    "hf_config_dir": "configs/models/llama3.1-8b",
+    "hf_repo": "unsloth/Llama-3.1-8B-Instruct",
+    "hf_revision": "4699cc75b550f9c6f3173fb80f4703b62d946aa5"
+  },
+  "n_params": 8030261248,
+  "trainer_info": {
+    "precision": "bf16 compute, fp32 sharded params, bf16 reduce-scatter",
+    "meta_init": true,
+    "fsdp_units": 33
+  },
+  "setup_s": 4.45241905599687,
+  "window_s": 94.66734509300295,
+  "samples_per_step": 8,
+  "throughput_samples_s": 1.2675965496033483,
+  "throughput_tokens_s": 1298.0188667938287,
+  "throughput_per_gpu_samples_s": 0.3168991374008371,
+  "step_time": {
+    "n": 15,
+    "median_ms": 6308.30511500244,
+    "mean_ms": 6311.179810199731,
+    "std_ms": 10.873302297998489,
+    "p10_ms": 6302.818480799033,
+    "p90_ms": 6318.4834200001205,
+    "min_ms": 6299.990952000371,
+    "max_ms": 6345.55816899956
+  },
+  "flops_per_sample": 47757888847872.0,
+  "tflops_per_gpu": 15.134433779975693,
+  "mfu": 0.09776766007736236,
+  "peak_mem_alloc_gib": 37.41756200790405,
+  "peak_mem_reserved_gib": 42.9140625,
+  "setup_peak_alloc_gib": 7.480778694152832,
+  "peak_mem_alloc_gib_per_rank": [
+    37.41756200790405,
+    37.41756200790405,
+    37.41756200790405,
+    37.41756200790405
+  ],
+  "final_loss": 0.018620969727635384,
+  "loss_finite": true,
+  "gpu": {
+    "gpu_util_mean_pct": 99.93611111111112,
+    "gpu_util_min_pct": 99.9,
+    "nvml_mem_peak_gib": 43.44317626953125,
+    "power_mean_w_per_gpu": 188.35456666666664,
+    "temp_max_c": 62,
+    "sm_clock_mean_mhz": 1871.8916666666667
+  },
+  "gpu_per_device": {
+    "4": {
+      "n_samples": 450,
+      "util_mean_pct": 99.94444444444444,
+      "util_median_pct": 100.0,
+      "mem_used_peak_gib": 43.44317626953125,
+      "power_mean_w": 194.0078333333333,
+      "power_max_w": 208.819,
+      "temp_max_c": 61,
+      "sm_clock_mean_mhz": 1884.7666666666667
+    },
+    "5": {
+      "n_samples": 450,
+      "util_mean_pct": 99.96666666666667,
+      "util_median_pct": 100.0,
+      "mem_used_peak_gib": 43.44317626953125,
+      "power_mean_w": 185.71412888888887,
+      "power_max_w": 203.343,
+      "temp_max_c": 57,
+      "sm_clock_mean_mhz": 1885.5333333333333
+    },
+    "6": {
+      "n_samples": 450,
+      "util_mean_pct": 99.9,
+      "util_median_pct": 100.0,
+      "mem_used_peak_gib": 43.44317626953125,
+      "power_mean_w": 183.98072444444443,
+      "power_max_w": 200.374,
+      "temp_max_c": 61,
+      "sm_clock_mean_mhz": 1858.3333333333333
+    },
+    "7": {
+      "n_samples": 450,
+      "util_mean_pct": 99.93333333333334,
+      "util_median_pct": 100.0,
+      "mem_used_peak_gib": 43.44317626953125,
+      "power_mean_w": 189.71558,
+      "power_max_w": 209.054,
+      "temp_max_c": 62,
+      "sm_clock_mean_mhz": 1858.9333333333334
+    }
+  },
+  "env": {
+    "timestamp": "2026-10-13T01:33:09-0400",
+    "hostname": "A6000_NODE",
+    "kernel": "7.0.0-38-generic",
+    "software": {
+      "python": "3.12.3",
+      "torch": "2.11.0",
+      "torchvision": "0.26.0",
+      "transformers": "5.19.0",
+      "deepspeed": "0.19.7",
+      "vllm": "0.26.0",
+      "nvidia-ml-py": "13.615.71",
+      "torch_cuda": "13.0",
+      "nccl": "2.28.9",
+      "cudnn": 91900
+    },
+    "driver": {
+      "driver_version": "580.178.04",
+      "nvml_cuda_driver_version": 13000
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:81:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:A1:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 6,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:C1:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 7,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:E1:00.0",
+        "mem_total_mib": 49140.0
+      }
+    ],
+    "links": {
+      "4-5": "NV4",
+      "4-6": "NODE",
+      "4-7": "NODE",
+      "5-6": "NODE",
+      "5-7": "NODE",
+      "6-7": "NV4"
+    },
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "4,5,6,7",
+      "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+      "OMP_NUM_THREADS": "8",
+      "NCCL_DEBUG": "WARN",
+      "NCCL_ALGO": null,
+      "NCCL_PROTO": null,
+      "NCCL_P2P_DISABLE": null,
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
+      "HF_HUB_OFFLINE": "1"
+    }
+  }
+}

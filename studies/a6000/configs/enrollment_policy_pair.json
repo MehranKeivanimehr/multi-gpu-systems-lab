@@ -1,0 +1,21 @@
+{
+ "policy_type": "mgbench.gpu_enrollment_policy.v1",
+ "purpose": "Candidate 18: enroll GPU 5 at the START of the single R5/C5 window (same clock, same expiry), then R5 and C5 only. Frozen in the candidate; the authorization binds its sha256.",
+ "eligible_indices": [4, 5],
+ "enroll_indices": [5],
+ "cases_after_enrollment": ["R5_fp32_world1_ga4", "C5_fp32_world2_ga2"],
+ "known": {"4": {"uuid": "GPU-00000000-0000-0000-0000-000000000109", "pci_bus_id": "00000000:81:00.0"}},
+ "known_torch_total_bytes": {"4": 50897289216},
+ "known_torch_total_bytes_source": "41_smoke_s2/w2_20261016T051201Z/cases/*/result.json total_memory (authorized GPU-4 hardware evidence); GPU 5 has NO such value and none is inferred",
+ "device_class": {"name": "NVIDIA RTX A6000", "enforced_power_limit_w": 300},
+ "rules": [
+  "two complete whole-node NVML reads, identical",
+  "all 8 UUIDs and PCI identities well formed and distinct",
+  "index 4 reports the known GPU-4 UUID and PCI (otherwise: index reorder -> refuse)",
+  "indices 4 and 5 report the device-class name and a 300 W enforced power limit",
+  "NVML total memory in BYTES (integer >= 1 GiB) for each device; per-case, per-device upper-bound capacity check at the frozen fractions (necessary, not sufficient)",
+  "record created exclusively in the window directory (outside the candidate), sealed once, re-validated at every gate; identity, NVML total and power limit must match it at every later gate",
+  "enrollment never changes the expiry, the device set, the cases, the fractions, the tolerances or any scientific input"
+ ],
+ "unknown_until_authorized_enrollment": ["GPU-5 UUID", "GPU-5 PCI", "GPU-5 NVML total", "GPU-5 Torch total", "GPU-5 enforced power limit"]
+}

@@ -1,0 +1,23 @@
+# TEMPLATE: owner approval and successful diagnostics required before execution.
+name: validation_v2_training_repeats
+kind: train
+repeats: 5
+gpu_counts: [1, 2, 4]
+defaults:
+  warmup_steps: 10
+  measure_steps: 30
+  seed: 1234
+  grad_accum: 1
+  numerical_checks: false
+workloads:
+  - model: resnet50
+    micro_batch: 128
+    measure_steps: 250
+    ds_precision: autocast
+    frameworks: [ddp, fsdp, zero1, zero2]
+  - model: qwen2.5-1.5b
+    seq_len: 1024
+    micro_batch: 1
+    grad_accum: 4
+    activation_checkpointing: false
+    frameworks: [ddp, fsdp, zero1, zero2]

@@ -1,0 +1,16 @@
+# vLLM tensor parallel over GPUs 4-7 hangs in its first decode step with default NCCL settings.
+# Small workload; each variant changes only the NCCL transport choice.
+name: vllm_tp4_diag
+kind: vllm
+repeats: 1
+defaults:
+  num_prompts: 64
+  input_len: 128
+  output_len: 64
+  warmup_prompts: 8
+  seed: 1234
+workloads:
+  - model: qwen2.5-1.5b
+    layouts:
+      - {tp: 4, dp: 1, tag: p2p-nvl, env: {NCCL_DEBUG: INFO, NCCL_P2P_LEVEL: NVL}}
+      - {tp: 4, dp: 1, tag: p2p-off, env: {NCCL_DEBUG: INFO, NCCL_P2P_DISABLE: 1}}

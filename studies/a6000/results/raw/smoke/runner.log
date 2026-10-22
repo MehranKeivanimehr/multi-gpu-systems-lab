@@ -1,0 +1,149 @@
+2026-10-12 23:27:44 == smoke: 9 runs (dry_run=False)
+2026-10-12 23:27:57 [1/9] qwen2.5-0.5b__ddp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:28:14 [1/9] qwen2.5-0.5b__ddp__g1__r0 gpus=[4]: OK in 14 s qwen2.5-0.5b__ddp__g1__r0: 10.6 samples/s, 5414 tok/s, step 189.3 ms, peak 11.6 GiB, util 60%, MFU 0.108
+2026-10-12 23:28:27 [2/9] qwen2.5-0.5b__fsdp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:28:46 [2/9] qwen2.5-0.5b__fsdp__g1__r0 gpus=[4]: OK in 16 s qwen2.5-0.5b__fsdp__g1__r0: 8.2 samples/s, 4184 tok/s, step 244.1 ms, peak 9.2 GiB, util 60%, MFU 0.084
+2026-10-12 23:28:46 [idle-gate] waiting for GPUs [4]: gpu4: power 69 W
+2026-10-12 23:29:04 [3/9] qwen2.5-0.5b__zero1__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:29:26 [3/9] qwen2.5-0.5b__zero1__g1__r0 gpus=[4]: OK in 19 s qwen2.5-0.5b__zero1__g1__r0: 6.8 samples/s, 3495 tok/s, step 292.9 ms, peak 10.2 GiB, util 48%, MFU 0.070
+2026-10-12 23:29:26 [idle-gate] waiting for GPUs [4]: gpu4: power 70 W
+2026-10-12 23:29:44 [4/9] qwen2.5-0.5b__zero2__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:30:06 [4/9] qwen2.5-0.5b__zero2__g1__r0 gpus=[4]: OK in 19 s qwen2.5-0.5b__zero2__g1__r0: 6.9 samples/s, 3509 tok/s, step 291.7 ms, peak 10.2 GiB, util 46%, MFU 0.070
+2026-10-12 23:30:06 [idle-gate] waiting for GPUs [4]: gpu4: power 77 W
+2026-10-12 23:30:24 [5/9] qwen2.5-0.5b__zero3__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:30:53 [5/9] qwen2.5-0.5b__zero3__g1__r0 gpus=[4]: OK in 27 s qwen2.5-0.5b__zero3__g1__r0: 3.6 samples/s, 1824 tok/s, step 561.2 ms, peak 12.9 GiB, util 27%, MFU 0.036
+2026-10-12 23:30:53 [idle-gate] waiting for GPUs [4]: gpu4: power 83 W
+2026-10-12 23:31:11 [6/9] resnet50__ddp__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:31:33 [6/9] resnet50__ddp__g1__r0 gpus=[4]: OK in 19 s resnet50__ddp__g1__r0: 764.9 samples/s, step 41.8 ms, peak 1.8 GiB, util 5%, MFU 0.120
+2026-10-12 23:31:46 [7/9] resnet50__fsdp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:31:58 [7/9] resnet50__fsdp__g1__r0 gpus=[4]: FAILED in 9 s NotImplementedError('FSDP does not support non-contiguous parameters yet: param.shape=torch.Size([64, 64, 3, 3]) param.stride()=(576, 1, 192, 64)')
+2026-10-12 23:32:11 [8/9] resnet50__zero1__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:32:36 [8/9] resnet50__zero1__g1__r0 gpus=[4]: OK in 22 s resnet50__zero1__g1__r0: 350.5 samples/s, step 91.2 ms, peak 3.6 GiB, util 0%, MFU 0.055
+2026-10-12 23:32:49 [9/9] resnet50__zero2__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:33:14 [9/9] resnet50__zero2__g1__r0 gpus=[4]: OK in 22 s resnet50__zero2__g1__r0: 352.7 samples/s, step 90.7 ms, peak 3.6 GiB, util 3%, MFU 0.055
+2026-10-12 23:33:14 [idle-gate] waiting for GPUs [4]: gpu4: power 61 W
+2026-10-12 23:33:29 final idle check on [4]: idle after 15 s
+2026-10-12 23:33:29 == smoke done: {'ok': 8, 'failed': 1}
+2026-10-12 23:42:48 == smoke: 27 runs (dry_run=True)
+2026-10-12 23:42:48 [1/27] qwen2.5-0.5b__ddp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:42:48 [2/27] qwen2.5-0.5b__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:42:48 [3/27] qwen2.5-0.5b__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:42:48 [4/27] qwen2.5-0.5b__zero2__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:42:48 [5/27] qwen2.5-0.5b__zero3__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:42:48 [6/27] resnet50__ddp__g1__r0 gpus=[4]: would run
+2026-10-12 23:42:48 [7/27] resnet50__fsdp__g1__r0 gpus=[4]: would run
+2026-10-12 23:42:48 [8/27] resnet50__zero1__g1__r0 gpus=[4]: would run
+2026-10-12 23:42:48 [9/27] resnet50__zero2__g1__r0 gpus=[4]: would run
+2026-10-12 23:42:48 [10/27] qwen2.5-0.5b__ddp__g2__r0 gpus=[4, 5]: would run (state ~7.36 GiB/GPU)
+2026-10-12 23:42:48 [11/27] qwen2.5-0.5b__fsdp__g2__r0 gpus=[4, 5]: would run (state ~3.68 GiB/GPU)
+2026-10-12 23:42:48 [12/27] qwen2.5-0.5b__zero1__g2__r0 gpus=[4, 5]: would run (state ~5.52 GiB/GPU)
+2026-10-12 23:42:48 [13/27] qwen2.5-0.5b__zero2__g2__r0 gpus=[4, 5]: would run (state ~5.06 GiB/GPU)
+2026-10-12 23:42:48 [14/27] qwen2.5-0.5b__zero3__g2__r0 gpus=[4, 5]: would run (state ~4.6 GiB/GPU)
+2026-10-12 23:42:48 [15/27] resnet50__ddp__g2__r0 gpus=[4, 5]: would run
+2026-10-12 23:42:48 [16/27] resnet50__fsdp__g2__r0 gpus=[4, 5]: would run
+2026-10-12 23:42:48 [17/27] resnet50__zero1__g2__r0 gpus=[4, 5]: would run
+2026-10-12 23:42:48 [18/27] resnet50__zero2__g2__r0 gpus=[4, 5]: would run
+2026-10-12 23:42:48 [19/27] qwen2.5-0.5b__ddp__g4__r0 gpus=[4, 5, 6, 7]: would run (state ~7.36 GiB/GPU)
+2026-10-12 23:42:48 [20/27] qwen2.5-0.5b__fsdp__g4__r0 gpus=[4, 5, 6, 7]: would run (state ~1.84 GiB/GPU)
+2026-10-12 23:42:48 [21/27] qwen2.5-0.5b__zero1__g4__r0 gpus=[4, 5, 6, 7]: would run (state ~3.68 GiB/GPU)
+2026-10-12 23:42:48 [22/27] qwen2.5-0.5b__zero2__g4__r0 gpus=[4, 5, 6, 7]: would run (state ~2.99 GiB/GPU)
+2026-10-12 23:42:48 [23/27] qwen2.5-0.5b__zero3__g4__r0 gpus=[4, 5, 6, 7]: would run (state ~2.3 GiB/GPU)
+2026-10-12 23:42:48 [24/27] resnet50__ddp__g4__r0 gpus=[4, 5, 6, 7]: would run
+2026-10-12 23:42:48 [25/27] resnet50__fsdp__g4__r0 gpus=[4, 5, 6, 7]: would run
+2026-10-12 23:42:48 [26/27] resnet50__zero1__g4__r0 gpus=[4, 5, 6, 7]: would run
+2026-10-12 23:42:48 [27/27] resnet50__zero2__g4__r0 gpus=[4, 5, 6, 7]: would run
+2026-10-12 23:42:48 == smoke done: {}
+2026-10-12 23:43:49 == smoke: 27 runs (dry_run=False)
+2026-10-12 23:43:49 [1/27] qwen2.5-0.5b__ddp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:49 [2/27] qwen2.5-0.5b__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:49 [3/27] qwen2.5-0.5b__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:49 [4/27] qwen2.5-0.5b__zero2__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:43:49 [5/27] qwen2.5-0.5b__zero3__g1__r0 gpus=[4]: already ok, skipping
+2026-10-12 23:44:02 [6/27] resnet50__ddp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:44:21 [6/27] resnet50__ddp__g1__r0 gpus=[4]: OK in 16 s resnet50__ddp__g1__r0: 754.0 samples/s, step 42.4 ms, peak 1.9 GiB, util 0%, MFU 0.118
+2026-10-12 23:44:34 [7/27] resnet50__fsdp__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:44:53 [7/27] resnet50__fsdp__g1__r0 gpus=[4]: OK in 17 s resnet50__fsdp__g1__r0: 384.0 samples/s, step 83.3 ms, peak 1.7 GiB, util 1%, MFU 0.060
+2026-10-12 23:45:06 [8/27] resnet50__zero1__g1__r0 gpus=[4]: start (idle after 10 s)
+2026-10-12 23:45:31 [8/27] resnet50__zero1__g1__r0 gpus=[4]: OK in 22 s resnet50__zero1__g1__r0: 451.4 samples/s, step 70.8 ms, peak 9.3 GiB, util 18%, MFU 0.071
+2026-10-12 23:45:31 [idle-gate] waiting for GPUs [4]: gpu4: power 62 W
+2026-10-12 23:45:49 [9/27] resnet50__zero2__g1__r0 gpus=[4]: start (idle after 15 s)
+2026-10-12 23:46:14 [9/27] resnet50__zero2__g1__r0 gpus=[4]: OK in 22 s resnet50__zero2__g1__r0: 455.8 samples/s, step 70.1 ms, peak 9.3 GiB, util 30%, MFU 0.072
+2026-10-12 23:46:14 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 64 W
+2026-10-12 23:46:32 [10/27] qwen2.5-0.5b__ddp__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:46:50 [10/27] qwen2.5-0.5b__ddp__g2__r0 gpus=[4, 5]: OK in 15 s qwen2.5-0.5b__ddp__g2__r0: 19.9 samples/s, 10182 tok/s, step 201.2 ms, peak 11.6 GiB, util 70%, MFU 0.102
+2026-10-12 23:46:50 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 73 W
+2026-10-12 23:47:08 [11/27] qwen2.5-0.5b__fsdp__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:47:27 [11/27] qwen2.5-0.5b__fsdp__g2__r0 gpus=[4, 5]: OK in 17 s qwen2.5-0.5b__fsdp__g2__r0: 17.0 samples/s, 8716 tok/s, step 234.9 ms, peak 6.1 GiB, util 30%, MFU 0.087
+2026-10-12 23:47:27 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 74 W; gpu5: power 69 W
+2026-10-12 23:47:45 [12/27] qwen2.5-0.5b__zero1__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:48:08 [12/27] qwen2.5-0.5b__zero1__g2__r0 gpus=[4, 5]: OK in 19 s qwen2.5-0.5b__zero1__g2__r0: 13.6 samples/s, 6962 tok/s, step 293.6 ms, peak 8.3 GiB, util 42%, MFU 0.070
+2026-10-12 23:48:08 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 67 W
+2026-10-12 23:48:26 [13/27] qwen2.5-0.5b__zero2__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:48:48 [13/27] qwen2.5-0.5b__zero2__g2__r0 gpus=[4, 5]: OK in 19 s qwen2.5-0.5b__zero2__g2__r0: 13.4 samples/s, 6840 tok/s, step 299.2 ms, peak 8.3 GiB, util 53%, MFU 0.068
+2026-10-12 23:48:48 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 67 W
+2026-10-12 23:49:06 [14/27] qwen2.5-0.5b__zero3__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:49:35 [14/27] qwen2.5-0.5b__zero3__g2__r0 gpus=[4, 5]: OK in 27 s qwen2.5-0.5b__zero3__g2__r0: 7.0 samples/s, 3585 tok/s, step 571.0 ms, peak 9.6 GiB, util 30%, MFU 0.036
+2026-10-12 23:49:35 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 73 W; gpu5: power 66 W
+2026-10-12 23:49:53 [15/27] resnet50__ddp__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:50:12 [15/27] resnet50__ddp__g2__r0 gpus=[4, 5]: OK in 16 s resnet50__ddp__g2__r0: 1494.3 samples/s, step 42.8 ms, peak 1.8 GiB, util 13%, MFU 0.117
+2026-10-12 23:50:25 [16/27] resnet50__fsdp__g2__r0 gpus=[4, 5]: start (idle after 10 s)
+2026-10-12 23:50:45 [16/27] resnet50__fsdp__g2__r0 gpus=[4, 5]: OK in 17 s resnet50__fsdp__g2__r0: 660.4 samples/s, step 96.8 ms, peak 1.6 GiB, util 0%, MFU 0.052
+2026-10-12 23:50:58 [17/27] resnet50__zero1__g2__r0 gpus=[4, 5]: start (idle after 10 s)
+2026-10-12 23:51:23 [17/27] resnet50__zero1__g2__r0 gpus=[4, 5]: OK in 22 s resnet50__zero1__g2__r0: 925.3 samples/s, step 69.0 ms, peak 9.1 GiB, util 28%, MFU 0.073
+2026-10-12 23:51:23 [idle-gate] waiting for GPUs [4, 5]: gpu4: power 65 W
+2026-10-12 23:51:41 [18/27] resnet50__zero2__g2__r0 gpus=[4, 5]: start (idle after 15 s)
+2026-10-12 23:52:06 [18/27] resnet50__zero2__g2__r0 gpus=[4, 5]: OK in 22 s resnet50__zero2__g2__r0: 922.3 samples/s, step 69.0 ms, peak 9.1 GiB, util 0%, MFU 0.072
+2026-10-12 23:52:06 [idle-gate] waiting for GPUs [4, 5, 6, 7]: gpu4: power 68 W
+2026-10-12 23:52:24 [19/27] qwen2.5-0.5b__ddp__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 15 s)
+2026-10-12 23:52:46 [19/27] qwen2.5-0.5b__ddp__g4__r0 gpus=[4, 5, 6, 7]: OK in 19 s qwen2.5-0.5b__ddp__g4__r0: 15.3 samples/s, 7851 tok/s, step 522.2 ms, peak 11.6 GiB, util 95%, MFU 0.039
+2026-10-12 23:52:46 [idle-gate] waiting for GPUs [4, 5, 6, 7]: gpu4: power 70 W; gpu7: power 64 W
+2026-10-12 23:53:04 [20/27] qwen2.5-0.5b__fsdp__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 15 s)
+2026-10-12 23:53:27 [20/27] qwen2.5-0.5b__fsdp__g4__r0 gpus=[4, 5, 6, 7]: OK in 20 s qwen2.5-0.5b__fsdp__g4__r0: 17.1 samples/s, 8736 tok/s, step 469.3 ms, peak 4.7 GiB, util 90%, MFU 0.044
+2026-10-12 23:53:27 [idle-gate] waiting for GPUs [4, 5, 6, 7]: gpu4: power 65 W
+2026-10-12 23:53:44 [21/27] qwen2.5-0.5b__zero1__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 15 s)
+2026-10-12 23:54:10 [21/27] qwen2.5-0.5b__zero1__g4__r0 gpus=[4, 5, 6, 7]: OK in 23 s qwen2.5-0.5b__zero1__g4__r0: 14.2 samples/s, 7271 tok/s, step 562.6 ms, peak 6.9 GiB, util 80%, MFU 0.036
+2026-10-12 23:54:10 [idle-gate] waiting for GPUs [4, 5, 6, 7]: gpu4: power 63 W
+2026-10-12 23:54:28 [22/27] qwen2.5-0.5b__zero2__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 15 s)
+2026-10-12 23:54:53 [22/27] qwen2.5-0.5b__zero2__g4__r0 gpus=[4, 5, 6, 7]: OK in 22 s qwen2.5-0.5b__zero2__g4__r0: 14.1 samples/s, 7221 tok/s, step 565.3 ms, peak 6.9 GiB, util 77%, MFU 0.036
+2026-10-12 23:55:06 [23/27] qwen2.5-0.5b__zero3__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 10 s)
+2026-10-12 23:55:39 [23/27] qwen2.5-0.5b__zero3__g4__r0 gpus=[4, 5, 6, 7]: OK in 30 s qwen2.5-0.5b__zero3__g4__r0: 9.9 samples/s, 5072 tok/s, step 809.8 ms, peak 7.7 GiB, util 55%, MFU 0.025
+2026-10-12 23:55:52 [24/27] resnet50__ddp__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 10 s)
+2026-10-12 23:56:13 [24/27] resnet50__ddp__g4__r0 gpus=[4, 5, 6, 7]: OK in 18 s resnet50__ddp__g4__r0: 2188.7 samples/s, step 58.7 ms, peak 1.9 GiB, util 21%, MFU 0.086
+2026-10-12 23:56:25 [25/27] resnet50__fsdp__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 10 s)
+2026-10-12 23:56:47 [25/27] resnet50__fsdp__g4__r0 gpus=[4, 5, 6, 7]: OK in 19 s resnet50__fsdp__g4__r0: 1316.0 samples/s, step 97.2 ms, peak 1.5 GiB, util 22%, MFU 0.052
+2026-10-12 23:57:00 [26/27] resnet50__zero1__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 10 s)
+2026-10-12 23:57:28 [26/27] resnet50__zero1__g4__r0 gpus=[4, 5, 6, 7]: OK in 24 s resnet50__zero1__g4__r0: 1296.0 samples/s, step 97.5 ms, peak 9.1 GiB, util 28%, MFU 0.051
+2026-10-12 23:57:41 [27/27] resnet50__zero2__g4__r0 gpus=[4, 5, 6, 7]: start (idle after 10 s)
+2026-10-12 23:58:08 [27/27] resnet50__zero2__g4__r0 gpus=[4, 5, 6, 7]: OK in 24 s resnet50__zero2__g4__r0: 1302.8 samples/s, step 98.0 ms, peak 9.1 GiB, util 30%, MFU 0.051
+2026-10-12 23:58:08 [idle-gate] waiting for GPUs [4, 5, 6, 7]: gpu7: power 66 W
+2026-10-12 23:58:23 final idle check on [4, 5, 6, 7]: idle after 15 s
+2026-10-12 23:58:23 == smoke done: {'ok': 22}
+2026-10-13 00:13:55 == smoke: 27 runs (dry_run=False)
+2026-10-13 00:13:55 [1/27] qwen2.5-0.5b__ddp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [2/27] qwen2.5-0.5b__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [3/27] qwen2.5-0.5b__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [4/27] qwen2.5-0.5b__zero2__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [5/27] qwen2.5-0.5b__zero3__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [6/27] resnet50__ddp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [7/27] resnet50__fsdp__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [8/27] resnet50__zero1__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [9/27] resnet50__zero2__g1__r0 gpus=[4]: already ok, skipping
+2026-10-13 00:13:55 [10/27] qwen2.5-0.5b__ddp__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [11/27] qwen2.5-0.5b__fsdp__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [12/27] qwen2.5-0.5b__zero1__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [13/27] qwen2.5-0.5b__zero2__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [14/27] qwen2.5-0.5b__zero3__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [15/27] resnet50__ddp__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [16/27] resnet50__fsdp__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [17/27] resnet50__zero1__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [18/27] resnet50__zero2__g2__r0 gpus=[4, 5]: already ok, skipping
+2026-10-13 00:13:55 [19/27] qwen2.5-0.5b__ddp__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [20/27] qwen2.5-0.5b__fsdp__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [21/27] qwen2.5-0.5b__zero1__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [22/27] qwen2.5-0.5b__zero2__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [23/27] qwen2.5-0.5b__zero3__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [24/27] resnet50__ddp__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [25/27] resnet50__fsdp__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [26/27] resnet50__zero1__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 [27/27] resnet50__zero2__g4__r0 gpus=[4, 5, 6, 7]: already ok, skipping
+2026-10-13 00:13:55 == smoke done: {}

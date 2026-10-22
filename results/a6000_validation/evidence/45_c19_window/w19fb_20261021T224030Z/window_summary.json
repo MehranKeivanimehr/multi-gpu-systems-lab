@@ -1,0 +1,1754 @@
+{
+ "all_cleanups_confirmed": true,
+ "authorization": "/PRIVATE_EVIDENCE/45_c19_window/w19fb_20261021T224030Z/authorization.json",
+ "authorization_revoked_now": true,
+ "authorization_sha256": "c2f4a05a54a0362897820545bb1d9f08de0b0f576ed45bc701e688ce4d7884da",
+ "cache": {
+  "mode": "0o700",
+  "path": "/PRIVATE_EVIDENCE/45_c19_window/w19fb_20261021T224030Z/cache",
+  "seed": {
+   "entries": [
+    "cuda_utils.cpython-312-x86_64-linux-gnu.so"
+   ],
+   "per_case": true,
+   "requested": true,
+   "sha256_source": "4d37c613718c0182bf219d846b7c28bfdd2cab68736ae2510d475bb3fd260dfc",
+   "source": "/PRIVATE_EVIDENCE/40_smoke/w20261016T042911Z/cache/triton/XU5DT2AO5BD5AEHEYGLPP5LRDFHHCUEJT4LGDVLB4STXUGVGHFPA"
+  }
+ },
+ "cases": [
+  {
+   "budget_before_gate": {
+    "fits": true,
+    "gate_deadline": 543993.878407541,
+    "gate_deadline_epoch": 1792624400.71239,
+    "needed_s": 459.0,
+    "remaining_s": 2521.124071121216
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "capacity_pre_launch": {
+    "enforced_power_limit_w": null,
+    "expected_torch_total_bytes": 50897289216,
+    "index": 4,
+    "mem_fraction": 0.86,
+    "non_allocator_gib": 0.8,
+    "nvml_total_bytes": 51527024640,
+    "nvml_total_mib": 49140.0,
+    "pass": true,
+    "pci_bus_id": null,
+    "predicted_allocator_gib": 39.58,
+    "problems": [],
+    "torch_total_bytes": null,
+    "upper_bound_check": {
+     "allowance_gib": "40.7900390625",
+     "basis": "NVML total (upper bound of CUDA-usable)",
+     "cap": "0.92",
+     "eligible": true,
+     "fraction": 0.85,
+     "reasons": [],
+     "required_allowance_gib": "40.3716",
+     "required_fraction": "0.85",
+     "total_gib": 47.98828125,
+     "whole_device_headroom_gib": "6.3982421875"
+    },
+    "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+   },
+   "case": "G0_fp32_control",
+   "cleanup": {
+    "bounds": {
+     "grace_s": 60,
+     "kill_wait_s": 10,
+     "metadata_call_s": 3
+    },
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-01.scope",
+    "confirmed": true,
+    "seconds": 0.021096172044053674,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-01"
+   },
+   "cleanup_bound_s": 105.0,
+   "cleanup_class": "confirmed",
+   "duration_s": 180.0990912199486,
+   "ended_utc": "2026-10-21T23:15:31.610041+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "result kind first_boundary_gradient",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution ok: 1 attempt, 4 microbatches, 0 optimizer calls, 0 updates, finite losses",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at the single boundary",
+      "observed": {
+       "coverage": [
+        "complete"
+       ],
+       "status": "complete_at_the_boundary"
+      },
+      "pass": true
+     },
+     {
+      "check": "update/state verification not_applicable (not passed)",
+      "observed": {
+       "condition": "first-boundary result kind: no optimizer update",
+       "status": "not_applicable"
+      },
+      "pass": true
+     },
+     {
+      "check": "parameters (and masters) unchanged after the boundary",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "comparison certifiable (complete, nonzero)",
+      "observed": "comparable",
+      "pass": true
+     },
+     {
+      "check": "realized canonical start",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "the 4 inputs equal the first frozen S1a step",
+      "observed": [
+       [
+        "070e4be1a674bc81499aff5bc5b992ec75a4c47ee2c9586dd3bad218b25d3483",
+        "18a4fa848cfb3c372116132cd85d164cc4473b262b7870bdbffc30540171298b",
+        "0c8eec63f3ce3fa288750e09ea59e14c6557041bcd2c8d8cc5085df43ac58435",
+        "f1680fbb4764b000c9d9ee8813ce1162e240d07eb71b8235c8bd89e984ff3728"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_device'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_per_process_memory_fraction'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'end of run'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity chain checked before allocation without problems",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "executed the candidate with the explicit interpreter",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "matched policy recorded as declared",
+      "observed": {
+       "bf16_reduced_precision_reduction": false,
+       "sdpa": "math",
+       "tf32": false
+      },
+      "pass": true
+     },
+     {
+      "check": "allocator fraction as admitted",
+      "observed": 0.86,
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     },
+     {
+      "check": "rank validated its own actual capacity before allocation",
+      "observed": [],
+      "pass": true
+     }
+    ],
+    "overall_grade": "reported, not graded (no justified equivalence margin)",
+    "pass": true
+   },
+   "gate_polls": 3,
+   "gate_trail": [
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:12:21.035332+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:12:26.194489+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:12:31.351454+00:00"
+    }
+   ],
+   "gpus": [
+    4
+   ],
+   "grade": "reported, not graded (no justified equivalence margin)",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 28937.8125,
+     "gpu4_power_w": 297.475,
+     "gpu4_temp_c": 38,
+     "node_gpu_power_w": 1482.857,
+     "samples": 180,
+     "worker_cpu_rate_max": 7.934267283443042,
+     "worker_memory_current_bytes": 9624674304,
+     "worker_memory_peak_bytes": 9624678400,
+     "worker_pids_max": 37
+    },
+    "power_watch_peak_w": 1482.857,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-01.scope",
+    "identity_error": null,
+    "leader_pid": 619055,
+    "leader_start_time": 54394467,
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-01.scope"
+   },
+   "index": 1,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 180.07665342499968,
+    "stop_and_reap": 0.021164712961763144
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 242,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "fits": true,
+    "gate_deadline": 544184.781776705,
+    "gate_deadline_epoch": 1792624591.6157935,
+    "needed_s": 459.0,
+    "remaining_s": 2330.2206676006317
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "capacity_pre_launch": {
+    "enforced_power_limit_w": null,
+    "expected_torch_total_bytes": 50897289216,
+    "index": 4,
+    "mem_fraction": 0.9,
+    "non_allocator_gib": 0.8,
+    "nvml_total_bytes": 51527024640,
+    "nvml_total_mib": 49140.0,
+    "pass": true,
+    "pci_bus_id": null,
+    "predicted_allocator_gib": 41.56,
+    "problems": [],
+    "torch_total_bytes": null,
+    "upper_bound_check": {
+     "allowance_gib": "42.7095703125",
+     "basis": "NVML total (upper bound of CUDA-usable)",
+     "cap": "0.92",
+     "eligible": true,
+     "fraction": 0.89,
+     "reasons": [],
+     "required_allowance_gib": "42.3912",
+     "required_fraction": "0.89",
+     "total_gib": 47.98828125,
+     "whole_device_headroom_gib": "4.4787109375"
+    },
+    "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+   },
+   "case": "G1_ddp_autocast",
+   "cleanup": {
+    "bounds": {
+     "grace_s": 60,
+     "kill_wait_s": 10,
+     "metadata_call_s": 3
+    },
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-02.scope",
+    "confirmed": true,
+    "seconds": 0.019309705938212574,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-02"
+   },
+   "cleanup_bound_s": 105.0,
+   "cleanup_class": "confirmed",
+   "duration_s": 178.09518285095692,
+   "ended_utc": "2026-10-21T23:18:45.491808+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "result kind first_boundary_gradient",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution ok: 1 attempt, 4 microbatches, 0 optimizer calls, 0 updates, finite losses",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at the single boundary",
+      "observed": {
+       "coverage": [
+        "complete"
+       ],
+       "status": "complete_at_the_boundary"
+      },
+      "pass": true
+     },
+     {
+      "check": "update/state verification not_applicable (not passed)",
+      "observed": {
+       "condition": "first-boundary result kind: no optimizer update",
+       "status": "not_applicable"
+      },
+      "pass": true
+     },
+     {
+      "check": "parameters (and masters) unchanged after the boundary",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "comparison certifiable (complete, nonzero)",
+      "observed": "comparable",
+      "pass": true
+     },
+     {
+      "check": "realized canonical start",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "the 4 inputs equal the first frozen S1a step",
+      "observed": [
+       [
+        "070e4be1a674bc81499aff5bc5b992ec75a4c47ee2c9586dd3bad218b25d3483",
+        "18a4fa848cfb3c372116132cd85d164cc4473b262b7870bdbffc30540171298b",
+        "0c8eec63f3ce3fa288750e09ea59e14c6557041bcd2c8d8cc5085df43ac58435",
+        "f1680fbb4764b000c9d9ee8813ce1162e240d07eb71b8235c8bd89e984ff3728"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_device'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_per_process_memory_fraction'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'end of run'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity chain checked before allocation without problems",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "executed the candidate with the explicit interpreter",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "matched policy recorded as declared",
+      "observed": {
+       "bf16_reduced_precision_reduction": false,
+       "sdpa": "math",
+       "tf32": false
+      },
+      "pass": true
+     },
+     {
+      "check": "allocator fraction as admitted",
+      "observed": 0.9,
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     },
+     {
+      "check": "rank validated its own actual capacity before allocation",
+      "observed": [],
+      "pass": true
+     }
+    ],
+    "overall_grade": "reported, not graded (no justified equivalence margin)",
+    "pass": true
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 84 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-21T23:15:31.772964+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:15:36.928263+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:15:42.085436+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:15:47.243536+00:00"
+    }
+   ],
+   "gpus": [
+    4
+   ],
+   "grade": "reported, not graded (no justified equivalence margin)",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 30809.8125,
+     "gpu4_power_w": 258.671,
+     "gpu4_temp_c": 36,
+     "node_gpu_power_w": 1431.371,
+     "samples": 178,
+     "worker_cpu_rate_max": 6.868348631246474,
+     "worker_memory_current_bytes": 9799995392,
+     "worker_memory_peak_bytes": 9800060928,
+     "worker_pids_max": 37
+    },
+    "power_watch_peak_w": 1431.371,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-02.scope",
+    "identity_error": null,
+    "leader_pid": 620052,
+    "leader_start_time": 54414056,
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-02.scope"
+   },
+   "index": 2,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 178.07458224298898,
+    "stop_and_reap": 0.01933739602100104
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 242,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "fits": true,
+    "gate_deadline": 544378.664421154,
+    "gate_deadline_epoch": 1792624785.4984386,
+    "needed_s": 459.0,
+    "remaining_s": 2136.3380224704742
+   },
+   "cache_events": {
+    "created": {},
+    "modified": {},
+    "removed": []
+   },
+   "capacity_pre_launch": {
+    "enforced_power_limit_w": null,
+    "expected_torch_total_bytes": 50897289216,
+    "index": 4,
+    "mem_fraction": 0.9,
+    "non_allocator_gib": 0.8,
+    "nvml_total_bytes": 51527024640,
+    "nvml_total_mib": 49140.0,
+    "pass": true,
+    "pci_bus_id": null,
+    "predicted_allocator_gib": 41.56,
+    "problems": [],
+    "torch_total_bytes": null,
+    "upper_bound_check": {
+     "allowance_gib": "42.7095703125",
+     "basis": "NVML total (upper bound of CUDA-usable)",
+     "cap": "0.92",
+     "eligible": true,
+     "fraction": 0.89,
+     "reasons": [],
+     "required_allowance_gib": "42.3912",
+     "required_fraction": "0.89",
+     "total_gib": 47.98828125,
+     "whole_device_headroom_gib": "4.4787109375"
+    },
+    "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+   },
+   "case": "G3_ddp_bf16_params",
+   "cleanup": {
+    "bounds": {
+     "grace_s": 60,
+     "kill_wait_s": 10,
+     "metadata_call_s": 3
+    },
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-03.scope",
+    "confirmed": true,
+    "seconds": 0.024202232947573066,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-03"
+   },
+   "cleanup_bound_s": 105.0,
+   "cleanup_class": "confirmed",
+   "duration_s": 156.09898873593193,
+   "ended_utc": "2026-10-21T23:21:37.362474+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "result kind first_boundary_gradient",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution ok: 1 attempt, 4 microbatches, 0 optimizer calls, 0 updates, finite losses",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at the single boundary",
+      "observed": {
+       "coverage": [
+        "complete"
+       ],
+       "status": "complete_at_the_boundary"
+      },
+      "pass": true
+     },
+     {
+      "check": "update/state verification not_applicable (not passed)",
+      "observed": {
+       "condition": "first-boundary result kind: no optimizer update",
+       "status": "not_applicable"
+      },
+      "pass": true
+     },
+     {
+      "check": "parameters (and masters) unchanged after the boundary",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "comparison certifiable (complete, nonzero)",
+      "observed": "comparable",
+      "pass": true
+     },
+     {
+      "check": "realized canonical start",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "the 4 inputs equal the first frozen S1a step",
+      "observed": [
+       [
+        "070e4be1a674bc81499aff5bc5b992ec75a4c47ee2c9586dd3bad218b25d3483",
+        "18a4fa848cfb3c372116132cd85d164cc4473b262b7870bdbffc30540171298b",
+        "0c8eec63f3ce3fa288750e09ea59e14c6557041bcd2c8d8cc5085df43ac58435",
+        "f1680fbb4764b000c9d9ee8813ce1162e240d07eb71b8235c8bd89e984ff3728"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_device'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_per_process_memory_fraction'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'end of run'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity chain checked before allocation without problems",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "executed the candidate with the explicit interpreter",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "matched policy recorded as declared",
+      "observed": {
+       "bf16_reduced_precision_reduction": false,
+       "sdpa": "math",
+       "tf32": false
+      },
+      "pass": true
+     },
+     {
+      "check": "allocator fraction as admitted",
+      "observed": 0.9,
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     },
+     {
+      "check": "rank validated its own actual capacity before allocation",
+      "observed": [],
+      "pass": true
+     }
+    ],
+    "overall_grade": "reported, not graded (no justified equivalence margin)",
+    "pass": true
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 83 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-21T23:18:45.652521+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:18:50.808644+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:18:55.961720+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:19:01.112678+00:00"
+    }
+   ],
+   "gpus": [
+    4
+   ],
+   "grade": "reported, not graded (no justified equivalence margin)",
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 16701.8125,
+     "gpu4_power_w": 211.619,
+     "gpu4_temp_c": 35,
+     "node_gpu_power_w": 1392.361,
+     "samples": 156,
+     "worker_cpu_rate_max": 7.719653320904976,
+     "worker_memory_current_bytes": 8992714752,
+     "worker_memory_peak_bytes": 8992714752,
+     "worker_pids_max": 37
+    },
+    "power_watch_peak_w": 1392.361,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-03.scope",
+    "identity_error": null,
+    "leader_pid": 621006,
+    "leader_start_time": 54433442,
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-03.scope"
+   },
+   "index": 3,
+   "outcome": "completed_valid",
+   "phase_seconds": {
+    "child": 156.07318802003283,
+    "stop_and_reap": 0.02425894292537123
+   },
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 242,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "fits": true,
+    "gate_deadline": 544550.536217921,
+    "gate_deadline_epoch": 1792624957.370234,
+    "needed_s": 459.0,
+    "remaining_s": 1964.466227054596
+   },
+   "cache_events": {
+    "created": {
+     "triton/Fp16Matmul_2d_kernel.pickle": {
+      "bytes": 5,
+      "mtime": 1792625063.604791,
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+     },
+     "triton/Fp16Matmul_2d_kernel.pickle.lock": {
+      "bytes": 0,
+      "mtime": 1792625063.6046376,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     },
+     "triton/Fp16Matmul_4d_kernel.pickle": {
+      "bytes": 5,
+      "mtime": 1792625063.6098354,
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048"
+     },
+     "triton/Fp16Matmul_4d_kernel.pickle.lock": {
+      "bytes": 0,
+      "mtime": 1792625063.609716,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     }
+    },
+    "modified": {},
+    "removed": []
+   },
+   "capacity_pre_launch": {
+    "enforced_power_limit_w": null,
+    "expected_torch_total_bytes": 50897289216,
+    "index": 4,
+    "mem_fraction": 0.85,
+    "non_allocator_gib": 0.8,
+    "nvml_total_bytes": 51527024640,
+    "nvml_total_mib": 49140.0,
+    "pass": true,
+    "pci_bus_id": null,
+    "predicted_allocator_gib": 39.05,
+    "problems": [],
+    "torch_total_bytes": null,
+    "upper_bound_check": {
+     "allowance_gib": "40.3101562500",
+     "basis": "NVML total (upper bound of CUDA-usable)",
+     "cap": "0.92",
+     "eligible": true,
+     "fraction": 0.84,
+     "reasons": [],
+     "required_allowance_gib": "39.8310",
+     "required_fraction": "0.84",
+     "total_gib": 47.98828125,
+     "whole_device_headroom_gib": "6.8781250000"
+    },
+    "uuid": "GPU-00000000-0000-0000-0000-000000000109"
+   },
+   "case": "G4_ds_bf16",
+   "cleanup": {
+    "bounds": {
+     "grace_s": 60,
+     "kill_wait_s": 10,
+     "metadata_call_s": 3
+    },
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-04.scope",
+    "confirmed": true,
+    "seconds": 0.023058290011249483,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-04"
+   },
+   "cleanup_bound_s": 105.0,
+   "cleanup_class": "confirmed",
+   "duration_s": 153.09785288898274,
+   "ended_utc": "2026-10-21T23:24:26.252515+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 1,
+      "pass": false
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "result kind first_boundary_gradient",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution ok: 1 attempt, 4 microbatches, 0 optimizer calls, 0 updates, finite losses",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at the single boundary",
+      "observed": {
+       "coverage": [
+        "empty"
+       ],
+       "status": "incomplete_or_unaccounted"
+      },
+      "pass": false
+     },
+     {
+      "check": "update/state verification not_applicable (not passed)",
+      "observed": {
+       "condition": "first-boundary result kind: no optimizer update",
+       "status": "not_applicable"
+      },
+      "pass": true
+     },
+     {
+      "check": "parameters (and masters) unchanged after the boundary",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "comparison certifiable (complete, nonzero)",
+      "observed": "comparable",
+      "pass": true
+     },
+     {
+      "check": "realized canonical start",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "the 4 inputs equal the first frozen S1a step",
+      "observed": [
+       [
+        "070e4be1a674bc81499aff5bc5b992ec75a4c47ee2c9586dd3bad218b25d3483",
+        "18a4fa848cfb3c372116132cd85d164cc4473b262b7870bdbffc30540171298b",
+        "0c8eec63f3ce3fa288750e09ea59e14c6557041bcd2c8d8cc5085df43ac58435",
+        "f1680fbb4764b000c9d9ee8813ce1162e240d07eb71b8235c8bd89e984ff3728"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_device'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'after set_per_process_memory_fraction'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity at 'end of run'",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "identity chain checked before allocation without problems",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "executed the candidate with the explicit interpreter",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "matched policy recorded as declared",
+      "observed": {
+       "bf16_reduced_precision_reduction": false,
+       "sdpa": "math",
+       "tf32": false
+      },
+      "pass": true
+     },
+     {
+      "check": "allocator fraction as admitted",
+      "observed": 0.85,
+      "pass": true
+     },
+     {
+      "check": "Driver-API pre-step (worker scope, before torchrun; pre-allocation) saw exactly the approved device",
+      "observed": {
+       "cvd": "4",
+       "driver": {
+        "count": 1,
+        "devices": [
+         {
+          "name": "NVIDIA RTX A6000",
+          "ordinal": 0,
+          "pci_bus_id": "0000:81:00.0",
+          "uuid": "GPU-00000000-0000-0000-0000-000000000109",
+          "uuid_api": "cuDeviceGetUuid_v2"
+         }
+        ]
+       },
+       "problems": [],
+       "stage": "pre-step (before torchrun; no torch imported)"
+      },
+      "pass": true
+     },
+     {
+      "check": "rank validated its own actual capacity before allocation",
+      "observed": [],
+      "pass": true
+     }
+    ],
+    "overall_grade": "reported, not graded (no justified equivalence margin)",
+    "pass": false
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 78 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-21T23:21:37.530613+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:21:42.685647+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:21:47.842326+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-21T23:21:52.999550+00:00"
+    }
+   ],
+   "gpus": [
+    4
+   ],
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 35665.8125,
+     "gpu4_power_w": 282.317,
+     "gpu4_temp_c": 35,
+     "node_gpu_power_w": 1472.302,
+     "samples": 153,
+     "worker_cpu_rate_max": 7.544470984348319,
+     "worker_memory_current_bytes": 10675154944,
+     "worker_memory_peak_bytes": 10675154944,
+     "worker_pids_max": 41
+    },
+    "power_watch_peak_w": 1472.302,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-w19fb_20261021T224030Z-04.scope",
+    "identity_error": null,
+    "leader_pid": 621961,
+    "leader_start_time": 54450632,
+    "unit": "mgbench-diag-w19fb_20261021T224030Z-04.scope"
+   },
+   "index": 4,
+   "outcome": "unexpected_result",
+   "phase_seconds": {
+    "child": 153.07252385502215,
+    "stop_and_reap": 0.023105690022930503
+   },
+   "rc": 1,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 242,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "case": "X1_fp32_order_permuted",
+   "index": 5,
+   "outcome": "not_run",
+   "reason": "window stopped: G4_ds_bf16: result differs from frozen expectations (['worker exit code 0', 'gradient coverage complete at the single boundary'])"
+  }
+ ],
+ "clock": {
+  "authorization_issued_utc": "2026-10-21T23:12:05.836461+00:00",
+  "budget": "120 + 5 x (60 + 240 + 60 + 10) + None = None s within 2700 s",
+  "deadline_monotonic": 546455.0024342423,
+  "expiry_utc": "2026-10-21T23:57:05.836461+00:00",
+  "startup_deadline_monotonic": 544039.0024342423,
+  "supervisor_start_monotonic": 543919.296942461,
+  "supervisor_start_wall": 1792624326.1309693,
+  "work_deadline_utc": "2026-10-21T23:54:21.836461+00:00"
+ },
+ "config": "/PRIVATE_EVIDENCE/19_candidate_c19/multigpu-bench/studies/a6000/configs/fb_qwen15b.yaml",
+ "config_sha256": "8dedf9abf594c944664a10a0b3963926f032d7c93d50e792d11346d810802370",
+ "ended_utc": "2026-10-21T23:24:26.277680+00:00",
+ "expectations_sha256": "956bab9c2851ed6b08d3fe82f955a00edc30d7460f5f0055c8884683d4b98c24",
+ "final_gpu4_check": [
+  "gpu4: power 89 W"
+ ],
+ "final_reserve_respected": true,
+ "host_lease": {
+  "acquired": {
+   "authorization_id": "c19fb-w19fb_20261021T224030Z",
+   "authorization_sha256": "c2f4a05a54a0362897820545bb1d9f08de0b0f576ed45bc701e688ce4d7884da",
+   "boot_id": "3cc3649a-e665-4336-b553-2fc27778b087",
+   "created_utc": "2026-10-21T23:12:20.704414+00:00",
+   "gpus": [
+    4
+   ],
+   "host": "A6000_NODE",
+   "lease_type": "mgbench.host_device_lease.v1",
+   "pid": 618972,
+   "policy": "never reclaimed automatically; released only by its owner after confirmed cleanup",
+   "supervisor_unit": "mgbench-diag-sup-w19fb_20261021T224030Z",
+   "token": "160cc8e590ec9482dbcd199a7451ad0e",
+   "window_dir": "/PRIVATE_EVIDENCE/45_c19_window/w19fb_20261021T224030Z"
+  },
+  "dir": "/PRIVATE_WORKSPACE/a6000_host_leases",
+  "problems": [],
+  "release_problems": [],
+  "state": "released"
+ },
+ "interpreter": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+ "interpreter_realpath": "/usr/bin/python3.12",
+ "mgbench_file": "/PRIVATE_EVIDENCE/19_candidate_c19/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+ "mode": "diagnostics",
+ "peak_concurrency": 1,
+ "reference": {
+  "budget_bytes": 31000000000,
+  "dir": "/PRIVATE_EVIDENCE/42_s1a_window/w1a_20261016T061814Z/reference",
+  "free_bytes_at_start": 582335500288
+ },
+ "repository_hold_active_at_end": true,
+ "reservation": "released",
+ "scope": "train-first-boundary",
+ "seconds_before_deadline_at_end": 1795.5587678422453,
+ "stopped_because": "G4_ds_bf16: result differs from frozen expectations (['worker exit code 0', 'gradient coverage complete at the single boundary'])",
+ "supervisor_cgroup_end": {
+  "affinity": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   237,
+   238,
+   239,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255
+  ],
+  "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-sup-w19fb_20261021T224030Z.scope",
+  "cpu.max": "100000 100000",
+  "cpu.stat.usage_usec": 111206265,
+  "memory.current": "43196416",
+  "memory.max": "2147483648",
+  "memory.peak": "54079488",
+  "memory.swap.max": "0",
+  "pids.current": "2"
+ },
+ "supervisor_cgroup_start": {
+  "affinity": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   237,
+   238,
+   239,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255
+  ],
+  "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-diag-sup-w19fb_20261021T224030Z.scope",
+  "cpu.max": "100000 100000",
+  "cpu.stat.usage_usec": 14723679,
+  "memory.current": "23920640",
+  "memory.max": "2147483648",
+  "memory.peak": "54079488",
+  "memory.swap.max": "0",
+  "pids.current": "1"
+ },
+ "supervisor_scope_timing": {
+  "ActiveEnterTimestampMonotonic": "543919112995",
+  "RuntimeMaxUSec": 2535000000,
+  "TimeoutStopUSec": 154000000,
+  "_monotonic_now_us": 543933846601
+ },
+ "supervisor_started_utc": "2026-10-21T23:12:06.130969+00:00",
+ "timing_model": {
+  "case_total_s": 429.0,
+  "cleanup_bound_s": 95.0,
+  "formula": "startup + enroll + n x (gate + child + overshoot + cleanup + reap + post_case) + final + supervisor stop allowance + kill margin",
+  "inclusive_window_s": 2459,
+  "inputs": {
+   "child_s": 240.0,
+   "enroll_s": 0.0,
+   "final_s": 30.0,
+   "gate_s": 60.0,
+   "grace_s": 60.0,
+   "kill_wait_s": 10.0,
+   "metadata_call_s": 3.0,
+   "post_case_s": 10.0,
+   "reap_s": 10.0,
+   "startup_s": 120.0,
+   "sup_kill_margin_s": 10.0,
+   "telemetry_timeout_s": 5.0
+  },
+  "n_cases": 5,
+  "stop_and_reap_bound_s": 105.0,
+  "supervisor_kill_margin_s": 10.0,
+  "supervisor_timeout_stop_s": 154,
+  "watch_overshoot_s": 14.0,
+  "worker_runtime_max_s": 242,
+  "worker_timeout_stop_s": 60,
+  "worker_worst_case_s": 312.0
+ }
+}

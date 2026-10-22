@@ -1,0 +1,41 @@
+# Owner-approved clean-only smoke on physical GPU 4 (stage 20261016s2). Effective allowlist for this smoke only.
+# Not a performance measurement. GPUs 0-3 and 5-7 receive no CUDA work. No fault injection, no retry.
+allowed_gpus: [4]
+gpu_uuids:
+  4: GPU-00000000-0000-0000-0000-000000000109
+gpu_pci:
+  4: "00000000:81:00.0"
+numa_node: 1
+threads_per_rank: 8
+mem_fraction: 0.5            # torch caching-allocator cap only; not a total-device-memory guarantee
+limits:                      # aggregate job (supervisor + worker, including every compiler/helper child) <= 16 / 48 GiB
+  supervisor_cpu_quota_pct: 100
+  supervisor_memory: 2G
+  supervisor_memory_bytes: 2147483648
+  worker_cpu_quota_pct: 1500
+  worker_memory: 46G
+  worker_memory_bytes: 49392123904
+timing:                      # seconds, enforced on a monotonic clock tied to the authorization's UTC times
+  window_s: 1800
+  startup_s: 120             # global startup/authorization, before the first case gate
+  gate_s: 60                 # per case: gate + scope setup
+  child_s: 240               # per case: complete child initialisation + execution (identity pre-step included)
+  grace_s: 60                # per case: graceful stop
+  reap_s: 10                 # per case: kill/reap confirmation
+  final_reserve_s: 120       # cleanup, revocation, report
+  telemetry_timeout_s: 5     # 120 + 4 x (60 + 240 + 60 + 10) + 120 = 1720 <= 1800
+max_cases: 4
+common:
+  model: qwen2.5-0.5b        # randomly initialised from configs/models/qwen2.5-0.5b (no weights)
+  seq_len: 256
+  micro_batch: 1
+  grad_accum: 2
+  warmup_steps: 1
+  measure_steps: 3
+  seed: 1234
+  measurement_role: smoke
+cases:                       # frozen diagnostic order: the repaired path first
+  - {id: c3_zero2_checked, framework: zero2, numerical_checks: true}
+  - {id: c1_ddp_checked, framework: ddp, numerical_checks: true}
+  - {id: c2_fsdp_checked, framework: fsdp, numerical_checks: true}
+  - {id: c4_ddp_unchecked, framework: ddp, numerical_checks: false}

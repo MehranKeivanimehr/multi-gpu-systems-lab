@@ -1,0 +1,10 @@
+# PyTorch FSDP2 (torch.distributed.fsdp.fully_shard): params, grads and optimizer state sharded.
+name: fsdp
+launcher: torchrun
+api: fully_shard             # FSDP2; one FSDP unit per transformer layer / ResNet bottleneck, plus the root
+reshard_after_forward: true  # ZeRO-3 style (FULL_SHARD)
+param_dtype: bf16            # MixedPrecisionPolicy: fp32 sharded master params, bf16 compute
+grad_reduce_dtype: fp32      # reduce-scatter in fp32 (same bytes as DDP's fp32 all-reduce)
+meta_init_threshold_gib: 8   # models whose fp32 weights exceed this are built on the meta device and
+                             # materialized shard-by-shard after fully_shard (never a full copy per GPU)
+optimizer: adamw

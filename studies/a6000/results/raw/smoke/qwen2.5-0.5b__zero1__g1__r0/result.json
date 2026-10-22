@@ -1,0 +1,147 @@
+{
+  "status": "ok",
+  "spec": {
+    "warmup_steps": 2,
+    "measure_steps": 5,
+    "seed": 1234,
+    "grad_accum": 1,
+    "model": "qwen2.5-0.5b",
+    "seq_len": 512,
+    "micro_batch": 2,
+    "activation_checkpointing": false,
+    "kind": "train",
+    "experiment": "smoke",
+    "framework": "zero1",
+    "n_gpus": 1,
+    "gpus": [
+      4
+    ],
+    "repeat": 0,
+    "run_id": "qwen2.5-0.5b__zero1__g1__r0"
+  },
+  "framework_config": {
+    "name": "zero1",
+    "launcher": "torchrun",
+    "deepspeed": {
+      "train_micro_batch_size_per_gpu": "auto",
+      "gradient_accumulation_steps": "auto",
+      "train_batch_size": "auto",
+      "bf16": {
+        "enabled": true
+      },
+      "communication_data_type": "fp32",
+      "zero_optimization": {
+        "stage": 1,
+        "reduce_bucket_size": 500000000,
+        "allgather_bucket_size": 500000000,
+        "overlap_comm": true,
+        "contiguous_gradients": true
+      },
+      "zero_allow_untested_optimizer": true,
+      "gradient_clipping": 0.0,
+      "steps_per_print": 1000000000,
+      "wall_clock_breakdown": false
+    }
+  },
+  "model_entry": {
+    "kind": "causal_lm",
+    "role": "quick smoke-test model",
+    "hf_config_dir": "configs/models/qwen2.5-0.5b",
+    "hf_repo": "Qwen/Qwen2.5-0.5B-Instruct",
+    "hf_revision": "7ae557604adf67be50417f59c2c2f167def9a775"
+  },
+  "n_params": 494032768,
+  "trainer_info": {
+    "precision": "DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-1 optimizer)",
+    "zero_stage": 1,
+    "communication_data_type": "fp32"
+  },
+  "setup_s": 7.287005219004641,
+  "window_s": 1.4649844340019627,
+  "samples_per_step": 2,
+  "throughput_samples_s": 6.826011094658909,
+  "throughput_tokens_s": 3494.9176804653616,
+  "throughput_per_gpu_samples_s": 6.826011094658909,
+  "step_time": {
+    "n": 5,
+    "median_ms": 292.9337690002285,
+    "mean_ms": 292.9656927997712,
+    "std_ms": 0.15327315396341445,
+    "p10_ms": 292.8296383994166,
+    "p90_ms": 293.12851300055627,
+    "min_ms": 292.80379800184164,
+    "max_ms": 293.19756900076754
+  },
+  "flops_per_sample": 1585094590464.0,
+  "tflops_per_gpu": 10.819873260591084,
+  "mfu": 0.06989582209684163,
+  "peak_mem_alloc_gib": 10.161395072937012,
+  "peak_mem_reserved_gib": 14.80078125,
+  "setup_peak_alloc_gib": 4.601039886474609,
+  "peak_mem_alloc_gib_per_rank": [
+    10.161395072937012
+  ],
+  "final_loss": 11.672733306884766,
+  "loss_finite": true,
+  "gpu": {
+    "gpu_util_mean_pct": 48.285714285714285,
+    "gpu_util_min_pct": 48.285714285714285,
+    "nvml_mem_peak_gib": 15.95880126953125,
+    "power_mean_w_per_gpu": 158.7652857142857,
+    "temp_max_c": 36,
+    "sm_clock_mean_mhz": 1915.7142857142858
+  },
+  "gpu_per_device": {
+    "4": {
+      "n_samples": 7,
+      "util_mean_pct": 48.285714285714285,
+      "util_median_pct": 52,
+      "mem_used_peak_gib": 15.95880126953125,
+      "power_mean_w": 158.7652857142857,
+      "power_max_w": 195.102,
+      "temp_max_c": 36,
+      "sm_clock_mean_mhz": 1915.7142857142858
+    }
+  },
+  "env": {
+    "timestamp": "2026-10-12T23:29:20-0400",
+    "hostname": "A6000_NODE",
+    "kernel": "7.0.0-38-generic",
+    "software": {
+      "python": "3.12.3",
+      "torch": "2.11.0",
+      "torchvision": "0.26.0",
+      "transformers": "5.19.0",
+      "deepspeed": "0.19.7",
+      "vllm": "0.26.0",
+      "nvidia-ml-py": "13.615.71",
+      "torch_cuda": "13.0",
+      "nccl": "2.28.9",
+      "cudnn": 91900
+    },
+    "driver": {
+      "driver_version": "580.178.04",
+      "nvml_cuda_driver_version": 13000
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:81:00.0",
+        "mem_total_mib": 49140.0
+      }
+    ],
+    "links": {},
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "4",
+      "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+      "OMP_NUM_THREADS": "8",
+      "NCCL_DEBUG": "WARN",
+      "NCCL_ALGO": null,
+      "NCCL_PROTO": null,
+      "NCCL_P2P_DISABLE": null,
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
+      "HF_HUB_OFFLINE": "1"
+    }
+  }
+}

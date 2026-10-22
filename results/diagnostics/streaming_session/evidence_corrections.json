@@ -1,0 +1,55 @@
+{
+  "applies_to": "streaming_evidence.json",
+  "applies_to_sha256": "3f4c4baa920b4b090395025395fc938d2189375e012443a67ae19eb33d08b833",
+  "corrections": [
+    {
+      "evidence_in_this_bundle": [
+        "INFO:     Uvicorn running on socket ('0.0.0.0', 57237) (Press CTRL+C to quit)"
+      ],
+      "exposure": "for the ~49 s of the session plus startup the port was reachable on every interface of a shared node; the port is closed and the process group is confirmed gone",
+      "field": "server.loopback_only",
+      "fix": "zerodiag/stream_runner.listening_bind_addresses() now MEASURES the bind address from /proc/net/tcp at readiness and records it, instead of asserting loopback; the unconditional claim is gone",
+      "fix_executed_on_gpu": false,
+      "id": "CORR_STREAM_001",
+      "installed_cause": "vllm/entrypoints/openai/api_server.py:543-544 creates its own socket and calls sock.bind((\"\", args.port)); an empty host means 0.0.0.0, so --host 127.0.0.1 does not restrict the listener in vllm 0.6.3.post1",
+      "measured_truth": "the listener was bound to 0.0.0.0 (all interfaces)",
+      "recorded_value": true,
+      "status": "WRONG as recorded: it was an assertion, not a measurement",
+      "what_is_still_true": "every accepted connection came from 127.0.0.1: the access log in server.stdout holds 101 request lines (1 GET /health and 100 POST /v1/completions), all with peer 127.0.0.1 and all status 200, so the client's requests reached this newly launched server and no foreign client was served"
+    },
+    {
+      "field": "cuda_peak_alloc_mib",
+      "fix": "stated here and in the report; the key is left as recorded",
+      "id": "CORR_STREAM_002",
+      "meaning": "torch.cuda.max_memory_allocated() inside the RUNNER (client) process, which never allocates on the device: generation happens in the separate server process. It is 0.0 and it is NOT the server's device memory, which this session did not measure",
+      "recorded_value": 0.0,
+      "status": "correct but easy to misread"
+    },
+    {
+      "consequence": "the aggregate host RSS including the server was NOT measured for this session. No breach was observed in what was monitored, and the 32 GiB budget was not approached by the monitored group, but the aggregate figure is unavailable and is not claimed",
+      "field": "memory_monitor.peak_owned_rss_gib",
+      "fix": "recorded as a limitation; the server's process group membership and its confirmed shutdown ARE retained in server_shutdown.members_before / members_after",
+      "id": "CORR_STREAM_003",
+      "meaning": "the monitor attributes RSS by the runner's own process group (pgid). The server is deliberately started with start_new_session=True so its whole group can be signalled and confirmed gone, which puts it in a DIFFERENT process group, outside this monitor's attribution. The figure is the client/runner group only",
+      "recorded_value": 0.418,
+      "status": "correct for what it measures, narrower than the window's limit"
+    },
+    {
+      "field": "summary.per_request.*.first_text_latency_s",
+      "first_text_latency_s": null,
+      "id": "LOCAL_STREAM_004",
+      "local_replacement_runner": "CPU-tested only; not installed-vLLM/CUDA validated",
+      "median_session_relative_first_event_s": 6.753719,
+      "operational_qualifications": [
+        "all-interface listener",
+        "aggregate server/client RSS not measured"
+      ],
+      "raw_events_unchanged": true,
+      "reason": "One t_origin was created for the whole session; no per-request start timestamps were retained.",
+      "status": "WITHDRAWN as latency; session-relative event arrivals only"
+    }
+  ],
+  "principle": "the measured evidence file is never rewritten; a correction is recorded beside it and the published offline tool surfaces it",
+  "schema": "titan_evidence_corrections_v1",
+  "written_utc": "2026-10-20T14:23:22Z"
+}

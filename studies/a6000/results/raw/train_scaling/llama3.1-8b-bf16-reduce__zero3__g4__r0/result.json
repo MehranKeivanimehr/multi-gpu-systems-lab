@@ -1,0 +1,221 @@
+{
+  "status": "ok",
+  "spec": {
+    "warmup_steps": 3,
+    "measure_steps": 15,
+    "seed": 1234,
+    "grad_accum": 1,
+    "model": "llama3.1-8b",
+    "variant": "bf16-reduce",
+    "seq_len": 1024,
+    "micro_batch": 2,
+    "activation_checkpointing": true,
+    "fw_overrides": {
+      "fsdp": {
+        "grad_reduce_dtype": "bf16"
+      },
+      "zero3": {
+        "deepspeed": {
+          "communication_data_type": "bf16"
+        }
+      }
+    },
+    "kind": "train",
+    "experiment": "train_scaling",
+    "framework": "zero3",
+    "n_gpus": 4,
+    "gpus": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "repeat": 0,
+    "run_id": "llama3.1-8b-bf16-reduce__zero3__g4__r0"
+  },
+  "framework_config": {
+    "name": "zero3",
+    "launcher": "torchrun",
+    "deepspeed": {
+      "train_micro_batch_size_per_gpu": "auto",
+      "gradient_accumulation_steps": "auto",
+      "train_batch_size": "auto",
+      "bf16": {
+        "enabled": true
+      },
+      "communication_data_type": "bf16",
+      "zero_optimization": {
+        "stage": 3,
+        "reduce_bucket_size": 500000000,
+        "stage3_prefetch_bucket_size": 50000000,
+        "stage3_param_persistence_threshold": 100000,
+        "stage3_max_live_parameters": 1000000000,
+        "overlap_comm": true,
+        "contiguous_gradients": true
+      },
+      "zero_allow_untested_optimizer": true,
+      "gradient_clipping": 0.0,
+      "steps_per_print": 1000000000,
+      "wall_clock_breakdown": false
+    }
+  },
+  "model_entry": {
+    "kind": "causal_lm",
+    "role": "large language model (sharded training, vLLM inference)",
+    "hf_config_dir": "configs/models/llama3.1-8b",
+    "hf_repo": "unsloth/Llama-3.1-8B-Instruct",
+    "hf_revision": "4699cc75b550f9c6f3173fb80f4703b62d946aa5"
+  },
+  "n_params": 8030261248,
+  "trainer_info": {
+    "precision": "DeepSpeed bf16 (bf16 params, fp32 master in ZeRO-3 optimizer)",
+    "zero_stage": 3,
+    "communication_data_type": "bf16"
+  },
+  "setup_s": 19.91963469500479,
+  "window_s": 94.75805257200409,
+  "samples_per_step": 8,
+  "throughput_samples_s": 1.2663831383492736,
+  "throughput_tokens_s": 1296.7763336696562,
+  "throughput_per_gpu_samples_s": 0.3165957845873184,
+  "step_time": {
+    "n": 15,
+    "median_ms": 6316.9527189966175,
+    "mean_ms": 6317.377152532572,
+    "std_ms": 32.16235431804438,
+    "p10_ms": 6282.274448998214,
+    "p90_ms": 6362.172262401145,
+    "min_ms": 6270.016345006297,
+    "max_ms": 6380.350606996217
+  },
+  "flops_per_sample": 47757888847872.0,
+  "tflops_per_gpu": 15.11994629002598,
+  "mfu": 0.0976740716409947,
+  "peak_mem_alloc_gib": 38.34960174560547,
+  "peak_mem_reserved_gib": 43.59375,
+  "setup_peak_alloc_gib": 16.87077760696411,
+  "peak_mem_alloc_gib_per_rank": [
+    38.34960174560547,
+    38.34960174560547,
+    38.34960174560547,
+    38.34960174560547
+  ],
+  "final_loss": 0.029340585693717003,
+  "loss_finite": true,
+  "gpu": {
+    "gpu_util_mean_pct": 99.09850107066381,
+    "gpu_util_min_pct": 98.11563169164883,
+    "nvml_mem_peak_gib": 44.22442626953125,
+    "power_mean_w_per_gpu": 196.39699197002142,
+    "temp_max_c": 64,
+    "sm_clock_mean_mhz": 1880.3078158458243
+  },
+  "gpu_per_device": {
+    "4": {
+      "n_samples": 467,
+      "util_mean_pct": 99.70021413276231,
+      "util_median_pct": 100,
+      "mem_used_peak_gib": 44.22442626953125,
+      "power_mean_w": 200.82361456102782,
+      "power_max_w": 232.727,
+      "temp_max_c": 62,
+      "sm_clock_mean_mhz": 1882.612419700214
+    },
+    "5": {
+      "n_samples": 467,
+      "util_mean_pct": 98.8950749464668,
+      "util_median_pct": 100,
+      "mem_used_peak_gib": 44.22247314453125,
+      "power_mean_w": 195.3995631691649,
+      "power_max_w": 235.067,
+      "temp_max_c": 58,
+      "sm_clock_mean_mhz": 1901.6916488222698
+    },
+    "6": {
+      "n_samples": 467,
+      "util_mean_pct": 99.6830835117773,
+      "util_median_pct": 100,
+      "mem_used_peak_gib": 44.22442626953125,
+      "power_mean_w": 190.8917708779443,
+      "power_max_w": 240.9,
+      "temp_max_c": 62,
+      "sm_clock_mean_mhz": 1861.2847965738758
+    },
+    "7": {
+      "n_samples": 467,
+      "util_mean_pct": 98.11563169164883,
+      "util_median_pct": 100,
+      "mem_used_peak_gib": 44.19317626953125,
+      "power_mean_w": 198.4730192719486,
+      "power_max_w": 238.907,
+      "temp_max_c": 64,
+      "sm_clock_mean_mhz": 1875.6423982869378
+    }
+  },
+  "env": {
+    "timestamp": "2026-10-13T01:36:05-0400",
+    "hostname": "A6000_NODE",
+    "kernel": "7.0.0-38-generic",
+    "software": {
+      "python": "3.12.3",
+      "torch": "2.11.0",
+      "torchvision": "0.26.0",
+      "transformers": "5.19.0",
+      "deepspeed": "0.19.7",
+      "vllm": "0.26.0",
+      "nvidia-ml-py": "13.615.71",
+      "torch_cuda": "13.0",
+      "nccl": "2.28.9",
+      "cudnn": 91900
+    },
+    "driver": {
+      "driver_version": "580.178.04",
+      "nvml_cuda_driver_version": 13000
+    },
+    "gpus": [
+      {
+        "index": 4,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:81:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 5,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:A1:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 6,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:C1:00.0",
+        "mem_total_mib": 49140.0
+      },
+      {
+        "index": 7,
+        "name": "NVIDIA RTX A6000",
+        "bus_id": "00000000:E1:00.0",
+        "mem_total_mib": 49140.0
+      }
+    ],
+    "links": {
+      "4-5": "NV4",
+      "4-6": "NODE",
+      "4-7": "NODE",
+      "5-6": "NODE",
+      "5-7": "NODE",
+      "6-7": "NV4"
+    },
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "4,5,6,7",
+      "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+      "OMP_NUM_THREADS": "8",
+      "NCCL_DEBUG": "WARN",
+      "NCCL_ALGO": null,
+      "NCCL_PROTO": null,
+      "NCCL_P2P_DISABLE": null,
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
+      "HF_HUB_OFFLINE": "1"
+    }
+  }
+}

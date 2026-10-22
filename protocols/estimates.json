@@ -1,0 +1,33 @@
+{
+  "basis": "per-case wall times extrapolated from MEASURED pilot timings; NOT measured upper bounds",
+  "blocks": 6,
+  "configurations": 50,
+  "planned_job_launches": 300,
+  "unit_note": "job launches, not scalar observations; sweeps contain multiple arms",
+  "per_block_job_wall_min": 72.5,
+  "total_job_wall_h": 7.25,
+  "total_device_hours": 14.45,
+  "allocation_elapsed_h_estimate": 9.06,
+  "allocation_elapsed_basis": "job wall time + ~25% for gating, settle, reservation and inter-case overhead",
+  "peak_concurrent_gpus": 6,
+  "one_job_at_a_time": true,
+  "host_rss_ceiling_gib": 32,
+  "host_rss_basis": "planning ceiling per instruction; 6 torchrun ranks x ~2 GiB plus a vLLM parent; actual RSS never measured in the pilot",
+  "new_project_data_ceiling_gib": 32,
+  "disk_mb_estimate": 26,
+  "disk_basis": "measured artifact sizes: 60s energy record 260 KB, training record 30 KB, streaming JSONL ~1.2 MB at 100 requests",
+  "cpu_analysis_h": [
+    4,
+    7
+  ],
+  "cpu_analysis_basis": "independent reintegration of 24 energy windows plus statistics, audit and report generation",
+  "uncertainty": {
+    "job_wall": "+/-50%: extrapolated from 5-step diagnostics to 30-step runs; startup dominated the measured cases",
+    "device_hours": "+/-50%, same cause",
+    "host_rss": "planning ceiling, not a measurement",
+    "disk": "+/-30%",
+    "not_measured_upper_bounds": "these are estimates, explicitly not measured upper bounds",
+    "twelve_hours": "a LIMIT, not a completion guarantee"
+  },
+  "supersedes": "39 configurations / 195 runs estimate"
+}

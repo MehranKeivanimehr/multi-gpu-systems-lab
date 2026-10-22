@@ -1,0 +1,9 @@
+# vLLM offline throughput (LLM.generate) with fixed-length synthetic prompts.
+name: vllm
+dtype: bfloat16
+gpu_memory_utilization: 0.85   # vLLM pre-allocates this share of each GPU for weights + KV cache
+max_num_seqs: 256
+enable_prefix_caching: false   # random prompts; keep the scheduler comparable across layouts
+ignore_eos: true               # every request generates exactly output_len tokens
+# Layouts: tp = tensor parallel (one engine spanning tp GPUs);
+#          dp = data parallel (dp independent engines, prompts split evenly, started behind a barrier).

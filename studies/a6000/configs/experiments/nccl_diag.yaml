@@ -1,0 +1,17 @@
+# Diagnostic for PCIe peer-to-peer between the NVLink pairs (4/5 <-> 6/7, topology NODE).
+# Default settings: a 2-rank all-reduce on GPUs 4+6 hangs on its first collective, and vLLM TP=4 hangs.
+# NCCL_DEBUG=INFO records the transport NCCL picks per channel; NCCL_P2P_DISABLE=1 forces host memory (SHM);
+# NCCL_P2P_LEVEL=NVL keeps direct P2P on NVLink only and routes PCIe hops through host memory.
+name: nccl_diag
+kind: nccl
+repeats: 1
+gpu_sets:
+  - {gpus: [4, 6], tag: p2p-off, env: {NCCL_DEBUG: INFO, NCCL_P2P_DISABLE: 1}}
+  - {gpus: [4, 5, 6, 7], tag: debug, env: {NCCL_DEBUG: INFO}}
+  - {gpus: [4, 5, 6, 7], tag: p2p-nvl, env: {NCCL_DEBUG: INFO, NCCL_P2P_LEVEL: NVL}}
+  - {gpus: [4, 6], tag: debug, env: {NCCL_DEBUG: INFO}}
+defaults:
+  sizes_mib: [1, 4, 16, 64, 256, 1024]
+  dtype: bf16
+  warmup_iters: 5
+  iters: 20

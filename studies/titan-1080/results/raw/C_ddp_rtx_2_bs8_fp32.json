@@ -1,0 +1,127 @@
+{
+  "config": {
+    "global_batch": 16,
+    "grad_ckpt": false,
+    "group": "rtx_2",
+    "memory_fraction": 0.85,
+    "micro_batch_per_gpu": 8,
+    "mode": "ddp",
+    "model": "gpt2-124m",
+    "n_params": 124439808,
+    "precision": "fp32",
+    "seq_len": 512,
+    "steps": 30,
+    "warmup": 5,
+    "world_size": 2,
+    "zero_stage": null
+  },
+  "error": null,
+  "loss_first_last": [
+    10.976725578308105,
+    10.915899276733398
+  ],
+  "memory": {
+    "peak_alloc_mib_rank0": 9210.9,
+    "peak_reserved_mib_rank0": 9904.0,
+    "per_rank_alloc_reserved_mib": [
+      [
+        9210.9,
+        9904.0
+      ],
+      [
+        9210.9,
+        9904.0
+      ]
+    ]
+  },
+  "meta": {
+    "cuda_device_order": "PCI_BUS_ID",
+    "cuda_visible_devices": "0,2",
+    "host": "TITAN_NODE",
+    "phys_devices": [
+      0,
+      2
+    ],
+    "timestamp": "2026-10-13T20:09:06"
+  },
+  "perf": {
+    "step_time_max_s": 0.44173,
+    "step_time_mean_s": 0.43671,
+    "step_time_median_s": 0.43668,
+    "step_time_min_s": 0.43353,
+    "tokens_per_s": 18758.1,
+    "tokens_per_s_per_gpu": 9379.1,
+    "tokens_per_step": 8192,
+    "wall_time_s": 13.1015
+  },
+  "status": "ok",
+  "telemetry": {
+    "duration_s": 12.891313076019287,
+    "energy_per_gpu_j": {
+      "0": 3318.86,
+      "2": 3210.49
+    },
+    "energy_total_j": 6529.35,
+    "mem_max_mib": {
+      "0": 10352.0,
+      "2": 10354.0
+    },
+    "n_samples": 47,
+    "power_max_w": {
+      "0": 315.32,
+      "2": 301.97
+    },
+    "power_mean_w": {
+      "0": 256.6,
+      "2": 248.94
+    },
+    "sm_clock_mean_mhz": {
+      "0": 1837.3,
+      "2": 1809.3
+    },
+    "temp_max_c": {
+      "0": 45.0,
+      "2": 50.0
+    },
+    "util_max_pct": {
+      "0": 99.0,
+      "2": 100.0
+    },
+    "util_mean_pct": {
+      "0": 99.0,
+      "2": 99.55
+    }
+  },
+  "torch_env": {
+    "arch_list": [
+      "sm_50",
+      "sm_60",
+      "sm_70",
+      "sm_75",
+      "sm_80",
+      "sm_86",
+      "sm_90"
+    ],
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "device_count": 2,
+    "devices": [
+      {
+        "capability": "7.5",
+        "local_index": 0,
+        "multi_processor_count": 72,
+        "name": "NVIDIA TITAN RTX",
+        "total_mem_mib": 24212.4
+      },
+      {
+        "capability": "7.5",
+        "local_index": 1,
+        "multi_processor_count": 72,
+        "name": "NVIDIA TITAN RTX",
+        "total_mem_mib": 24212.4
+      }
+    ],
+    "nccl": "2.20.5",
+    "torch": "2.4.1+cu121"
+  }
+}

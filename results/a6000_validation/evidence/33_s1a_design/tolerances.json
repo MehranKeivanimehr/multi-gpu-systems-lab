@@ -1,0 +1,102 @@
+{
+ "frozen_before_any_s1a_gpu_result": true,
+ "categories": {
+  "a1_ddp_bf16_autocast": "bf16_compute",
+  "a2_fsdp2_bf16": "bf16_compute",
+  "a3_zero1_bf16": "bf16_weights_and_accumulation",
+  "a4_zero2_bf16": "bf16_weights_and_accumulation"
+ },
+ "graded_metrics": {
+  "grad_b1_global_rel_l2": {
+   "bf16_compute": {
+    "pass": 0.05,
+    "marginal": 0.15
+   },
+   "bf16_weights_and_accumulation": {
+    "pass": 0.08,
+    "marginal": 0.24
+   },
+   "coverage": "full: every element of all 338 unique trainable tensors (1,543,714,304 elements)"
+  },
+  "grad_b1_global_cosine": {
+   "bf16_compute": {
+    "pass": 0.995,
+    "marginal": 0.985
+   },
+   "bf16_weights_and_accumulation": {
+    "pass": 0.99,
+    "marginal": 0.97
+   }
+  },
+  "loss_update1_max_rel": {
+   "bf16_compute": {
+    "pass": 0.005,
+    "marginal": 0.015
+   },
+   "bf16_weights_and_accumulation": {
+    "pass": 0.01,
+    "marginal": 0.03
+   },
+   "coverage": "all 4 microbatch raw losses of update 1 (forward from the identical start)"
+  },
+  "loss_all_max_rel": {
+   "bf16_compute": {
+    "pass": 0.01,
+    "marginal": 0.03
+   },
+   "bf16_weights_and_accumulation": {
+    "pass": 0.02,
+    "marginal": 0.06
+   },
+   "coverage": "all 12 measured microbatch raw losses"
+  }
+ },
+ "gross_error_bounds": {
+  "dtheta_final": {
+   "global_cosine_min": 0.5,
+   "global_norm_ratio": [
+    0.5,
+    2.0
+   ],
+   "coverage": "full: every element (fp32 master for DeepSpeed)"
+  },
+  "grad_norm_global_ratio_boundaries_2_3": [
+   0.5,
+   2.0
+  ],
+  "moment_norm_global_ratio": {
+   "m": [
+    0.5,
+    2.0
+   ],
+   "v": [
+    0.25,
+    4.0
+   ]
+  },
+  "deepspeed_module_bf16_equals_rounded_master": "exact, every element",
+  "non_finite": "any non-finite observed value"
+ },
+ "descriptive_only": [
+  "per-tensor gradient relative L2 / cosine (boundary 1)",
+  "per-tensor gradient norm ratios (boundaries 2-3)",
+  "per-tensor moment norm ratios",
+  "dtheta_final relative L2 and per-tensor values",
+  "sampled moment values"
+ ],
+ "zero_denominator": "a tensor whose reference norm is 0 gets no relative value (null) and is listed; global metrics use global norms; a zero global reference norm makes the metric 'missing' (never a pass)",
+ "consequences": {
+  "integrity or gross-error failure": "stops the window (malfunction class)",
+  "graded metric pass / marginal / fail": "recorded as the numerical finding; does not stop later independent cases",
+  "invalid FP32 control": "blocks every dependent comparison (not launched)"
+ },
+ "justification": {
+  "source": "the graded limits are the values pre-registered on 2026-10-14 (evidence: v2_validation_20261014a/evidence/analysis/numerical_reference_preregistration.md, hashed before any reference run), applied unchanged; they were not derived from any observed discrepancy",
+  "bf16_compute": "bf16 unit roundoff u = 2^-8 = 3.9e-3; each matmul output carries O(u) relative error; through ~28 transformer layers gradient errors of 1-3% are expected, so 0.05 (~13u) passes that while still catching normalisation mistakes (a missing 1/GA = 1/4 gives a relative error of 3; a skipped reduction or sign error >= 1)",
+  "bf16_weights_and_accumulation": "DeepSpeed bf16 keeps weights, activations, norms and residuals in bf16 and accumulates the 4 microbatch gradients in bf16 (live data_types bf16/bf16): more rounding steps than autocast, hence the looser 0.08 / 0.99 limits registered for bf16-weight recipes",
+  "marginal": "pass limit x 3 (or 1 - 3 x (1 - cosine limit)), as registered",
+  "loss": "forward-only quantity averaged over 1023 tokens; 5e-3 ~ u for bf16 compute, 1e-2 for bf16 weights; the maximum over all 12 microbatches (trajectory drift included) gets twice that",
+  "gross_bounds": "not accuracy limits: a no-op update gives norm ratio 0, a sign error cosine -1, a random/stale update cosine ~0, a missing or doubled normalisation scales m by 4 and v by 16; Adam's first steps are ~lr*sign(g), so a 25 % sign-flip rate would already lower the update cosine to ~0.5",
+  "sampled_adamw": "the per-base-call sampled AdamW ULP criterion (unchanged) checks optimizer arithmetic inside each run; it is not a whole-model gradient tolerance"
+ }
+}

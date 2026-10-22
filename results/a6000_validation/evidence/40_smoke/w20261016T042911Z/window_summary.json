@@ -1,0 +1,870 @@
+{
+ "all_cleanups_confirmed": true,
+ "authorization": "/PRIVATE_EVIDENCE/40_smoke/w20261016T042911Z/authorization.json",
+ "authorization_revoked_now": true,
+ "authorization_sha256": "cf4745dedf36c76e0cb3e825149ef9427ea6c77bf8f87d09e1f7bd9882420b65",
+ "cases": [
+  {
+   "budget_before_gate": {
+    "available_s": 2479.1129994392395,
+    "fits": true,
+    "gate_deadline": 1792127261.0,
+    "run_s": 420
+   },
+   "case": "c1_ddp_checked",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-w20261016T042911Z-01.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-smoke-w20261016T042911Z-01"
+   },
+   "duration_s": 15.07381010055542,
+   "ended_utc": "2026-10-16T04:29:48.786596+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/10_candidate/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.5,
+      "pass": true
+     },
+     {
+      "check": "warmup: 1 logical attempt, 2 microbatches",
+      "observed": [
+       1,
+       2
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 6 microbatches",
+      "observed": [
+       3,
+       6
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [
+        12.147303581237793,
+        12.01585865020752
+       ],
+       [
+        12.084487915039062,
+        12.055431365966797,
+        11.541497230529785,
+        11.543014526367188,
+        11.453373908996582,
+        11.471158981323242
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: smoke, not a measurement",
+      "observed": "ineligible: smoke test, not a performance measurement",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     }
+    ],
+    "pass": true
+   },
+   "gate_polls": 3,
+   "gate_trail": [
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:29:22.487841+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:29:27.914350+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:29:33.307598+00:00"
+    }
+   ],
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 13109.8125,
+     "gpu4_power_w": 140.433,
+     "gpu4_temp_c": 30,
+     "node_gpu_power_w": 1049.289,
+     "samples": 15,
+     "worker_cpu_rate_max": 1.9233507629101125,
+     "worker_memory_current_bytes": 1580376064,
+     "worker_memory_peak_bytes": 1596928000
+    },
+    "power_watch_peak_w": 1049.289,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-w20261016T042911Z-01.scope",
+    "identity_error": null,
+    "leader_pid": 97551,
+    "leader_start_time": 4456687,
+    "unit": "mgbench-smoke-w20261016T042911Z-01"
+   },
+   "index": 1,
+   "outcome": "completed_as_expected",
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 425,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "available_s": 2452.210987329483,
+    "fits": true,
+    "gate_deadline": 1792127261.0,
+    "run_s": 420
+   },
+   "case": "c2_fsdp_checked",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-w20261016T042911Z-02.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-smoke-w20261016T042911Z-02"
+   },
+   "duration_s": 18.07244610786438,
+   "ended_utc": "2026-10-16T04:30:23.897987+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 0,
+      "pass": true
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": true
+     },
+     {
+      "check": "execution assessment ok",
+      "observed": [],
+      "pass": true
+     },
+     {
+      "check": "runtime CUDA devices: exactly one, authorized UUID, every stage",
+      "observed": [
+       [
+        "after set_device",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "after set_per_process_memory_fraction",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ],
+       [
+        "end of run",
+        1,
+        "GPU-00000000-0000-0000-0000-000000000109",
+        0
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "executed mgbench from the candidate",
+      "observed": "/PRIVATE_EVIDENCE/10_candidate/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+      "pass": true
+     },
+     {
+      "check": "explicit interpreter",
+      "observed": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup CPU limit",
+      "observed": "1500000 100000",
+      "pass": true
+     },
+     {
+      "check": "worker cgroup memory limit",
+      "observed": "49392123904",
+      "pass": true
+     },
+     {
+      "check": "allocator fraction",
+      "observed": 0.5,
+      "pass": true
+     },
+     {
+      "check": "warmup: 1 logical attempt, 2 microbatches",
+      "observed": [
+       1,
+       2
+      ],
+      "pass": true
+     },
+     {
+      "check": "measured: 3 logical attempts, 6 microbatches",
+      "observed": [
+       3,
+       6
+      ],
+      "pass": true
+     },
+     {
+      "check": "every microbatch loss observed and finite",
+      "observed": [
+       [
+        12.14810848236084,
+        12.016379356384277
+       ],
+       [
+        12.084794044494629,
+        12.05463981628418,
+        11.54349136352539,
+        11.539349555969238,
+        11.453648567199707,
+        11.469891548156738
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "counter updates 3, no framework skip",
+      "observed": [
+       3,
+       0
+      ],
+      "pass": true
+     },
+     {
+      "check": "base-call multiplicity matches the implementation",
+      "observed": [
+       [
+        1,
+        1,
+        1
+       ],
+       1
+      ],
+      "pass": true
+     },
+     {
+      "check": "measurement eligibility: smoke, not a measurement",
+      "observed": "ineligible: smoke test, not a performance measurement",
+      "pass": true
+     },
+     {
+      "check": "gradient coverage complete at every measured boundary",
+      "observed": [
+       "complete_at_every_measured_boundary",
+       [
+        "complete",
+        "complete",
+        "complete"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "sampled AdamW update evidence verified at every base call",
+      "observed": [
+       "verified_sampled_every_base_call",
+       [
+        "verified_sampled",
+        "verified_sampled",
+        "verified_sampled"
+       ]
+      ],
+      "pass": true
+     },
+     {
+      "check": "status ok",
+      "observed": "ok",
+      "pass": true
+     }
+    ],
+    "pass": true
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: util 100%",
+      "gpu4: power 81 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-16T04:29:49.215876+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:29:54.610369+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:30:00.000623+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:30:05.412081+00:00"
+    }
+   ],
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 12897.8125,
+     "gpu4_power_w": 118.189,
+     "gpu4_temp_c": 31,
+     "node_gpu_power_w": 1027.723,
+     "samples": 18,
+     "worker_cpu_rate_max": 1.9431870097704744,
+     "worker_memory_current_bytes": 1591980032,
+     "worker_memory_peak_bytes": 1608859648
+    },
+    "power_watch_peak_w": 1027.723,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-w20261016T042911Z-02.scope",
+    "identity_error": null,
+    "leader_pid": 97674,
+    "leader_start_time": 4459899,
+    "unit": "mgbench-smoke-w20261016T042911Z-02"
+   },
+   "index": 2,
+   "outcome": "completed_as_expected",
+   "rc": 0,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 425,
+    "stop_timeout_s": 60
+   }
+  },
+  {
+   "budget_before_gate": {
+    "available_s": 2417.0999054908752,
+    "fits": true,
+    "gate_deadline": 1792127261.0,
+    "run_s": 420
+   },
+   "case": "c3_zero2_checked",
+   "cleanup": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-w20261016T042911Z-03.scope",
+    "confirmed": true,
+    "steps": [
+     {
+      "before": {
+       "active": false,
+       "pids": []
+      }
+     },
+     {
+      "after": {
+       "active": false,
+       "pids": []
+      }
+     }
+    ],
+    "unit": "mgbench-smoke-w20261016T042911Z-03"
+   },
+   "duration_s": 16.073550939559937,
+   "ended_utc": "2026-10-16T04:30:57.046139+00:00",
+   "evaluation": {
+    "checks": [
+     {
+      "check": "worker exit code 0",
+      "observed": 1,
+      "pass": false
+     },
+     {
+      "check": "result.json present",
+      "observed": null,
+      "pass": false
+     }
+    ],
+    "pass": false
+   },
+   "gate_polls": 4,
+   "gate_trail": [
+    {
+     "busy": [
+      "gpu4: power 82 W"
+     ],
+     "fatal": [],
+     "t": "2026-10-16T04:30:24.313772+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:30:29.733362+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:30:35.151673+00:00"
+    },
+    {
+     "busy": [],
+     "fatal": [],
+     "t": "2026-10-16T04:30:40.572571+00:00"
+    }
+   ],
+   "guard": {
+    "peaks": {
+     "active_worker_scopes_max": 1,
+     "gpu4_mem_used_mib": 2411.8125,
+     "gpu4_power_w": 71.115,
+     "gpu4_temp_c": 30,
+     "node_gpu_power_w": 988.212,
+     "samples": 16,
+     "worker_cpu_rate_max": 1.9344651398675434,
+     "worker_memory_current_bytes": 1094680576,
+     "worker_memory_peak_bytes": 1115545600
+    },
+    "power_watch_peak_w": 988.212,
+    "stop_reason": null
+   },
+   "identity": {
+    "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-w20261016T042911Z-03.scope",
+    "identity_error": null,
+    "leader_pid": 97816,
+    "leader_start_time": 4463413,
+    "unit": "mgbench-smoke-w20261016T042911Z-03"
+   },
+   "index": 3,
+   "outcome": "unexpected_result",
+   "rc": 1,
+   "worker_scope_limits": {
+    "cpu_quota_pct": 1500,
+    "memory_max": "46G",
+    "runtime_max_s": 425,
+    "stop_timeout_s": 60
+   }
+  }
+ ],
+ "ended_utc": "2026-10-16T04:30:57.063161+00:00",
+ "expectations_sha256": "3df6a54b65f1999b1a7e33e79efad23bff4a0db92e95ce410c84039d178968aa",
+ "expiry_utc": "2026-10-16T05:14:11+00:00",
+ "final_gpu4_check": [
+  "gpu4: power 71 W"
+ ],
+ "interpreter": "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python",
+ "mgbench_file": "/PRIVATE_EVIDENCE/10_candidate/multigpu-bench/studies/a6000/src/mgbench/__init__.py",
+ "peak_concurrency": 1,
+ "repository_hold_active_at_end": true,
+ "reservation": "released",
+ "started_utc": "2026-10-16T04:29:21.610469+00:00",
+ "stopped_because": "c3_zero2_checked: result differs from frozen expectations (['worker exit code 0', 'result.json present'])",
+ "supervisor_cgroup": {
+  "affinity": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   165,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   237,
+   238,
+   239,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255
+  ],
+  "cgroup": "/user.slice/user-531927037.slice/user@531927037.service/app.slice/mgbench-smoke-sup-w20261016T042911Z.scope",
+  "cpu.max": "100000 100000",
+  "cpu.stat.usage_usec": 412571,
+  "memory.current": "18509824",
+  "memory.max": "2147483648",
+  "memory.peak": "18509824",
+  "memory.swap.max": "0",
+  "pids.current": "1"
+ }
+}

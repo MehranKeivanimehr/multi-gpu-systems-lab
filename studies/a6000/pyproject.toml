@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mgbench"
+version = "0.1.0"
+description = "Multi-GPU training/inference benchmark suite (DDP, FSDP2, DeepSpeed ZeRO, vLLM) for RTX A6000 nodes"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

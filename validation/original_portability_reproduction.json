@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "author": "Mehran Keivanimehr",
+  "date": "2026-10-15",
+  "status": "reported_bug_reproduced",
+  "baseline_archive_sha256": "e0de161c9346276ac33ad926ef4190aa01c1cc90c2179ec4080ec06ae4283df4",
+  "baseline_archive_entries": 1623,
+  "baseline_archive_bytecode_entries": [],
+  "cache_directories_created_by_checks": [
+    "studies/a6000/src/mgbench/__pycache__",
+    "studies/titan-1080/bench/__pycache__",
+    "tests/__pycache__",
+    "tools/__pycache__",
+    "validation/__pycache__"
+  ],
+  "python": "3.10.20",
+  "platform": "Windows x86-64; not the remote Linux 3.10.22 host",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "tools/scientific_corrections.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Stale correction artifact: results/corrections/a6000_repeats.csv\n",
+      "unredacted_log_sha256": "dd56e01b4f06e170ad7890cd08fc5046c5707572167638316ab69de74c7531a1"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "test_a6000_window_excludes_setup_and_teardown (test_measurement_controls.MeasurementControlTests) ... ok\ntest_active_titan_output_names_do_not_claim_proxy_ttft (test_measurement_controls.MeasurementControlTests) ... ok\ntest_all_findings_have_evidence_without_false_gpu_closure (test_measurement_controls.MeasurementControlTests) ... ok\ntest_optimizer_observer_counts_actual_calls_not_attempts (test_measurement_controls.MeasurementControlTests) ... ok\ntest_protocols_do_not_merge_qwen_precision_recipes (test_measurement_controls.MeasurementControlTests) ... ok\ntest_status_document_is_current (test_measurement_controls.MeasurementControlTests) ... ok\ntest_titan_missing_gpu_reading_fails_closed (test_measurement_controls.MeasurementControlTests) ... ok\ntest_titan_real_sampler_uses_workload_not_sample_span (test_measurement_controls.MeasurementControlTests) ... ok\ntest_titan_results_cannot_replace_existing_run (test_measurement_controls.MeasurementControlTests) ... ok\ntest_a100_combined_csv_matches_jsonl (test_repository.RepositoryTests) ... ok\ntest_a6000_main_summary_medians (test_repository.RepositoryTests) ... ok\ntest_active_local_links_exist (test_repository.RepositoryTests) ... ok\ntest_author_is_the_named_person (test_repository.RepositoryTests) ... ok\ntest_catalog_covers_all_canonical_artifacts (test_repository.RepositoryTests) ... ok\ntest_clean_notebook_has_no_historical_side_effect_cells (test_repository.RepositoryTests) ... ok\ntest_generated_artifacts_are_current (test_repository.RepositoryTests) ... ok\ntest_manifest_detects_tampering (test_repository.RepositoryTests) ... ok\ntest_manifest_is_intact (test_repository.RepositoryTests) ... ok\ntest_manifest_rejects_path_escape (test_repository.RepositoryTests) ... ok\ntest_titan_communication_units_and_ring_factor (test_repository.RepositoryTests) ... ok\ntest_titan_scaling_uses_matching_single_gpu_baseline (test_repository.RepositoryTests) ... ok\ntest_titan_training_throughput_and_energy_from_raw (test_repository.RepositoryTests) ... ok\ntest_amp_has_no_fp32_peak_percentage (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_boundary_sample_does_not_require_extrapolation (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_cnn_fma_convention (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_constant_power_exact_boundaries (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_corrections_are_reproducible (test_scientific_metrics.ScientificMetricTests) ... FAIL\ntest_decode_excludes_first_token_per_request (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_dispersion_exposes_range_not_only_cv (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_duplicates_and_invalid_intervals (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_linear_power_analytic_integral (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_missing_reading_is_not_silently_zero (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_resnet_architecture_count (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_uncovered_window_is_not_shortened (test_scientific_metrics.ScientificMetricTests) ... ok\ntest_ignore_empty_output_and_usage_events (test_stream_latency.StreamingTests) ... ok\ntest_missing_or_wrong_token_count_is_not_success (test_stream_latency.StreamingTests) ... ok\ntest_sse_payloads_and_completion_are_retained (test_stream_latency.StreamingTests) ... ok\ntest_token_evidence_can_be_present_before_nonempty_text (test_stream_latency.StreamingTests) ... ok\ntest_truncated_or_error_stream_is_rejected (test_stream_latency.StreamingTests) ... ok\n\n======================================================================\nFAIL: test_corrections_are_reproducible (test_scientific_metrics.ScientificMetricTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<WORKSPACE>\\work\\original-portability-26tb1hx7\\multigpu-bench\\tests\\test_scientific_metrics.py\", line 61, in test_corrections_are_reproducible\n    self.assertEqual((scientific_corrections.ROOT / relative).read_bytes(), content.encode(\"utf-8\"), relative)\nAssertionError: b'mod[4015 chars]880445,0.08319480176755845,studies/a6000/resul[6415 chars]on\\n' != b'mod[4015 chars]88044,0.08319480176755845,studies/a6000/result[6414 chars]on\\n' : results/corrections/a6000_repeats.csv\n\n----------------------------------------------------------------------\nRan 39 tests in 6.384s\n\nFAILED (failures=1)\n",
+      "unredacted_log_sha256": "9017f7a73cd1b446b9df66c5cb6a5a55628ea2126f6db4e1e326cda0a39982c8"
+    }
+  ],
+  "historical_manifest_bytes_unchanged": true,
+  "derived_statistic_changes": [
+    {
+      "model": "llama3.1-8b",
+      "framework": "zero3",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "mean",
+      "old": "973.7187659601019",
+      "new": "973.718765960102",
+      "ulp_steps": 1
+    },
+    {
+      "model": "llama3.1-8b",
+      "framework": "zero3",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.43350391558063495",
+      "new": "0.43350391558063484",
+      "ulp_steps": 2
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "ddp",
+      "n_gpus": "1",
+      "variant": "",
+      "field": "mean",
+      "old": "3991.2746447508434",
+      "new": "3991.274644750844",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "ddp",
+      "n_gpus": "2",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.08809948105020826",
+      "new": "0.08809948105020828",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "ddp",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "mean",
+      "old": "7469.190342730847",
+      "new": "7469.190342730848",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "fsdp",
+      "n_gpus": "1",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.47304705615503956",
+      "new": "0.4730470561550395",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "fsdp",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "mean",
+      "old": "4478.038705959362",
+      "new": "4478.038705959361",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "fsdp",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.14081568876618764",
+      "new": "0.14081568876618766",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "zero1",
+      "n_gpus": "2",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.05919243780056668",
+      "new": "0.059192437800566676",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "zero1",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.6615622235619498",
+      "new": "0.6615622235619497",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "zero2",
+      "n_gpus": "1",
+      "variant": "",
+      "field": "mean",
+      "old": "3543.018701458654",
+      "new": "3543.0187014586545",
+      "ulp_steps": 1
+    },
+    {
+      "model": "qwen2.5-1.5b",
+      "framework": "zero2",
+      "n_gpus": "2",
+      "variant": "",
+      "field": "mean",
+      "old": "5581.740609469301",
+      "new": "5581.7406094693015",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "ddp",
+      "n_gpus": "1",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.035724595808245004",
+      "new": "0.03572459580824501",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "ddp",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.11925683690611448",
+      "new": "0.1192568369061145",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "fsdp",
+      "n_gpus": "2",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.11478153370230772",
+      "new": "0.1147815337023077",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "fsdp",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "mean",
+      "old": "3851.915511568434",
+      "new": "3851.9155115684343",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "fsdp",
+      "n_gpus": "4",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.050490570112184434",
+      "new": "0.05049057011218443",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "zero1",
+      "n_gpus": "1",
+      "variant": "",
+      "field": "mean",
+      "old": "981.2998919827014",
+      "new": "981.2998919827015",
+      "ulp_steps": 1
+    },
+    {
+      "model": "resnet50",
+      "framework": "zero2",
+      "n_gpus": "2",
+      "variant": "",
+      "field": "sample_cv_pct",
+      "old": "0.11682723606983245",
+      "new": "0.11682723606983242",
+      "ulp_steps": 2
+    }
+  ],
+  "max_derived_ulp_change": 2,
+  "no_changes_to_observations_or_run_identity": true,
+  "path_normalization": "workspace prefixes replaced by <WORKSPACE>; full logs retained outside published repository",
+  "gpu_experiments_performed": false
+}

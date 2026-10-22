@@ -1,0 +1,20 @@
+# vLLM offline inference throughput. The workload (prompt count and lengths) is fixed, so this is strong scaling.
+#
+# TP=4 spans both NVLink pairs. On this node direct PCIe peer-to-peer between the pairs hangs (see
+# configs/experiments/nccl_diag.yaml and vllm_tp4_diag.yaml), so TP=4 runs restrict NCCL P2P to NVLink and send the
+# PCIe hops through host memory (NCCL_P2P_LEVEL=NVL) - the same transports PyTorch's NCCL picks by default for the
+# 4-GPU training runs. TP=1/DP use no NCCL and TP=2 runs on an NVLink pair, so they are unaffected.
+name: vllm_scaling
+kind: vllm
+repeats: 2
+defaults:
+  num_prompts: 1024
+  input_len: 512
+  output_len: 256
+  warmup_prompts: 32
+  seed: 1234
+workloads:
+  - model: qwen2.5-1.5b
+    layouts: [{tp: 1, dp: 1}, {tp: 2, dp: 1}, {tp: 4, dp: 1, env: {NCCL_P2P_LEVEL: NVL}}, {tp: 1, dp: 2}, {tp: 1, dp: 4}]
+  - model: llama3.1-8b
+    layouts: [{tp: 1, dp: 1}, {tp: 2, dp: 1}, {tp: 4, dp: 1, env: {NCCL_P2P_LEVEL: NVL}}, {tp: 1, dp: 2}, {tp: 1, dp: 4}]

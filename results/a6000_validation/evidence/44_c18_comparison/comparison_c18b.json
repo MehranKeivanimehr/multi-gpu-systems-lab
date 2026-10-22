@@ -1,0 +1,182 @@
+{
+ "comparator": "/PRIVATE_EVIDENCE/18_candidate_c18/multigpu-bench/studies/a6000/src/mgbench/control_c.py",
+ "comparator_sha256": "35b8783a8d5594421245dbe30c700867c74fa0a82a08d087f9c353aaf779522d",
+ "comparison_permitted": true,
+ "frozen_inputs": {
+  "limits": {
+   "G1_cosine": [
+    "lower",
+    0.99999
+   ],
+   "G1_rel_l2": [
+    "upper",
+    0.0001
+   ],
+   "L_k0_rel": [
+    "upper",
+    1e-06
+   ],
+   "L_max_k0_4_rel": [
+    "upper",
+    1e-05
+   ],
+   "U_cosine": [
+    "lower",
+    0.999
+   ],
+   "U_rel_l2": [
+    "upper",
+    0.05
+   ]
+  },
+  "n_layers": 28,
+  "recipe": {
+   "micro_batch": 1,
+   "model": "qwen2.5-1.5b",
+   "seq_len": 1024
+  },
+  "slice_elements": 262144,
+  "slices": [
+   "model.layers.0.self_attn.q_proj.weight",
+   "model.layers.0.mlp.down_proj.weight",
+   "model.layers.27.mlp.up_proj.weight",
+   "model.norm.weight"
+  ],
+  "tied_aliases": {
+   "model.embed_tokens.weight": [
+    "lm_head.weight"
+   ]
+  }
+ },
+ "preconditions": {
+  "C5_fp32_world2_ga2": [
+   "completed_valid",
+   true,
+   "confirmed"
+  ],
+  "R5_fp32_world1_ga4": [
+   "completed_valid",
+   true,
+   "confirmed"
+  ]
+ },
+ "result": {
+  "ambiguities": [
+   "cosine marginal/fail band: '3x the limit' has no meaning for a lower bound; not resolved, reported as not_pass",
+   "stopping rule: whether 'marginal (investigate)' counts as 'fails its tight tolerance' is not stated; recipe interpretation is permitted here only if every endpoint passes",
+   "L is defined as RELATIVE |L_k - L_R,k| / L_R,k in the pre-registration (the follow-up request said absolute); the relative form is graded, the absolute difference is reported"
+  ],
+  "control_C_met": true,
+  "endpoints_preregistered": {
+   "G1_cosine": 0.9999999999999925,
+   "G1_rel_l2": 5.232732767446804e-08,
+   "L_k0_rel": 0.0,
+   "L_max_k0_4_rel": 1.9483417449091486e-08,
+   "U_cosine": 0.9999999999486899,
+   "U_rel_l2": 1.0131211119439806e-05
+  },
+  "informed_by_prior_results": true,
+  "limits": {
+   "G1_cosine": 0.99999,
+   "G1_rel_l2": 0.0001,
+   "L_k0_rel": 1e-06,
+   "L_max_k0_4_rel": 1e-05,
+   "U_cosine": 0.999,
+   "U_rel_l2": 0.05
+  },
+  "preregistration_sha256": "cd367fc553cb56d38cd7d17673c442253757ddc42923dfac85a8bcf67a668ce3",
+  "problems": [],
+  "recipe_interpretation": "permitted (all C endpoints pass)",
+  "scope_of_claim": "calibrates only the declared harness/control claim; not historical training, quality or distributed performance",
+  "supplementary_not_graded": {
+   "G1": {
+    "elements": 1543714304,
+    "full_vector": {
+     "cosine": 0.9999999999999882,
+     "norm_ratio": 0.9999999999811968,
+     "rel_l2": 5.077992471987323e-08
+    },
+    "largest_abs_difference": {
+     "abs": 1.4901161193847656e-08,
+     "flat_index": 2,
+     "name": "model.layers.0.self_attn.v_proj.bias",
+     "observed": -0.07544319331645966,
+     "reference": -0.07544320821762085
+    },
+    "slice_elements": 787968,
+    "tensors": 338,
+    "worst_tensor": {
+     "cosine": 0.9999999999999978,
+     "name": "model.layers.19.self_attn.k_proj.bias",
+     "norm_ratio": 1.0000000221718075,
+     "numel": 256,
+     "rel_l2": 7.025050844956336e-08
+    }
+   },
+   "L": {
+    "C5": [
+     12.255925178527832,
+     12.237000226974487,
+     12.22173023223877,
+     12.245248317718506,
+     12.224618673324585
+    ],
+    "R5": [
+     12.255925178527832,
+     12.236999988555908,
+     12.22173023223877,
+     12.245248317718506,
+     12.224618673324585
+    ],
+    "absolute": [
+     0.0,
+     2.384185791015625e-07,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "relative": [
+     0.0,
+     1.9483417449091486e-08,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "U": {
+    "elements": 1543714304,
+    "full_vector": {
+     "cosine": 0.9999999998739443,
+     "norm_ratio": 0.9999999983886595,
+     "rel_l2": 1.5883504940592323e-05
+    },
+    "largest_abs_difference": {
+     "abs": 1.5618279576301575e-05,
+     "flat_index": 2882889,
+     "name": "model.embed_tokens.weight",
+     "observed": -0.00030211545526981354,
+     "reference": -0.0003177337348461151
+    },
+    "slice_elements": 787968,
+    "tensors": 338,
+    "worst_tensor": {
+     "cosine": 0.999999889132913,
+     "name": "model.layers.0.self_attn.k_proj.bias",
+     "norm_ratio": 1.0000302870275135,
+     "numel": 256,
+     "rel_l2": 0.00047186671205235895
+    }
+   }
+  },
+  "verdicts": {
+   "G1_cosine": "pass",
+   "G1_rel_l2": "pass",
+   "L_k0_rel": "pass",
+   "L_max_k0_4_rel": "pass",
+   "U_cosine": "pass",
+   "U_rel_l2": "pass"
+  }
+ },
+ "seconds": 68.41247750399634,
+ "window": "/PRIVATE_EVIDENCE/43_c18_window/w18b_20261020T122336Z"
+}

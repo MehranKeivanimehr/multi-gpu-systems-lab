@@ -1,0 +1,35 @@
+NCCL version 2.28.9+cuda13.0
+[mgbench] rank 0 OOM: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 47.40 GiB of which 3.68 GiB is free. Including non-PyTorch memory, this process has 43.72 GiB memory in use. 43.61 GiB allowed; Of the allocated memory 40.47 GiB is allocated by PyTorch, and 2.48 GiB is reserved by PyTorch
+E1012 23:43:28.277000 237020 torch/distributed/elastic/multiprocessing/api.py:986] failed (exitcode: 3) local_rank: 0 (pid: 237049) of binary: /PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/python
+Traceback (most recent call last):
+  File "/PRIVATE_WORKSPACE/multigpu-bench/.venv/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 990, in main
+    run(args)
+  File "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 981, in run
+    elastic_launch(
+  File "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/PRIVATE_WORKSPACE/multigpu-bench/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+mgbench.train FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-10-12_23:43:28
+  host      : A6000_NODE
+  rank      : 0 (local_rank: 0)
+  exitcode  : 3 (pid: 237049)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
